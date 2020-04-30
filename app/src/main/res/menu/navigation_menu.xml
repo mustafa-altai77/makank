@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="مشاركة التطبيق" android:icon="@drawable/ic_share_black_24dp" android:id="@+id/share_nav"> </item>
+
+    <item android:title="الشروط والاحكام" android:icon="@drawable/ic_insert_comment_black_24dp" android:id="@+id/rol_nav"> </item>
+
+    <item android:title="عن التطبيق" android:icon="@drawable/ic_info_outline_black_24dp" android:id="@+id/about_nav"> </item>
+
+</menu>

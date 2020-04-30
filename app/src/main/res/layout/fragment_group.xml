@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.profile.GroupFragment">
+   <ScrollView
+
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<!--   <LinearLayout-->
+<!--       android:layout_width="wrap_content"-->
+<!--       android:layout_height="wrap_content"-->
+<!--       android:layout_marginTop="60dp"-->
+<!--       android:gravity="right"-->
+<!--       android:orientation="horizontal"-->
+<!--       android:weightSum="2">-->
+<!--&lt;!&ndash;      <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;          android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;          android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;          android:text="عدد الاشخاص في المجموعة  : "&ndash;&gt;-->
+<!--&lt;!&ndash;          android:textColor="@color/cardview_dark_background"></TextView>&ndash;&gt;-->
+<!--      <TextView-->
+<!--          android:id="@+id/member_count"-->
+<!--          android:layout_width="wrap_content"-->
+<!--          android:layout_height="wrap_content"-->
+<!--          android:text="0"-->
+<!--          android:textColor="@color/cardview_dark_background">-->
+<!--      </TextView>-->
+<!--   </LinearLayout>-->
+
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/member_recycler"
+       android:layout_width="match_parent"
+       android:layout_height="542dp"
+       android:layout_marginTop="50dp"></androidx.recyclerview.widget.RecyclerView>
+
+   <ImageView
+       android:id="@+id/add_member"
+       android:layout_width="55dp"
+       android:layout_height="50dp"
+       android:layout_gravity="bottom"
+       android:layout_marginLeft="50dp"
+       android:background="@drawable/ic_add_circle_black_24dp"></ImageView>
+</LinearLayout>
+   </ScrollView>
+
+</FrameLayout>

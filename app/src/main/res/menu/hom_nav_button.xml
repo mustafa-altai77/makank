@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/navigationHome"
+        android:title="@string/home_txt"
+        android:icon="@drawable/grid"
+        android:actionLayout="@layout/fragment_grid"
+        />
+    <item
+        android:id="@+id/navigationNews"
+        android:title="@string/news_txt"
+        android:icon="@drawable/rss_feed"
+         />
+
+    <item
+        android:id="@+id/navigationMyContact"
+        android:icon="@drawable/visibility"
+        android:title="@string/contact_txt" />
+
+
+
+    <item
+        android:id="@+id/navigationStatistic"
+        android:icon="@drawable/chart"
+        android:title="@string/statistic_txt" />
+
+    <item
+        android:id="@+id/navigationMyProfile"
+        android:icon="@drawable/user"
+        android:title="@string/profile_txt" />
+</menu>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.AddGroupActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/qr_image"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@drawable/qr">
+    </ImageView>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/cardview_dark_background"
+        android:text="اضغط على الصورة للبحث عن طريق الرمز التعريفي (QrCode)"
+        android:layout_gravity="center">
+
+    </TextView>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/cardview_dark_background"
+        android:text="او ادخل الرقم التعريفي"
+        android:layout_gravity="center">
+    </TextView>
+
+    <EditText
+        android:id="@+id/p_id"
+        android:layout_width="282dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/card_shape"
+        android:hint="الرقم التعريفي: xxxxx"
+        android:inputType="text"
+        android:textAlignment="center">
+    </EditText>
+
+    <Button
+        android:id="@+id/check_status"
+        android:layout_width="162dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/card_button"
+        android:text="بحث"
+        android:textColor="@color/cardview_light_background">
+    </Button>
+
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="الاسم :"></TextView>
+
+            <TextView
+                android:id="@+id/p_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ابراهيم عوض"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="الرقم التعريفي :"></TextView>
+
+            <TextView
+                android:id="@+id/p_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0255684"></TextView>
+        </LinearLayout>
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="283dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/card_button"
+        android:text="اضافة للمجموعة"
+        android:textColor="@color/cardview_light_background">
+    </Button>
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="283dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/text_shape"
+        android:text="الغاء العملية"
+        android:textColor="@color/cardview_light_background">
+    </Button>
+    </LinearLayout>
+</ScrollView>
