@@ -141,7 +141,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:background="@drawable/card_button"
-        android:text="@string/register"
+        android:text="@string/next"
         android:textColor="@color/cardview_light_background"/>
 
 </LinearLayout>

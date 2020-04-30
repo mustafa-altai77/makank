@@ -7,7 +7,6 @@
     tools:context=".ui.activity.ContactActivity"
     android:orientation="vertical">
 <LinearLayout
-    android:layoutDirection="rtl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -33,7 +32,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="80dp"
             android:layout_marginEnd="208dp"
-            android:text="الحالة :"
+            android:text="@string/status"
             android:textColor="@color/cardview_light_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"></TextView>
@@ -95,7 +94,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@drawable/card_button"
-        android:text="بحث"
+        android:text="@string/scan"
         android:textColor="@color/cardview_light_background">
 
     </Button>
@@ -107,7 +106,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@drawable/card_button"
-        android:text="استقبال"
+        android:text="@string/receive"
         android:textColor="@color/cardview_light_background">
     </Button>
 </LinearLayout>

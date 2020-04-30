@@ -57,7 +57,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:background="@color/colorAccent"
-            android:text="@string/next_place"
+            android:text="@string/next"
             android:textColor="#fff"
             android:textSize="20dp" />
     </LinearLayout>

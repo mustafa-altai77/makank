@@ -1,25 +1,33 @@
 <resources>
+    <string name="english">English</string>
+    <string name="arabic">Arabic</string>
+    <string name="choose_language">Choose Language</string>
     <string name="Open">Navbar</string>
     <string name="Close">Navbar</string>
     <string name="app_name">Makank</string>
-    <string name="next_place">تمام</string>
-    <string name="des">المرض المصاحب</string>
-    <string name="register">التالي</string>
-    <string name="news_txt">الاخبار</string>
-    <string name="disease_activity">الامراض المزمنة</string>
-    <string name="place_activity">تحديد المكان</string>
+    <string name="next_place">}</string>
+    <string name="des">Chronic diseases</string>
+    <string name="next">Next</string>
+    <string name="news_txt">News</string>
+    <string name="disease_activity"></string>
+    <string name="place_activity">Location</string>
+    <string name="conf">Confirm</string>
+    <string name="send">Send</string>
+    <string name="scan">Search</string>
+    <string name="add_member">Add to group</string>
+    <string name="cancel">Cancel</string>
+    <string name="receive">Receive</string>
+    <string name="status">Status</string>
 
-    <string name="home_txt">الرئسية</string>
-    <string name="contact_txt">التواصل</string>
-    <string name="statistic_txt">الاحصائيات</string>
-    <string name="profile_txt">الحساب</string>
-    <string name="save">حفظ</string>
-    <string name="register_screen">البيانات الشخصية</string>
-    <string name="generate">توليد</string>
+    <string name="home_txt">Home</string>
+    <string name="contact_txt">Communication</string>
+    <string name="statistic_txt">statistics</string>
+    <string name="profile_txt">Account</string>
+    <string name="save">Save</string>
+    <string name="register_screen">Personal data</string>
     <string name="enter_text">Enter Text</string>
     <string name="value_required">Value Required</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="error_field_required">This field is required</string>
 </resources>

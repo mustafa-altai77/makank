@@ -157,7 +157,6 @@ public class AddGroupActivity extends AppCompatActivity {
                 progressDoalog.dismiss();
 
                 Toast.makeText(AddGroupActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
-
             }
         });
     }
@@ -191,5 +190,5 @@ public class AddGroupActivity extends AppCompatActivity {
             }
         });
     }
-    }
+}
 
