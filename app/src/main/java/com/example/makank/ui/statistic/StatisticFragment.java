@@ -12,14 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.makank.R;
-import com.example.makank.data.ApiClient;
-import com.example.makank.data.ApiInterface;
-import com.example.makank.data.State;
-import com.example.makank.data.Statistc;
-import com.example.makank.ui.activity.PlaceActivity;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.makank.data.network.ApiClient;
+import com.example.makank.data.network.ApiInterface;
+import com.example.makank.data.model.Statistc;
 
 import retrofit2.Call;
 import retrofit2.Callback;

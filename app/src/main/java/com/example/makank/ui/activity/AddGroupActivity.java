@@ -15,10 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.makank.R;
-import com.example.makank.data.ApiClient;
-import com.example.makank.data.ApiInterface;
-import com.example.makank.data.Member;
-import com.example.makank.data.Person;
+import com.example.makank.data.network.ApiClient;
+import com.example.makank.data.network.ApiInterface;
+import com.example.makank.data.model.Member;
+import com.example.makank.data.model.Person;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 

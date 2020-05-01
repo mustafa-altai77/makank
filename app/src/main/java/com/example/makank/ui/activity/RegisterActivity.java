@@ -15,9 +15,9 @@ import android.widget.Toast;
 
 import com.example.makank.R;
 import com.example.makank.SharedPref;
-import com.example.makank.data.ApiClient;
-import com.example.makank.data.ApiInterface;
-import com.example.makank.data.Person;
+import com.example.makank.data.network.ApiClient;
+import com.example.makank.data.network.ApiInterface;
+import com.example.makank.data.model.Person;
 
 import retrofit2.Call;
 import retrofit2.Callback;

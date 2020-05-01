@@ -15,14 +15,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.makank.R;
-import com.example.makank.data.ApiClient;
-import com.example.makank.data.ApiInterface;
-import com.example.makank.data.Disease;
-import com.example.makank.ui.DiseaseAdapter;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.makank.data.network.ApiClient;
+import com.example.makank.data.network.ApiInterface;
+import com.example.makank.data.model.Disease;
+import com.example.makank.adapter.DiseaseAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

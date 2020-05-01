@@ -1,4 +1,4 @@
-package com.example.makank.ui;
+package com.example.makank.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,8 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.makank.R;
-import com.example.makank.data.Disease;
-import com.example.makank.ui.activity.DiseaseActivity;
+import com.example.makank.data.model.Disease;
 
 import java.util.ArrayList;
 import java.util.List;

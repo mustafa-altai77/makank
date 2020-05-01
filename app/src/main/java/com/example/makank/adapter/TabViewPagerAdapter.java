@@ -1,4 +1,4 @@
-package com.example.makank.ui;
+package com.example.makank.adapter;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;

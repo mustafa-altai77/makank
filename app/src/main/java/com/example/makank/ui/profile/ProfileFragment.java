@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.makank.R;
-import com.example.makank.ui.TabViewPagerAdapter;
+import com.example.makank.adapter.TabViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 

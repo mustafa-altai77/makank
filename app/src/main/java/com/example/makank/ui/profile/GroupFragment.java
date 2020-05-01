@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,12 +21,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.makank.R;
-import com.example.makank.data.ApiClient;
-import com.example.makank.data.ApiInterface;
-import com.example.makank.data.Member;
-import com.example.makank.data.News;
+import com.example.makank.data.network.ApiClient;
+import com.example.makank.data.network.ApiInterface;
+import com.example.makank.adapter.GroupAdapter;
+import com.example.makank.data.model.Member;
 import com.example.makank.ui.activity.AddGroupActivity;
-import com.example.makank.ui.news.NewsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

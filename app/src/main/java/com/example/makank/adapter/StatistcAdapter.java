@@ -1,9 +1,8 @@
-package com.example.makank.ui.statistic;
+package com.example.makank.adapter;
 
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.makank.R;
-import com.example.makank.data.Statistc;
-import com.example.makank.ui.activity.ContactActivity;
-import com.example.makank.ui.activity.SendNotifActivity;
-import com.example.makank.ui.activity.VolunteerActivity;
-import com.example.makank.ui.home.Home;
+import com.example.makank.data.model.Statistc;
 
 import java.util.List;
 

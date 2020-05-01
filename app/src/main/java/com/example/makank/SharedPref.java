@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import com.example.makank.ui.activity.HomeActivity;
+
 public class SharedPref {
     //Storage File
     public static final String SHARED_PREF_NAME = "larntech";
@@ -79,6 +81,6 @@ public class SharedPref {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.commit();
-        mCtx.startActivity(new Intent(mCtx, MainActivity.class));
+        mCtx.startActivity(new Intent(mCtx, HomeActivity.class));
     }
 }

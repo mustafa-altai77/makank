@@ -8,12 +8,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,10 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.makank.GpsLocationTracker;
-import com.example.makank.data.ApiClient;
-import com.example.makank.data.ApiInterface;
-import com.example.makank.data.Member;
-import com.example.makank.data.Person;
+import com.example.makank.data.network.ApiClient;
+import com.example.makank.data.network.ApiInterface;
+import com.example.makank.data.model.Member;
+import com.example.makank.data.model.Person;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -34,8 +30,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.makank.R;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

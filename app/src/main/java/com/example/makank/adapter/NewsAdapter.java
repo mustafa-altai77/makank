@@ -1,9 +1,8 @@
-package com.example.makank.ui.news;
+package com.example.makank.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -19,13 +17,10 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.makank.R;
-import com.example.makank.data.News;
-import com.example.makank.ui.activity.PlaceActivity;
-import com.example.makank.ui.activity.RegisterActivity;
+import com.example.makank.data.model.News;
+import com.example.makank.ui.news.NewsDetailsActivity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,13 +1,10 @@
 package com.example.makank.ui.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,16 +13,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.makank.R;
-import com.example.makank.SharedPref;
-import com.example.makank.data.ApiClient;
-import com.example.makank.data.ApiInterface;
-import com.example.makank.data.City;
-import com.example.makank.data.Local;
-import com.example.makank.data.State;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.makank.data.network.ApiClient;
+import com.example.makank.data.network.ApiInterface;
+import com.example.makank.data.model.City;
+import com.example.makank.data.model.Local;
+import com.example.makank.data.model.State;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -20,12 +19,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.makank.R;
-import com.example.makank.data.ApiClient;
-import com.example.makank.data.ApiInterface;
-import com.example.makank.data.Member;
-import com.example.makank.ui.profile.GroupAdapter;
+import com.example.makank.data.network.ApiClient;
+import com.example.makank.data.network.ApiInterface;
+import com.example.makank.adapter.SeenAdapter;
+import com.example.makank.data.model.Member;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;

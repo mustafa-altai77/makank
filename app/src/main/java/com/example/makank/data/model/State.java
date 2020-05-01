@@ -1,9 +1,9 @@
-package com.example.makank.data;
+package com.example.makank.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Local {
+public class State {
     @SerializedName("id")
     @Expose
     private String id;

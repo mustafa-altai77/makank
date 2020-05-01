@@ -1,4 +1,4 @@
-package com.example.makank.data;
+package com.example.makank.data.model;
 
 public class Member {
     String id;

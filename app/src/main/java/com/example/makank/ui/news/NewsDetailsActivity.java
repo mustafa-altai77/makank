@@ -6,9 +6,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.makank.R;
-import com.example.makank.data.News;
+import com.example.makank.data.model.News;
 
 public class NewsDetailsActivity extends AppCompatActivity {
     TextView text,description;

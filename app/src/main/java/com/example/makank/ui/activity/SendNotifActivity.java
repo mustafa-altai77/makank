@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,11 +16,9 @@ import android.widget.Toast;
 
 import com.example.makank.GpsLocationTracker;
 import com.example.makank.R;
-import com.example.makank.data.ApiClient;
-import com.example.makank.data.ApiInterface;
-import com.example.makank.data.Local;
-import com.example.makank.data.Member;
-import com.example.makank.data.Person;
+import com.example.makank.data.network.ApiClient;
+import com.example.makank.data.network.ApiInterface;
+import com.example.makank.data.model.Person;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,7 +26,6 @@ import retrofit2.Response;
 
 import static com.example.makank.SharedPref.SHARED_PREF_NAME;
 import static com.example.makank.SharedPref.USER_ID;
-import static com.example.makank.SharedPref.USER_LOCAL;
 import static com.example.makank.SharedPref.mCtx;
 
 public class SendNotifActivity extends AppCompatActivity {
@@ -65,7 +61,6 @@ public class SendNotifActivity extends AppCompatActivity {
                }
            }
        });
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
          String local = area.getText().toString();
 
         send.setOnClickListener(new View.OnClickListener() {

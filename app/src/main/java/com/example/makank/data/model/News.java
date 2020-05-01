@@ -1,4 +1,4 @@
-package com.example.makank.data;
+package com.example.makank.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

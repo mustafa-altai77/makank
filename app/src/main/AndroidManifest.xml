@@ -54,8 +54,6 @@
             android:label="location" >
 
         </activity>
-
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

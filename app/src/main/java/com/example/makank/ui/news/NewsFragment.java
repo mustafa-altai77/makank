@@ -3,7 +3,6 @@ package com.example.makank.ui.news;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -19,10 +18,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.makank.R;
-import com.example.makank.data.ApiClient;
-import com.example.makank.data.ApiInterface;
-import com.example.makank.data.News;
-import com.example.makank.ui.activity.DiseaseActivity;
+import com.example.makank.data.network.ApiClient;
+import com.example.makank.data.network.ApiInterface;
+import com.example.makank.adapter.NewsAdapter;
+import com.example.makank.data.model.News;
 
 import java.util.List;
 
