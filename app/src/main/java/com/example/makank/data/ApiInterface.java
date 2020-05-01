@@ -2,6 +2,8 @@ package com.example.makank.data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -12,6 +14,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 
 public interface ApiInterface {
@@ -57,8 +60,9 @@ public interface ApiInterface {
     @GET("person/{id}/saw?data=true")
     Call<List<Member>>getMyseen(@Path("id") String id);
     @Multipart
-    @POST("person/{id}/volunteer")
-    Call<Filresponse> uploadImage(@Part("person_id") RequestBody userId, @Part("image\"; filename=\"image.png\" ") RequestBody file);
+    @POST("person/{id}/volunteer?image=")
+    Call<Filresponse> upload(@Part("person_id") String userId,
+                             @PartMap Map<String, RequestBody> map);
 
 
 

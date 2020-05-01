@@ -170,7 +170,17 @@ public class ContactActivity extends AppCompatActivity {
                     progressDoalog.dismiss();
 
                     Toast.makeText(ContactActivity.this, "done", Toast.LENGTH_SHORT).show();
-
+                    String statu = response.body().getStatus();
+                    if (statu.equals("3")) {
+                        status.setText("سليم");
+                        imageStatus.setBackgroundColor(R.color.green);
+                    } else if (statu.equals("2")) {
+                        status.setText("مخالط");
+                        imageStatus.setBackgroundColor(R.color.yellow);
+                    } else if (statu.equals("1")) {
+                        status.setText("مصاب");
+                        imageStatus.setBackgroundColor(R.color.colorAccent);
+                    }
                 }
 
             }

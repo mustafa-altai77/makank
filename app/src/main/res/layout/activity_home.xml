@@ -27,12 +27,12 @@
         </com.google.android.material.navigation.NavigationView>
     </androidx.drawerlayout.widget.DrawerLayout>
 
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layoutDirection="rtl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/cardview_light_background"
         android:layout_alignParentBottom="true"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/hom_nav_button">

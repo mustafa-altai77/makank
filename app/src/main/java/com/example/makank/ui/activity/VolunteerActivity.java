@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileUtils;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.service.autofill.FillResponse;
 import android.util.Log;
 import android.view.View;
@@ -40,6 +41,14 @@ import com.example.makank.data.ApiInterface;
 import com.example.makank.data.Filresponse;
 import com.example.makank.data.PdfClass;
 import com.example.makank.data.Person;
+import com.github.barteksc.pdfviewer.PDFView;
+import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
+import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
+import com.github.barteksc.pdfviewer.listener.OnPageErrorListener;
+import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
+import com.nbsp.materialfilepicker.MaterialFilePicker;
+import com.nbsp.materialfilepicker.ui.FilePickerActivity;
+import com.shockwave.pdfium.PdfDocument;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,7 +64,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -70,22 +83,18 @@ import static com.example.makank.SharedPref.SHARED_PREF_NAME;
 import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.mCtx;
 
-public class VolunteerActivity extends AppCompatActivity implements View.OnClickListener {
-    public static final String APP_FONT = "fonts/jana.ttf";
-    private static final String TAG = "UploadImageActivity";
-    private static final int PICK_FILE_REQUEST = 1;
-    public static final int REQUEST_PERMISSION = 200;
-    private String mCurrentPhotoPath;
+public class VolunteerActivity extends AppCompatActivity implements View.OnClickListener, OnLoadCompleteListener,OnPageChangeListener,OnPageErrorListener {
+    private int pageNumber = 0;
+
     private ImageView ivImage;
     private TextView tvFileName;
     private Button ok;
-    private static final int PDF_REQUEST = 777;
-    private Bitmap bitmap;
-    private static final int REQUEST_GALLERY_IMAGE = 1456;
-
-    public int PDF_REQ_CODE = 1;
-
-    ProgressDialog progressDialog;
+    private String pdfFileName;
+    private PDFView pdfView;
+    public static final int REQUEST_PERMISSION = 200;
+    public ProgressDialog pDialog;
+    public static final int FILE_PICKER_REQUEST_CODE = 1;
+    private String pdfPath;
 
 
     @Override
@@ -97,6 +106,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
         ok = findViewById(R.id.confirm);
         tvFileName.setOnClickListener(this);
         ok.setOnClickListener(this);
+        initDialog();
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
                 PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
@@ -105,128 +115,167 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
 
     }
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        Bitmap bitmap;
-        try {
-            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-            ivImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            ivImage.setImageBitmap(bitmap);
-
-            mCurrentPhotoPath = getRealPathFromURI(data.getData());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public String getRealPathFromURI(Uri contentUri) {
-
-        // can post image
-        String [] proj={MediaStore.Images.Media.DATA};
-        Cursor cursor = managedQuery( contentUri,
-                proj, // Which columns to return
-                null,       // WHERE clause; which rows to return (all rows)
-                null,       // WHERE clause selection arguments (none)
-                null); // Order-by clause (ascending by name)
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-
-        return cursor.getString(column_index);
-    }
-
-    @Override
     public void onClick(View v) {
         if (v == ivImage) {
-            Intent intent = new  Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intent, REQUEST_GALLERY_IMAGE);        }
+            launchPicker();
+        }
         if (v == ok) {
             SharedPreferences sharedPreference = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
             final String my_id = sharedPreference.getString(USER_ID, "id");
-            PdfClass imageUploadInputModel = new PdfClass();
-            imageUploadInputModel.setUserID(my_id);
-            File imgFile = new File(mCurrentPhotoPath);
+            uploadImage(my_id);
+        }
 
-            if(imgFile.exists())
+    }
+    private void launchPicker() {
+        new MaterialFilePicker()
+                .withActivity(this)
+                .withRequestCode(FILE_PICKER_REQUEST_CODE)
+                .withHiddenFiles(true)
+                .withFilter(Pattern.compile(".*\\.pdf$"))
+                .withTitle("Select PDF file")
+                .start();
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-            {
+        if (requestCode == FILE_PICKER_REQUEST_CODE && resultCode == RESULT_OK) {
+            String path = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+            File file = new File(path);
+//            displayFromFile(file);
+            if (path != null) {
+                Log.d("Path: ", path);
+                pdfPath = path;
+                Toast.makeText(this, "Picked file: " + path, Toast.LENGTH_LONG).show();
+            }
+        }
 
-                bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                ivImage.setImageBitmap(bitmap);
+    }
+//    private void displayFromFile(File file) {
+//
+//        Uri uri = Uri.fromFile(new File(file.getAbsolutePath()));
+//        pdfFileName = getFileName(uri);
+//
+//        pdfView.fromFile(file)
+//                .defaultPage(pageNumber)
+//                .onPageChange((OnPageChangeListener) this)
+//                .enableAnnotationRendering(true)
+//                .onLoad(this)
+//                .scrollHandle(new DefaultScrollHandle(this))
+//                .spacing(10) // in dp
+//                .onPageError((OnPageErrorListener) this)
+//                .load();
+//    }
+    public String getFileName(Uri uri) {
+        String result = null;
+        if (uri.getScheme().equals("content")) {
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            try {
+                if (cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
+        }
+        if (result == null) {
+            result = uri.getLastPathSegment();
+        }
+        return result;
+    }
+    @Override
+    public void loadComplete(int nbPages) {
+        PdfDocument.Meta meta = pdfView.getDocumentMeta();
 
-            }            imageUploadInputModel.setImage(imgFile);
-            if (mCurrentPhotoPath != null) {
+        printBookmarksTree(pdfView.getTableOfContents(), "-");
+    }
 
-                uploadImage(imageUploadInputModel);
+    public void printBookmarksTree(List<PdfDocument.Bookmark> tree, String sep) {
+        for (PdfDocument.Bookmark b : tree) {
+
+            //Log.e(TAG, String.format("%s %s, p %d", sep, b.getTitle(), b.getPageIdx()));
+
+            if (b.hasChildren()) {
+                printBookmarksTree(b.getChildren(), sep + "-");
             }
         }
     }
 
-    private void selectPdf() {
-        Intent intent = new Intent();
 
-        intent.setType("application/pdf");
+    public void uploadImage(String id) {
+        if (pdfPath == null) {
+            Toast.makeText(this, "please select an image ", Toast.LENGTH_LONG).show();
+            return;
+        } else {
+            showpDialog();
 
-        intent.setAction(Intent.ACTION_GET_CONTENT);
+            // Map is used to multipart the file using okhttp3.RequestBody
+            Map<String, RequestBody> map = new HashMap<>();
+            File file = new File(pdfPath);
+            // Parsing any Media type file
+            RequestBody requestBody = RequestBody.create(MediaType.parse("application/pdf"), file);
+            map.put("file\"; filename=\"" + file.getName() + "\"", requestBody);
+            ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
+            Call<Filresponse> call = apiService.upload(id, map);
+            call.enqueue(new Callback<Filresponse>() {
+                @Override
+                public void onResponse(Call<Filresponse> call, Response<Filresponse> response) {
+                    if (response.isSuccessful()){
+                        if (response.body() != null){
+                            hidepDialog();
+                            Filresponse serverResponse = response.body();
+                            Toast.makeText(getApplicationContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
 
-        startActivityForResult(Intent.createChooser(intent, "Select Pdf"), PDF_REQ_CODE);
+                        }
+                    }else {
+                        hidepDialog();
+                        Toast.makeText(getApplicationContext(), "problem image", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Filresponse> call, Throwable t) {
+                    hidepDialog();
+                    Log.v("Response gotten is", t.getMessage());
+                    Toast.makeText(getApplicationContext(), "problem uploading image " + t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }
+
     }
 
-    public void uploadImage(final PdfClass imageUploadInputModel) {
+    protected void initDialog() {
 
-        RequestBody userId = RequestBody.create(MediaType.parse("text/plain"), imageUploadInputModel.toString());
-        RequestBody image = RequestBody.create(MediaType.parse("multipart/form-data"), imageUploadInputModel.getImage());
-        ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-
-        final Call<Filresponse> response = apiService.uploadImage(userId, image);
-
-        response.enqueue(new Callback<Filresponse>() {
-            @Override
-            public void onResponse(Call<Filresponse> call, Response<Filresponse> response) {
-                if (response.body() != null && response.body().equals(200)) {
-                    Log.v("", "success " + response.code() + "body: " + response.body().toString());
-                    // send call back
-
-                } else {
-                    if (response != null && response.body() != null && response.body().getError() != null)
-                        Toast.makeText(VolunteerActivity.this, response.body() + "", Toast.LENGTH_SHORT).show();
-                    // Handle error here
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Filresponse> call, Throwable t) {
-                if (t instanceof IOException) {
-                    Log.v("", "Network Error");
-                }
-            }
-
-        });
+        pDialog = new ProgressDialog(this);
+        pDialog.setMessage("loading..");
+        pDialog.setCancelable(true);
     }
 
+
+    protected void showpDialog() {
+
+        if (!pDialog.isShowing()) pDialog.show();
+    }
+
+    protected void hidepDialog() {
+
+        if (pDialog.isShowing()) pDialog.dismiss();
+    }
 
     @Override
-    public void onRequestPermissionsResult(int RC, String per[], int[] Result) {
-
-        switch (RC) {
-
-            case 1:
-
-                if (Result.length > 0 && Result[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    Toast.makeText(this,"Permission Granted", Toast.LENGTH_LONG).show();
-
-                } else {
-
-                    Toast.makeText(this,"Permission Canceled", Toast.LENGTH_LONG).show();
-
-                }
-                break;
-        }
+    public void onPageChanged(int page, int pageCount) {
+        pageNumber = page;
+        setTitle(String.format("%s %s / %s", pdfFileName, page + 1, pageCount));
     }
+
+    @Override
+    public void onPageError(int page, Throwable t) {
+
     }
+}
 
 
 

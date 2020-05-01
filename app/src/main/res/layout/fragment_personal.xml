@@ -58,7 +58,7 @@
             android:layout_marginRight="5dp"
             android:text="الاسم الاول"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="15dp"></TextView>
+            android:textSize="20dp"></TextView>
 
         <TextView
             android:id="@+id/s_na"
@@ -67,7 +67,7 @@
             android:layout_marginRight="5dp"
             android:text="الاسم الثاني"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="15dp"></TextView>
+            android:textSize="20dp"></TextView>
 
         <TextView
             android:id="@+id/l_na"
@@ -76,9 +76,10 @@
             android:layout_marginRight="5dp"
             android:text="الاسم الثالث"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="15dp"></TextView>
+            android:textSize="20dp"></TextView>
         <ImageView
             android:id="@+id/stat"
+            android:textSize="20dp"
             android:layout_marginRight="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -87,26 +88,29 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
         android:weightSum="4"
         app:layout_constraintTop_toBottomOf="@+id/qr_image">
 
         <LinearLayout
+            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="vertical"
             android:weightSum="2">
 
             <TextView
+                android:layout_gravity="center"
+                android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="الاسم ثلاثي"></TextView>
 
             <LinearLayout
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -119,7 +123,7 @@
                     android:layout_marginRight="10dp"
                     android:text="الاسم الاول"
                     android:textColor="@color/cardview_dark_background"
-                    android:textSize="15dp"></TextView>
+                    android:textSize="20dp"></TextView>
 
                 <TextView
                     android:id="@+id/s_name"
@@ -128,7 +132,7 @@
                     android:layout_marginRight="10dp"
                     android:text="الاسم الثاني"
                     android:textColor="@color/cardview_dark_background"
-                    android:textSize="15dp"></TextView>
+                    android:textSize="20dp"></TextView>
 
                 <TextView
                     android:id="@+id/l_name"
@@ -137,18 +141,22 @@
                     android:layout_marginRight="10dp"
                     android:text="الاسم الثالث"
                     android:textColor="@color/cardview_dark_background"
-                    android:textSize="15dp"></TextView>
+                    android:textSize="20dp"></TextView>
             </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
+            android:layout_gravity="center"
+
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="vertical"
             android:weightSum="2">
 
             <TextView
+                android:layout_gravity="center"
+                android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="رقم الهاتف">
@@ -156,6 +164,8 @@
             </TextView>
 
             <TextView
+                android:layout_gravity="center"
+
                 android:id="@+id/phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -167,12 +177,16 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_gravity="center"
+
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="vertical"
             android:weightSum="2">
 
             <TextView
+                android:layout_gravity="center"
+                android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="الجنس">
@@ -180,6 +194,8 @@
             </TextView>
 
             <TextView
+                android:layout_gravity="center"
+
                 android:id="@+id/gender_pref"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -195,11 +211,15 @@
             android:weightSum="2">
 
             <TextView
+                android:layout_gravity="center"
+                android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="العمر"></TextView>
 
             <TextView
+                android:layout_gravity="center"
+
                 android:id="@+id/age_prf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

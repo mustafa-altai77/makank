@@ -22,7 +22,7 @@
         <activity android:name=".ui.news.NewsDetailsActivity"></activity>
         <activity
             android:name=".ui.activity.DiseaseActivity"
-            android:label="@string/disease_activity">
+            android:label="Diseases">
 
         </activity>
         <activity android:name=".ui.activity.AddGroupActivity"/>
@@ -46,12 +46,12 @@
         </activity>
         <activity
             android:name=".ui.activity.PlaceActivity"
-            android:label="@string/place_activity">
+            android:label="location">
 
         </activity>
         <activity
             android:name=".ui.activity.RegisterActivity"
-            android:label="@string/register_screen" >
+            android:label="location" >
 
         </activity>
 

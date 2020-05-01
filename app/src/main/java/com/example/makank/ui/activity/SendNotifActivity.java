@@ -66,15 +66,22 @@ public class SendNotifActivity extends AppCompatActivity {
            }
        });
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        final String local = sharedPreferences.getString(USER_LOCAL, "local");
-        area.setText(local);
+         String local = area.getText().toString();
+
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (notifi.getText().toString().equals("")) {
+                    Toast.makeText(SendNotifActivity.this, "اوصف الحالة", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (area.getText().toString().equals("")) {
+                    Toast.makeText(SendNotifActivity.this, "وصف المنطقة", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 SharedPreferences sharedPreference = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
                 final String my_id = sharedPreference.getString(USER_ID, "id");
                 String notif = notifi.getText().toString();
-                String local = area.getText().toString();
 
                 sendNotification(my_id,local,notif);
             }
