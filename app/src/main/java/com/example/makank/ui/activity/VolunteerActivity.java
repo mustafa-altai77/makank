@@ -29,6 +29,7 @@ import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 import com.github.barteksc.pdfviewer.listener.OnPageErrorListener;
+import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 import com.shockwave.pdfium.PdfDocument;
@@ -40,6 +41,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,7 +51,7 @@ import static com.example.makank.SharedPref.SHARED_PREF_NAME;
 import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.mCtx;
 
-public class VolunteerActivity extends AppCompatActivity implements View.OnClickListener, OnLoadCompleteListener,OnPageChangeListener,OnPageErrorListener {
+public class VolunteerActivity extends AppCompatActivity implements View.OnClickListener, OnLoadCompleteListener, OnPageChangeListener, OnPageErrorListener {
     private int pageNumber = 0;
 
     private ImageView ivImage;
@@ -69,6 +71,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_volunteer);
         ivImage = findViewById(R.id.ivImage);
         tvFileName = findViewById(R.id.txt_message);
+        pdfView = findViewById(R.id.pdfView);
         ok = findViewById(R.id.confirm);
         tvFileName.setOnClickListener(this);
         ok.setOnClickListener(this);
@@ -80,6 +83,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
         }
 
     }
+
     @Override
     public void onClick(View v) {
         if (v == ivImage) {
@@ -92,15 +96,17 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
         }
 
     }
+
     private void launchPicker() {
         new MaterialFilePicker()
                 .withActivity(this)
                 .withRequestCode(FILE_PICKER_REQUEST_CODE)
                 .withHiddenFiles(true)
-                .withFilter(Pattern.compile(".*\\.pdf$"))
+                .withFilter(Pattern.compile(".*\\.jpg$"))
                 .withTitle("Select PDF file")
                 .start();
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -108,30 +114,33 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
         if (requestCode == FILE_PICKER_REQUEST_CODE && resultCode == RESULT_OK) {
             String path = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
             File file = new File(path);
-//            displayFromFile(file);
+            displayFromFile(file);
             if (path != null) {
                 Log.d("Path: ", path);
                 pdfPath = path;
                 Toast.makeText(this, "Picked file: " + path, Toast.LENGTH_LONG).show();
+                tvFileName.setText(path);
             }
         }
 
     }
-//    private void displayFromFile(File file) {
-//
-//        Uri uri = Uri.fromFile(new File(file.getAbsolutePath()));
-//        pdfFileName = getFileName(uri);
-//
-//        pdfView.fromFile(file)
-//                .defaultPage(pageNumber)
-//                .onPageChange((OnPageChangeListener) this)
-//                .enableAnnotationRendering(true)
-//                .onLoad(this)
-//                .scrollHandle(new DefaultScrollHandle(this))
-//                .spacing(10) // in dp
-//                .onPageError((OnPageErrorListener) this)
-//                .load();
-//    }
+
+    private void displayFromFile(File file) {
+
+        Uri uri = Uri.fromFile(new File(file.getAbsolutePath()));
+        pdfFileName = getFileName(uri);
+
+        pdfView.fromFile(file)
+                .defaultPage(pageNumber)
+                .onPageChange((OnPageChangeListener) this)
+                .enableAnnotationRendering(true)
+                .onLoad(this)
+                .scrollHandle(new DefaultScrollHandle(this))
+                .spacing(10) // in dp
+                .onPageError((OnPageErrorListener) this)
+                .load();
+    }
+
     public String getFileName(Uri uri) {
         String result = null;
         if (uri.getScheme().equals("content")) {
@@ -151,6 +160,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
         }
         return result;
     }
+
     @Override
     public void loadComplete(int nbPages) {
         PdfDocument.Meta meta = pdfView.getDocumentMeta();
@@ -172,7 +182,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
 
     public void uploadImage(String id) {
         if (pdfPath == null) {
-            Toast.makeText(this, "please select an image ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "please select file", Toast.LENGTH_LONG).show();
             return;
         } else {
             showpDialog();
@@ -181,23 +191,34 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
             Map<String, RequestBody> map = new HashMap<>();
             File file = new File(pdfPath);
             // Parsing any Media type file
-            RequestBody requestBody = RequestBody.create(MediaType.parse("application/pdf"), file);
-            map.put("file\"; filename=\"" + file.getName() + "\"", requestBody);
+            //RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), file);
+            //map.put("file\"; filename=\"" + file.getName() + "\"", requestBody);
+            RequestBody requestFile =
+                    RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+            // MultipartBody.Part is used to send also the actual file name
+            MultipartBody.Part body =
+                    MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+
+            // add another part within the multipart request
+            RequestBody fullName =
+                    RequestBody.create(MediaType.parse("multipart/form-data"), "Your Name");
+
             ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-            Call<Filresponse> call = apiService.upload(id, map);
+            Call<Filresponse> call = apiService.upload(id, fullName, body);
             call.enqueue(new Callback<Filresponse>() {
                 @Override
                 public void onResponse(Call<Filresponse> call, Response<Filresponse> response) {
-                    if (response.isSuccessful()){
-                        if (response.body() != null){
+                    if (response.isSuccessful()) {
+                        if (response.body() != null) {
                             hidepDialog();
                             Filresponse serverResponse = response.body();
                             Toast.makeText(getApplicationContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
-                    }else {
+                    } else {
                         hidepDialog();
-                        Toast.makeText(getApplicationContext(), "problem image", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "problem file", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -205,7 +226,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
                 public void onFailure(Call<Filresponse> call, Throwable t) {
                     hidepDialog();
                     Log.v("Response gotten is", t.getMessage());
-                    Toast.makeText(getApplicationContext(), "problem uploading image " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "problem uploading file " + t.getMessage(), Toast.LENGTH_SHORT).show();
 
                 }
             });

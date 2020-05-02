@@ -46,7 +46,7 @@ public class SharedPref {
         editor.commit();
     }
     //method to store user data
-    public void storeUserID(String id,String f_name,String s_name,String l_name,String phone,String gender,String status,String age) {
+    public void storeUserID(String id,String f_name,String s_name,String l_name,String phone,String gender,String age,String status) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(USER_ID, id);

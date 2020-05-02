@@ -105,26 +105,31 @@
 
         </TextView>
     </LinearLayout>
+    <TextView
+        android:id="@+id/txt_message"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text=" رفع السيرة الذاتية" />
 
     <LinearLayout
-        android:layout_width="246dp"
-        android:layout_height="68dp"
+        android:layout_width="226dp"
+        android:layout_height="61dp"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfView"
+            android:layout_width="100dp"
+            android:layout_height="match_parent" />
+
         <ImageView
-            android:onClick="onClick"
             android:id="@+id/ivImage"
-            android:layout_width="112dp"
-            android:layout_height="match_parent"
+            android:layout_width="116dp"
+            android:layout_height="53dp"
+            android:onClick="onClick"
             android:src="@drawable/ic_file_upload_black_24dp" />
 
-        <TextView
-            android:id="@+id/txt_message"
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text=" رفع السيرة الذاتية" />
     </LinearLayout>
     <LinearLayout
         android:layout_margin="20dp"

@@ -61,10 +61,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void createPerson() {
 
-        final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(RegisterActivity.this);
-        progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");
+        final ProgressDialog progressDialog;
+        progressDialog = new ProgressDialog(RegisterActivity.this);
+        progressDialog.setMax(100);
+        progressDialog.setMessage("loading....");
         final String first_name = f_name.getText().toString();
         final String second_name = s_name.getText().toString();
         final String last_name = l_name.getText().toString();
@@ -93,7 +93,6 @@ public class RegisterActivity extends AppCompatActivity {
             return;
 
         }
-//        String ageText = bDay.getText().toString();
 
         if (TextUtils.isEmpty(age)) {
             Toast.makeText(getApplicationContext(), "يجب ملئ جميع الحقول", Toast.LENGTH_SHORT).show();
@@ -101,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         }
         Person person = new Person(first_name, second_name, last_name, phone_number, gender, age, local_id);
-        progressDoalog.show();
+        progressDialog.show();
 
 
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
@@ -111,7 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onResponse(Call<Person> call, Response<Person> response) {
 
                 if (response.isSuccessful()) {
-                    progressDoalog.dismiss();
+                    progressDialog.dismiss();
 
                     String id_person = String.valueOf(response.body().getId());
                     String f_name = response.body().getFirst_name();
@@ -122,7 +121,7 @@ public class RegisterActivity extends AppCompatActivity {
                     String age = response.body().getAge();
                     String status = response.body().getStatus();
 
-                    Toast.makeText(RegisterActivity.this, id_person+"", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, age+"", Toast.LENGTH_SHORT).show();
 
                     SharedPref.getInstance(RegisterActivity.this).storeUserID(id_person,f_name,s_name,l_name,phone,gender,age,status);
                     Intent intent = new Intent(RegisterActivity.this, DiseaseActivity.class);
@@ -135,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Person> call, Throwable t) {
-                progressDoalog.dismiss();
+                progressDialog.dismiss();
 
                 Toast.makeText(RegisterActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
 

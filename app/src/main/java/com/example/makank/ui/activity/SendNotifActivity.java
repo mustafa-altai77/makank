@@ -61,7 +61,6 @@ public class SendNotifActivity extends AppCompatActivity {
                }
            }
        });
-         String local = area.getText().toString();
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +76,7 @@ public class SendNotifActivity extends AppCompatActivity {
                 SharedPreferences sharedPreference = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
                 final String my_id = sharedPreference.getString(USER_ID, "id");
                 String notif = notifi.getText().toString();
+                String local = area.getText().toString();
 
                 sendNotification(my_id,local,notif);
             }

@@ -18,6 +18,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.makank.R;
 
@@ -69,16 +70,16 @@ public class PersonalFragment extends Fragment {
         statusImage=  view.findViewById(R.id.stat);
         personalID = view.findViewById(R.id.personal_id);
 
-        SharedPreferences idPref = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences Pref = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
-        final String my_id = idPref.getString(USER_ID, "id");
-        final String f_name = idPref.getString(F_NAME, "f_name");
-        final String s_name = idPref.getString(S_NAME, "s_name");
-        final String l_name = idPref.getString(L_NAME, "l_name");
-        final String num = idPref.getString(PHONE, "phone");
-        final String gender = idPref.getString(GENDER, "gender");
-        final String age = idPref.getString(AGE, "age");
-        final String status = idPref.getString(STATUS, "status");
+        final String my_id = Pref.getString(USER_ID, "id");
+        final String f_name = Pref.getString(F_NAME, "f_name");
+        final String s_name = Pref.getString(S_NAME, "s_name");
+        final String l_name = Pref.getString(L_NAME, "l_name");
+        final String num = Pref.getString(PHONE, "phone");
+        final String gender = Pref.getString(GENDER, "gender");
+        final String age = Pref.getString(AGE, "age");
+        final String status = Pref.getString(STATUS, "status");
 
         F_name.setText(f_name);
         S_name.setText(s_name);

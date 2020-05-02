@@ -187,16 +187,5 @@ public class ContactActivity extends AppCompatActivity {
             }
         });
     }
-//        String s = person.getStatus();
-//        if (s.equals("3")) {
-//            status.setText("سليم");
-//            imageStatus.setBackgroundColor(R.color.green);
-//        } else if (s.equals("2")) {
-//            status.setText("مخالط");
-//            imageStatus.setBackgroundColor(R.color.yellow);
-//        } else if (s.equals("1")) {
-//            status.setText("مصاب");
-//            imageStatus.setBackgroundColor(R.color.colorAccent);
-//        }
-//    }
+
 }

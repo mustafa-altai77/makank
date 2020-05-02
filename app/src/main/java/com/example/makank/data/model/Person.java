@@ -46,9 +46,6 @@ public class Person {
 
     }
 
-    public Person() {
-    }
-
     public String getStatus() {
         return status;
     }
