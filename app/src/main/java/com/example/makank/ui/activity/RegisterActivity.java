@@ -72,6 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         local_id = getIntent().getStringExtra("local_id");
         ln = getIntent().getStringExtra("local_name");
+
         btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -157,7 +158,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Intent intent = new Intent(RegisterActivity.this, DiseaseActivity.class);
                     startActivity(intent);
                     finish();
-                    //  Toast.makeText(RegisterActivity.this, "done", Toast.LENGTH_SHORT).show();
+                 Toast.makeText(RegisterActivity.this, "done", Toast.LENGTH_SHORT).show();
                     alert.showAlertSuccess("");
                 }
 
