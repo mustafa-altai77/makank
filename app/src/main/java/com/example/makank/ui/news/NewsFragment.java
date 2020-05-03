@@ -17,6 +17,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.makank.Alert;
+import com.example.makank.LoadingDialog;
 import com.example.makank.R;
 import com.example.makank.data.network.ApiClient;
 import com.example.makank.data.network.ApiInterface;
@@ -35,9 +37,13 @@ public class NewsFragment extends Fragment {
     private RecyclerView recyclerView;
     private NewsAdapter newsAdapter;
     private List<News> newsList;
+    LoadingDialog loadingDialog;
+    Alert alert;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        alert = new Alert(getActivity());
+        loadingDialog = new LoadingDialog(getActivity());
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,17 +57,19 @@ public class NewsFragment extends Fragment {
         newsAdapter = new NewsAdapter();
         recyclerView.setAdapter(newsAdapter);
         final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(getContext());
+       /* progressDoalog = new ProgressDialog(getContext());
         progressDoalog.setMax(100);
         progressDoalog.setMessage("loading....");
-        progressDoalog.show();
+        progressDoalog.show();*/
+       loadingDialog.startLoadingDialog();
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<List<News>> call = apiService.getNews();
 
         call.enqueue(new Callback<List<News>>() {
             @Override
             public void onResponse(Call<List<News>> call, Response<List<News>> response) {
-                progressDoalog.dismiss();
+               // progressDoalog.dismiss();
+                loadingDialog.dismissDialog();
                 newsList = response.body();
                 Log.d("TAG","Response = "+newsList);
                 newsAdapter.setMovieList(getContext(),newsList);
@@ -69,7 +77,8 @@ public class NewsFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<News>> call, Throwable t) {
-                progressDoalog.dismiss();
+            //    progressDoalog.dismiss();
+                loadingDialog.dismissDialog();
                 Log.d("TAG","Response = "+t.toString());
             }
         });

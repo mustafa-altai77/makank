@@ -59,7 +59,7 @@ public class StatistcAdapter extends RecyclerView.Adapter<StatistcAdapter.Catego
                 super(itemView);
                // categoryImage = itemView.findViewById(R.id.grid_image);
                 case_count = itemView.findViewById(R.id.case_count_red);
-                case_txt = itemView.findViewById(R.id.case_name_yellow);
+                case_txt = itemView.findViewById(R.id.case_count_yellow);
                 //cardView = itemView.findViewById(R.id.card_grid);
             }
         }

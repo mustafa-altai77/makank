@@ -6,14 +6,18 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.makank.Alert;
+import com.example.makank.LoadingDialog;
 import com.example.makank.R;
 import com.example.makank.data.network.ApiClient;
 import com.example.makank.data.network.ApiInterface;
@@ -35,21 +39,46 @@ import static com.example.makank.SharedPref.mCtx;
 
 public class AddGroupActivity extends AppCompatActivity {
     ImageView buttonScan;
-    TextView personal_id;
+    TextView personal_id, info1, info2, Pname;
     EditText personalID;
-    Button add ,check,cancel;
+    Button add, check, cancel;
     IntentIntegrator qrScan;
+    LinearLayout layout;
+    Typeface typeface;
+    LoadingDialog loadingDialog;
+    Alert alert;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_group);
         buttonScan = findViewById(R.id.qr_image);
         personalID = findViewById(R.id.p_id);
-        personal_id =findViewById(R.id.p_number);
+        personal_id = findViewById(R.id.p_number);
+
+        info1 = findViewById(R.id.infor);
+        info2 = findViewById(R.id.infor2);
+        Pname = findViewById(R.id.p_name);
         add = findViewById(R.id.add);
         check = findViewById(R.id.check_status);
         cancel = findViewById(R.id.cancel);
 
+        typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
+        personalID.setTypeface(typeface);
+        personal_id.setTypeface(typeface);
+        info1.setTypeface(typeface);
+        info2.setTypeface(typeface);
+        Pname.setTypeface(typeface);
+        add.setTypeface(typeface);
+        check.setTypeface(typeface);
+        cancel.setTypeface(typeface);
+
+
+        alert = new Alert(this);
+        loadingDialog = new LoadingDialog(this);
+
+        layout = findViewById(R.id.anotherPerson);
+        layout.setVisibility(View.INVISIBLE);
         //intializing scan object
         qrScan = new IntentIntegrator(this);
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -73,9 +102,10 @@ public class AddGroupActivity extends AppCompatActivity {
                 String id = personalID.getText().toString();
                 //else
                 if (personalID.getText().toString().equals(""))
-                    Toast.makeText(AddGroupActivity.this, "يرجى ادخال رقم التعريف الشخصي", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(AddGroupActivity.this, "يرجى ادخال رقم التعريف الشخصي", Toast.LENGTH_SHORT).show();
+                    alert.showAlertError("يرجى ادخال رقم التعريف");
                 else
-                getStatus(id);
+                    getStatus(id);
 
             }
         });
@@ -86,15 +116,15 @@ public class AddGroupActivity extends AppCompatActivity {
                 SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
                 final String my_id = sharedPreferences.getString(USER_ID, "id");
                 if (personalID.getText().toString().equals("")) {
-                    Toast.makeText(AddGroupActivity.this, "يرجى ادخال رقم التعريف الشخصي", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(AddGroupActivity.this, "يرجى ادخال رقم التعريف الشخصي", Toast.LENGTH_SHORT).show();
+                    alert.showAlertError("يرجى إدخال رقم التعريف");
                     return;
-                }
-                else
-                if (personalID.getText().toString().equals(my_id)) {
-                    Toast.makeText(AddGroupActivity.this, "ادخال خاطئ", Toast.LENGTH_SHORT).show();
+                } else if (personalID.getText().toString().equals(my_id)) {
+                    // Toast.makeText(AddGroupActivity.this, "ادخال خاطئ", Toast.LENGTH_SHORT).show();
+                    alert.showAlertError("إدخال خاطئ");
                     return;
-                }else
-                addMember(member_id,my_id);
+                } else
+                    addMember(member_id, my_id);
 
             }
         });
@@ -107,7 +137,9 @@ public class AddGroupActivity extends AppCompatActivity {
 
             //if qrcode has nothing in it
             if (result.getContents() == null) {
-                Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
+                //   Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
+                alert.showAlertError("لاتوجد نتيجة");
+
             } else {
                 //if qr contains data
                 try {
@@ -126,23 +158,27 @@ public class AddGroupActivity extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-    private void getStatus(String result){
-        final ProgressDialog progressDoalog;
+
+    private void getStatus(String result) {
+        /*final ProgressDialog progressDoalog;
         progressDoalog = new ProgressDialog(AddGroupActivity.this);
         progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");
+        progressDoalog.setMessage("loading....");*/
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<Person> call = apiService.getSaw(result);
-        progressDoalog.show();
+        //   progressDoalog.show();
+        loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<Person>() {
             @Override
             public void onResponse(Call<Person> call, Response<Person> response) {
 
                 if (response.isSuccessful()) {
-                    progressDoalog.dismiss();
-
-                    Toast.makeText(AddGroupActivity.this, "تمت الاضافة بنجاح", Toast.LENGTH_SHORT).show();
-                    if (response.code()==200){
+                    //  progressDoalog.dismiss();
+                    loadingDialog.dismissDialog();
+                    //   Toast.makeText(AddGroupActivity.this, "تمت الاضافة بنجاح", Toast.LENGTH_SHORT).show();
+                    alert.showAlertSuccess("تمت الإضافة بنجاح");
+                    layout.setVisibility(View.VISIBLE);
+                    if (response.code() == 200) {
                         return;
                     }
                     //Intent intent = new Intent(RegisterActivity.this, DiseaseActivity.class);
@@ -154,38 +190,44 @@ public class AddGroupActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Person> call, Throwable t) {
-                progressDoalog.dismiss();
-
-                Toast.makeText(AddGroupActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
+                // progressDoalog.dismiss();
+                loadingDialog.dismissDialog();
+                //  Toast.makeText(AddGroupActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
+                alert.showAlertError("الرجاء التأكد من إتصالك بالإنترنت");
             }
         });
     }
+
     private void addMember(String member_id, String my_id) {
-        final ProgressDialog progressDoalog;
+       /* final ProgressDialog progressDoalog;
         progressDoalog = new ProgressDialog(AddGroupActivity.this);
         progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");
+        progressDoalog.setMessage("loading....");*/
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-        Call<Member> call = apiService.addMem(my_id,member_id);
-        progressDoalog.show();
-
+        Call<Member> call = apiService.addMem(my_id, member_id);
+        // progressDoalog.show();
+        loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<Member>() {
             @Override
             public void onResponse(Call<Member> call, Response<Member> response) {
 
                 if (response.isSuccessful()) {
-                    progressDoalog.dismiss();
+                    //progressDoalog.dismiss();
+                    loadingDialog.dismissDialog();
 
                     String id_person = String.valueOf(response.body().getId());
-                    Toast.makeText(AddGroupActivity.this, "don", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(AddGroupActivity.this, "don", Toast.LENGTH_SHORT).show();
+                    alert.showAlertSuccess("تمت الإضافة");
 
                 }
             }
+
             @Override
             public void onFailure(Call<Member> call, Throwable t) {
-                progressDoalog.dismiss();
+             //   progressDoalog.dismiss();
 
-                Toast.makeText(AddGroupActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(AddGroupActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
+                alert.showAlertError("الرجاء التأكد من إتصالك بالإنترنت");
 
             }
         });

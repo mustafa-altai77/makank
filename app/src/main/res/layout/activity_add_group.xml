@@ -20,19 +20,22 @@
         android:background="@drawable/qr">
     </ImageView>
     <TextView
+        android:id="@+id/infor"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
-        android:textColor="@color/cardview_dark_background"
+        android:textColor="@color/white"
         android:text="اضغط على الصورة للبحث عن طريق الرمز التعريفي (QrCode)"
         android:layout_gravity="center">
 
     </TextView>
     <TextView
+        android:id="@+id/infor2"
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/cardview_dark_background"
+        android:textColor="@color/white"
         android:text="او ادخل الرقم التعريفي"
         android:layout_gravity="center">
     </TextView>
@@ -43,23 +46,27 @@
         android:layout_height="48dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@drawable/card_shape"
+        android:textColorHint="@color/total2"
+        android:background="@drawable/rounded_edittext"
         android:hint="الرقم التعريفي: xxxxx"
         android:inputType="text"
         android:textAlignment="center">
     </EditText>
-
-    <Button
-        android:id="@+id/check_status"
-        android:layout_width="162dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/card_button"
-        android:text="@string/scan"
-        android:textColor="@color/cardview_light_background">
-    </Button>
-
+        <Button
+            android:id="@+id/check_status"
+            android:layout_width="162dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/redbtn"
+            android:text="@string/scan"
+            android:textColor="@color/cardview_light_background">
+        </Button>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/anotherPerson"
+    android:orientation="vertical">
 
         <LinearLayout
             android:layout_marginTop="20dp"
@@ -68,15 +75,10 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="الاسم :"></TextView>
-
-            <TextView
                 android:id="@+id/p_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ابراهيم عوض"></TextView>
+                android:text="ابراهيم عوض"/>
         </LinearLayout>
 
         <LinearLayout
@@ -84,16 +86,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="الرقم التعريفي :"></TextView>
 
             <TextView
                 android:id="@+id/p_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0255684"></TextView>
+                android:text="0255684"/>
         </LinearLayout>
 
     <Button
@@ -116,5 +114,6 @@
         android:text="@string/cancel"
         android:textColor="@color/cardview_light_background">
     </Button>
+</LinearLayout>
     </LinearLayout>
 </ScrollView>

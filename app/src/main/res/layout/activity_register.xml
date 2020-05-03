@@ -6,33 +6,37 @@
     android:layout_height="match_parent"
     android:background="@color/cardview_light_background"
     tools:context=".ui.activity.RegisterActivity">
-<LinearLayout
-    android:layoutDirection="rtl"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <ImageView
-        android:id="@+id/imageView2"
+    <LinearLayout
+        android:layoutDirection="rtl"
         android:layout_width="match_parent"
-        android:layout_height="202dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.437"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/logo" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
 
+        android:orientation="vertical">
 
-<!--    <FrameLayout-->
-<!--        android:id="@+id/frame1"-->
-<!--        android:layout_width="348dp"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:layout_height="264dp"-->
-<!--        tools:ignore="MissingConstraints">-->
+        <!--    <FrameLayout-->
+        <!--        android:id="@+id/frame1"-->
+        <!--        android:layout_width="348dp"-->
+        <!--        android:layout_gravity="center"-->
+        <!--        android:layout_height="264dp"-->
+        <!--        tools:ignore="MissingConstraints">-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/logo"/>
+            <TextView
+                android:id="@+id/insertInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:text="أدخــــل بياناتك الشخصية"/>
             <EditText
                 android:id="@+id/f_name"
                 android:layout_height="52dp"
@@ -40,35 +44,41 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:background="@drawable/card_shape"
+                android:background="@drawable/rounded_edittext"
                 android:ems="10"
-                android:textAlignment="center"
-                android:hint="الاسم الاول  "
+                android:paddingRight="10dp"
+                android:textAlignment="textStart"
+                android:hint="الاسم الاول"
+                android:textColorHint="@drawable/total"
                 android:inputType="textPersonName"/>
             <EditText
                 android:id="@+id/s_name"
                 android:layout_height="52dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:background="@drawable/card_shape"                android:textAlignment="center"
-
-
+                android:paddingRight="10dp"
+                android:textAlignment="textStart"
+                android:textColorHint="@drawable/total"
+                android:background="@drawable/rounded_edittext"
                 android:ems="10"
                 android:hint="الاسم الثاني  "
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName"
+
+                />
             <EditText
                 android:id="@+id/l_name"
                 android:layout_height="52dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:background="@drawable/card_shape"
-                android:textAlignment="center"
-
+                android:background="@drawable/rounded_edittext"
+                android:textAlignment="textStart"
+                android:paddingRight="10dp"
                 android:ems="10"
+                android:textColorHint="@drawable/total"
                 android:hint="الاسم الثالث  "
                 android:inputType="textPersonName"/>
             <EditText
@@ -77,24 +87,28 @@
                 android:layout_height="52dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/card_shape"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_edittext"
                 android:ems="10"
-                android:textAlignment="center"
+                android:textAlignment="textStart"
                 android:hint="رقم الهاتف"
-                android:inputType="number" />
+                android:textColorHint="@drawable/total"
+                android:inputType="number"
+                android:paddingRight="10dp"
+                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:gravity="center|center_vertical"
                 android:background="@drawable/card_shape"
 
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtGen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="left"
@@ -115,7 +129,6 @@
                         android:text="انثى" />
                     <RadioButton
                         android:id="@+id/mail"
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="ذكر" />
@@ -127,22 +140,23 @@
                 android:layout_height="52dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/card_shape"
-                android:hint="   العمر"
-                android:textAlignment="center"
+                android:layout_marginTop="8dp"
+                android:paddingRight="10dp"
+                android:hint="العمر"
+                android:textAlignment="textStart"
+                android:textColorHint="@drawable/total"
+                android:background="@drawable/rounded_edittext"
                 android:inputType="number"/>
         </LinearLayout>
-<!--    </FrameLayout>-->
-    <Button
-        android:id="@+id/don_register"
-        android:layout_width="186dp"
-        android:layout_height="49dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/card_button"
-        android:text="@string/next"
-        android:textColor="@color/cardview_light_background"/>
-
-</LinearLayout>
+        <!--    </FrameLayout>-->
+        <Button
+            android:id="@+id/don_register"
+            android:layout_width="186dp"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/redbtn"
+            android:text="@string/next"
+            android:textColor="@color/cardview_light_background"/>
+    </LinearLayout>
 </ScrollView>

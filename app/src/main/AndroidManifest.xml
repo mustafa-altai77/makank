@@ -25,15 +25,22 @@
             android:label="Diseases">
 
         </activity>
-        <activity android:name=".ui.activity.AddGroupActivity"/>
-        <activity android:name=".ui.activity.QrCodeActivity"></activity>
+        <activity android:name=".ui.activity.AddGroupActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name=".ui.activity.QrCodeActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
         <activity android:name=".ui.activity.SendNotifActivity" >
 
         </activity>
         <activity android:name=".ui.activity.VolunteerActivity" >
 
         </activity>
-        <activity android:name=".ui.activity.ContactActivity"/>
+        <activity android:name=".ui.activity.ContactActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+        <activity android:name=".Steper"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity android:name=".ui.activity.HomeActivity"></activity>
         <activity
             android:name=".ui.Splash"
@@ -51,9 +58,7 @@
         </activity>
         <activity
             android:name=".ui.activity.RegisterActivity"
-            android:label="location" >
-
-        </activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>

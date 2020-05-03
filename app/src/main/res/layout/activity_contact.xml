@@ -4,110 +4,122 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.activity.ContactActivity"
     android:orientation="vertical">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <androidx.constraintlayout.widget.ConstraintLayout
-
+    <LinearLayout
+        android:layoutDirection="rtl"
         android:layout_width="match_parent"
-        android:layout_height="111dp"
-        android:background="@color/cardview_dark_background">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:background="@color/cardview_dark_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                tools:ignore="MissingConstraints">
+                <TextView
+                    android:id="@+id/status_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    app:layout_constraintEnd_toStartOf="@+id/image_status"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:text="الحالة : سليم "
+                    app:layout_constraintTop_toTopOf="parent" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image_status"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:civ_border_width="10dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="2dp"
+                    tools:ignore="MissingConstraints"
+                    android:background="@color/color"
+                    tools:layout_editor_absoluteX="195dp"
+                    tools:layout_editor_absoluteY="25dp" />
+
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
-            android:id="@+id/image_status"
-            android:layout_width="52dp"
-            android:layout_height="57dp"
+            android:id="@+id/qr_image"
             android:layout_gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></ImageView>
-
+            android:layout_marginTop="20dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/qr">
+        </ImageView>
         <TextView
-            android:id="@+id/textView5"
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="208dp"
-            android:text="@string/status"
-            android:textColor="@color/cardview_light_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></TextView>
+            android:id="@+id/second"
+            android:textColor="@color/cardview_dark_background"
+            android:text="اضغط على الصورة للبحث عن طريق الرمز التعريفي (QrCode)"
+            android:layout_gravity="center">
 
+        </TextView>
         <TextView
-            android:id="@+id/status_id"
-            android:layout_width="43dp"
-            android:layout_height="15dp"
-            android:layout_marginStart="220dp"
-            android:layout_marginTop="80dp"
-            android:textColor="@color/cardview_light_background"
-            app:layout_constraintEnd_toStartOf="@+id/textView5"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-<ImageView
-    android:id="@+id/qr_image"
-    android:layout_gravity="center"
-    android:layout_marginTop="20dp"
-    android:layout_width="200dp"
-    android:layout_height="200dp"
-    android:background="@drawable/qr">
-</ImageView>
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/cardview_dark_background"
-        android:text="اضغط على الصورة للبحث عن طريق الرمز التعريفي (QrCode)"
-        android:layout_gravity="center">
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/cardview_dark_background"
+            android:text="او ادخل الرقم التعريفي"
+            android:id="@+id/first"
+            android:layout_gravity="center">
+        </TextView>
 
-    </TextView>
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/cardview_dark_background"
-        android:text="او ادخل الرقم التعريفي"
-        android:layout_gravity="center">
-    </TextView>
+        <EditText
+            android:id="@+id/p_text"
+            android:layout_width="282dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="الرقم التعريفي: xxxxx"
+            android:inputType="number"
+            android:textColorHint="@color/cardview_dark_background"
+            android:textColor="@color/cardview_dark_background"
+            android:textAlignment="center">
+        </EditText>
 
-    <EditText
-        android:id="@+id/p_text"
-        android:layout_width="282dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/card_shape"
-        android:hint="الرقم التعريفي: xxxxx"
-        android:inputType="number"
-        android:textAlignment="center">
-    </EditText>
+        <Button
+            android:id="@+id/check_status"
+            android:layout_width="285dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/redbtn"
+            android:text="بحـــث"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_light_background">
 
-    <Button
-        android:id="@+id/check_status"
-        android:layout_width="285dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/card_button"
-        android:text="@string/scan"
-        android:textColor="@color/cardview_light_background">
+        </Button>
 
-    </Button>
-
-    <Button
-        android:id="@+id/receive"
-        android:layout_width="283dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/card_button"
-        android:text="@string/receive"
-        android:textColor="@color/cardview_light_background">
-    </Button>
-</LinearLayout>
+        <Button
+            android:id="@+id/receive"
+            android:layout_width="283dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/graybtn"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="إستقبــال"
+            android:textColor="@color/cardview_light_background">
+        </Button>
+    </LinearLayout>
 </ScrollView>

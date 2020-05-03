@@ -3,6 +3,7 @@ package com.example.makank.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -135,9 +136,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView title,discription;
+        TextView title,discription, datePublisher;
         ImageView image;
         CardView cardView;
+        Typeface typeface;
         @SuppressLint("WrongViewCast")
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -145,6 +147,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             discription = itemView.findViewById(R.id.news_desc);
             image = itemView.findViewById(R.id.image_news);
             cardView = itemView.findViewById(R.id.news_card);
+            datePublisher = itemView.findViewById(R.id.dateNew);
+
+            typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
+            title.setTypeface(typeface);
+            discription.setTypeface(typeface);
+            datePublisher.setTypeface(typeface);
 
         }
     }
