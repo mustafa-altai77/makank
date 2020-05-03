@@ -14,6 +14,7 @@ import com.example.makank.R;
 import com.example.makank.SharedPref;
 import com.example.makank.ui.activity.HomeActivity;
 import com.example.makank.ui.activity.PlaceActivity;
+import com.example.makank.ui.activity.StateActivity;
 
 public class Splash extends AppCompatActivity {
 
@@ -21,13 +22,13 @@ public class Splash extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 checkConnection();
             }
         },500);
-
     }
     protected boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -45,7 +46,7 @@ public class Splash extends AppCompatActivity {
                 finish();
             }
             else {
-                startActivity(new Intent(this, PlaceActivity.class));
+                startActivity(new Intent(this, StateActivity.class));
                 finish();
             }
         }else{
