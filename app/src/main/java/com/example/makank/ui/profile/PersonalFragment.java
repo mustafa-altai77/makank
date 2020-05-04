@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.Display;
@@ -24,6 +26,7 @@ import com.example.makank.R;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.Context.WINDOW_SERVICE;
 import static com.example.makank.SharedPref.AGE;
@@ -39,12 +42,14 @@ import static com.example.makank.SharedPref.mCtx;
 
 
 public class PersonalFragment extends Fragment {
-    TextView F_name,S_name,L_name, F_name2,S_name2,L_name2,gen,age_,ph ,personalID;
-    ImageView qrImage ,statusImage;
+    TextView F_name,gen,age_,ph ,personalID,TxtPhone,TxtAge,TxtGender;
+    ImageView qrImage ;
+    CircleImageView statusImage;
 
     String inputValue;
     QRGEncoder qrgEncoder;
     Bitmap bitmap;
+    Typeface typeface;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,47 +62,56 @@ public class PersonalFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_personal, container, false);
         F_name = view.findViewById(R.id.f_na);
-        S_name = view.findViewById(R.id.s_na);
-        L_name = view.findViewById(R.id.l_na);
-
-        F_name2 = view.findViewById(R.id.f_name);
-        S_name2 = view.findViewById(R.id.s_name);
-        L_name2 = view.findViewById(R.id.l_name);
         gen = view.findViewById(R.id.gender_pref);
         age_ = view.findViewById(R.id.age_prf);
         ph = view.findViewById(R.id.phone);
         qrImage = view.findViewById(R.id.qr_person);
-        statusImage=  view.findViewById(R.id.stat);
+        statusImage=  view.findViewById(R.id.img_status);
         personalID = view.findViewById(R.id.personal_id);
 
-        SharedPreferences Pref = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        TxtPhone = view.findViewById(R.id.txtPhone);
+        TxtAge = view.findViewById(R.id.txtAge);
+        TxtGender = view.findViewById(R.id.txtGender);
 
-        final String my_id = Pref.getString(USER_ID, "id");
-        final String f_name = Pref.getString(F_NAME, "f_name");
-        final String s_name = Pref.getString(S_NAME, "s_name");
-        final String l_name = Pref.getString(L_NAME, "l_name");
-        final String num = Pref.getString(PHONE, "phone");
-        final String gender = Pref.getString(GENDER, "gender");
-        final String age = Pref.getString(AGE, "age");
-        final String status = Pref.getString(STATUS, "status");
+        typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Hacen-Algeria.ttf");
+        F_name.setTypeface(typeface);
+        gen.setTypeface(typeface);
+        age_.setTypeface(typeface);
+        ph.setTypeface(typeface);
+        personalID.setTypeface(typeface);
 
-        F_name.setText(f_name);
-        S_name.setText(s_name);
-        L_name.setText(l_name);
-        F_name2.setText(f_name);
-        S_name2.setText(s_name);
-        L_name2.setText(l_name);
+        TxtPhone.setTypeface(typeface);
+        TxtAge.setTypeface(typeface);
+        TxtGender.setTypeface(typeface);
+
+        SharedPreferences idPref = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+        final String my_id = idPref.getString(USER_ID, "id");
+        final String f_name = idPref.getString(F_NAME, "f_name");
+        final String s_name = idPref.getString(S_NAME, "s_name");
+        final String l_name = idPref.getString(L_NAME, "l_name");
+        final String num = idPref.getString(PHONE, "phone");
+        final String gender = idPref.getString(GENDER, "gender");
+        final String age = idPref.getString(AGE, "age");
+        final String status = idPref.getString(STATUS, "status");
+
+        F_name.setText("الإسم ثلاثي : "+f_name+" "+s_name+" "+l_name);
         gen.setText(gender);
-        personalID.setText(my_id);
-        age_.setText(age);
+        personalID.setText("الرقم التعريفي : "+ my_id);
+        age_.setText(status);
         ph.setText(num);
-        if (status.equals("3")) {
-            statusImage.setBackgroundColor(R.color.green);
+        Toast.makeText(getActivity(), ""+age, Toast.LENGTH_SHORT).show();
+
+        if (status.equals("1")) {
+            statusImage.setBackground(ContextCompat.getDrawable(this.getActivity(),R.drawable.red));
+
         } else if (status.equals("2")) {
-            statusImage.setBackgroundColor(R.color.yellow);
-        } else if (status.equals("1")) {
-            statusImage.setBackgroundColor(R.color.colorAccent);
+            statusImage.setBackground(ContextCompat.getDrawable(this.getActivity(),R.drawable.yellowc));
+
+        } else if (status.equals("3")) {
+            statusImage.setBackground(ContextCompat.getDrawable(this.getActivity(),R.drawable.greenc));
         }
+
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String id = sharedPreferences.getString(USER_ID, "id");
 

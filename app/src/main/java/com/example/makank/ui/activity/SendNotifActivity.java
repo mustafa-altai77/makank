@@ -6,15 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.makank.Alert;
 import com.example.makank.GpsLocationTracker;
+import com.example.makank.LoadingDialog;
 import com.example.makank.R;
 import com.example.makank.data.network.ApiClient;
 import com.example.makank.data.network.ApiInterface;
@@ -29,38 +33,48 @@ import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.mCtx;
 
 public class SendNotifActivity extends AppCompatActivity {
-     EditText area,notifi;
-     Button send;
-     ImageView maerker;
+    EditText area, notifi;
+    Button send;
+    ImageView maerker;
     double Latitude;
     double Longitude;
+    Typeface typeface;
+    LoadingDialog loadingDialog;
+    Alert alert;
+    TextView infoNot, LocationId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bell);
-         notifi=findViewById(R.id.disc_status);
-         area = findViewById(R.id.area_Edit);
-         send = findViewById(R.id.send_notification);
+        notifi = findViewById(R.id.disc_status);
+        area = findViewById(R.id.area_Edit);
+        send = findViewById(R.id.send_notification);
         maerker = findViewById(R.id.location_image);
-       maerker.setOnClickListener(new View.OnClickListener() {
-           @RequiresApi(api = Build.VERSION_CODES.M)
-           @Override
-           public void onClick(View v) {
-               GpsLocationTracker mGpsLocationTracker = new GpsLocationTracker(SendNotifActivity.this);
-               if (mGpsLocationTracker.canGetLocation())
-               {
-                   Latitude = mGpsLocationTracker.getLatitude();
-                   Longitude = mGpsLocationTracker.getLongitude();
+        infoNot = findViewById(R.id.infoNoti);
+        LocationId = findViewById(R.id.LocationID);
+        typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
+        notifi.setTypeface(typeface);
+        send.setTypeface(typeface);
+        area.setTypeface(typeface);
+        infoNot.setTypeface(typeface);
+        LocationId.setTypeface(typeface);
+        maerker.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View v) {
+                GpsLocationTracker mGpsLocationTracker = new GpsLocationTracker(SendNotifActivity.this);
+                if (mGpsLocationTracker.canGetLocation()) {
+                    Latitude = mGpsLocationTracker.getLatitude();
+                    Longitude = mGpsLocationTracker.getLongitude();
 //                   Log.i(TAG, String.format("latitude: %s", Latitude));
 //                   Log.i(TAG, String.format("longitude: %s",Longitude));
-                   Toast.makeText(SendNotifActivity.this,Latitude+ ""+Longitude+ "", Toast.LENGTH_SHORT).show();
-               }
-               else
-               {
-                   mGpsLocationTracker.showSettingsAlert();
-               }
-           }
-       });
+                    Toast.makeText(SendNotifActivity.this, Latitude + "" + Longitude + "", Toast.LENGTH_SHORT).show();
+                } else {
+                    mGpsLocationTracker.showSettingsAlert();
+                }
+            }
+        });
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,19 +92,20 @@ public class SendNotifActivity extends AppCompatActivity {
                 String notif = notifi.getText().toString();
                 String local = area.getText().toString();
 
-                sendNotification(my_id,local,notif);
+                sendNotification(my_id, local, notif);
             }
         });
     }
-    private void sendNotification(String my_id, String local ,String notif) {
-       // Toast.makeText(SendNotifActivity.this, member_id+my_id+"", Toast.LENGTH_SHORT).show();
+
+    private void sendNotification(String my_id, String local, String notif) {
+        // Toast.makeText(SendNotifActivity.this, member_id+my_id+"", Toast.LENGTH_SHORT).show();
 
         final ProgressDialog progressDoalog;
         progressDoalog = new ProgressDialog(SendNotifActivity.this);
         progressDoalog.setMax(100);
         progressDoalog.setMessage("loading....");
-            ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-        Call<Person> call = apiService.sendNotifi(my_id,local,notif);
+        ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
+        Call<Person> call = apiService.sendNotifi(my_id, local, notif);
         progressDoalog.show();
 
         call.enqueue(new Callback<Person>() {
@@ -103,11 +118,12 @@ public class SendNotifActivity extends AppCompatActivity {
                     Toast.makeText(SendNotifActivity.this, "don", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onFailure(Call<Person> call, Throwable t) {
                 progressDoalog.dismiss();
 
-                Toast.makeText(SendNotifActivity.this, "خطاء في النظام الخارجي" , Toast.LENGTH_SHORT).show();
+                Toast.makeText(SendNotifActivity.this, "خطاء في النظام الخارجي", Toast.LENGTH_SHORT).show();
 
             }
         });

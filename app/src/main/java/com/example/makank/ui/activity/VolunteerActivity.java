@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
@@ -21,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.makank.Alert;
+import com.example.makank.LoadingDialog;
 import com.example.makank.R;
 import com.example.makank.data.network.ApiClient;
 import com.example.makank.data.network.ApiInterface;
@@ -47,7 +50,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.makank.SharedPref.F_NAME;
+import static com.example.makank.SharedPref.L_NAME;
 import static com.example.makank.SharedPref.SHARED_PREF_NAME;
+import static com.example.makank.SharedPref.S_NAME;
 import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.mCtx;
 
@@ -63,6 +69,10 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
     public ProgressDialog pDialog;
     public static final int FILE_PICKER_REQUEST_CODE = 1;
     private String pdfPath;
+    TextView volunteerName, condition, message, approve, conn, txtSTEP, volLable;
+    Typeface typeface;
+    LoadingDialog loadingDialog;
+    Alert alert;
 
 
     @Override
@@ -74,14 +84,46 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
         pdfView = findViewById(R.id.pdfView);
         ok = findViewById(R.id.confirm);
         tvFileName.setOnClickListener(this);
+        txtSTEP = findViewById(R.id.txtSteps);
+        txtSTEP.setText("يسعدنا انضمامكم للحملة الوطنية لمكافحة فيروس \nكورونا (كوفيد-19) و رداً على التساؤلات بشأن كيفية \nالمشاركة في الجهود الحكومية والمساعدة في حملة مكافحة\nفيروس كورونا المنتشر في دولة السودان .\nبدأت الحملة الوطنية لمكافحة فيروس كورونا" +
+                "(كوفيد-19)\n بتطوير الأنشطة التطوعية وتحديد مجالات العمل .\nيمكنك أدناه ارفاع المستند الخاص بك \nولكم فرصة المشاركة في الجهود الوطنية من خلال الموقة\n" +
+                " ");
+
+        conn = findViewById(R.id.txtCon);
+        ok = findViewById(R.id.confirm);
+
+        volunteerName = findViewById(R.id.voluName);
+        condition = findViewById(R.id.txtCon);
+        message = findViewById(R.id.txt_message);
+        approve = findViewById(R.id.txtAprove);
+        volLable = findViewById(R.id.infoVol);
+        typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
+        txtSTEP.setTypeface(typeface);
+        volunteerName.setTypeface(typeface);
+        condition.setTypeface(typeface);
+        message.setTypeface(typeface);
+        approve.setTypeface(typeface);
+        conn.setTypeface(typeface);
+        txtSTEP.setTypeface(typeface);
+        volLable.setTypeface(typeface);
+        ok.setTypeface(typeface);
+
         ok.setOnClickListener(this);
+        SharedPreferences idPref = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+        final String my_id = idPref.getString(USER_ID, "id");
+        final String f_name = idPref.getString(F_NAME, "f_name");
+        final String s_name = idPref.getString(S_NAME, "s_name");
+        final String l_name = idPref.getString(L_NAME, "l_name");
+        volunteerName.setText("مرحبا :" + f_name + s_name + l_name);
         initDialog();
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
                 PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     REQUEST_PERMISSION);
         }
-
+        alert = new Alert(this);
+        loadingDialog = new LoadingDialog(this);
     }
 
     @Override
@@ -118,7 +160,8 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
             if (path != null) {
                 Log.d("Path: ", path);
                 pdfPath = path;
-                Toast.makeText(this, "Picked file: " + path, Toast.LENGTH_LONG).show();
+                // Toast.makeText(this, "Picked file: " + path, Toast.LENGTH_LONG).show();
+                alert.showAlertError("قم بإرفاق الملف");
                 tvFileName.setText(path);
             }
         }
@@ -182,7 +225,8 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
 
     public void uploadImage(String id) {
         if (pdfPath == null) {
-            Toast.makeText(this, "please select file", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "please select file", Toast.LENGTH_LONG).show();
+            alert.showAlertError("الرجاء إرفاق الملف");
             return;
         } else {
             showpDialog();
@@ -226,8 +270,8 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
                 public void onFailure(Call<Filresponse> call, Throwable t) {
                     hidepDialog();
                     Log.v("Response gotten is", t.getMessage());
-                    Toast.makeText(getApplicationContext(), "problem uploading file " + t.getMessage(), Toast.LENGTH_SHORT).show();
-
+                    // Toast.makeText(getApplicationContext(), "problem uploading file " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    alert.showAlertError("صيغة الملف غير صحيحة");
                 }
             });
         }

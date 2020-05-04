@@ -5,22 +5,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".ui.activity.SendNotifActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/red_tool_bar"
+        android:gravity="center">
 
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/mkank_name"
+            android:backgroundTint="@color/white" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/total2"
+        android:gravity="center">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:id="@+id/infoNoti"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:text="معلومـــات التبليغ" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#B9A636"
+        android:layout_height="3dp">
+</LinearLayout>
     <EditText
         android:id="@+id/disc_status"
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@drawable/card_shape"
+        android:background="@drawable/rounded_edittext"
         android:gravity="right"
         android:inputType="text"
+        android:padding="5dp"
         android:textAlignment="center"
         android:ems="10"
-        android:hint="   وصف الحالة"
-        android:textColorHint="@color/cardview_dark_background"
-        />
+        android:hint="وصف الحالة"
+        android:textColorHint="#8B8686"
+        android:textColor="#4D4646"
+        tools:ignore="RtlCompat" />
 
     <EditText
         android:id="@+id/area_Edit"
@@ -28,26 +63,32 @@
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@drawable/card_shape"
+        android:background="@drawable/rounded_edittext"
         android:textAlignment="center"
         android:inputType="text"
+        android:textColorHint="#8B8686"
+        android:padding="5dp"
+        android:textColor="#4D4646"
         android:hint="المنطقة">
     </EditText>
     <TextView
+        android:id="@+id/LocationID"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:textColor="@color/cardview_dark_background"
         android:text="او ارسل موقعك الحالى"
         android:layout_width="wrap_content"
+        android:textSize="18sp"
         android:layout_height="wrap_content">
     </TextView>
     <ImageView
         android:id="@+id/location_image"
         android:background="@drawable/ic_place_black_24dp"
+        android:backgroundTint="@color/color"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="50dp"
+        android:layout_height="50dp">
 
     </ImageView>
 
@@ -57,7 +98,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@drawable/card_button"
+        android:textSize="20sp"
+        android:background="@drawable/redbtn"
         android:text="@string/send"
         android:textColor="@color/cardview_light_background">
 

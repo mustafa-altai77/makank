@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -18,6 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.makank.Alert;
+import com.example.makank.LoadingDialog;
 import com.example.makank.R;
 import com.example.makank.data.network.ApiClient;
 import com.example.makank.data.network.ApiInterface;
@@ -40,10 +43,17 @@ public class ContactFragment extends Fragment {
     private RecyclerView recyclerView;
     private SeenAdapter seenAdapter;
     private List<Member> memberList;
+
+    LoadingDialog loadingDialog;
+    Alert alert;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        alert = new Alert(getActivity());
+        loadingDialog = new LoadingDialog(getActivity());
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,35 +61,41 @@ public class ContactFragment extends Fragment {
         setHasOptionsMenu(true);
 
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
-        recyclerView =  view.findViewById(R.id.recycler_contact);
+        recyclerView = view.findViewById(R.id.recycler_contact);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         seenAdapter = new SeenAdapter();
         recyclerView.setAdapter(seenAdapter);
         final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(getContext());
+      /*  progressDoalog = new ProgressDialog(getContext());
         progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");
+        progressDoalog.setMessage("loading....");*/
+
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String my_id = sharedPreferences.getString(USER_ID, "id");
 
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<List<Member>> call = apiService.getMyseen(my_id);
-        progressDoalog.show();
+        // progressDoalog.show();
+        loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<List<Member>>() {
             @Override
             public void onResponse(Call<List<Member>> call, Response<List<Member>> response) {
                 if (response.isSuccessful()) {
-                    progressDoalog.dismiss();
+                    //  progressDoalog.dismiss();
+                    loadingDialog.dismissDialog();
                     memberList = response.body();
 
-                    seenAdapter.setMovieList(getContext(),memberList);
+                    seenAdapter.setMovieList(getContext(), memberList);
                 }
             }
+
             @Override
             public void onFailure(Call<List<Member>> call, Throwable t) {
-                progressDoalog.dismiss();
+                // progressDoalog.dismiss();
+                loadingDialog.dismissDialog();
 
-                Toast.makeText(getContext(), "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
+                alert.showAlertError("خطاء في النظام الخارجي");
+                //  Toast.makeText(getContext(), "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
             }
         });
         return view;

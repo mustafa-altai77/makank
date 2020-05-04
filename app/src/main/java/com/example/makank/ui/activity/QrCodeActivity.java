@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Display;
@@ -40,7 +41,8 @@ public class QrCodeActivity extends AppCompatActivity {
     String inputValue;
     Bitmap bitmap;
     QRGEncoder qrgEncoder;
-    TextView personalID;
+    TextView personalID,information;
+    Typeface typeface;
     private AppCompatActivity activity;
 
     @Override
@@ -48,13 +50,19 @@ public class QrCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_generator);
         qrImage = findViewById(R.id.qr_image);
+
+
 //        edtValue = findViewById(R.id.edt_value);
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String id = sharedPreferences.getString(USER_ID, "id");
 
         personalID = findViewById(R.id.personal_id);
+        information = findViewById(R.id.info);
+        typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
+        personalID.setTypeface(typeface);
+        information.setTypeface(typeface);
         activity = this;
-        personalID.setText(id);
+        personalID.setText("الرقم التعريفي الخاص بك هو : "+id);
         inputValue = id;
 //                inputValue = edtValue.getText().toString().trim();
         if (inputValue.length() > 0) {

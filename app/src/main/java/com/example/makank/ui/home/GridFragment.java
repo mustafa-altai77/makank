@@ -33,12 +33,12 @@ public class GridFragment extends Fragment {
         recyclerView = v.findViewById(R.id.grid_recycler);
         grid_list.clear();
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        grid_list.add(new Home("التواصل مع شخص",R.drawable.transfer));
-        grid_list.add(new Home("التبليغ عن حالة",R.drawable.bell));
-        grid_list.add(new Home("الاختبار المعرفي",R.drawable.test));
-        grid_list.add(new Home("اماكن الاصابات",R.drawable.virus));
+        grid_list.add(new Home("التواصل مع شخص",R.drawable.communication));
+        grid_list.add(new Home("التبليغ عن حالة",R.drawable.notification));
+        grid_list.add(new Home("الاختبار المعرفي",R.drawable.qualification));
+        grid_list.add(new Home("اماكن الاصابات",R.drawable.radar));
         grid_list.add(new Home("التطوع",R.drawable.volunteer));
-        grid_list.add(new Home("النصائح والارشادات",R.drawable.mask));
+        grid_list.add(new Home("النصائح والارشادات",R.drawable.socialcare));
 
          Gadapter = new GridAdapter(grid_list,getContext());
         recyclerView.setAdapter(Gadapter);

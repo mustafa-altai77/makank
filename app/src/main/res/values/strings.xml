@@ -156,7 +156,6 @@
     <string name="thu">Thu</string>
     <string name="fri">Fri</string>
     <string name="sat">Sat</string>
-    <string name="state">State</string>
-    <string name="city">City</string>
-
+    <string name="under_line">This is an &lt;u&gt;underline&lt;/u&gt;.</string>
+    <string name="inserPersonData">أدخــــل بياناتك الشخصية</string>
 </resources>

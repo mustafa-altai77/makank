@@ -4,30 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.DiseaseActivity"
-    android:orientation="vertical">
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.activity.DiseaseActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
         android:orientation="vertical">
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/disease_recycler"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-</androidx.recyclerview.widget.RecyclerView>
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/don_all"
-        android:layout_width="149dp"
-        android:layout_height="37dp"
-        android:layout_gravity="center"
-        android:layout_margin="8dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/card_button"
-        android:text="@string/save"
-        android:textColor="@color/cardview_light_background">
 
-    </androidx.appcompat.widget.AppCompatButton>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/red_tool_bar"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/mkank_name"
+                android:backgroundTint="@color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/total2"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/infoInsert"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="الأمراض المزمنة"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="#B9A636"
+            android:layout_height="3dp">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/disease_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:padding="15dp"
+            android:textColor="@color/color"
+            android:text="قم بالَضغط على المرض المصاحب أو المصاحبة" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/disease_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/don_all"
+            android:layout_width="149dp"
+            android:layout_height="37dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/redbtn"
+            android:text="@string/save"
+            android:textColor="@color/cardview_light_background">
+
+        </androidx.appcompat.widget.AppCompatButton>
     </LinearLayout>
 
 </ScrollView>

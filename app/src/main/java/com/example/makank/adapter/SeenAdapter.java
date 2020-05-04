@@ -2,6 +2,7 @@ package com.example.makank.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import com.example.makank.data.model.Member;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> implements Filterable {
 
@@ -76,9 +79,7 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(SeenAdapter.MyViewHolder holder, int position) {
         final Member model = seenList.get(position);
-        holder.Fneme.setText(seenListFiltered.get(position).getFirst_name());
-        holder.Sname.setText(seenListFiltered.get(position).getSecond_name());
-        holder.Lname.setText(seenListFiltered.get(position).getLast_name());
+        holder.Fneme.setText(seenListFiltered.get(position).getFirst_name()+" "+seenListFiltered.get(position).getSecond_name()+" "+seenListFiltered.get(position).getLast_name());
         holder.Pid.setText(seenListFiltered.get(position).getId());
         holder.data.setText(seenListFiltered.get(position).getUpdated_at());
         holder.stat.setText(seenListFiltered.get(position).getStatus());
@@ -136,19 +137,29 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView Fneme, Sname, Lname, Pid, stat, data, time;
-        ImageView image;
+        TextView Fneme, Pid, stat, data, time;
+        CircleImageView image;
+        Typeface typeface;
         @SuppressLint("WrongViewCast")
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            Fneme = itemView.findViewById(R.id.f_nam);
-            Sname = itemView.findViewById(R.id.s_nam);
-            Lname = itemView.findViewById(R.id.l_nam);
-            Pid = itemView.findViewById(R.id.peson_id);
-            //time = itemView.findViewById(R.id.time_seen);
+            Fneme  = itemView.findViewById(R.id.full_name);
+            Pid = itemView.findViewById(R.id.person_id);
             data = itemView.findViewById(R.id.date_seen);
             stat = itemView.findViewById(R.id.status_txt);
+            time=itemView.findViewById(R.id.dateComm);
+
             image = itemView.findViewById(R.id.status_mg);
+
+
+
+            typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
+            Fneme.setTypeface(typeface);
+            Pid.setTypeface(typeface);
+            data.setTypeface(typeface);
+            stat.setTypeface(typeface);
+            time.setTypeface(typeface);
+
         }
     }
 }

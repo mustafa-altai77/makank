@@ -5,8 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center|top"
     tools:context=".ui.activity.QrCodeActivity">
-
+    <TextView
+        android:id="@+id/info"
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:text="إمسح الصورة أدناة"
+        android:layout_marginTop="80dp"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content">
+    </TextView>
     <ImageView
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
@@ -21,13 +30,10 @@
         android:layout_gravity="center"
         android:layout_height="wrap_content">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="الرقم التعريفي :">
-
-        </TextView>
-        <TextView
             android:id="@+id/personal_id"
+            android:textSize="20sp"
+            android:textColor="@color/color"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         </TextView>

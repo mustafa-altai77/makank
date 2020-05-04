@@ -11,12 +11,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="18sp"/>
+        android:textColor="#4D4646"
+        android:textSize="20sp"/>
 
     <ImageView
         android:id="@+id/image_disease"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_check_black_24dp"
+        android:backgroundTint="#4CAF50"
         android:visibility="gone" />
 </LinearLayout>

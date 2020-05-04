@@ -1,6 +1,7 @@
 package com.example.makank.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,10 +56,13 @@ public class DiseaseAdapter extends RecyclerView.Adapter<DiseaseAdapter.DiseaseV
     public class DiseaseViewHolder extends RecyclerView.ViewHolder {
         private TextView textView;
         private ImageView imageView;
+        Typeface typeface;
         public DiseaseViewHolder(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.disease_name);
             imageView = itemView.findViewById(R.id.image_disease);
+            typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
+            textView.setTypeface(typeface);
         }
 
         void bind(final Disease disease) {
