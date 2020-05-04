@@ -19,6 +19,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <activity android:name=".ui.activity.LocalActivity"
+            android:label="Local"
+            />
+        <activity android:name=".ui.activity.StateActivity"
+            android:label="State"
+            />
+        <activity android:name=".ui.activity.CityActivity"
+            android:label="City"
+            />
         <activity android:name=".ui.news.NewsDetailsActivity"></activity>
         <activity
             android:name=".ui.activity.DiseaseActivity"

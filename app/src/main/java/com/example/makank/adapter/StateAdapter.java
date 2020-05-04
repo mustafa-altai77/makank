@@ -17,13 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class StateAdapter  extends RecyclerView.Adapter<StateAdapter.StateViewHolder> implements Filterable {
     private Context context;
     private List<State> states;
-    private List<State> statesFiltered;
+    private List<State> allStates;
 
     @NonNull
     @Override
@@ -36,44 +35,12 @@ public class StateAdapter  extends RecyclerView.Adapter<StateAdapter.StateViewHo
     public StateAdapter(Context context, List<State> states) {
         this.context = context;
         this.states = states;
+        this.allStates = states;
     }
-    public void setStates(List<State> states) {
-        this.context = context;
-        if (this.states == null) {
-            this.states = states;
-            this.statesFiltered = states;
-            notifyItemChanged(0, statesFiltered.size());
-        } else {
-            final DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
-                @Override
-                public int getOldListSize() {
-                    return StateAdapter.this.states.size();
-                }
-
-                @Override
-                public int getNewListSize() {
-                    return states.size();
-                }
-
-                @Override
-                public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                    return StateAdapter.this.states.get(oldItemPosition).getName() == states.get(newItemPosition).getName();
-                }
-
-                @Override
-                public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-
-                    State newNew = StateAdapter.this.states.get(oldItemPosition);
-
-                    State oldNews = states.get(newItemPosition);
-
-                    return newNew.getName() == oldNews.getName();
-                }
-            });
-            this.states = states;
-            this.statesFiltered = states;
-            result.dispatchUpdatesTo(this);
-        }
+    public void setStates( List<State> states) {
+        this.states = states;
+        this.allStates = states;
+        notifyDataSetChanged();
     }
     @NonNull
     @Override
@@ -97,26 +64,25 @@ public class StateAdapter  extends RecyclerView.Adapter<StateAdapter.StateViewHo
             protected FilterResults performFiltering(CharSequence charSequence) {
                 String charString = charSequence.toString();
                 if (charString.isEmpty()) {
-                    statesFiltered = states;
+                    states = allStates;
                 } else {
                     List<State> filteredList = new ArrayList<>();
-                    for (State movie : states) {
-                        if (movie.getName().toLowerCase().contains(charString.toLowerCase())) {
-                            filteredList.add(movie);
+                    for (State state : allStates) {
+                        if (state.getName().toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(state);
                         }
                     }
-                    statesFiltered = filteredList;
+                    states = filteredList;
                 }
 
                 FilterResults filterResults = new FilterResults();
-                filterResults.values = statesFiltered;
+                filterResults.values = states;
                 return filterResults;
             }
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                statesFiltered = (ArrayList<State>) filterResults.values;
-
+                states = (ArrayList<State>) filterResults.values;
                 notifyDataSetChanged();
             }
         };

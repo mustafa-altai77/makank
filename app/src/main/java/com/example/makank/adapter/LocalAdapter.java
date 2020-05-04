@@ -4,11 +4,12 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.makank.R;
 import com.example.makank.data.model.Local;
-import com.example.makank.ui.activity.LocalActivity;
 import com.example.makank.ui.activity.RegisterActivity;
 
 import java.util.ArrayList;
@@ -17,9 +18,10 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.LocalViewHolder> {
+public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.LocalViewHolder> implements Filterable {
     private Context context;
-    private List<Local> Locals;
+    private List<Local> locals;
+    private List<Local> allLocals;
 
 
     @NonNull
@@ -32,26 +34,60 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.LocalViewHol
 
     public LocalAdapter(Context context, List<Local> Locals) {
         this.context = context;
-        this.Locals = Locals;
+        this.locals = Locals;
+        this.allLocals = Locals;
     }
     public void setLocals(List<Local> Locals) {
-        this.Locals = new ArrayList<>();
-        this.Locals = Locals;
+        this.locals = new ArrayList<>();
+        this.locals = Locals;
+        this.allLocals = Locals;
         notifyDataSetChanged();
     }
     @NonNull
     @Override
     public void onBindViewHolder(@NonNull LocalAdapter.LocalViewHolder holder, int position) {
-        holder.bind(Locals.get(position));
+        holder.bind(locals.get(position));
     }
 
     @Override
     public int getItemCount() {
-        if(Locals != null){
-            return Locals.size();
+        if(locals != null){
+            return locals.size();
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    locals = allLocals;
+                } else {
+                    List<Local> filteredList = new ArrayList<>();
+                    for (Local Local : allLocals) {
+                        if (Local.getName().toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(Local);
+                        }
+                    }
+                    locals = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = locals;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                locals = (ArrayList<Local>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+
     }
 
     public  class LocalViewHolder extends RecyclerView.ViewHolder {
@@ -86,7 +122,7 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.LocalViewHol
     }
 
     public List<Local> getAll() {
-        return Locals;
+        return locals;
     }
 
 /*    public List<Local> getSelected() {

@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder> implements Filterable {
     private Context context;
     private List<City> cities;
+    private List<City> allCities;
 
 
     @NonNull
@@ -32,13 +33,15 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder
     }
 
 
-    public CityAdapter(Context context, List<City> Cities) {
+    public CityAdapter(Context context, List<City> cities) {
         this.context = context;
-        this.cities = Cities;
+        this.cities = cities;
+        this.allCities = cities;
     }
     public void setCities(List<City> cities) {
         this.cities = new ArrayList<>();
         this.cities = cities;
+        this.allCities = cities;
         notifyDataSetChanged();
     }
     @NonNull
@@ -58,7 +61,34 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder
 
     @Override
     public Filter getFilter() {
-        return null;
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    cities = allCities;
+                } else {
+                    List<City> filteredList = new ArrayList<>();
+                    for (City city : allCities) {
+                        if (city.getName().toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(city);
+                        }
+                    }
+                    cities = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = cities;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                cities = (ArrayList<City>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+
     }
 
     public  class CityViewHolder extends RecyclerView.ViewHolder {
