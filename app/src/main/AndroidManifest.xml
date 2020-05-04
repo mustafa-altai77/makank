@@ -22,7 +22,7 @@
         <activity android:name=".ui.news.NewsDetailsActivity"></activity>
         <activity
             android:name=".ui.activity.DiseaseActivity"
-            android:label="Diseases">
+            android:theme="@style/Theme.AppCompat.NoActionBar">
 
         </activity>
         <activity android:name=".ui.activity.AddGroupActivity"
@@ -31,11 +31,12 @@
         <activity android:name=".ui.activity.QrCodeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
-        <activity android:name=".ui.activity.SendNotifActivity" >
+        <activity android:name=".ui.activity.SendNotifActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
 
         </activity>
-        <activity android:name=".ui.activity.VolunteerActivity" >
-
+        <activity android:name=".ui.activity.VolunteerActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
         <activity android:name=".ui.activity.ContactActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>

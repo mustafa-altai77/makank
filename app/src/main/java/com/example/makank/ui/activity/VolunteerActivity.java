@@ -69,10 +69,11 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
     public ProgressDialog pDialog;
     public static final int FILE_PICKER_REQUEST_CODE = 1;
     private String pdfPath;
-    TextView volunteerName, condition, message, approve, conn, txtSTEP;
+    TextView volunteerName, condition, message, approve, conn, txtSTEP, volLable;
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +82,6 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
         ivImage = findViewById(R.id.ivImage);
         tvFileName = findViewById(R.id.txt_message);
         pdfView = findViewById(R.id.pdfView);
-
         ok = findViewById(R.id.confirm);
         tvFileName.setOnClickListener(this);
         txtSTEP = findViewById(R.id.txtSteps);
@@ -96,6 +96,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
         condition = findViewById(R.id.txtCon);
         message = findViewById(R.id.txt_message);
         approve = findViewById(R.id.txtAprove);
+        volLable = findViewById(R.id.infoVol);
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         txtSTEP.setTypeface(typeface);
         volunteerName.setTypeface(typeface);
@@ -104,6 +105,9 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
         approve.setTypeface(typeface);
         conn.setTypeface(typeface);
         txtSTEP.setTypeface(typeface);
+        volLable.setTypeface(typeface);
+        ok.setTypeface(typeface);
+
         ok.setOnClickListener(this);
         SharedPreferences idPref = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 

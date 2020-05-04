@@ -2,6 +2,7 @@ package com.example.makank;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.graphics.Typeface;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -32,10 +33,11 @@ public class Alert {
     }
 
     public void  showAlertError(String x) {
+        Typeface typeface;
         new SweetAlertDialog(activity, SweetAlertDialog.ERROR_TYPE)
                 .setTitleText(x)
-                .showCancelButton(true)
-                .setCancelText("موافق")
+                //.showCancelButton(true)
+                .setConfirmText("موافق")
                 .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sDialog) {

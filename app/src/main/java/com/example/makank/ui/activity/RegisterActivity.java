@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     RadioButton radioButton;
     String local_id, ln;
     EditText f_name, s_name, l_name, phone;
-    TextView textView, Fmale, Male;
+    TextView textView, Fmale, Male,info;
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
@@ -52,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
         textView = findViewById(R.id.type_gender);
         Male = findViewById(R.id.male);
         Fmale = findViewById(R.id.female);
+        info=findViewById(R.id.infoInsert);
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         btn.setTypeface(typeface);
         f_name.setTypeface(typeface);
@@ -62,6 +63,8 @@ public class RegisterActivity extends AppCompatActivity {
         textView.setTypeface(typeface);
         Male.setTypeface(typeface);
         Fmale.setTypeface(typeface);
+        info.setTypeface(typeface);
+        btn.setTypeface(typeface);
         radioGroupGender = findViewById(R.id.gender_radiogroup);
         loadingDialog = new LoadingDialog(this);
         alert = new Alert(this);

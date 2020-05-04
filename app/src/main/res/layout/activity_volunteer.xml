@@ -4,9 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.activity.VolunteerActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/red_tool_bar"
+        android:gravity="center">
 
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/mkank_name"
+            android:backgroundTint="@color/white" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/total2"
+        android:gravity="center">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:id="@+id/infoVol"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:text="شــروط التطوع" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#B9A636"
+        android:layout_height="3dp">
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/top_L"
         android:layout_width="match_parent"
@@ -22,6 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:text="مرحبا :"
+            android:textColor="#645C5C"
             android:textSize="15dp"/>
 
     </LinearLayout>
@@ -58,13 +91,15 @@
             android:lineSpacingExtra="5dp"
             android:lineSpacingMultiplier="1.5"
             android:text=""
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:textColor="#645C5C"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="68dp"
         android:layout_gravity="right"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal">
 
 
@@ -86,13 +121,14 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
+            android:textColor="#645C5C"
             android:text=" رفع السيرة الذاتية" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:gravity="right"
         android:orientation="horizontal"
         android:weightSum="2">
@@ -113,6 +149,8 @@
         android:layout_width="196dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textSize="20sp"
         android:background="@drawable/redbtn"
         android:text="اوافق"
         android:textColor="@color/cardview_light_background">

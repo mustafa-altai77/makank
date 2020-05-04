@@ -14,7 +14,39 @@
         android:layoutDirection="rtl"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/red_tool_bar"
+            android:gravity="center">
 
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/mkank_name"
+                android:backgroundTint="@color/white" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/total2"
+            android:gravity="center">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:id="@+id/infoInsert"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:text="أدخل بياناتك الشخصية" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="#B9A636"
+            android:layout_height="3dp">
+        </LinearLayout>
         <!--    <FrameLayout-->
         <!--        android:id="@+id/frame1"-->
         <!--        android:layout_width="348dp"-->
@@ -24,29 +56,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:background="@drawable/logo" />
-
             <EditText
                 android:id="@+id/f_name"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
                 android:hint="الاسم الاول "
                 android:inputType="textPersonName"
                 android:paddingRight="20dp"
-                android:textColor="#4D4646"
                 android:textAlignment="textStart"
-                android:textColorHint="#4D4646" />
+                android:textColor="#4D4646"
+                android:textColorHint="#8B8686" />
 
             <EditText
                 android:id="@+id/s_name"
@@ -57,12 +83,12 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
-                android:textColor="#4D4646"
                 android:hint="الاسم الثاني "
                 android:inputType="textPersonName"
                 android:paddingRight="20dp"
                 android:textAlignment="textStart"
-                android:textColorHint="#4D4646" />
+                android:textColor="#4D4646"
+                android:textColorHint="#8B8686" />
 
             <EditText
                 android:id="@+id/l_name"
@@ -74,11 +100,11 @@
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
                 android:hint="الاسم الثالث"
-                android:textColor="#4D4646"
                 android:inputType="textPersonName"
                 android:paddingRight="20dp"
                 android:textAlignment="textStart"
-                android:textColorHint="#4D4646" />
+                android:textColor="#4D4646"
+                android:textColorHint="#8B8686" />
 
             <EditText
                 android:id="@+id/phone"
@@ -89,12 +115,12 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
-                android:textColor="#4D4646"
                 android:hint="رقم الهاتف"
                 android:inputType="number"
                 android:paddingRight="20dp"
                 android:textAlignment="textStart"
-                android:textColorHint="#4D4646" />
+                android:textColor="#4D4646"
+                android:textColorHint="#8B8686" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,30 +138,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:textSize="15sp"
-                    android:text="النوع" />
+                    android:text="الجنس"
+                    android:textSize="15sp" />
 
                 <RadioGroup
                     android:id="@+id/gender_radiogroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checkedButton="@id/female"
+                    android:checkedButton="@id/male"
                     android:orientation="horizontal"
                     android:textAlignment="center"
                     android:textColorHint="#4D4646">
 
+
+
+                    <RadioButton
+                        android:id="@+id/male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ذكر" />
                     <RadioButton
                         android:id="@+id/female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="انثى" />
-
-                    <RadioButton
-                        android:id="@+id/male"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ذكر" />
                 </RadioGroup>
             </LinearLayout>
 
@@ -148,11 +174,11 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_edittext"
                 android:hint="العمر"
-                android:textColor="#4D4646"
-                android:textColorHint="#4D4646"
                 android:inputType="number"
                 android:paddingRight="20dp"
-                android:textAlignment="textStart" />
+                android:textAlignment="textStart"
+                android:textColor="#4D4646"
+                android:textColorHint="#8B8686" />
         </LinearLayout>
         <!--    </FrameLayout>-->
         <Button
@@ -163,8 +189,8 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/redbtn"
             android:text="@string/next"
-            android:textColor="@color/cardview_light_background"
-            />
+            android:textSize="20sp"
+            android:textColor="@color/cardview_light_background" />
 
     </LinearLayout>
 </ScrollView>
