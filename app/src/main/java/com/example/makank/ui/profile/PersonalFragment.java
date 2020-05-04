@@ -103,13 +103,13 @@ public class PersonalFragment extends Fragment {
         Toast.makeText(getActivity(), ""+age, Toast.LENGTH_SHORT).show();
 
         if (status.equals("1")) {
-            statusImage.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.red));
+            statusImage.setBackground(ContextCompat.getDrawable(this.getActivity(),R.drawable.red));
 
         } else if (status.equals("2")) {
-            statusImage.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.yellowc));
+            statusImage.setBackground(ContextCompat.getDrawable(this.getActivity(),R.drawable.yellowc));
 
-        } else if (age.equals("3")) {
-            statusImage.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.greenc));
+        } else if (status.equals("3")) {
+            statusImage.setBackground(ContextCompat.getDrawable(this.getActivity(),R.drawable.greenc));
         }
 
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);

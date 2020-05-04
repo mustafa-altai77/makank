@@ -60,8 +60,7 @@ public class DiseaseActivity extends AppCompatActivity {
         //createList();
 
         fetchWeatherDetails();
-        alert = new Alert(this);
-        loadingDialog = new LoadingDialog(this);
+
 
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         btnGetSelected.setTypeface(typeface);
@@ -87,7 +86,9 @@ public class DiseaseActivity extends AppCompatActivity {
     }
 
     private void fetchWeatherDetails() {
-        final ProgressDialog progressDoalog;
+        alert = new Alert(this);
+        loadingDialog = new LoadingDialog(this);
+        //final ProgressDialog progressDoalog;
       /*  progressDoalog = new ProgressDialog(DiseaseActivity.this);
         progressDoalog.setMax(100);
         progressDoalog.setMessage("loading....");

@@ -2,7 +2,6 @@ package com.example.makank.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -29,14 +28,16 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
     Button btn;
+    EditText bDay;
     RadioGroup radioGroupGender;
     RadioButton radioButton;
     String local_id, ln;
-    EditText f_name, s_name, l_name, phone,bDay;
-    TextView typeGender,info,maleR,femaleR;
+    EditText f_name, s_name, l_name, phone;
+    TextView textView, Fmale, Male;
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +49,9 @@ public class RegisterActivity extends AppCompatActivity {
         l_name = findViewById(R.id.l_name);
         phone = findViewById(R.id.phone);
         bDay = findViewById(R.id.age);
-        typeGender = findViewById(R.id.txtGen);
-       info = findViewById(R.id.insertInfo);
-        maleR = findViewById(R.id.mail);
-        femaleR = findViewById(R.id.female);
+        textView = findViewById(R.id.type_gender);
+        Male = findViewById(R.id.male);
+        Fmale = findViewById(R.id.female);
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         btn.setTypeface(typeface);
         f_name.setTypeface(typeface);
@@ -59,37 +59,30 @@ public class RegisterActivity extends AppCompatActivity {
         l_name.setTypeface(typeface);
         phone.setTypeface(typeface);
         bDay.setTypeface(typeface);
-        typeGender.setTypeface(typeface);
-        info.setTypeface(typeface);
-      //  maleR.setTypeface(typeface);
-     //   femaleR.setTypeface(typeface);
-
-
-        SharedPref.getInstance(RegisterActivity.this).storeUserLocal(ln);
+        textView.setTypeface(typeface);
+        Male.setTypeface(typeface);
+        Fmale.setTypeface(typeface);
         radioGroupGender = findViewById(R.id.gender_radiogroup);
-        alert = new Alert(this);
         loadingDialog = new LoadingDialog(this);
-
+        alert = new Alert(this);
         local_id = getIntent().getStringExtra("local_id");
         ln = getIntent().getStringExtra("local_name");
-
+        SharedPref.getInstance(RegisterActivity.this).storeUserLocal(ln);
         btn.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-
                 createPerson();
-
             }
         });
     }
 
 
     private void createPerson() {
-        /* ProgressDialog progressDialog;
-       progressDialog = new ProgressDialog(RegisterActivity.this);
-        progressDialog.setMax(100);
-        progressDialog.setMessage("loading....");*/
+       /* final ProgressDialog progressDoalog;
+        progressDoalog = new ProgressDialog(RegisterActivity.this);
+        progressDoalog.setMax(100);
+        progressDoalog.setMessage("loading....");*/
+        loadingDialog.startLoadingDialog();
         final String first_name = f_name.getText().toString();
         final String second_name = s_name.getText().toString();
         final String last_name = l_name.getText().toString();
@@ -98,39 +91,41 @@ public class RegisterActivity extends AppCompatActivity {
         int selectedID = radioGroupGender.getCheckedRadioButtonId();
         radioButton = findViewById(selectedID);
         final String gender = (String) radioButton.getText();
+        String message = "يجب ملئ جميع الحقول";
 
         if (TextUtils.isEmpty(first_name)) {
-            // Toast.makeText(getApplicationContext(), "يجب ملئ جميع الحقول", Toast.LENGTH_SHORT).show();
-            alert.showAlertError("يجب ملئ جميع الحقول");
+            alert.showAlertError(message);
+            loadingDialog.dismissDialog();
             return;
         }
         if (TextUtils.isEmpty(second_name)) {
-            //  Toast.makeText(getApplicationContext(), "يجب ملئ جميع الحقول", Toast.LENGTH_SHORT).show();
-            alert.showAlertError("يجب ملئ جميع الحقول");
+            alert.showAlertError(message);
+            loadingDialog.dismissDialog();
             return;
         }
         if (TextUtils.isEmpty(last_name)) {
 
-            // Toast.makeText(getApplicationContext(), "يجب ملئ جميع الحقول", Toast.LENGTH_SHORT).show();
-            alert.showAlertError("يجب ملئ جميع الحقول");
+            alert.showAlertError(message);
+            loadingDialog.dismissDialog();
             return;
 
         }
         if (TextUtils.isEmpty(phone_number)) {
-            //Toast.makeText(getApplicationContext(), "يجب ملئ جميع الحقول", Toast.LENGTH_SHORT).show();
-            alert.showAlertError("يجب ملئ جميع الحقول");
+            alert.showAlertError(message);
+            loadingDialog.dismissDialog();
             return;
 
         }
+//        String ageText = bDay.getText().toString();
 
         if (TextUtils.isEmpty(age)) {
-            // Toast.makeText(getApplicationContext(), "يجب ملئ جميع الحقول", Toast.LENGTH_SHORT).show();
-            alert.showAlertError("يجب ملئ جميع الحقول");
+            alert.showAlertError(message);
+            loadingDialog.dismissDialog();
             return;
 
         }
         Person person = new Person(first_name, second_name, last_name, phone_number, gender, age, local_id);
-        // progressDialog.show();
+        // progressDoalog.show();
         loadingDialog.startLoadingDialog();
 
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
@@ -140,7 +135,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onResponse(Call<Person> call, Response<Person> response) {
 
                 if (response.isSuccessful()) {
-                    // progressDialog.dismiss();
+                    //progressDoalog.dismiss();
                     loadingDialog.dismissDialog();
 
                     String id_person = String.valueOf(response.body().getId());
@@ -152,27 +147,28 @@ public class RegisterActivity extends AppCompatActivity {
                     String age = response.body().getAge();
                     String status = response.body().getStatus();
 
-                    // Toast.makeText(RegisterActivity.this, age+"", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, id_person + "", Toast.LENGTH_SHORT).show();
 
                     SharedPref.getInstance(RegisterActivity.this).storeUserID(id_person, f_name, s_name, l_name, phone, gender, age, status);
                     Intent intent = new Intent(RegisterActivity.this, DiseaseActivity.class);
                     startActivity(intent);
                     finish();
-                 Toast.makeText(RegisterActivity.this, "done", Toast.LENGTH_SHORT).show();
-                    alert.showAlertSuccess("");
+                    // Toast.makeText(RegisterActivity.this, "done", Toast.LENGTH_SHORT).show();
+                    // String message2="انت الان مسجل";
+                    // alert.showAlertSuccess(message2);
                 }
 
             }
 
             @Override
             public void onFailure(Call<Person> call, Throwable t) {
-                //progressDialog.dismiss();
+                //  progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
 
-                alert.showAlertError("تــأكد من اتصالك بالإنترنت");
-                // Toast.makeText(RegisterActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
-
+                alert.showAlertError("خطاء في النظام الخارجي");
             }
         });
     }
 }
+
+

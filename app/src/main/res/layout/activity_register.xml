@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     android:background="@color/cardview_light_background"
     tools:context=".ui.activity.RegisterActivity">
+
     <LinearLayout
-        android:layoutDirection="rtl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="0dp"
+        android:layoutDirection="rtl"
         android:orientation="vertical">
+
 
         <!--    <FrameLayout-->
         <!--        android:id="@+id/frame1"-->
@@ -23,130 +25,134 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:background="@drawable/logo"/>
-            <TextView
-                android:id="@+id/insertInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:text="@string/inserPersonData"/>
-            <EditText
 
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:background="@drawable/logo" />
+
+            <EditText
                 android:id="@+id/f_name"
+                android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
-                android:paddingRight="10dp"
+                android:hint="الاسم الاول "
+                android:inputType="textPersonName"
+                android:paddingRight="20dp"
+                android:textColor="#4D4646"
                 android:textAlignment="textStart"
-                android:hint="الاسم الاول"
-                android:textColorHint="@drawable/total"
-                android:inputType="textPersonName"/>
+                android:textColorHint="#4D4646" />
+
             <EditText
                 android:id="@+id/s_name"
+                android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:paddingRight="10dp"
-                android:textAlignment="textStart"
-                android:textColorHint="@drawable/total"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
-                android:hint="الاسم الثاني  "
+                android:textColor="#4D4646"
+                android:hint="الاسم الثاني "
                 android:inputType="textPersonName"
+                android:paddingRight="20dp"
+                android:textAlignment="textStart"
+                android:textColorHint="#4D4646" />
 
-                />
             <EditText
                 android:id="@+id/l_name"
+                android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_edittext"
-                android:textAlignment="textStart"
-                android:paddingRight="10dp"
                 android:ems="10"
-                android:textColorHint="@drawable/total"
-                android:hint="الاسم الثالث  "
-                android:inputType="textPersonName"/>
+                android:hint="الاسم الثالث"
+                android:textColor="#4D4646"
+                android:inputType="textPersonName"
+                android:paddingRight="20dp"
+                android:textAlignment="textStart"
+                android:textColorHint="#4D4646" />
+
             <EditText
                 android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
-                android:textAlignment="textStart"
+                android:textColor="#4D4646"
                 android:hint="رقم الهاتف"
-                android:textColorHint="@drawable/total"
                 android:inputType="number"
-                android:paddingRight="10dp"
-                />
+                android:paddingRight="20dp"
+                android:textAlignment="textStart"
+                android:textColorHint="#4D4646" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center|center_vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/card_shape"
+                android:gravity="center|center_vertical"
 
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtGen"
+                    android:id="@+id/type_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="left"
+                    android:textSize="15sp"
                     android:text="النوع" />
 
                 <RadioGroup
-                    android:checkedButton="@id/female"
                     android:id="@+id/gender_radiogroup"
-                    android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:checkedButton="@id/female"
+                    android:orientation="horizontal"
+                    android:textAlignment="center"
+                    android:textColorHint="#4D4646">
 
                     <RadioButton
                         android:id="@+id/female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="انثى" />
+
                     <RadioButton
-                        android:id="@+id/mail"
+                        android:id="@+id/male"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="ذكر" />
                 </RadioGroup>
             </LinearLayout>
+
             <EditText
                 android:id="@+id/age"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="8dp"
-                android:paddingRight="10dp"
-                android:hint="العمر"
-                android:textAlignment="textStart"
-                android:textColorHint="@drawable/total"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_edittext"
-                android:inputType="number"/>
+                android:hint="العمر"
+                android:textColor="#4D4646"
+                android:textColorHint="#4D4646"
+                android:inputType="number"
+                android:paddingRight="20dp"
+                android:textAlignment="textStart" />
         </LinearLayout>
         <!--    </FrameLayout>-->
         <Button
@@ -154,9 +160,11 @@
             android:layout_width="186dp"
             android:layout_height="49dp"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/redbtn"
             android:text="@string/next"
-            android:textColor="@color/cardview_light_background"/>
+            android:textColor="@color/cardview_light_background"
+            />
+
     </LinearLayout>
 </ScrollView>

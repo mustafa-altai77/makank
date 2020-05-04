@@ -6,146 +6,104 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.activity.VolunteerActivity">
+
     <LinearLayout
         android:id="@+id/top_L"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:weightSum="2">
+
         <TextView
+            android:id="@+id/voluName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="مرحبا :"
-            android:textSize="15dp"
-            >
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/v_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="ابراهيم عوض حسن">
-
-        </TextView>
+            android:textSize="15dp"/>
 
     </LinearLayout>
+
     <TextView
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
+        android:id="@+id/txtCon"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="الشروط والخصوصية التي يجب ان نخلي عنها مسؤليتنا تجاهك انا المدعو اعلاه اوافق على الشروط التالية"
-        >
+        android:layout_gravity="center"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lineSpacingExtra="5dp"
+        android:lineSpacingMultiplier="1"
+        android:maxLines="2"
+        android:padding="15dp"
+        android:text="المبادرة الوطنية لمكافحة فيروس كورونا كوفيد 19 في دولة السودان"
+        android:textColor="@color/color"
+        android:textSize="23sp">
 
     </TextView>
+
     <LinearLayout
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:orientation="vertical"
-        android:weightSum="7"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_marginTop="10dp"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1- ....">
-
-        </TextView>
-        <TextView
-            android:layout_marginTop="10dp"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2- ....">
-
-        </TextView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3- ....">
-
-        </TextView>
-        <TextView
-            android:layout_marginTop="10dp"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4- ....">
-
-        </TextView>
-        <TextView
-            android:layout_marginTop="10dp"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="5- ....">
-
-        </TextView>
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="6- ....">
-
-        </TextView>
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="7- ....">
-
-        </TextView>
-    </LinearLayout>
-    <TextView
-        android:id="@+id/txt_message"
-        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text=" رفع السيرة الذاتية" />
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="7">
 
+        <TextView
+            android:id="@+id/txtSteps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="5dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text=""
+            android:textSize="18sp" />
+    </LinearLayout>
     <LinearLayout
-        android:layout_width="226dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="70dp"
         android:orientation="horizontal">
 
-        <com.github.barteksc.pdfviewer.PDFView
-            android:id="@+id/pdfView"
-            android:layout_width="100dp"
-            android:layout_height="match_parent" />
+
 
         <ImageView
             android:id="@+id/ivImage"
-            android:layout_width="116dp"
-            android:layout_height="53dp"
-            android:onClick="onClick"
-            android:src="@drawable/ic_file_upload_black_24dp" />
-
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:background="@drawable/attach"
+            android:backgroundTint="@color/total1"
+            android:layout_marginLeft="50dp"
+            android:onClick="onClick" />
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/txt_message"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:text=" رفع السيرة الذاتية" />
     </LinearLayout>
+
     <LinearLayout
-        android:layout_margin="20dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:layout_margin="20dp"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
         <CheckBox
-            android:layout_gravity="left"
+            android:id="@+id/txtAprove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:text="اوافق على الشروط والاحكام :"
-            android:textSize="15dp"
-            >
+            android:textSize="15dp">
 
         </CheckBox>
     </LinearLayout>
@@ -155,8 +113,8 @@
         android:layout_width="196dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:background="@drawable/card_button"
-        android:text="@string/conf"
+        android:background="@drawable/redbtn"
+        android:text="اوافق"
         android:textColor="@color/cardview_light_background">
 
     </Button>

@@ -42,7 +42,7 @@
                 android:layout_marginRight="10dp"
                 android:gravity="right"
                 android:text="النص"
-                android:ellipsize="end"
+                android:ellipsize ="end"
                 android:maxLines="2"
                 android:padding="15dp"
                 android:lineSpacingMultiplier="1.5"
