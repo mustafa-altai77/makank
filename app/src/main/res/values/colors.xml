@@ -20,4 +20,7 @@
     <color name="total1">#8e8e8e</color>
     <color name="total2">#5a5a5a</color>
 
+    <color name="card_shape">#aaaaaa</color>
+    <color name="red_tool_bar">#c7212d</color>
+
 </resources>
