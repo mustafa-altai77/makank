@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.makank.R;
@@ -15,12 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class StateAdapter  extends RecyclerView.Adapter<StateAdapter.StateViewHolder> {
+public class StateAdapter  extends RecyclerView.Adapter<StateAdapter.StateViewHolder> implements Filterable {
     private Context context;
     private List<State> states;
-
+    private List<State> statesFiltered;
 
     @NonNull
     @Override
@@ -35,9 +38,42 @@ public class StateAdapter  extends RecyclerView.Adapter<StateAdapter.StateViewHo
         this.states = states;
     }
     public void setStates(List<State> states) {
-        this.states = new ArrayList<>();
-        this.states = states;
-        notifyDataSetChanged();
+        this.context = context;
+        if (this.states == null) {
+            this.states = states;
+            this.statesFiltered = states;
+            notifyItemChanged(0, statesFiltered.size());
+        } else {
+            final DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
+                @Override
+                public int getOldListSize() {
+                    return StateAdapter.this.states.size();
+                }
+
+                @Override
+                public int getNewListSize() {
+                    return states.size();
+                }
+
+                @Override
+                public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+                    return StateAdapter.this.states.get(oldItemPosition).getName() == states.get(newItemPosition).getName();
+                }
+
+                @Override
+                public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+
+                    State newNew = StateAdapter.this.states.get(oldItemPosition);
+
+                    State oldNews = states.get(newItemPosition);
+
+                    return newNew.getName() == oldNews.getName();
+                }
+            });
+            this.states = states;
+            this.statesFiltered = states;
+            result.dispatchUpdatesTo(this);
+        }
     }
     @NonNull
     @Override
@@ -52,6 +88,39 @@ public class StateAdapter  extends RecyclerView.Adapter<StateAdapter.StateViewHo
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    statesFiltered = states;
+                } else {
+                    List<State> filteredList = new ArrayList<>();
+                    for (State movie : states) {
+                        if (movie.getName().toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(movie);
+                        }
+                    }
+                    statesFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = statesFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                statesFiltered = (ArrayList<State>) filterResults.values;
+
+                notifyDataSetChanged();
+            }
+        };
+
     }
 
     public  class StateViewHolder extends RecyclerView.ViewHolder {

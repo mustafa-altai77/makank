@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.makank.R;
@@ -17,7 +19,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder> {
+public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder> implements Filterable {
     private Context context;
     private List<City> cities;
 
@@ -52,6 +54,11 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public Filter getFilter() {
+        return null;
     }
 
     public  class CityViewHolder extends RecyclerView.ViewHolder {
