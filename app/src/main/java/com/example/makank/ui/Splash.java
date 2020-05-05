@@ -17,6 +17,7 @@ import com.example.makank.R;
 import com.example.makank.SharedPref;
 import com.example.makank.ui.activity.HomeActivity;
 import com.example.makank.ui.activity.PlaceActivity;
+import com.example.makank.ui.activity.StateActivity;
 
 public class Splash extends AppCompatActivity {
     Animation topAnim,bottomAnim;
@@ -59,7 +60,7 @@ public class Splash extends AppCompatActivity {
                 finish();
             }
             else {
-                startActivity(new Intent(this, PlaceActivity.class));
+                startActivity(new Intent(this, StateActivity.class));
                 finish();
             }
         }else{

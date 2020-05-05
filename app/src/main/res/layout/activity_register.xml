@@ -17,7 +17,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@drawable/red_tool_bar"
+            android:background="@color/red_tool_bar"
             android:gravity="center">
 
             <ImageView
@@ -128,7 +128,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/card_shape"
+                android:background="@color/card_shape"
                 android:gravity="center|center_vertical"
 
                 android:orientation="horizontal">
