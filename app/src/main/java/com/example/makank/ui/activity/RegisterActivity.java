@@ -2,6 +2,7 @@ package com.example.makank.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -173,5 +174,3 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 }
-
-

@@ -20,9 +20,7 @@ import com.example.makank.data.model.Member;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import de.hdodenhof.circleimageview.CircleImageView;
-
 public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> implements Filterable {
 
     private List<Member> seenList;
@@ -150,7 +148,6 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
             time=itemView.findViewById(R.id.dateComm);
 
             image = itemView.findViewById(R.id.status_mg);
-
 
 
             typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");

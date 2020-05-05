@@ -18,8 +18,10 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.makank.LoadingDialog;
 import com.example.makank.R;
 import com.example.makank.data.network.ApiClient;
 import com.example.makank.data.network.ApiInterface;
@@ -41,6 +43,9 @@ import static com.example.makank.SharedPref.mCtx;
 public class GroupFragment extends Fragment {
     ImageView imageView;
     SearchView searchView;
+    private TextView notfound;
+    LoadingDialog loadingDialog;
+
     ArrayList<String> group_id;
     ArrayList<String> member_name;
     private RecyclerView recyclerView;
@@ -62,6 +67,9 @@ public class GroupFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_group, container, false);
 
         imageView = view.findViewById(R.id.add_member);
+        notfound = view.findViewById(R.id.not_fond);
+        notfound.setVisibility(View.GONE);
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +84,7 @@ public class GroupFragment extends Fragment {
 
         recyclerView.setAdapter(groupAdapter);
         getGroupMemeber();
-
+       // loadingDialog.startLoadingDialog();
         return view;
     }
 
@@ -86,36 +94,39 @@ public class GroupFragment extends Fragment {
         members = new ArrayList<>();
     }
     private void getGroupMemeber(){
-        final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(getContext());
-        progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");
+
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String my_id = sharedPreferences.getString(USER_ID, "id");
 
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<List<Member>> call = apiService.getMygroup(my_id);
         //progressDoalog.show();
+        //loadingDialog.startLoadingDialog();
+
         call.enqueue(new Callback<List<Member>>() {
             @Override
             public void onResponse(Call<List<Member>> call, Response<List<Member>> response) {
                 imageView.setVisibility(View.VISIBLE);
 
                 if (response.isSuccessful()) {
-                   /// progressDoalog.dismiss();
+                    //loadingDialog.dismissDialog();
                     members = new ArrayList<>();
 
                     if (response.code()==200){
                         members = (ArrayList<Member>) response.body();
-                        for (int i = 0; i < members.size(); i++) {
-                         String g = members.get(i).getGroupID();
-                            member_name.add(members.get(i).getFirst_name());
-                            if (!my_id.equals(g)) {
-                                imageView.setVisibility(View.GONE);
-                                Toast.makeText(getContext(),g+ "", Toast.LENGTH_SHORT).show();
+                        if (!members.isEmpty()) {
+
+                            for (int i = 0; i < members.size(); i++) {
+                                String g = members.get(i).getGroupID();
+                                member_name.add(members.get(i).getFirst_name());
+                                if (!my_id.equals(g)) {
+                                    imageView.setVisibility(View.GONE);
+                                }
                             }
                             groupAdapter.setMovieList(getContext(),members);
-                        }
+                            }
+                        else
+                            notfound.setVisibility(View.VISIBLE);
                     }
                 }
 
@@ -123,7 +134,7 @@ public class GroupFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Member>> call, Throwable t) {
-               // progressDoalog.dismiss();
+                //loadingDialog.dismissDialog();
 
                 Toast.makeText(getContext(), "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
             }

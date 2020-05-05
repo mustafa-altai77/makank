@@ -1,6 +1,6 @@
 package com.example.makank.data.network;
 
-import android.database.Observable;
+import androidx.annotation.FloatRange;
 
 import com.example.makank.data.model.City;
 import com.example.makank.data.model.Disease;
@@ -9,25 +9,25 @@ import com.example.makank.data.model.Local;
 import com.example.makank.data.model.Member;
 import com.example.makank.data.model.News;
 import com.example.makank.data.model.Person;
+import com.example.makank.data.model.Request;
 import com.example.makank.data.model.State;
 import com.example.makank.data.model.Statistc;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-import retrofit2.http.PartMap;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiInterface {
     @GET("state/{id}/cities?data=true")
@@ -45,8 +45,18 @@ public interface ApiInterface {
     @GET("news?data=true")
     Call<List<News>> getNews();
 
+    @GET("person/{id}/grouprequest?data=true")
+    Call<List<Request>> getRequst(@Path("id") String id);
+
     @GET("cases")
     Call<Statistc> getCases();
+    @GET("person/{id}/group?data=true")
+    Call<List<Member>> getMygroup(@Path("id") String id);
+
+    @GET("person/{id}/saw?data=true")
+    Call<List<Member>> getMyseen(@Path("id") String id);
+    @GET("person/{id}/?data=true")
+    Call<Person> getMyData(@Path("id") String id);
 
     @POST("person")
     Call<Person> getUserRegi(@Body Person person);
@@ -77,23 +87,13 @@ public interface ApiInterface {
     Call<Person> sendNotifi(@Path("id") String my_id,
                             @Field("postion_description") String local,
                             @Field("status_description") String notifi);
-
-    @GET("person/{id}/group?data=true")
-    Call<List<Member>> getMygroup(@Path("id") String id);
-
-    @GET("person/{id}/saw?data=true")
-    Call<List<Member>> getMyseen(@Path("id") String id);
-
-    //    @Multipart
-//    @POST("")
-//    Call<Filresponse> upload(@Part("person_id") String id,
-//                             @Part("document") RequestBody requestBody,
-//                             @PartMap Map<String, RequestBody> map);
     @Multipart
     @POST("person/{id}/volunteer")
-    Call<Filresponse> upload(@Part("person_id") String id,
-                             @Part("document") RequestBody fullName,
-                             @Part MultipartBody.Part file);
-
-
+    Call<Filresponse> upload(@Part("id") String id,
+                             @Part("cvfile") RequestBody file);
+    @FormUrlEncoded
+    @POST("person/{id}/grouprequest")
+    Call<Request> getRequest(@Path("id") String id,
+                             @Field("owner_id") int owner_id,
+                             @Query("accept") Boolean accept);
 }

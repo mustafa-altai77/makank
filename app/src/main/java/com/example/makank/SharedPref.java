@@ -10,6 +10,8 @@ public class SharedPref {
     //Storage File
     public static final String SHARED_PREF_NAME = "larntech";
 
+    private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
+
     //Username
     public static final String USER_ID = "id";
     public static final String F_NAME = "first_name";
@@ -32,6 +34,11 @@ public class SharedPref {
     }
 
 
+    public void setFirstTimeLaunch(boolean isFirstTime) {
+
+    }
+
+
     public static synchronized SharedPref getInstance(Context context) {
         if (mInstance == null) {
             mInstance = new SharedPref(context);
@@ -42,9 +49,9 @@ public class SharedPref {
     public void storeUserLocal(String local) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        sharedPreferences.getBoolean(IS_FIRST_TIME_LAUNCH, true);
         editor.putString(USER_LOCAL, local);
-        editor.commit();
-    }
+        editor.commit();    }
     //method to store user data
     public void storeUserID(String id,String f_name,String s_name,String l_name,String phone,String gender,String age,String status) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -55,8 +62,8 @@ public class SharedPref {
         editor.putString(L_NAME, l_name);
         editor.putString(PHONE, phone);
         editor.putString(GENDER, gender);
-        editor.putString(STATUS, status);
         editor.putString(AGE, age);
+        editor.putString(STATUS, status);
         editor.commit();
     }
 
@@ -83,4 +90,5 @@ public class SharedPref {
         editor.commit();
         mCtx.startActivity(new Intent(mCtx, HomeActivity.class));
     }
+
 }

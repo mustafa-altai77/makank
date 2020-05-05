@@ -7,87 +7,87 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp">
 
-<androidx.cardview.widget.CardView
-    android:layoutDirection="rtl"
-    android:layout_width="match_parent"
-    app:cardCornerRadius="10dp"
-    android:layout_height="120dp">
-
-    <LinearLayout
+    <androidx.cardview.widget.CardView
+        android:layoutDirection="rtl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        app:cardCornerRadius="10dp"
+        android:layout_height="120dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/f_nam"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="الاسم الاول"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/f_nam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="الاسم الاول"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="15dp"></TextView>
+
+                <TextView
+                    android:id="@+id/s_nam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="الاسم الثاني"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="15dp"></TextView>
+
+                <TextView
+                    android:id="@+id/l_nam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="الاسم الثالث"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="15dp"></TextView>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/peson_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:text="الرقم التعريفي"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="15dp"></TextView>
 
-            <TextView
-                android:id="@+id/s_nam"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="الاسم الثاني"
-                android:textColor="@color/cardview_dark_background"
-                android:textSize="15dp"></TextView>
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/l_nam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="الاسم الثالث"
-                android:textColor="@color/cardview_dark_background"
-                android:textSize="15dp"></TextView>
+                <TextView
+                    android:id="@+id/status_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></TextView>
 
+                <ImageView
+                    android:id="@+id/status_mg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_add_circle_black_24dp">
+
+                </ImageView>
+            </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/peson_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:text="الرقم التعريفي"
-            android:textColor="@color/cardview_dark_background"
-            android:textSize="15dp"></TextView>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/status_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
-
-            <ImageView
-                android:id="@+id/status_mg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_add_circle_black_24dp">
-
-            </ImageView>
-        </LinearLayout>
-    </LinearLayout>
-
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

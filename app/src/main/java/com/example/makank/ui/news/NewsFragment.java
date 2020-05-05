@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.makank.Alert;
 import com.example.makank.LoadingDialog;
@@ -34,6 +35,7 @@ import retrofit2.Response;
 
 public class NewsFragment extends Fragment {
     SearchView searchView;
+    private TextView notfound;
     private RecyclerView recyclerView;
     private NewsAdapter newsAdapter;
     private List<News> newsList;
@@ -53,14 +55,13 @@ public class NewsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_news, container, false);
 
         recyclerView =  view.findViewById(R.id.recycler_news);
+        notfound = view.findViewById(R.id.not_fond);
+        notfound.setVisibility(View.GONE);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         newsAdapter = new NewsAdapter();
         recyclerView.setAdapter(newsAdapter);
         final ProgressDialog progressDoalog;
-       /* progressDoalog = new ProgressDialog(getContext());
-        progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");
-        progressDoalog.show();*/
+
        loadingDialog.startLoadingDialog();
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<List<News>> call = apiService.getNews();
@@ -71,8 +72,12 @@ public class NewsFragment extends Fragment {
                // progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
                 newsList = response.body();
-                Log.d("TAG","Response = "+newsList);
-                newsAdapter.setMovieList(getContext(),newsList);
+                if (!newsList.isEmpty()) {
+
+                    Log.d("TAG", "Response = " + newsList);
+                    newsAdapter.setMovieList(getContext(), newsList);
+                }else
+                    notfound.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -83,7 +88,6 @@ public class NewsFragment extends Fragment {
             }
         });
         return view;
-
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -19,30 +20,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.news.NewsDetailsActivity"></activity>
+        <activity android:name=".ui.activity.TestActivity"></activity>
+        <activity android:name=".ui.news.NewsDetailsActivity" />
         <activity
             android:name=".ui.activity.DiseaseActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-
-        </activity>
-        <activity android:name=".ui.activity.AddGroupActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-        </activity>
-        <activity android:name=".ui.activity.QrCodeActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-        </activity>
-        <activity android:name=".ui.activity.SendNotifActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-
-        </activity>
-        <activity android:name=".ui.activity.VolunteerActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-        </activity>
-        <activity android:name=".ui.activity.ContactActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
-        <activity android:name=".Steper"
+        <activity
+            android:name=".ui.activity.AddGroupActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
-        <activity android:name=".ui.activity.HomeActivity"></activity>
+        <activity
+            android:name=".ui.activity.QrCodeActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+        <activity
+            android:name=".ui.activity.SendNotifActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+        <activity
+            android:name=".ui.activity.VolunteerActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+        <activity
+            android:name=".ui.activity.ContactActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".ui.activity.Steper"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".ui.activity.HomeActivity" />
         <activity
             android:name=".ui.Splash"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -54,12 +55,10 @@
         </activity>
         <activity
             android:name=".ui.activity.PlaceActivity"
-            android:label="location">
-
-        </activity>
+            android:label="location"></activity>
         <activity
             android:name=".ui.activity.RegisterActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>

@@ -82,13 +82,26 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
         final News model = newsList.get(position);
         holder.title.setText(newsListFiltered.get(position).getTitle());
         holder.discription.setText(newsListFiltered.get(position).getText());
-        Glide.with(context).load("http://primarykeysd.com/makank/Anti_Covid19/public/images/public/"+model.getImage()).into(holder.image);
+        Glide.with(context).load("http://primarykeysd.com/makank/Anti_Covid19/public/news/"+model.getImage()).into(holder.image);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, NewsDetailsActivity.class);
                 intent.putExtra("object",model);
                 context.startActivity(intent);
+            }
+        });
+
+        holder.shareImage.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String shareBody = newsList.get(position).getText();
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Makank");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                context.startActivity(Intent.createChooser(sharingIntent, context.getResources().getString(R.string.share_using)));
             }
         });
     }
@@ -137,7 +150,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title,discription, datePublisher;
-        ImageView image;
+        ImageView image,shareImage;
         CardView cardView;
         Typeface typeface;
         @SuppressLint("WrongViewCast")
@@ -147,12 +160,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             discription = itemView.findViewById(R.id.news_desc);
             image = itemView.findViewById(R.id.image_news);
             cardView = itemView.findViewById(R.id.news_card);
-            datePublisher = itemView.findViewById(R.id.dateNew);
+            shareImage = itemView.findViewById(R.id.img);
+          //  datePublisher = itemView.findViewById(R.id.dateNew);
 
             typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
             title.setTypeface(typeface);
             discription.setTypeface(typeface);
-            datePublisher.setTypeface(typeface);
+           // datePublisher.setTypeface(typeface);
 
         }
     }

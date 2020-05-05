@@ -4,7 +4,6 @@ package com.example.makank.ui.home;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -18,9 +17,10 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.makank.R;
-import com.example.makank.Steper;
+import com.example.makank.ui.activity.Steper;
 import com.example.makank.ui.activity.SendNotifActivity;
 import com.example.makank.ui.activity.ContactActivity;
+import com.example.makank.ui.activity.TestActivity;
 import com.example.makank.ui.activity.VolunteerActivity;
 
 import java.util.List;
@@ -71,6 +71,10 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CategoryViewHo
                             Intent intent = new Intent(context, Steper.class);
                             context.startActivity(intent);
                         }
+                    if(item.image==R.drawable.qualification){
+                        Intent intent = new Intent(context, TestActivity.class);
+                        context.startActivity(intent);
+                    }
                             return;
                 }
             });

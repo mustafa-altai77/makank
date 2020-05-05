@@ -7,7 +7,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="#A7A4A4"
-    tools:context=".Steper">
+    tools:context=".ui.activity.Steper">
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/slidview"
         android:layout_width="fill_parent"

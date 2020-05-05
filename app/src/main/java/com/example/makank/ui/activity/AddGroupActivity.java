@@ -176,7 +176,6 @@ public class AddGroupActivity extends AppCompatActivity {
                     //  progressDoalog.dismiss();
                     loadingDialog.dismissDialog();
                     //   Toast.makeText(AddGroupActivity.this, "تمت الاضافة بنجاح", Toast.LENGTH_SHORT).show();
-                    alert.showAlertSuccess("تمت الإضافة بنجاح");
                     layout.setVisibility(View.VISIBLE);
                     if (response.code() == 200) {
                         return;
@@ -217,14 +216,18 @@ public class AddGroupActivity extends AppCompatActivity {
 
                     String id_person = String.valueOf(response.body().getId());
                   //  Toast.makeText(AddGroupActivity.this, "don", Toast.LENGTH_SHORT).show();
-                    alert.showAlertSuccess("تمت الإضافة");
-
+                    //alert.showAlertSuccess("تمت الإضافة");
+                    alert.showAlertSuccess("تم ارسال الطلب");
                 }
+                else
+                    alert.showAlertError("لايمكن اضافة هذا الشخص");
+
             }
 
             @Override
             public void onFailure(Call<Member> call, Throwable t) {
              //   progressDoalog.dismiss();
+                loadingDialog.dismissDialog();
 
                 //Toast.makeText(AddGroupActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
                 alert.showAlertError("الرجاء التأكد من إتصالك بالإنترنت");

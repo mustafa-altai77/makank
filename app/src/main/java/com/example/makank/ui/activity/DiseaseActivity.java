@@ -13,7 +13,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.makank.Alert;
@@ -43,7 +42,6 @@ public class DiseaseActivity extends AppCompatActivity {
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
-    TextView disease_info,info_Insert;
     private androidx.appcompat.widget.AppCompatButton btnGetSelected;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +49,6 @@ public class DiseaseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_disease);
         this.btnGetSelected = findViewById(R.id.don_all);
         this.recyclerView = findViewById(R.id.disease_recycler);
-
-        disease_info=findViewById(R.id.disease_id);
-        info_Insert=findViewById(R.id.infoInsert);
 
 //        getSupportActionBar().setTitle("Multiple Selection");
 
@@ -65,12 +60,11 @@ public class DiseaseActivity extends AppCompatActivity {
         //createList();
 
         fetchWeatherDetails();
-
+        alert = new Alert(this);
+        loadingDialog = new LoadingDialog(this);
 
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         btnGetSelected.setTypeface(typeface);
-        disease_info.setTypeface(typeface);
-        info_Insert.setTypeface(typeface);
 
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,9 +87,7 @@ public class DiseaseActivity extends AppCompatActivity {
     }
 
     private void fetchWeatherDetails() {
-        alert = new Alert(this);
-        loadingDialog = new LoadingDialog(this);
-        //final ProgressDialog progressDoalog;
+        final ProgressDialog progressDoalog;
       /*  progressDoalog = new ProgressDialog(DiseaseActivity.this);
         progressDoalog.setMax(100);
         progressDoalog.setMessage("loading....");
