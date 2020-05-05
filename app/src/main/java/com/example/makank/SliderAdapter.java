@@ -24,10 +24,11 @@ public class SliderAdapter extends PagerAdapter {
     //volunteer   virus   wash
     public int[] slide_images =
             {
-                    R.drawable.four,
-                    R.drawable.second,
-                    R.drawable.three,
-                    R.drawable.first1
+                    R.drawable.first_tips,
+                    R.drawable.two_tips,
+                    R.drawable.three_tips,
+                    R.drawable.four_tips
+                    ,R.drawable.five_tips
             };
 
     @Override

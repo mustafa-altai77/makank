@@ -1,5 +1,6 @@
 package com.example.makank.ui.profile;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,11 +18,14 @@ import com.google.android.material.tabs.TabLayout;
 public class ProfileFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager firstViewPager;
+    Typeface typeface;
+
     @Override
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,12 +38,12 @@ public class ProfileFragment extends Fragment {
 
         return view;
     }
+
     private void setupViewPager(ViewPager viewPager) {
         TabViewPagerAdapter adapter = new TabViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new PersonalFragment(), "الحساب الشخصي");
         adapter.addFragment(new GroupFragment(), "المجموعة");
         adapter.addFragment(new RequestFragment(), "الطلبات");
-
         viewPager.setAdapter(adapter);
     }
 

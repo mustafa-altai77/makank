@@ -1,6 +1,7 @@
 package com.example.makank.adapter;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,10 +94,15 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.LocalViewHol
     public  class LocalViewHolder extends RecyclerView.ViewHolder {
         private TextView txtLocalID;
         private TextView txtLocalName;
+        Typeface typeface;
         public LocalViewHolder(@NonNull View itemView) {
             super(itemView);
             txtLocalID = itemView.findViewById(R.id.txt_local_id);
             txtLocalName = itemView.findViewById(R.id.txt_local_name);
+            typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
+            txtLocalName.setTypeface(typeface);
+            txtLocalName.setTextColor(context.getResources().getColor(R.color.color));
+
         }
 
         void bind(final Local Local) {

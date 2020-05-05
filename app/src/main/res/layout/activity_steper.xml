@@ -1,55 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:background="#A7A4A4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.activity.Steper">
+
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/slidview"
-        android:layout_width="fill_parent"
-        android:layout_height="500dp">
-
-    </androidx.viewpager.widget.ViewPager>
-
+        android:id="@+id/slideView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <LinearLayout
         android:id="@+id/mlayout"
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:padding="00dp">
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dots_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dots_margin_bottom"
+        android:gravity="center"
         android:orientation="horizontal">
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back"
-            android:textColor="#ffffff"
-            android:id="@+id/backBtn"
-            android:layout_marginLeft="30dp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Next"
-            android:textColor="#ffffff"
-            android:id="@+id/nextBtn"
-            android:layout_marginLeft="250dp"
-           />
     </LinearLayout>
-
-    </LinearLayout>
-
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha=".5"
+        android:layout_above="@id/mlayout"
+        android:background="@color/color" />
+    <Button
+        android:id="@+id/nextBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@null"
+        android:text="@string/next"
+        android:textColor="@color/color" />
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@null"
+        android:text="@string/back"
+        android:textColor="@color/color" />
+</RelativeLayout>

@@ -53,7 +53,7 @@ import static com.example.makank.SharedPref.mCtx;
 
 
 public class PersonalFragment extends Fragment {
-    TextView F_name, gen, age_, ph, personalID, TxtPhone, TxtAge, TxtGender;
+    TextView F_name, gen, age_, ph, personalID, TxtPhone, TxtAge, TxtGender,statusName;
     ImageView qrImage;
     CircleImageView statusImage;
     LoadingDialog loadingDialog;
@@ -88,6 +88,7 @@ public class PersonalFragment extends Fragment {
         TxtPhone = view.findViewById(R.id.txtPhone);
         TxtAge = view.findViewById(R.id.txtAge);
         TxtGender = view.findViewById(R.id.txtGender);
+        statusName = view.findViewById(R.id.stautsName);
         typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Hacen-Algeria.ttf");
         F_name.setTypeface(typeface);
         gen.setTypeface(typeface);
@@ -97,6 +98,7 @@ public class PersonalFragment extends Fragment {
         TxtPhone.setTypeface(typeface);
         TxtAge.setTypeface(typeface);
         TxtGender.setTypeface(typeface);
+        statusName.setTypeface(typeface);
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String my_id = sharedPreferences.getString(USER_ID, "id");
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
@@ -123,13 +125,16 @@ public class PersonalFragment extends Fragment {
                         ph.setText(num);
 
                         if (status.equals("1")) {
-                            statusImage.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.red));
+                            statusImage.setImageResource(R.color.colorAccent);
+                            statusName.setText("مصاب");
 
                         } else if (status.equals("2")) {
-                            statusImage.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.yellowc));
+                            statusImage.setImageResource(R.color.yellow);
+                            statusName.setText("مخالط");
 
                         } else if (status.equals("3")) {
-                            statusImage.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.greenc));
+                            statusImage.setImageResource(R.color.green);
+                            statusName.setText("سليم");
                         }
                     }
 

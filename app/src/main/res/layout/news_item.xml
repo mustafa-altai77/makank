@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="230dp"
         android:layout_margin="10dp"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,33 +25,36 @@
                 android:id="@+id/news_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:gravity="right"
                 android:text="النص"
-                android:textSize="15sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/cardview_dark_background"/>
+                android:textColor="@color/color"/>
 
             <TextView
                 android:id="@+id/news_desc"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="5dp"
                 android:gravity="right"
+                android:layout_gravity="right|top"
                 android:text="النص"
                 android:ellipsize ="end"
-                android:maxLines="2"
+                android:maxLines="1"
                 android:padding="15dp"
                 android:lineSpacingMultiplier="1.5"
-                android:lineSpacingExtra="5dp"
+                android:lineSpacingExtra="0dp"
                 android:textColor="@color/cardview_dark_background"/>
+
             <LinearLayout
-                android:layout_width="358dp"
+                android:layout_width="match_parent"
                 android:layout_height="36dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
+                android:background="@color/color"
+                android:layout_marginTop="5dp"
+
                 android:gravity="right|center"
                 android:paddingRight="10dp">
 
@@ -64,16 +67,16 @@
                     android:fontFamily="sans-serif-condensed"
                     android:paddingRight="10dp"
                     android:text="30-12-2020"
-                    android:textColor="@color/cardview_dark_background"
+                    android:textColor="@color/white"
                     />
 
                 <ImageView
                     android:id="@+id/img2"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginRight="150dp"
+                    android:layout_marginRight="140dp"
                     android:background="@drawable/clock"
-                    android:backgroundTint="@color/color" />
+                    android:backgroundTint="@color/white" />
 
                 <ImageView
                     android:id="@+id/img"
@@ -81,9 +84,9 @@
                     android:layout_height="30dp"
                     android:padding="10dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="35dp"
                     android:background="@drawable/share"
-                    android:backgroundTint="#4CAF50" />
+                    android:backgroundTint="@color/white" />
                 />
             </LinearLayout>
 

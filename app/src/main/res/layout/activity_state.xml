@@ -4,11 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="0dp"
+    android:weightSum="1"
+    android:orientation="vertical"
+
     tools:context=".ui.activity.StateActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/state_recycler"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/state_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
+            android:padding="20dp" />
+    </LinearLayout>
 </LinearLayout>

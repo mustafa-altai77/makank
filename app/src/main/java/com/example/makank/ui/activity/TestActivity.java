@@ -94,12 +94,12 @@ public class TestActivity extends AppCompatActivity {
             dots[i] = new TextView(this);
             dots[i].setText(Html.fromHtml("&#8226;"));
             dots[i].setTextSize(35);
-            dots[i].setTextColor(colorsInactive[currentPage]);
+          //  dots[i].setTextColor(colorsInactive[currentPage]);
             dotsLayout.addView(dots[i]);
         }
 
-        if (dots.length > 0)
-            dots[currentPage].setTextColor(colorsActive[currentPage]);
+       // if (dots.length > 0)
+//            dots[currentPage].setTextColor(colorsActive[currentPage]);
     }
 
     private int getItem(int i) {

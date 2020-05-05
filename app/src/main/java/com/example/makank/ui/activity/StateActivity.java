@@ -5,6 +5,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -12,10 +13,14 @@ import retrofit2.Response;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.makank.R;
 import com.example.makank.adapter.DiseaseAdapter;
@@ -33,25 +38,24 @@ public class StateActivity extends AppCompatActivity {
     private List<State> states;
     private StateAdapter adapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_state);
-
+        //   toolbar = findViewById(R.id.toolbar_custom);
+        //  setActionBar(toolbar);
         this.recyclerView = findViewById(R.id.state_recycler);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-
         adapter = new StateAdapter(this, states);
         recyclerView.setAdapter(adapter);
         states = new ArrayList<>();
-
         fetchState();
-
     }
 
-    private void fetchState(){
+    private void fetchState() {
         final ProgressDialog progressDoalog;
         progressDoalog = new ProgressDialog(StateActivity.this);
         progressDoalog.setMax(100);
@@ -72,8 +76,9 @@ public class StateActivity extends AppCompatActivity {
                 states = (ArrayList<State>) response.body();
                 adapter.setStates(states);
             }
+
             @Override
-            public void onFailure(Call<List<State>>call, Throwable t) {
+            public void onFailure(Call<List<State>> call, Throwable t) {
                 progressDoalog.dismiss();
 
                 Toast.makeText(StateActivity.this, "" + t, Toast.LENGTH_SHORT).show();
@@ -85,10 +90,10 @@ public class StateActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_item, menu);
+        inflater.inflate(R.menu.search_two, menu);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.action_search)
+        searchView = (SearchView) menu.findItem(R.id.action_search2)
                 .getActionView();
         searchView.setSearchableInfo(searchManager
                 .getSearchableInfo(getComponentName()));
@@ -107,6 +112,6 @@ public class StateActivity extends AppCompatActivity {
                 return false;
             }
         });
-    return true;
+        return true;
     }
 }

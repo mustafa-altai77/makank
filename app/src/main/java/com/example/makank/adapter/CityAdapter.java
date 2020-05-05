@@ -1,7 +1,9 @@
 package com.example.makank.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,10 +96,16 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder
     public  class CityViewHolder extends RecyclerView.ViewHolder {
         private TextView txtCityID;
         private TextView txtCityName;
+        Typeface typeface;
         public CityViewHolder(@NonNull View itemView) {
             super(itemView);
             txtCityID = itemView.findViewById(R.id.txt_city_id);
             txtCityName = itemView.findViewById(R.id.txt_city_name);
+            typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
+            txtCityName.setTypeface(typeface);
+            txtCityName.setTextColor(context.getResources().getColor(R.color.color));
+
+
         }
 
         void bind(final City City) {

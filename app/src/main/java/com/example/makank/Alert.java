@@ -31,7 +31,20 @@ public class Alert {
                 })
                 .show();
     }
+    public void showAlertSuccess(String title,String message,String btnText) {
+        new SweetAlertDialog(activity, SweetAlertDialog.SUCCESS_TYPE)
+                .setTitleText(title)
+                .setContentText(message)
+                .setConfirmText(btnText)
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
 
+                    }
+                })
+                .show();
+    }
     public void  showAlertError(String x) {
         Typeface typeface;
         new SweetAlertDialog(activity, SweetAlertDialog.ERROR_TYPE)

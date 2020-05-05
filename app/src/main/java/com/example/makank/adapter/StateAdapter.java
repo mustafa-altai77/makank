@@ -2,6 +2,7 @@ package com.example.makank.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,10 +93,14 @@ public class StateAdapter  extends RecyclerView.Adapter<StateAdapter.StateViewHo
     public  class StateViewHolder extends RecyclerView.ViewHolder {
         private TextView txtStateID;
         private TextView txtStateName;
+        private Typeface typeface;
         public StateViewHolder(@NonNull View itemView) {
             super(itemView);
             txtStateID = itemView.findViewById(R.id.txt_state_id);
             txtStateName = itemView.findViewById(R.id.txt_state_name);
+            typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
+            txtStateName.setTypeface(typeface);
+            txtStateName.setTextColor(context.getResources().getColor(R.color.color));
         }
 
         void bind(final State state) {

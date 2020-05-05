@@ -87,7 +87,7 @@ public class DiseaseActivity extends AppCompatActivity {
     }
 
     private void fetchWeatherDetails() {
-        final ProgressDialog progressDoalog;
+      //  final ProgressDialog progressDoalog;
       /*  progressDoalog = new ProgressDialog(DiseaseActivity.this);
         progressDoalog.setMax(100);
         progressDoalog.setMessage("loading....");

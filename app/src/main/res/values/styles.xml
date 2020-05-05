@@ -9,4 +9,9 @@
         <item name="radioButtonStyle"> @style/Widget.MaterialComponents.CompoundButton.RadioButton</item>
 
     </style>
+    <style name="AppTheme3" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorAccent">@color/white</item>
+
+    </style>
 </resources>

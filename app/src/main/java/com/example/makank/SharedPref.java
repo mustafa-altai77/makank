@@ -3,6 +3,7 @@ package com.example.makank;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import com.example.makank.ui.activity.HomeActivity;
 
@@ -56,6 +57,7 @@ public class SharedPref {
     public void storeUserID(String id,String f_name,String s_name,String l_name,String phone,String gender,String age,String status) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+
         editor.putString(USER_ID, id);
         editor.putString(F_NAME, f_name);
         editor.putString(S_NAME, s_name);
@@ -65,6 +67,7 @@ public class SharedPref {
         editor.putString(AGE, age);
         editor.putString(STATUS, status);
         editor.commit();
+       // Toast.makeText(mCtx, ""+USER_ID, Toast.LENGTH_SHORT).show();
     }
 
     //check if user is logged in

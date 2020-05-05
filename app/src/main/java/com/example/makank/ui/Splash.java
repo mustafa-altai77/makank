@@ -15,9 +15,12 @@ import android.widget.Toast;
 
 import com.example.makank.R;
 import com.example.makank.SharedPref;
+import com.example.makank.adapter.StateAdapter;
 import com.example.makank.ui.activity.HomeActivity;
 import com.example.makank.ui.activity.PlaceActivity;
+import com.example.makank.ui.activity.RegisterActivity;
 import com.example.makank.ui.activity.StateActivity;
+import com.example.makank.ui.home.Home;
 
 public class Splash extends AppCompatActivity {
     Animation topAnim,bottomAnim;
@@ -57,9 +60,10 @@ public class Splash extends AppCompatActivity {
         if(isOnline()){
             if (SharedPref.getInstance(this).isLoggedIn()) {
                 startActivity(new Intent(this, HomeActivity.class));
+              //  Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
                 finish();
             }
-            else {
+           else {
                 startActivity(new Intent(this, StateActivity.class));
                 finish();
             }

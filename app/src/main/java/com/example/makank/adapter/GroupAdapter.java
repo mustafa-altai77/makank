@@ -2,6 +2,7 @@ package com.example.makank.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +22,8 @@ import com.example.makank.data.model.Member;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder> implements Filterable {
 
@@ -77,9 +81,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(GroupAdapter.MyViewHolder holder, int position) {
         final Member model = newsList.get(position);
-        holder.Fneme.setText(newsListFiltered.get(position).getFirst_name());
-        holder.Sname.setText(newsListFiltered.get(position).getSecond_name());
-        holder.Lname.setText(newsListFiltered.get(position).getLast_name());
+        holder.Fullneme.setText(newsListFiltered.get(position).getFirst_name()+" "+newsListFiltered.get(position).getSecond_name()+" "+newsListFiltered.get(position).getLast_name());
         holder.Pid.setText(newsListFiltered.get(position).getId());
         holder.stat.setText(newsListFiltered.get(position).getStatus());
 
@@ -92,7 +94,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder
         }
         else if(model.getStatus().equals("1")) {
             holder.stat.setText("مصاب");
-            holder.image.setImageResource(R.color.colorAccent);
+          holder.image.setImageResource(R.color.colorAccent);
 //
 //        Glide.with(context).load(newsList.get(position).getImage()).apply(RequestOptions.centerCropTransform()).into(holder.image);
         }
@@ -141,20 +143,22 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView Fneme,Sname,Lname,Pid,stat;
-        ImageView image;
+        TextView Fullneme,Pid,stat;
+        CircleImageView image;
         CardView cardView;
+        Typeface typeface;
         @SuppressLint("WrongViewCast")
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            Fneme = itemView.findViewById(R.id.f_nam);
-            Sname = itemView.findViewById(R.id.s_nam);
-            Lname = itemView.findViewById(R.id.l_nam);
-            Pid = itemView.findViewById(R.id.peson_id);
-            stat = itemView.findViewById(R.id.status_txt);
-            image = itemView.findViewById(R.id.status_mg);
+            Fullneme = itemView.findViewById(R.id.personInGroup);
+            Pid = itemView.findViewById(R.id.idPerson);
+            stat = itemView.findViewById(R.id.statusofPerson);
+            image = itemView.findViewById(R.id.status_mgG);
 
-
+            typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
+            Fullneme.setTypeface(typeface);
+            Pid.setTypeface(typeface);
+            stat.setTypeface(typeface);
         }
     }
 }

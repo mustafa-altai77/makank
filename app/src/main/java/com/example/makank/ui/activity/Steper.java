@@ -1,9 +1,11 @@
 package com.example.makank.ui.activity;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import android.text.Html;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,25 +20,28 @@ public class Steper extends AppCompatActivity {
     LinearLayout mylay;
     SliderAdapter sliderAdapter;
     TextView[] mDots;
-    TextView next, back;
+    Button next, back;
     int currentPage;
+    Typeface typeface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_steper);
         mylay =  findViewById(R.id.mlayout);
-        mys = findViewById(R.id.slidview);
+        mys = findViewById(R.id.slideView);
 
         sliderAdapter = new SliderAdapter(this);
         mys.setAdapter(sliderAdapter);
         addDotsIndicator(0);
         mys.addOnPageChangeListener(viewListener);
 
-        next =  findViewById(R.id.nextBtn);
+         next =  findViewById(R.id.nextBtn);
          back = findViewById(R.id.backBtn);
 
-
+        typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
+        next.setTypeface(typeface);
+        back.setTypeface(typeface);
 
        next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,13 +58,13 @@ public class Steper extends AppCompatActivity {
     }
 
     void addDotsIndicator(int position) {
-        mDots = new TextView[4];
+        mDots = new TextView[5];
         mylay.removeAllViews();
         for (int i = 0; i < mDots.length; i++) {
             mDots[i] = new TextView(this);
             mDots[i].setText(Html.fromHtml("&#8226;"));
             mDots[i].setTextSize(35);
-            mDots[i].setTextColor(getResources().getColor(R.color.white));
+            mDots[i].setTextColor(getResources().getColor(R.color.color));
 
             mylay.addView(mDots[i]);
         }
@@ -86,7 +91,7 @@ public class Steper extends AppCompatActivity {
                 back.setEnabled(false);
                 back.setVisibility(View.VISIBLE);
 
-                next.setText("Next");
+                next.setText("التالي");
                 back.setText("");
             }else if(i==mDots.length -1)
             {
@@ -94,16 +99,16 @@ public class Steper extends AppCompatActivity {
                 back.setEnabled(true);
                 back.setVisibility(View.VISIBLE);
 
-                next.setText("Finish");
-                back.setText("Back");
+                next.setText("");
+                back.setText("رجوع");
             }
             else
             {
                 next.setEnabled(true);
                 back.setEnabled(true);
                 back.setVisibility(View.VISIBLE);
-                next.setText("Next");
-                back.setText("Back");
+                next.setText("التالي");
+                back.setText("رجوع");
             }
         }
 

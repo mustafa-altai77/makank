@@ -16,7 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/red_tool_bar"
+            android:background="@color/color"
             android:gravity="center">
 
             <ImageView
@@ -53,7 +53,6 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="2dp"
                 tools:ignore="MissingConstraints"
-                android:background="@color/color"
                 tools:layout_editor_absoluteX="195dp"
                 tools:layout_editor_absoluteY="25dp" />
         </LinearLayout>

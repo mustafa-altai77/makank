@@ -4,14 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.TypefaceSpan;
 import android.view.MenuItem;
 import android.widget.Toast;
 import com.example.makank.R;
@@ -29,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
     private ActionBarDrawerToggle drawerToggle;
     BottomNavigationView bottomNavigationView;
     private ActionBar toolbar;
-
+    Typeface typeface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -41,6 +46,8 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.nav_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         toolbar = getSupportActionBar();
+
+        //typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         loadFragment(new GridFragment());
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();

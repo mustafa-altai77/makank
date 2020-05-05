@@ -94,13 +94,13 @@ public class ContactActivity extends AppCompatActivity {
         loadingDialog = new LoadingDialog(this);
         Toast.makeText(this, "" + my_status, Toast.LENGTH_SHORT).show();
         if (my_status.equals("1")) {
-            circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.red));
+            circleImageView.setBackgroundColor(R.color.colorAccent);
             status.setText("الحالة :مصاب ");
         } else if (my_status.equals("2")) {
-            circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.yellowc));
+            circleImageView.setBackgroundColor(R.color.yellow);
             status.setText("الحالة : مخالط");
         } else {
-            circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.greenc));
+            circleImageView.setBackgroundColor(R.color.green);
             status.setText("الحالة : سليم");
         }
         if (mGpsLocationTracker.canGetLocation()) {
