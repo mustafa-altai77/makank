@@ -126,7 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:textColor="#645C5C"
-            android:text=" رفع السيرة الذاتية" />
+            android:text=" رفع السيرة الذاتية (بصيغة pdf)" />
     </LinearLayout>
 
     <LinearLayout
