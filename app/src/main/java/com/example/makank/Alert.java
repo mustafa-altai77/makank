@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 
+import com.example.makank.ui.activity.ContactActivity;
 import com.example.makank.ui.activity.HomeActivity;
 import com.example.makank.ui.activity.VolunteerActivity;
 import com.example.makank.ui.contact.ContactFragment;

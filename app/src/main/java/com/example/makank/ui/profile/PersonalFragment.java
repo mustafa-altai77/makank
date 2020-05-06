@@ -6,10 +6,8 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.Display;
@@ -17,19 +15,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.makank.Alert;
 import com.example.makank.LoadingDialog;
 import com.example.makank.R;
-import com.example.makank.data.model.Member;
+import com.example.makank.data.model.Disease;
 import com.example.makank.data.model.Person;
 import com.example.makank.data.network.ApiClient;
 import com.example.makank.data.network.ApiInterface;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidmads.library.qrgenearator.QRGContents;
@@ -40,14 +41,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.content.Context.WINDOW_SERVICE;
-import static com.example.makank.SharedPref.AGE;
-import static com.example.makank.SharedPref.F_NAME;
-import static com.example.makank.SharedPref.GENDER;
-import static com.example.makank.SharedPref.L_NAME;
-import static com.example.makank.SharedPref.PHONE;
 import static com.example.makank.SharedPref.SHARED_PREF_NAME;
-import static com.example.makank.SharedPref.STATUS;
-import static com.example.makank.SharedPref.S_NAME;
 import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.mCtx;
 
@@ -56,14 +50,17 @@ public class PersonalFragment extends Fragment {
     TextView F_name, gen, age_, ph, personalID, TxtPhone, TxtAge, TxtGender,statusName;
     ImageView qrImage;
     CircleImageView statusImage;
+    ListView listView;
     LoadingDialog loadingDialog;
     Alert alert;
+    private List<Disease> diseases;
 
     String inputValue;
     QRGEncoder qrgEncoder;
     Bitmap bitmap;
     Typeface typeface;
     private Person personList;
+    ArrayList<String> disease_name;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,6 +75,7 @@ public class PersonalFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_personal, container, false);
+        listView = view.findViewById(R.id.disease_list);
         F_name = view.findViewById(R.id.f_na);
         gen = view.findViewById(R.id.gender_pref);
         age_ = view.findViewById(R.id.age_prf);
@@ -99,6 +97,8 @@ public class PersonalFragment extends Fragment {
         TxtAge.setTypeface(typeface);
         TxtGender.setTypeface(typeface);
         statusName.setTypeface(typeface);
+        disease_name = new ArrayList<>();
+
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String my_id = sharedPreferences.getString(USER_ID, "id");
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
@@ -118,7 +118,7 @@ public class PersonalFragment extends Fragment {
                         final String gender = personList.getGender();
                         final String age = personList.getAge();
                         final String status = personList.getStatus();
-                        F_name.setText("الإسم ثلاثي : " + f_name + " " + s_name + " " + l_name);
+                        F_name.setText("" + f_name + " " + s_name + " " + l_name);
                         gen.setText(gender);
                         personalID.setText("الرقم التعريفي : " + my_id);
                         age_.setText(age);
@@ -149,8 +149,46 @@ public class PersonalFragment extends Fragment {
             }
         });
 
+//        private void fetchCity(){
+//            loadingDialog.startLoadingDialog();
 
         final String id = sharedPreferences.getString(USER_ID, "id");
+           try {
+
+
+            Call<List<Disease>> call2 = apiService.getMydisease(id);
+            call2.enqueue(new Callback<List<Disease>>() {
+                @Override
+                public void onResponse(Call<List<Disease>> call, Response<List<Disease>> response) {
+
+                    loadingDialog.dismissDialog();
+//                if (!response.isSuccessful()) {
+
+                    diseases = response.body();
+                    for (int i =0;i<diseases.size();i++) {
+                         disease_name.add(diseases.get(i).getName());
+                        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<>(
+                                getContext(), android.R.layout.simple_list_item_1, disease_name
+                        );
+                        listView.setAdapter(itemsAdapter );
+                    }
+
+
+                }
+                @Override
+                public void onFailure(Call<List<Disease>>call, Throwable t) {
+                    loadingDialog.dismissDialog();
+
+                    Toast.makeText(getContext(), "" + t, Toast.LENGTH_SHORT).show();
+
+                }
+            });
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+
+
+        //final String id = sharedPreferences.getString(USER_ID, "id");
 
         getActivity();
         personalID.setText(id);

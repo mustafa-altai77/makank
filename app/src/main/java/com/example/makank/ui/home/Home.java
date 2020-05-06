@@ -5,15 +5,25 @@ public class Home {
     String name;
     int image;
 
-    public Home(String name, int image) {
+    public Home(int id,String name, int image) {
         this.name = name;
         this.image = image;
+        this.id = id;
+
     }
 
 
 
     public String getName() {
         return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setName(String name) {

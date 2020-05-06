@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#C5102C</color>
     <color name="colorAccent">#F51818</color>
     <color name="green">#1EAD15</color>
-    <color name="yellow">#FFEB3B</color>
+    <color name="yellow">#ECD92F</color>
     <color name="white">#ffffff</color>
     <color name="color">#C7212D</color>
     <color name="color1">#fcb6bb</color>
@@ -19,6 +19,4 @@
 
     <color name="total1">#8e8e8e</color>
     <color name="total2">#5a5a5a</color>
-<array name="array_dot_active">#185a06</array>
-  <array name="array_dot_inactive">#185a06</array>
 </resources>

@@ -19,6 +19,8 @@ import android.view.MenuInflater;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.makank.Alert;
+import com.example.makank.LoadingDialog;
 import com.example.makank.R;
 import com.example.makank.adapter.LocalAdapter;
 import com.example.makank.data.model.Local;
@@ -35,15 +37,16 @@ public class LocalActivity extends AppCompatActivity {
     private LocalAdapter adapter;
     String city_id;
     String city_name;
-    TextView txtCityName;
+    LoadingDialog loadingDialog;
+    Alert alert;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local);
-
-        //this.txtCityName = findViewById(R.id.txt_city_name);
+        alert = new Alert(this);
+        loadingDialog = new LoadingDialog(this);
+        this.recyclerView = findViewById(R.id.city_recycler);
         this.recyclerView = findViewById(R.id.local_recycler);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
@@ -60,12 +63,7 @@ public class LocalActivity extends AppCompatActivity {
 
 
     private void fetchLocal(String id){
-        final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(LocalActivity.this);
-        progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");
-        progressDoalog.show();
-        progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        loadingDialog.startLoadingDialog();
 
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<List<Local>> call = apiService.getLocal(id);
@@ -73,15 +71,15 @@ public class LocalActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Local>> call, Response<List<Local>> response) {
 
-                progressDoalog.dismiss();
+                loadingDialog.dismissDialog();
 //                if (!response.isSuccessful()) {
 
-                locals = (ArrayList<Local>) response.body();
+                locals =  response.body();
                 adapter.setLocals(locals);
             }
             @Override
             public void onFailure(Call<List<Local>>call, Throwable t) {
-                progressDoalog.dismiss();
+                loadingDialog.dismissDialog();
 
                 Toast.makeText(LocalActivity.this, "غير متصل بالشبكة" + t, Toast.LENGTH_SHORT).show();
             }

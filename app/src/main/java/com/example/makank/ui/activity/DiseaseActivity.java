@@ -13,7 +13,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.makank.Alert;
@@ -40,7 +39,6 @@ public class DiseaseActivity extends AppCompatActivity {
     private List<Disease> diseases;
     private DiseaseAdapter adapter;
     int d_id;
-    TextView textView;
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
@@ -50,7 +48,6 @@ public class DiseaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disease);
         this.btnGetSelected = findViewById(R.id.don_all);
-        textView=findViewById(R.id.disease_id);
         this.recyclerView = findViewById(R.id.disease_recycler);
 
 //        getSupportActionBar().setTitle("Multiple Selection");
@@ -68,7 +65,6 @@ public class DiseaseActivity extends AppCompatActivity {
 
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         btnGetSelected.setTypeface(typeface);
-        textView.setTypeface(typeface);
 
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +94,7 @@ public class DiseaseActivity extends AppCompatActivity {
 //        progressDoalog.setTitle("ProgressDialog bar example");
         progressDoalog.show();
         progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);*/
-       // loadingDialog.startLoadingDialog();
+        loadingDialog.startLoadingDialog();
 
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<List<Disease>> call = apiService.getDisease();
@@ -107,7 +103,7 @@ public class DiseaseActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Disease>> call, Response<List<Disease>> response) {
                 // progressDoalog.dismiss();
-               // loadingDialog.dismissDialog();
+                loadingDialog.dismissDialog();
                 diseases = response.body();
                 adapter.setDiseases(diseases);
 
@@ -116,7 +112,7 @@ public class DiseaseActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Disease>> call, Throwable t) {
                 //progressDoalog.dismiss();
-                //loadingDialog.dismissDialog();
+                loadingDialog.dismissDialog();
                 Log.d("TAG", "Response = " + t.toString());
             }
         });

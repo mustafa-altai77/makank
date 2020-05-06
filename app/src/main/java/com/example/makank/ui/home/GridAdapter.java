@@ -52,26 +52,26 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CategoryViewHo
             holder.categoryImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(item.image==R.drawable.communication){
+                    if(item.getId()==1){
                         Intent intent = new Intent(context, ContactActivity.class);
                         context.startActivity(intent);
                     }
                     else
-                        if(item.image==R.drawable.volunteer){
+                        if(item.getId()==5){
                             Intent intent = new Intent(context, VolunteerActivity.class);
                             context.startActivity(intent);
                         }
                         else
-                        if(item.image==R.drawable.notification){
+                        if(item.getId()==2){
                             Intent intent = new Intent(context, SendNotifActivity.class);
                             context.startActivity(intent);
                         }
                         else
-                        if(item.image==R.drawable.socialcare){
+                        if(item.getId()==6){
                             Intent intent = new Intent(context, Steper.class);
                             context.startActivity(intent);
                         }
-                    if(item.image==R.drawable.qualification){
+                    if(item.getId()==3){
                         Intent intent = new Intent(context, TestActivity.class);
                         context.startActivity(intent);
                     }

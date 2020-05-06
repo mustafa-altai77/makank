@@ -22,6 +22,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.example.makank.Alert;
+import com.example.makank.LoadingDialog;
 import com.example.makank.R;
 import com.example.makank.adapter.DiseaseAdapter;
 import com.example.makank.adapter.StateAdapter;
@@ -37,7 +39,8 @@ public class StateActivity extends AppCompatActivity {
     SearchView searchView;
     private List<State> states;
     private StateAdapter adapter;
-
+    LoadingDialog loadingDialog;
+    Alert alert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,8 @@ public class StateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_state);
         //   toolbar = findViewById(R.id.toolbar_custom);
         //  setActionBar(toolbar);
+        alert = new Alert(this);
+        loadingDialog = new LoadingDialog(this);
         this.recyclerView = findViewById(R.id.state_recycler);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -56,13 +61,7 @@ public class StateActivity extends AppCompatActivity {
     }
 
     private void fetchState() {
-        final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(StateActivity.this);
-        progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");
-//        progressDoalog.setTitle("ProgressDialog bar example");
-        progressDoalog.show();
-        progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        loadingDialog.startLoadingDialog();
 
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<List<State>> call = apiService.getState();
@@ -70,16 +69,16 @@ public class StateActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<State>> call, Response<List<State>> response) {
 
-                progressDoalog.dismiss();
+                loadingDialog.dismissDialog();
 //                if (!response.isSuccessful()) {
 
-                states = (ArrayList<State>) response.body();
+                states =  response.body();
                 adapter.setStates(states);
             }
 
             @Override
             public void onFailure(Call<List<State>> call, Throwable t) {
-                progressDoalog.dismiss();
+                loadingDialog.dismissDialog();
 
                 Toast.makeText(StateActivity.this, "" + t, Toast.LENGTH_SHORT).show();
 

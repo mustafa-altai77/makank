@@ -19,6 +19,8 @@ import android.view.MenuInflater;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.makank.Alert;
+import com.example.makank.LoadingDialog;
 import com.example.makank.R;
 import com.example.makank.adapter.CityAdapter;
 import com.example.makank.adapter.DiseaseAdapter;
@@ -39,12 +41,16 @@ public class CityActivity extends AppCompatActivity {
     String state_id;
     String state_name;
     TextView txtStateName;
+    LoadingDialog loadingDialog;
+    Alert alert;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city);
 
         //this.txtStateName = findViewById(R.id.txt_state_name);
+        alert = new Alert(this);
+        loadingDialog = new LoadingDialog(this);
         this.recyclerView = findViewById(R.id.city_recycler);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -63,13 +69,9 @@ public class CityActivity extends AppCompatActivity {
     }
 
     private void fetchCity(String id){
-        final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(CityActivity.this);
-        progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");
-//        progressDoalog.setTitle("ProgressDialog bar example");
-        progressDoalog.show();
-        progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        loadingDialog.startLoadingDialog();
+
+//
 
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<List<City>> call = apiService.getCity(id);
@@ -77,7 +79,7 @@ public class CityActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<City>> call, Response<List<City>> response) {
 
-                progressDoalog.dismiss();
+                loadingDialog.dismissDialog();
 //                if (!response.isSuccessful()) {
                 cities = (ArrayList<City>) response.body();
 
@@ -86,7 +88,7 @@ public class CityActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<List<City>>call, Throwable t) {
-                progressDoalog.dismiss();
+                loadingDialog.dismissDialog();
 
                 Toast.makeText(CityActivity.this, "" + t, Toast.LENGTH_SHORT).show();
 

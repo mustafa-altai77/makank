@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -91,16 +90,15 @@ public class ContactActivity extends AppCompatActivity {
         secondTwo.setTypeface(typeface);
         check.setTypeface(typeface);
         receive.setTypeface(typeface);
-        alert = new Alert(this);
-        loadingDialog = new LoadingDialog(this);
-        Toast.makeText(this, "" + my_status, Toast.LENGTH_SHORT).show();
+            alert = new Alert(this);
+            loadingDialog = new LoadingDialog(this);
         if (my_status.equals("1")) {
             circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.red));
             status.setText("الحالة :مصاب ");
         } else if (my_status.equals("2")) {
             circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.yellowc));
             status.setText("الحالة : مخالط");
-        } else {
+        } else if (my_status.equals("3")){
             circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.greenc));
             status.setText("الحالة : سليم");
         }
@@ -197,13 +195,9 @@ public class ContactActivity extends AppCompatActivity {
 
     @SuppressLint("ResourceAsColor")
     private void addSee(String result, String my_id, double locationLatitude, double locationLongitude) {
-       /*final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(ContactActivity.this);
-        progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");*/
+
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<Member> call = apiService.addSeen(result, my_id, locationLatitude, locationLongitude);
-       // progressDoalog.show();
         loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<Member>() {
             @SuppressLint("ResourceAsColor")
@@ -217,7 +211,6 @@ public class ContactActivity extends AppCompatActivity {
 
                     String statu = response.body().getStatus();
                     String name=response.body().getFirst_name()+" "+response.body().getSecond_name()+ " "+response.body().getLast_name();
-                    Toast.makeText(ContactActivity.this, ""+statu, Toast.LENGTH_SHORT).show();
 
                    if (statu.equals("3")) {
                        CaseName="سليم";
@@ -230,13 +223,12 @@ public class ContactActivity extends AppCompatActivity {
                    }
                   //  alert.showAlertSuccess(name+"\n"+""+CaseName);
                    alert.showAlertNormal("تم التواصل بنجاح",name+"\n"+" - "+CaseName,"موافق");
+
                 }
 
             }
-
             @Override
             public void onFailure(Call<Member> call, Throwable t) {
-               // progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
                 //Toast.makeText(ContactActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
                 alert.showAlertError("تــأكد من إتصالك بالإنترنت");

@@ -38,8 +38,6 @@ public class RegisterActivity extends AppCompatActivity {
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,10 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     private void createPerson() {
-       /* final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(RegisterActivity.this);
-        progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");*/
+
         loadingDialog.startLoadingDialog();
         final String first_name = f_name.getText().toString();
         final String second_name = s_name.getText().toString();
@@ -151,22 +146,17 @@ public class RegisterActivity extends AppCompatActivity {
                     String age = response.body().getAge();
                     String status = response.body().getStatus();
 
-                    Toast.makeText(RegisterActivity.this, id_person + "", Toast.LENGTH_SHORT).show();
-
                     SharedPref.getInstance(RegisterActivity.this).storeUserID(id_person, f_name, s_name, l_name, phone, gender, age, status);
                     Intent intent = new Intent(RegisterActivity.this, DiseaseActivity.class);
                     startActivity(intent);
                     finish();
-                    // Toast.makeText(RegisterActivity.this, "done", Toast.LENGTH_SHORT).show();
-                    // String message2="انت الان مسجل";
-                    // alert.showAlertSuccess(message2);
+
                 }
 
             }
 
             @Override
             public void onFailure(Call<Person> call, Throwable t) {
-                //  progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
 
                 alert.showAlertError("خطاء في النظام الخارجي");

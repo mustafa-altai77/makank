@@ -80,27 +80,27 @@ public class HomeActivity extends AppCompatActivity {
             Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.navigationHome:
-                    toolbar.setTitle("الرئسية");
+//                    toolbar.setTitle("الرئسية");
                     fragment = new GridFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.navigationMyContact:
-                    toolbar.setTitle("التواصل");
+//                    toolbar.setTitle("التواصل");
                     fragment = new ContactFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.navigationNews:
-                    toolbar.setTitle("الاخبار");
+//                    toolbar.setTitle("الاخبار");
                     fragment = new NewsFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.navigationMyProfile:
-                    toolbar.setTitle("الحساب");
+//                    toolbar.setTitle("الحساب");
                     fragment = new ProfileFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.navigationStatistic:
-                    toolbar.setTitle("الاحصائيات");
+//                    toolbar.setTitle("الاحصائيات");
                     fragment = new StatisticFragment();
                     loadFragment(fragment);
                     return true;
