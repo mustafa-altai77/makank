@@ -1,5 +1,6 @@
 package com.example.makank.ui.activity;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
@@ -15,6 +16,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.makank.R;
 import com.example.makank.SliderAdapter;
 
+import java.time.Instant;
+
 public class Steper extends AppCompatActivity {
     ViewPager mys;
     LinearLayout mylay;
@@ -23,36 +26,45 @@ public class Steper extends AppCompatActivity {
     Button next, back;
     int currentPage;
     Typeface typeface;
+    TextView instr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_steper);
-        mylay =  findViewById(R.id.mlayout);
+        mylay = findViewById(R.id.mlayout);
         mys = findViewById(R.id.slideView);
-
+        instr = findViewById(R.id.onClicked);
         sliderAdapter = new SliderAdapter(this);
         mys.setAdapter(sliderAdapter);
         addDotsIndicator(0);
         mys.addOnPageChangeListener(viewListener);
 
-         next =  findViewById(R.id.nextBtn);
-         back = findViewById(R.id.backBtn);
+        next = findViewById(R.id.nextBtn);
+        back = findViewById(R.id.backBtn);
 
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         next.setTypeface(typeface);
         back.setTypeface(typeface);
-
-       next.setOnClickListener(new View.OnClickListener() {
+        instr.setTypeface(typeface);
+        instr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mys.setCurrentItem(currentPage +1);
+                Intent intent=new Intent(Steper.this,InstructionsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mys.setCurrentItem(currentPage + 1);
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mys.setCurrentItem(currentPage -1);
+                mys.setCurrentItem(currentPage - 1);
             }
         });
     }
@@ -84,26 +96,22 @@ public class Steper extends AppCompatActivity {
         public void onPageSelected(int i) {
             addDotsIndicator(i);
 
-            currentPage=i;
-            if (currentPage==0)
-            {
-               next.setEnabled(true);
+            currentPage = i;
+            if (currentPage == 0) {
+                next.setEnabled(true);
                 back.setEnabled(false);
                 back.setVisibility(View.VISIBLE);
 
                 next.setText("التالي");
                 back.setText("");
-            }else if(i==mDots.length -1)
-            {
+            } else if (i == mDots.length - 1) {
                 next.setEnabled(true);
                 back.setEnabled(true);
                 back.setVisibility(View.VISIBLE);
 
                 next.setText("");
                 back.setText("رجوع");
-            }
-            else
-            {
+            } else {
                 next.setEnabled(true);
                 back.setEnabled(true);
                 back.setVisibility(View.VISIBLE);

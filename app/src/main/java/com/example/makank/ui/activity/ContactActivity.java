@@ -94,13 +94,13 @@ public class ContactActivity extends AppCompatActivity {
         loadingDialog = new LoadingDialog(this);
         Toast.makeText(this, "" + my_status, Toast.LENGTH_SHORT).show();
         if (my_status.equals("1")) {
-            circleImageView.setBackgroundColor(R.color.colorAccent);
+            circleImageView.setBackground(ContextCompat.getDrawable(this, R.color.colorAccent));
             status.setText("الحالة :مصاب ");
         } else if (my_status.equals("2")) {
-            circleImageView.setBackgroundColor(R.color.yellow);
+            circleImageView.setBackground(ContextCompat.getDrawable(this, R.color.yellow));
             status.setText("الحالة : مخالط");
         } else {
-            circleImageView.setBackgroundColor(R.color.green);
+            circleImageView.setBackground(ContextCompat.getDrawable(this, R.color.green));
             status.setText("الحالة : سليم");
         }
         if (mGpsLocationTracker.canGetLocation()) {
@@ -108,7 +108,7 @@ public class ContactActivity extends AppCompatActivity {
             locationLongitude = mGpsLocationTracker.getLongitude();
             Log.i(TAG, String.format("latitude: %s", locationLatitude));
             Log.i(TAG, String.format("longitude: %s", locationLongitude));
-            Toast.makeText(this, locationLatitude + "" + locationLongitude + "", Toast.LENGTH_SHORT).show();
+         //   Toast.makeText(this, locationLatitude + "" + locationLongitude + "", Toast.LENGTH_SHORT).show();
         } else {
             mGpsLocationTracker.showSettingsAlert();
         }
@@ -117,7 +117,7 @@ public class ContactActivity extends AppCompatActivity {
             locationLongitude = mGpsLocationTracker.getLongitude();
             Log.i(TAG, String.format("latitude: %s", locationLatitude));
             Log.i(TAG, String.format("longitude: %s", locationLongitude));
-            Toast.makeText(this, locationLatitude + "" + locationLongitude + "", Toast.LENGTH_SHORT).show();
+         //   Toast.makeText(this, locationLatitude + "" + locationLongitude + "", Toast.LENGTH_SHORT).show();
         } else {
             mGpsLocationTracker.showSettingsAlert();
         }

@@ -22,4 +22,22 @@
     <string name="slide_1_title">Daily Workout</string>
     <string name="slide_2_title">Meditation Techniques </string>
     <string name="slide_3_title">Diet Chart</string>
+
+    <string name="qu1">هل تعملت مع شخص مصاب بفيروس كورونا في اخر 25 يوم ؟</string>
+    <string name="no">لا</string>
+    <string name="little">قليلاً</string>
+    <string name="maybe">أحياناً</string>
+    <string name="yes">نعم</string>
+    <string name="qu2">هل يوجد لديك ارتفاع في درجة الحرارة؟</string>
+    <string name="qu3"> هل تعاني من سعال ؟</string>
+    <string name="qu4">هل تعاني من العطس ؟</string>
+    <string name="qu5">هل تعاني صعوبة في التنفس ؟</string>
+    <string name="qu7">هل تعاني من سيلان الانف ؟</string>
+
+    <string name="qu8">هل تشعر بإجهاد عام ؟</string>
+    <string name="qu9">هل تعاني من أوجاع وآلام ؟</string>
+    <string name="qu10">هل يوجد لديك صداع ؟</string>
+    <string name="qu11">هل تعاني من إلتهاب الحلق ؟</string>
+    <string name="qu12">هل يوجد لديك إسهال ؟</string>
+    <string name="ins" >الإرشــادات</string>
 </resources>

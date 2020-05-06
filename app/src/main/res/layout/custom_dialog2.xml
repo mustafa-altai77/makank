@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:orientation="vertical"
     android:padding="50dp"
     >
-    <com.github.ybq.android.spinkit.SpinKitView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/spinKit"
+        style="@style/SpinKitView.Large.CubeGrid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:id="@+id/spinKit"
-        style="@style/SpinKitView.Large.CubeGrid"
-        app:SpinKit_Color="#C91515"
-      />
+        app:SpinKit_Color="#C91515" />
+
     <TextView
         android:id="@+id/txtWa"
-        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:textSize="18sp"
-        android:textColor="#403e3e"
-        android:text="الرجاء الإنتظار ..."/>
+        android:text="الرجاء الإنتظار ..."
+        android:textColor="@color/white"
+        android:textSize="28sp" />
 </LinearLayout>

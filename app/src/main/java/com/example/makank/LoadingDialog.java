@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +18,8 @@ import android.widget.Toast;
 public class LoadingDialog {
     private Activity activity;
     private AlertDialog dialog;
+    TextView textView;
+    Typeface typeface;
 
     public LoadingDialog(Activity myaActivity) {
         activity = myaActivity;
@@ -24,9 +28,15 @@ public class LoadingDialog {
     public void startLoadingDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         LayoutInflater inflater = activity.getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.custom_dialog2, null));
+        //builder.setView(inflater.inflate(R.layout.custom_dialog2, null));
+        View view = inflater.inflate(R.layout.custom_dialog2, null);
+        builder.setView(view);
+        textView = view.findViewById(R.id.txtWa);
+        typeface = Typeface.createFromAsset(activity.getAssets(), "fonts/Hacen-Algeria.ttf");
+        textView.setTypeface(typeface);
         dialog = builder.create();
         dialog.show();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
     }
 
     public void dismissDialog() {

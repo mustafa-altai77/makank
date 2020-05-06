@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:padding="5dp"
     >
 
@@ -16,10 +16,10 @@
 
     <TextView
         android:id="@+id/txt_local_name"
+        android:padding="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="اسم المنطفة"
         android:textAppearance="?android:textAppearanceLarge"
         />
-
 </LinearLayout>
