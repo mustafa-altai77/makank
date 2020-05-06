@@ -107,7 +107,6 @@ public class ContactFragment extends Fragment {
                 seenAdapter.getFilter().filter(query);
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String query) {
                 seenAdapter.getFilter().filter(query);

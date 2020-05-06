@@ -27,6 +27,7 @@ import com.example.makank.data.network.ApiClient;
 import com.example.makank.data.network.ApiInterface;
 import com.example.makank.data.model.Member;
 import com.example.makank.data.model.Person;
+import com.example.makank.ui.contact.ContactFragment;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -94,13 +95,13 @@ public class ContactActivity extends AppCompatActivity {
         loadingDialog = new LoadingDialog(this);
         Toast.makeText(this, "" + my_status, Toast.LENGTH_SHORT).show();
         if (my_status.equals("1")) {
-            circleImageView.setBackground(ContextCompat.getDrawable(this, R.color.colorAccent));
+            circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.red));
             status.setText("الحالة :مصاب ");
         } else if (my_status.equals("2")) {
-            circleImageView.setBackground(ContextCompat.getDrawable(this, R.color.yellow));
+            circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.yellowc));
             status.setText("الحالة : مخالط");
         } else {
-            circleImageView.setBackground(ContextCompat.getDrawable(this, R.color.green));
+            circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.greenc));
             status.setText("الحالة : سليم");
         }
         if (mGpsLocationTracker.canGetLocation()) {
@@ -215,18 +216,20 @@ public class ContactActivity extends AppCompatActivity {
                     //Toast.makeText(ContactActivity.this, "done", Toast.LENGTH_SHORT).show();
 
                     String statu = response.body().getStatus();
+                    String name=response.body().getFirst_name()+" "+response.body().getSecond_name()+ " "+response.body().getLast_name();
                     Toast.makeText(ContactActivity.this, ""+statu, Toast.LENGTH_SHORT).show();
 
                    if (statu.equals("3")) {
-                       CaseName="هذا الشخص سليم";
+                       CaseName="سليم";
                     } else if (statu.equals("2")) {
-                       CaseName="هذا الشخص مخالط";
+                       CaseName="مخالط";
 
                    } else if (statu.equals("1")) {
-                       CaseName="هذا الشخص مصاب";
+                       CaseName="مصاب";
 
                    }
-                    alert.showAlertSuccess(""+CaseName);
+                  //  alert.showAlertSuccess(name+"\n"+""+CaseName);
+                   alert.showAlertNormal("تم التواصل بنجاح",name+"\n"+" - "+CaseName,"موافق");
                 }
 
             }

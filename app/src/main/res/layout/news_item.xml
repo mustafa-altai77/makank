@@ -7,7 +7,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/news_card"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="260dp"
         android:layout_margin="10dp"
         app:cardCornerRadius="0dp">
 
@@ -20,12 +20,13 @@
             <ImageView
                 android:id="@+id/image_news"
                 android:layout_width="match_parent"
-                android:layout_height="107dp"/>
+                android:scaleType="centerCrop"
+                android:layout_height="140dp"/>
             <TextView
                 android:id="@+id/news_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginRight="10dp"
                 android:gravity="right"
                 android:text="النص"
@@ -43,18 +44,16 @@
                 android:layout_gravity="right|top"
                 android:text="النص"
                 android:ellipsize ="end"
-                android:maxLines="1"
-                android:padding="15dp"
+                android:maxLines="2"
+                android:padding="5dp"
                 android:lineSpacingMultiplier="1.5"
                 android:lineSpacingExtra="0dp"
                 android:textColor="@color/cardview_dark_background"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:background="@color/color"
-                android:layout_marginTop="5dp"
-
+                android:layout_marginTop="0dp"
                 android:gravity="right|center"
                 android:paddingRight="10dp">
 
@@ -69,7 +68,6 @@
                     android:text="30-12-2020"
                     android:textColor="@color/white"
                     />
-
                 <ImageView
                     android:id="@+id/img2"
                     android:layout_width="20dp"
@@ -77,7 +75,6 @@
                     android:layout_marginRight="140dp"
                     android:background="@drawable/clock"
                     android:backgroundTint="@color/white" />
-
                 <ImageView
                     android:id="@+id/img"
                     android:layout_width="30dp"
@@ -87,9 +84,7 @@
                     android:layout_marginRight="35dp"
                     android:background="@drawable/share"
                     android:backgroundTint="@color/white" />
-                />
             </LinearLayout>
-
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

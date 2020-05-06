@@ -9,6 +9,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
+        android:textColor="@color/white"
         android:layout_height="match_parent">
 
     <ImageView
@@ -23,9 +24,8 @@
         android:id="@+id/infor"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/total2"
         android:text="اضغط على الصورة للبحث عن طريق الرمز التعريفي (QrCode)"
         android:layout_gravity="center">
 
@@ -35,7 +35,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/total2"
         android:text="او ادخل الرقم التعريفي"
         android:layout_gravity="center">
     </TextView>
@@ -78,6 +78,8 @@
                 android:id="@+id/p_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/total2"
+
                 android:text="ابراهيم عوض"/>
         </LinearLayout>
 
@@ -91,6 +93,7 @@
                 android:id="@+id/p_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/total2"
                 android:text="0255684"/>
         </LinearLayout>
 
@@ -100,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@drawable/card_button"
+        android:background="@drawable/redbtn"
         android:text="@string/add_member"
         android:textColor="@color/cardview_light_background">
     </Button>
@@ -110,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@drawable/text_shape"
+        android:background="@drawable/graybtn"
         android:text="@string/cancel"
         android:textColor="@color/cardview_light_background">
     </Button>

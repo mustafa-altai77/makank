@@ -18,9 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.makank.R;
 import com.example.makank.data.model.Member;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+
 public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> implements Filterable {
 
     private List<Member> seenList;
@@ -48,7 +53,6 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
                     return SeenAdapter.this.seenList.get(oldItemPosition).getFirst_name() == movieList.get(newItemPosition).getFirst_name();
-
                 }
 
                 @Override
@@ -77,10 +81,26 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(SeenAdapter.MyViewHolder holder, int position) {
         final Member model = seenList.get(position);
-        holder.Fneme.setText(seenListFiltered.get(position).getFirst_name()+" "+seenListFiltered.get(position).getSecond_name()+" "+seenListFiltered.get(position).getLast_name());
+        holder.Fneme.setText(seenListFiltered.get(position).getFirst_name() + " " + seenListFiltered.get(position).getSecond_name() + " " + seenListFiltered.get(position).getLast_name());
         holder.Pid.setText(seenListFiltered.get(position).getId());
         holder.data.setText(seenListFiltered.get(position).getUpdated_at());
         holder.stat.setText(seenListFiltered.get(position).getStatus());
+
+        String created = seenListFiltered.get(position).getUpdated_at();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat outputTime = new SimpleDateFormat("HH:mm:ss");
+        Date d = null;
+        try {
+            d = sdf.parse(created);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String formattedDate = output.format(d);
+        String formattedTime = outputTime.format(d);
+        holder.data.setText(formattedDate);
+        holder.time.setText(formattedTime);
+
 
         if (model.getStatus().equals("3")) {
             holder.stat.setText("سليم");
@@ -125,6 +145,7 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
                 filterResults.values = seenListFiltered;
                 return filterResults;
             }
+
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 seenListFiltered = (ArrayList<Member>) filterResults.values;
@@ -138,14 +159,15 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
         TextView Fneme, Pid, stat, data, time;
         CircleImageView image;
         Typeface typeface;
+
         @SuppressLint("WrongViewCast")
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            Fneme  = itemView.findViewById(R.id.full_name);
+            Fneme = itemView.findViewById(R.id.full_name);
             Pid = itemView.findViewById(R.id.person_id);
-            data = itemView.findViewById(R.id.date_seen);
+            data = itemView.findViewById(R.id.dateComm);
             stat = itemView.findViewById(R.id.status_txt);
-            time=itemView.findViewById(R.id.dateComm);
+            time = itemView.findViewById(R.id.date_seen);
 
             image = itemView.findViewById(R.id.status_mg);
 
