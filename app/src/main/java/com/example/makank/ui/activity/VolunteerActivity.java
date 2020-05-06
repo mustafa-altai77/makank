@@ -258,12 +258,15 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
                     if (response.isSuccessful()) {
                         if (response.body() != null) {
                             hidepDialog();
+                            alert.showAlertSuccess("تم إرسال السيرة الذاتية بنجاح");
                             Filresponse serverResponse = response.body();
                             //Toast.makeText(getApplicationContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
                     } else {
                         hidepDialog();
+                        Log.e("error_req",call.toString());
+                        Log.e("error_res",response.toString());
                         Toast.makeText(getApplicationContext(), "problem file", Toast.LENGTH_SHORT).show();
                     }
                 }
