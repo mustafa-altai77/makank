@@ -5,6 +5,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -13,9 +14,16 @@ import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +40,7 @@ import com.example.makank.data.network.ApiInterface;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CityActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -43,6 +52,9 @@ public class CityActivity extends AppCompatActivity {
     TextView txtStateName;
     LoadingDialog loadingDialog;
     Alert alert;
+    EditText editText;
+    Typeface typeface;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +64,7 @@ public class CityActivity extends AppCompatActivity {
         alert = new Alert(this);
         loadingDialog = new LoadingDialog(this);
         this.recyclerView = findViewById(R.id.city_recycler);
+        editText = findViewById(R.id.maare);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
@@ -61,14 +74,35 @@ public class CityActivity extends AppCompatActivity {
         cities = new ArrayList<>();
 
         state_id = getIntent().getStringExtra("state_id");
-        state_name =   getIntent().getStringExtra("state_name");
+        state_name = getIntent().getStringExtra("state_name");
+
+        typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
+        editText.setTypeface(typeface);
+
+        editText = findViewById(R.id.maare);
         //txtStateName.setText(state_name);
         fetchCity(state_id);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String text = editText.getText().toString().toLowerCase(Locale.getDefault());
+                adapter.getFilter().filter(text);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
     }
 
-    private void fetchCity(String id){
+    private void fetchCity(String id) {
         loadingDialog.startLoadingDialog();
 
 //
@@ -86,8 +120,9 @@ public class CityActivity extends AppCompatActivity {
                 adapter.setCities(cities);
 
             }
+
             @Override
-            public void onFailure(Call<List<City>>call, Throwable t) {
+            public void onFailure(Call<List<City>> call, Throwable t) {
                 loadingDialog.dismissDialog();
 
                 Toast.makeText(CityActivity.this, "" + t, Toast.LENGTH_SHORT).show();
@@ -96,31 +131,5 @@ public class CityActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_item, menu);
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.action_search)
-                .getActionView();
-        searchView.setSearchableInfo(searchManager
-                .getSearchableInfo(getComponentName()));
-        searchView.setMaxWidth(Integer.MAX_VALUE);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                adapter.getFilter().filter(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String query) {
-                adapter.getFilter().filter(query);
-                return false;
-            }
-        });
-        return true;
-    }
 }
+

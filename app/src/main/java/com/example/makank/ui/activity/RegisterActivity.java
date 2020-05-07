@@ -1,6 +1,7 @@
 package com.example.makank.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -38,10 +39,13 @@ public class RegisterActivity extends AppCompatActivity {
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        toolbar = findViewById(R.id.toolbar_id);
+        setSupportActionBar(toolbar);
         btn = findViewById(R.id.don_register);
         f_name = findViewById(R.id.f_name);
         s_name = findViewById(R.id.s_name);

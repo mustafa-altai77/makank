@@ -16,6 +16,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.EditText;
@@ -33,6 +35,7 @@ import com.example.makank.data.network.ApiInterface;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class StateActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -41,6 +44,8 @@ public class StateActivity extends AppCompatActivity {
     private StateAdapter adapter;
     LoadingDialog loadingDialog;
     Alert alert;
+    EditText editText;
+    Typeface typeface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,28 @@ public class StateActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         states = new ArrayList<>();
         fetchState();
+        editText = findViewById(R.id.maare);
+
+        typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
+        editText.setTypeface(typeface);
+
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String text = editText.getText().toString().toLowerCase(Locale.getDefault());
+                adapter.getFilter().filter(text);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     private void fetchState() {
@@ -72,7 +99,7 @@ public class StateActivity extends AppCompatActivity {
                 loadingDialog.dismissDialog();
 //                if (!response.isSuccessful()) {
 
-                states =  response.body();
+                states = response.body();
                 adapter.setStates(states);
             }
 
@@ -86,31 +113,4 @@ public class StateActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_two, menu);
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.action_search2)
-                .getActionView();
-        searchView.setSearchableInfo(searchManager
-                .getSearchableInfo(getComponentName()));
-        searchView.setMaxWidth(Integer.MAX_VALUE);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                adapter.getFilter().filter(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String query) {
-                adapter.getFilter().filter(query);
-                return false;
-            }
-        });
-        return true;
-    }
 }

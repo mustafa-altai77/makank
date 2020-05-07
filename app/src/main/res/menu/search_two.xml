@@ -9,7 +9,6 @@
         android:orderInCategory="100"
         android:visible="true"
         android:title="search"
-
-        app:showAsAction="collapseActionView|always"
+        app:showAsAction="always"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
 </menu>

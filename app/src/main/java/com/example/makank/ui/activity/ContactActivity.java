@@ -2,6 +2,7 @@ package com.example.makank.ui.activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
@@ -61,11 +62,14 @@ public class ContactActivity extends AppCompatActivity {
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
+    Toolbar toolbar;
     @SuppressLint("ResourceAsColor")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        toolbar = findViewById(R.id.toolbar_id);
+        setSupportActionBar(toolbar);
         setContentView(R.layout.activity_contact);
         buttonScan = findViewById(R.id.qr_image);
         circleImageView = findViewById(R.id.image_status);

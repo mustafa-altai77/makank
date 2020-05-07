@@ -47,7 +47,7 @@ import static com.example.makank.SharedPref.mCtx;
 
 
 public class PersonalFragment extends Fragment {
-    TextView F_name, gen, age_, ph, personalID, TxtPhone, TxtAge, TxtGender,statusName;
+    TextView F_name, gen, age_, ph, personalID, TxtPhone, TxtAge, TxtGender,statusName,disease_list;
     ImageView qrImage;
     CircleImageView statusImage;
     ListView listView;
@@ -87,6 +87,7 @@ public class PersonalFragment extends Fragment {
         TxtAge = view.findViewById(R.id.txtAge);
         TxtGender = view.findViewById(R.id.txtGender);
         statusName = view.findViewById(R.id.stautsName);
+        disease_list = view.findViewById(R.id.disease_listt);
         typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Hacen-Algeria.ttf");
         F_name.setTypeface(typeface);
         gen.setTypeface(typeface);
@@ -97,6 +98,7 @@ public class PersonalFragment extends Fragment {
         TxtAge.setTypeface(typeface);
         TxtGender.setTypeface(typeface);
         statusName.setTypeface(typeface);
+        disease_list.setTypeface(typeface);
         disease_name = new ArrayList<>();
 
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -145,7 +147,8 @@ public class PersonalFragment extends Fragment {
             public void onFailure(Call<Person> call, Throwable t) {
                 loadingDialog.dismissDialog();
 
-                Toast.makeText(getContext(), "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
+                alert.showAlertError("تــأكد من إتصالك بإنترنت");
+                //Toast.makeText(getContext(), "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
             }
         });
 

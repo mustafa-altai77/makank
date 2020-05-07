@@ -1,6 +1,7 @@
 package com.example.makank.ui.news;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -15,11 +16,14 @@ public class NewsDetailsActivity extends AppCompatActivity {
     TextView text,description,title;
     ImageView image;
     Typeface typeface;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_details);
+        toolbar = findViewById(R.id.toolbar_id);
+        setSupportActionBar(toolbar);
         image = findViewById(R.id.image_details);
         text = findViewById(R.id.title_details);
         title = findViewById(R.id.detNew);

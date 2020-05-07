@@ -103,7 +103,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder
             txtCityName = itemView.findViewById(R.id.txt_city_name);
             typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
             txtCityName.setTypeface(typeface);
-            txtCityName.setTextColor(context.getResources().getColor(R.color.color));
+            txtCityName.setTextColor(context.getResources().getColor(R.color.total2));
 
 
         }

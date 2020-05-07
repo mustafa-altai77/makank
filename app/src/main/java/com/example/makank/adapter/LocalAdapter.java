@@ -101,7 +101,7 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.LocalViewHol
             txtLocalName = itemView.findViewById(R.id.txt_local_name);
             typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
             txtLocalName.setTypeface(typeface);
-            txtLocalName.setTextColor(context.getResources().getColor(R.color.color));
+            txtLocalName.setTextColor(context.getResources().getColor(R.color.total2));
 
         }
 
