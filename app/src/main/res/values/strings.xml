@@ -15,7 +15,6 @@
     <string name="contact_txt">التواصل</string>
     <string name="statistic_txt">الاحصائيات</string>
     <string name="profile_txt">الحسـاب</string>
-
     <string name="skip">SKIP</string>
     <string name="back">رجـوع</string>
     <string name="start">GOT IT</string>
@@ -33,7 +32,6 @@
     <string name="qu4">هل تعاني من العطس ؟</string>
     <string name="qu5">هل تعاني صعوبة في التنفس ؟</string>
     <string name="qu7">هل تعاني من سيلان الانف ؟</string>
-
     <string name="qu8">هل تشعر بإجهاد عام ؟</string>
     <string name="qu9">هل تعاني من أوجاع وآلام ؟</string>
     <string name="qu10">هل يوجد لديك صداع ؟</string>

@@ -31,6 +31,7 @@ public class GridFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_grid, container, false);
         recyclerView = v.findViewById(R.id.grid_recycler);
+
         grid_list.clear();
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         grid_list.add(new Home(1,"التواصل مع شخص",R.drawable.communication));

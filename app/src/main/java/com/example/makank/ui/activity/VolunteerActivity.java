@@ -19,6 +19,7 @@ import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,6 +68,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
     private Button ok;
     private String pdfFileName;
     private PDFView pdfView;
+    private CheckBox aprove;
     public static final int REQUEST_PERMISSION = 200;
     public ProgressDialog pDialog;
     public static final int FILE_PICKER_REQUEST_CODE = 1;
@@ -75,7 +77,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
-Toolbar toolbar;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +89,7 @@ Toolbar toolbar;
         tvFileName = findViewById(R.id.txt_message);
         pdfView = findViewById(R.id.pdfView);
         ok = findViewById(R.id.confirm);
+        aprove =findViewById(R.id.txtAprove);
         tvFileName.setOnClickListener(this);
         txtSTEP = findViewById(R.id.txtSteps);
         txtSTEP.setText("يسعدنا انضمامكم للحملة الوطنية لمكافحة فيروس \nكورونا (كوفيد-19) و رداً على التساؤلات بشأن كيفية \nالمشاركة في الجهود الحكومية والمساعدة في حملة مكافحة\nفيروس كورونا المنتشر في دولة السودان .\nبدأت الحملة الوطنية لمكافحة فيروس كورونا" +
@@ -138,7 +141,10 @@ Toolbar toolbar;
         if (v == ok) {
             SharedPreferences sharedPreference = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
             final String my_id = sharedPreference.getString(USER_ID, "id");
-            uploadImage(my_id);
+            if (aprove.isChecked()) {
+
+                uploadImage(my_id);
+            }else alert.showAlertError("يجب الموافقة على الشروط");
         }
 
     }
@@ -233,7 +239,8 @@ Toolbar toolbar;
             alert.showAlertError("الرجاء إرفاق الملف");
             return;
         } else {
-            showpDialog();
+//            showpDialog();
+            loadingDialog.startLoadingDialog();
 
             // Map is used to multipart the file using okhttp3.RequestBody
             Map<String, RequestBody> map = new HashMap<>();
@@ -255,30 +262,35 @@ Toolbar toolbar;
                     RequestBody.create(MediaType.parse("text/plain"), pdfFileName);
 
             ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-            Call<Filresponse> call = apiService.upload(id, id, fullName, body);
+            Call<Filresponse> call = apiService.upload(id, id, body);
             call.enqueue(new Callback<Filresponse>() {
                 @Override
                 public void onResponse(Call<Filresponse> call, Response<Filresponse> response) {
                     if (response.isSuccessful()) {
+                        loadingDialog.dismissDialog();
                         if (response.body() != null) {
-                            hidepDialog();
+                           // hidepDialog();
                             alert.showAlertSuccess("تم إرسال السيرة الذاتية بنجاح");
                             Filresponse serverResponse = response.body();
                             //Toast.makeText(getApplicationContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
                     } else {
-                        hidepDialog();
+                       // hidepDialog();
+                        loadingDialog.dismissDialog();
+
                         Log.e("error_req", call.toString());
                         Log.e("error_res", response.toString());
-                        Toast.makeText(getApplicationContext(), "problem file", Toast.LENGTH_SHORT).show();
+                        alert.showAlertError("اسم الملف طويل للغاية");
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Filresponse> call, Throwable t) {
-                    hidepDialog();
+                   // hidepDialog();
                     Log.v("Response gotten is", t.getMessage());
+                    loadingDialog.dismissDialog();
+
                     // Toast.makeText(getApplicationContext(), "problem uploading file " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     alert.showAlertError("صيغة الملف غير صحيحة");
                 }
@@ -308,7 +320,7 @@ Toolbar toolbar;
     @Override
     public void onPageChanged(int page, int pageCount) {
         pageNumber = page;
-        setTitle(String.format("%s %s / %s", pdfFileName, page + 1, pageCount));
+       // setTitle(String.format("%s  / %s", page + 1, pageCount));
     }
 
     @Override

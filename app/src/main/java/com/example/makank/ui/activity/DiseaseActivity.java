@@ -53,6 +53,8 @@ public class DiseaseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_disease);
         toolbar = findViewById(R.id.toolbar_id);
         setSupportActionBar(toolbar);
+        alert = new Alert(this);
+        loadingDialog = new LoadingDialog(this);
         this.btnGetSelected = findViewById(R.id.don_all);
         this.recyclerView = findViewById(R.id.disease_recycler);
 
@@ -66,9 +68,8 @@ public class DiseaseActivity extends AppCompatActivity {
         diseases = new ArrayList<>();
         //createList();
 
+
         fetchWeatherDetails();
-        alert = new Alert(this);
-        loadingDialog = new LoadingDialog(this);
 
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         btnGetSelected.setTypeface(typeface);
@@ -95,14 +96,7 @@ public class DiseaseActivity extends AppCompatActivity {
     }
 
     private void fetchWeatherDetails() {
-        //  final ProgressDialog progressDoalog;
-      /*  progressDoalog = new ProgressDialog(DiseaseActivity.this);
-        progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");
-//        progressDoalog.setTitle("ProgressDialog bar example");
-        progressDoalog.show();
-        progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);*/
-//        loadingDialog.startLoadingDialog();
+        loadingDialog.startLoadingDialog();
 
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<List<Disease>> call = apiService.getDisease();
@@ -111,7 +105,7 @@ public class DiseaseActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Disease>> call, Response<List<Disease>> response) {
                 // progressDoalog.dismiss();
-//                loadingDialog.dismissDialog();
+                loadingDialog.dismissDialog();
                 diseases = response.body();
                 adapter.setDiseases(diseases);
 
@@ -120,7 +114,7 @@ public class DiseaseActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Disease>> call, Throwable t) {
                 //progressDoalog.dismiss();
-             //   loadingDialog.dismissDialog();
+               loadingDialog.dismissDialog();
                 Log.d("TAG", "Response = " + t.toString());
             }
         });
@@ -146,7 +140,6 @@ public class DiseaseActivity extends AppCompatActivity {
 
     private void showToast(ArrayList<Integer> des) {
         //  Toast.makeText(this, des + "", Toast.LENGTH_SHORT).show();
-        final ProgressDialog progressDoalog;
       /*  progressDoalog = new ProgressDialog(DiseaseActivity.this);
         progressDoalog.setMax(100);
         progressDoalog.setMessage("loading....");
@@ -164,7 +157,7 @@ public class DiseaseActivity extends AppCompatActivity {
                     loadingDialog.dismissDialog();
 
                     // Toast.makeText(DiseaseActivity.this, "done", Toast.LENGTH_SHORT).show();
-                    alert.showAlertSuccess("");
+                    alert.showAlertSuccess("تم اتمام العملية بنجاح");
                     Intent intent = new Intent(DiseaseActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();

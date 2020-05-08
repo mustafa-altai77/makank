@@ -85,7 +85,6 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
         holder.Pid.setText(seenListFiltered.get(position).getId());
         holder.data.setText(seenListFiltered.get(position).getUpdated_at());
         holder.stat.setText(seenListFiltered.get(position).getStatus());
-
         String created = seenListFiltered.get(position).getUpdated_at();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");

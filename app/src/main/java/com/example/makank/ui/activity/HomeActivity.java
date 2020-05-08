@@ -81,6 +81,7 @@ public class HomeActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigationHome:
 //                    toolbar.setTitle("الرئسية");
+                    toolbar.setIcon(R.drawable.mkank_logo);
                     fragment = new GridFragment();
                     loadFragment(fragment);
                     return true;
