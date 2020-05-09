@@ -1,6 +1,5 @@
 package com.example.makank.ui.contact;
 
-import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -21,6 +20,7 @@ import android.widget.Toast;
 import com.example.makank.Alert;
 import com.example.makank.LoadingDialog;
 import com.example.makank.R;
+import com.example.makank.data.model.Pivot;
 import com.example.makank.data.network.ApiClient;
 import com.example.makank.data.network.ApiInterface;
 import com.example.makank.adapter.SeenAdapter;
@@ -42,6 +42,7 @@ public class ContactFragment extends Fragment {
     private RecyclerView recyclerView;
     private SeenAdapter seenAdapter;
     private List<Member> memberList;
+    Pivot pivot;
 
     LoadingDialog loadingDialog;
     Alert alert;
@@ -75,6 +76,7 @@ public class ContactFragment extends Fragment {
                 if (response.isSuccessful()) {
                     loadingDialog.dismissDialog();
                     memberList = response.body();
+//                    pivot =  response.body();
 
                     seenAdapter.setMovieList(getContext(),memberList);
                 }

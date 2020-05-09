@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.example.makank.Alert;
 import com.example.makank.GpsLocationTracker;
 import com.example.makank.LoadingDialog;
+import com.example.makank.data.model.Pivot;
 import com.example.makank.data.network.ApiClient;
 import com.example.makank.data.network.ApiInterface;
 import com.example.makank.data.model.Member;
@@ -35,6 +36,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.makank.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -55,6 +59,7 @@ public class ContactActivity extends AppCompatActivity {
     IntentIntegrator qrScan;
     TextView status, firstNo, secondTwo;
     Person person;
+    List<Pivot> pivots =new ArrayList<>();
     double locationLatitude;
     double locationLongitude;
 
