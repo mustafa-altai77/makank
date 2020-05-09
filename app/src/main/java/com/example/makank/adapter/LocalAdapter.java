@@ -1,6 +1,5 @@
 package com.example.makank.adapter;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.makank.R;
 import com.example.makank.data.model.Local;
-import com.example.makank.ui.activity.RegisterActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +21,7 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.LocalViewHol
     private Context context;
     private List<Local> locals;
     private List<Local> allLocals;
+    View.OnClickListener listener;
 
 
     @NonNull
@@ -33,10 +32,11 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.LocalViewHol
     }
 
 
-    public LocalAdapter(Context context, List<Local> Locals) {
+    public LocalAdapter(Context context, List<Local> Locals, View.OnClickListener listener) {
         this.context = context;
         this.locals = Locals;
         this.allLocals = Locals;
+        this.listener = listener;
     }
     public void setLocals(List<Local> Locals) {
         this.locals = new ArrayList<>();
@@ -109,7 +109,8 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.LocalViewHol
             txtLocalID.setText(Local.getId());
             txtLocalName.setText(Local.getName());
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(listener);
+     /*       itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
@@ -123,7 +124,7 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.LocalViewHol
                     i.putExtra("local_name",LocalName);
                     context.startActivity(i);
                 }
-            });
+            });*/
         }
     }
 

@@ -16,6 +16,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,8 +48,23 @@ public class LocalActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView txtLocalID =view.findViewById(R.id.txt_local_id);
+                TextView txtLocalName =view.findViewById(R.id.txt_local_name);
+                String LocalID = txtLocalID.getText().toString();
+                String LocalName = txtLocalName.getText().toString();
 
-        adapter = new LocalAdapter(this, locals);
+                Intent i = new Intent();
+                i.putExtra("local_id",LocalID);
+                i.putExtra("local_name",LocalName);
+                i.putExtra(Intent.EXTRA_RETURN_RESULT, RESULT_OK);
+                setResult(RESULT_OK,i);
+                finish();
+            }
+        };
+        adapter = new LocalAdapter(this, locals,listener);
         recyclerView.setAdapter(adapter);
         locals = new ArrayList<>();
 
@@ -55,6 +72,25 @@ public class LocalActivity extends AppCompatActivity {
         city_name =   getIntent().getStringExtra("city_name");
         //txtCityName.setText(city_name);
         fetchLocal(city_id);
+
+        //new AdapterView.OnItemClickListener()
+
+
+        recyclerView.setOnClickListener(view -> {
+            {
+
+                TextView txtLocalID =view.findViewById(R.id.txt_local_id);
+                TextView txtLocalName =view.findViewById(R.id.txt_local_name);
+                String LocalID = txtLocalID.getText().toString();
+                String LocalName = txtLocalName.getText().toString();
+
+                Intent i = new Intent();
+                i.putExtra("local_id",LocalID);
+                i.putExtra("local_name",LocalName);
+                i.putExtra(Intent.EXTRA_RETURN_RESULT, RESULT_OK);
+                finish();
+            }
+        });
 
     }
 

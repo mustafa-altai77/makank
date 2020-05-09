@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.PlaceActivity">
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_refresh"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="refreshClick"
+        android:background="@android:drawable/btn_default_small"
+        />
 
     <LinearLayout
         android:id="@+id/constraintLayout"
@@ -25,30 +36,85 @@
             android:layout_width="match_parent"
             android:layout_height="110dp"
             app:srcCompat="@drawable/logo" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        >
+            <Spinner
+                android:id="@+id/state_spinner"
+                android:layout_width="234dp"
+                android:layout_height="42dp"
+                android:layout_gravity="center"
+                android:background="@android:drawable/btn_dropdown"
+                />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="الولاية"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#000"
+            />
+    </LinearLayout>
 
-        <Spinner
-            android:id="@+id/state_spinner"
-            android:layout_width="234dp"
-            android:layout_height="42dp"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:background="@color/cardview_dark_background" />
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        >
         <Spinner
             android:id="@+id/city_spinner"
             android:layout_width="234dp"
             android:layout_height="42dp"
             android:layout_gravity="center"
-            android:layout_marginTop="0dp"
-            android:background="@color/cardview_dark_background" />
+            android:background="@android:drawable/btn_dropdown"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="المدينة"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#000"/>
+    </LinearLayout>
 
         <Spinner
+            android:visibility="gone"
             android:id="@+id/local_spinner"
             android:layout_width="234dp"
             android:layout_height="42dp"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
             android:background="@color/cardview_dark_background" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        >
+            <Button
+                android:id="@+id/btn_local"
+                android:layout_width="234dp"
+                android:layout_height="42dp"
+                android:layout_gravity="center"
+                android:background="@android:drawable/btn_default"
+                android:enabled="false"
+                android:text="الرجاء الإنتظار"
+                android:textColor="#000"
+                />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="المنطقة"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#000"
+            />
+    </LinearLayout>
 
         <Button
             android:id="@+id/login"

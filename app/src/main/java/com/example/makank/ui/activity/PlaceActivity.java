@@ -1,5 +1,6 @@
 package com.example.makank.ui.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -29,10 +30,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PlaceActivity extends AppCompatActivity {
+    private static final int SELECT_LOCAL_REQUEST = 3;
     Button next;
     Spinner state_spin;
     Spinner city_spin;
-    Spinner local_spin;
+    //Spinner local_spin;
+    Button btnLocal;
     String state;
     String city;
     String local;
@@ -54,7 +57,8 @@ public class PlaceActivity extends AppCompatActivity {
         next = findViewById(R.id.login);
         state_spin = findViewById(R.id.state_spinner);
         city_spin = findViewById(R.id.city_spinner);
-        local_spin = findViewById(R.id.local_spinner);
+        //local_spin = findViewById(R.id.local_spinner);
+        btnLocal = findViewById(R.id.btn_local);
 
         alert = new Alert(this);
         loadingDialog = new LoadingDialog(this);
@@ -76,8 +80,8 @@ public class PlaceActivity extends AppCompatActivity {
         state_spin.setAdapter(statAdapter);
         cityAdapter = new ArrayAdapter<>(PlaceActivity.this, R.layout.support_simple_spinner_dropdown_item, city_name);
         city_spin.setAdapter(cityAdapter);
-        localAdapter = new ArrayAdapter<>(PlaceActivity.this, R.layout.support_simple_spinner_dropdown_item, local_name);
-        local_spin.setAdapter(localAdapter);
+        //localAdapter = new ArrayAdapter<>(PlaceActivity.this, R.layout.support_simple_spinner_dropdown_item, local_name);
+        //local_spin.setAdapter(localAdapter);
 
         fetchState();
 
@@ -85,6 +89,24 @@ public class PlaceActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 state = state_id.get((int) id);
+
+                city = null;
+                cities.clear();
+                city_id.clear();
+                city_name.clear();
+                cityAdapter = new ArrayAdapter<>(PlaceActivity.this, R.layout.support_simple_spinner_dropdown_item, city_name);
+                city_spin.setAdapter(cityAdapter);
+
+                locals.clear();
+                local_id.clear();
+                local_name.clear();
+                local = null;
+                na = null;
+                //localAdapter = new ArrayAdapter<>(PlaceActivity.this, R.layout.support_simple_spinner_dropdown_item, local_name);
+                //local_spin.setAdapter(localAdapter);
+                btnLocal.setText("الرجاء النتظار");
+                btnLocal.setEnabled(false);
+
                 fetchCity(state);
             }
 
@@ -93,14 +115,24 @@ public class PlaceActivity extends AppCompatActivity {
 
                 // DO Nothing here
             }
-//
+
         });
 
         city_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 city = city_id.get((int) id);
-                fetchLocal(city);
+                locals.clear();
+                local_id.clear();
+                local_name.clear();
+                local = null;
+                na = null;
+                //localAdapter = new ArrayAdapter<>(PlaceActivity.this, R.layout.support_simple_spinner_dropdown_item, local_name);
+                //local_spin.setAdapter(localAdapter);
+                btnLocal.setText("إضغط لتحديد المنطقة");
+                btnLocal.setEnabled(true);
+
+                //fetchLocal(city);
             }
 
             @Override
@@ -113,7 +145,7 @@ public class PlaceActivity extends AppCompatActivity {
 //
         });
 
-        local_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*local_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 local = local_id.get((int) id);
@@ -129,13 +161,19 @@ public class PlaceActivity extends AppCompatActivity {
 
             }
 //
+        });*/
+
+        btnLocal.setOnClickListener(v->{
+            if (city != null ){
+                Intent intent = new Intent(PlaceActivity.this,LocalActivity.class);
+                intent.putExtra("city_id",city);
+                intent.putExtra("city_name",city_name.get(city_spin.getSelectedItemPosition()));
+                startActivityForResult(intent ,SELECT_LOCAL_REQUEST);
+            }
         });
 
-
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+        next.setOnClickListener(v -> {
+            if (na != null && local != null) {
                 Intent intent = new Intent(PlaceActivity.this, RegisterActivity.class);
                 intent.putExtra("local_id", local);
                 intent.putExtra("local_name", na);
@@ -166,7 +204,8 @@ public class PlaceActivity extends AppCompatActivity {
 //                if (!response.isSuccessful()) {
 
                 states = (ArrayList<State>) response.body();
-
+                state_id.clear();
+                state_name.clear();
                 for (int i = 0; i < states.size(); i++) {
 
                     state_name.add(states.get(i).getName());
@@ -220,8 +259,8 @@ public class PlaceActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<City>> call, Throwable t) {
                 progressDoalog.dismiss();
-
-                Toast.makeText(PlaceActivity.this, "" + t, Toast.LENGTH_SHORT).show();
+                alert.showAlertError("تــأكد من إتصالك بالإنترنت");
+                //Toast.makeText(PlaceActivity.this, "" + t, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -251,15 +290,31 @@ public class PlaceActivity extends AppCompatActivity {
                     local_id.add(locals.get(i).getId());
                 }
 
-                localAdapter.notifyDataSetChanged();
+                //localAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFailure(Call<List<Local>> call, Throwable t) {
                 progressDoalog.dismiss();
-
-                Toast.makeText(PlaceActivity.this, "غير متصل بالشبكة" + t, Toast.LENGTH_SHORT).show();
+                alert.showAlertError("تــأكد من إتصالك بالإنترنت");
+                //Toast.makeText(PlaceActivity.this, "غير متصل بالشبكة" + t, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK) {
+            if (requestCode == SELECT_LOCAL_REQUEST) {
+                local = data.getStringExtra("local_id");
+                na = data.getStringExtra("local_name");
+                btnLocal.setText(na);
+            }
+        }
+    }
+
+    public void refreshClick(View view) {
+        recreate();
     }
 }
