@@ -26,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/total2"
+        android:textSize="15sp"
         android:text="اضغط على الصورة للبحث عن طريق الرمز التعريفي (QrCode)"
         android:layout_gravity="center">
 
@@ -36,6 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/total2"
+        android:textSize="15sp"
         android:text="او ادخل الرقم التعريفي"
         android:layout_gravity="center">
     </TextView>
@@ -58,9 +60,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
+            android:textSize="18sp"
             android:background="@drawable/redbtn"
             android:text="@string/scan"
-            android:textColor="@color/cardview_light_background">
+            android:textColor="@color/white">
         </Button>
 <LinearLayout
     android:layout_width="match_parent"
@@ -76,10 +79,11 @@
 
             <TextView
                 android:id="@+id/p_name"
+                android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/total2"
-
+                android:textStyle="bold"
                 android:text="ابراهيم عوض"/>
         </LinearLayout>
 
@@ -91,6 +95,7 @@
 
             <TextView
                 android:id="@+id/p_number"
+                android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/total2"
@@ -104,6 +109,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@drawable/redbtn"
+        android:textStyle="bold"
+        android:textSize="17sp"
         android:text="@string/add_member"
         android:textColor="@color/cardview_light_background">
     </Button>
@@ -113,6 +120,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textSize="17sp"
         android:background="@drawable/graybtn"
         android:text="@string/cancel"
         android:textColor="@color/cardview_light_background">

@@ -1,32 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".ui.activity.ContactActivity"
     android:orientation="vertical">
-
+    <include layout="@layout/custom_toolbar"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <LinearLayout
         android:layoutDirection="rtl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@color/color"
-            android:gravity="center">
 
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:background="@drawable/mkank_name"
-                android:backgroundTint="@color/white" />
-
-        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -131,4 +121,5 @@
             android:textColor="@color/cardview_light_background">
         </Button>
     </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

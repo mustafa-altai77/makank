@@ -4,23 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.TypefaceSpan;
 import android.view.MenuItem;
 import android.widget.Toast;
 import com.example.makank.R;
-import com.example.makank.SharedPref;
 import com.example.makank.ui.contact.ContactFragment;
 import com.example.makank.ui.home.GridFragment;
 import com.example.makank.ui.news.NewsFragment;
@@ -80,27 +72,28 @@ public class HomeActivity extends AppCompatActivity {
             Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.navigationHome:
-                    toolbar.setTitle("الرئسية");
+//                    toolbar.setTitle("الرئسية");
+                    toolbar.setIcon(R.drawable.mkank_logo);
                     fragment = new GridFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.navigationMyContact:
-                    toolbar.setTitle("التواصل");
+//                    toolbar.setTitle("التواصل");
                     fragment = new ContactFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.navigationNews:
-                    toolbar.setTitle("الاخبار");
+//                    toolbar.setTitle("الاخبار");
                     fragment = new NewsFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.navigationMyProfile:
-                    toolbar.setTitle("الحساب");
+//                    toolbar.setTitle("الحساب");
                     fragment = new ProfileFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.navigationStatistic:
-                    toolbar.setTitle("الاحصائيات");
+//                    toolbar.setTitle("الاحصائيات");
                     fragment = new StatisticFragment();
                     loadFragment(fragment);
                     return true;

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.makank.R;
 import com.example.makank.data.model.Member;
+import com.example.makank.data.model.Pivot;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,7 +31,6 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
     private List<Member> seenList;
     private List<Member> seenListFiltered;
     private Context context;
-
     public void setMovieList(Context context, final List<Member> movieList) {
         this.context = context;
         if (this.seenList == null) {
@@ -81,24 +80,26 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(SeenAdapter.MyViewHolder holder, int position) {
         final Member model = seenList.get(position);
+
         holder.Fneme.setText(seenListFiltered.get(position).getFirst_name() + " " + seenListFiltered.get(position).getSecond_name() + " " + seenListFiltered.get(position).getLast_name());
         holder.Pid.setText(seenListFiltered.get(position).getId());
-        holder.data.setText(seenListFiltered.get(position).getUpdated_at());
+//        holder.date.setText(seenListFiltered.get(position).getPivots().getUpdated_at());
         holder.stat.setText(seenListFiltered.get(position).getStatus());
-
-        String created = seenListFiltered.get(position).getUpdated_at();
+        String created = seenListFiltered.get(position).getPivots().getCreated_at();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat outputTime = new SimpleDateFormat("HH:mm:ss");
-        Date d = null;
+        Date d =null ;
+
         try {
+
             d = sdf.parse(created);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         String formattedDate = output.format(d);
         String formattedTime = outputTime.format(d);
-        holder.data.setText(formattedDate);
+        holder.date.setText(formattedDate);
         holder.time.setText(formattedTime);
 
 
@@ -156,7 +157,7 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView Fneme, Pid, stat, data, time;
+        TextView Fneme, Pid, stat, date, time;
         CircleImageView image;
         Typeface typeface;
 
@@ -165,7 +166,7 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
             super(itemView);
             Fneme = itemView.findViewById(R.id.full_name);
             Pid = itemView.findViewById(R.id.person_id);
-            data = itemView.findViewById(R.id.dateComm);
+            date = itemView.findViewById(R.id.dateComm);
             stat = itemView.findViewById(R.id.status_txt);
             time = itemView.findViewById(R.id.date_seen);
 
@@ -175,7 +176,7 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
             typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
             Fneme.setTypeface(typeface);
             Pid.setTypeface(typeface);
-            data.setTypeface(typeface);
+            date.setTypeface(typeface);
             stat.setTypeface(typeface);
             time.setTypeface(typeface);
 

@@ -31,14 +31,15 @@ public class GridFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_grid, container, false);
         recyclerView = v.findViewById(R.id.grid_recycler);
+
         grid_list.clear();
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        grid_list.add(new Home("التواصل مع شخص",R.drawable.communication));
-        grid_list.add(new Home("التبليغ عن حالة",R.drawable.notification));
-        grid_list.add(new Home("الاختبار المعرفي",R.drawable.qualification));
-        grid_list.add(new Home("اماكن الاصابات",R.drawable.radar));
-        grid_list.add(new Home("التطوع",R.drawable.volunteer));
-        grid_list.add(new Home("النصائح والارشادات",R.drawable.socialcare));
+        grid_list.add(new Home(1,"التواصل مع شخص",R.drawable.communication));
+        grid_list.add(new Home(2,"التبليغ عن حالة",R.drawable.notification));
+        grid_list.add(new Home(3,"الاختبار المعرفي",R.drawable.qualification));
+        grid_list.add(new Home(4,"اماكن الاصابات",R.drawable.radar));
+        grid_list.add(new Home(5,"التطوع",R.drawable.volunteer));
+        grid_list.add(new Home(6,"النصائح والارشادات",R.drawable.socialcare));
 
          Gadapter = new GridAdapter(grid_list,getContext());
         recyclerView.setAdapter(Gadapter);

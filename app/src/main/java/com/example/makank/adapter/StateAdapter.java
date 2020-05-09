@@ -100,7 +100,7 @@ public class StateAdapter  extends RecyclerView.Adapter<StateAdapter.StateViewHo
             txtStateName = itemView.findViewById(R.id.txt_state_name);
             typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
             txtStateName.setTypeface(typeface);
-            txtStateName.setTextColor(context.getResources().getColor(R.color.color));
+            txtStateName.setTextColor(context.getResources().getColor(R.color.total2));
         }
 
         void bind(final State state) {

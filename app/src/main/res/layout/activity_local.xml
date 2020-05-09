@@ -7,7 +7,20 @@
     tools:context=".ui.activity.LocalActivity"
     android:orientation="vertical">
 
-
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/maare"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/total2"
+        android:cursorVisible="false"
+        android:textColorHint="@color/color3"
+        android:background="@drawable/rounded_edittext"
+        android:drawableRight="@drawable/ic_search_black_24dp"
+        android:hint="@string/SearchLocal" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/local_recycler"
         android:layout_width="match_parent"

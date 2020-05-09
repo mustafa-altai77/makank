@@ -2,10 +2,10 @@ package com.example.makank.ui.activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.example.makank.Alert;
 import com.example.makank.GpsLocationTracker;
 import com.example.makank.LoadingDialog;
+import com.example.makank.data.model.Pivot;
 import com.example.makank.data.network.ApiClient;
 import com.example.makank.data.network.ApiInterface;
 import com.example.makank.data.model.Member;
@@ -35,6 +36,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.makank.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -55,6 +59,7 @@ public class ContactActivity extends AppCompatActivity {
     IntentIntegrator qrScan;
     TextView status, firstNo, secondTwo;
     Person person;
+    List<Pivot> pivots =new ArrayList<>();
     double locationLatitude;
     double locationLongitude;
 
@@ -62,11 +67,14 @@ public class ContactActivity extends AppCompatActivity {
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
+    Toolbar toolbar;
     @SuppressLint("ResourceAsColor")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        toolbar = findViewById(R.id.toolbar_id);
+        setSupportActionBar(toolbar);
         setContentView(R.layout.activity_contact);
         buttonScan = findViewById(R.id.qr_image);
         circleImageView = findViewById(R.id.image_status);
@@ -91,16 +99,15 @@ public class ContactActivity extends AppCompatActivity {
         secondTwo.setTypeface(typeface);
         check.setTypeface(typeface);
         receive.setTypeface(typeface);
-        alert = new Alert(this);
-        loadingDialog = new LoadingDialog(this);
-        Toast.makeText(this, "" + my_status, Toast.LENGTH_SHORT).show();
+            alert = new Alert(this);
+            loadingDialog = new LoadingDialog(this);
         if (my_status.equals("1")) {
             circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.red));
             status.setText("الحالة :مصاب ");
         } else if (my_status.equals("2")) {
             circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.yellowc));
             status.setText("الحالة : مخالط");
-        } else {
+        } else if (my_status.equals("3")){
             circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.greenc));
             status.setText("الحالة : سليم");
         }
@@ -197,13 +204,9 @@ public class ContactActivity extends AppCompatActivity {
 
     @SuppressLint("ResourceAsColor")
     private void addSee(String result, String my_id, double locationLatitude, double locationLongitude) {
-       /*final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(ContactActivity.this);
-        progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");*/
+
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<Member> call = apiService.addSeen(result, my_id, locationLatitude, locationLongitude);
-       // progressDoalog.show();
         loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<Member>() {
             @SuppressLint("ResourceAsColor")
@@ -217,7 +220,6 @@ public class ContactActivity extends AppCompatActivity {
 
                     String statu = response.body().getStatus();
                     String name=response.body().getFirst_name()+" "+response.body().getSecond_name()+ " "+response.body().getLast_name();
-                    Toast.makeText(ContactActivity.this, ""+statu, Toast.LENGTH_SHORT).show();
 
                    if (statu.equals("3")) {
                        CaseName="سليم";
@@ -230,13 +232,12 @@ public class ContactActivity extends AppCompatActivity {
                    }
                   //  alert.showAlertSuccess(name+"\n"+""+CaseName);
                    alert.showAlertNormal("تم التواصل بنجاح",name+"\n"+" - "+CaseName,"موافق");
+
                 }
 
             }
-
             @Override
             public void onFailure(Call<Member> call, Throwable t) {
-               // progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
                 //Toast.makeText(ContactActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
                 alert.showAlertError("تــأكد من إتصالك بالإنترنت");

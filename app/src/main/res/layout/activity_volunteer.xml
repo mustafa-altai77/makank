@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical"
+    android:gravity="center"
+    android:weightSum="1"
     tools:context=".ui.activity.VolunteerActivity">
+    <include layout="@layout/custom_toolbar"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        android:weightSum="1">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/color"
-        android:gravity="center">
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:background="@drawable/mkank_name"
-            android:backgroundTint="@color/white" />
-    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -103,7 +100,6 @@
         android:layout_width="match_parent"
         android:layout_height="68dp"
         android:layout_gravity="right"
-        android:layout_marginTop="30dp"
         android:orientation="horizontal">
 
 
@@ -115,7 +111,7 @@
             android:background="@drawable/attach"
             android:backgroundTint="@color/total1"
             android:layout_marginLeft="50dp"
-            android:onClick="onClick" />
+            android:onClick="onClick"/>
         <com.github.barteksc.pdfviewer.PDFView
             android:id="@+id/pdfView"
             android:layout_width="wrap_content"
@@ -136,12 +132,12 @@
         android:gravity="right"
         android:orientation="horizontal"
         android:weightSum="2">
-
         <CheckBox
             android:id="@+id/txtAprove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
+            android:checked="false"
             android:text="اوافق على الشروط والاحكام :"
             android:textSize="15dp">
 
@@ -161,4 +157,5 @@
 
     </Button>
     </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

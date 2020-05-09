@@ -2,6 +2,7 @@ package com.example.makank.ui.activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -42,10 +43,13 @@ public class SendNotifActivity extends AppCompatActivity {
     LoadingDialog loadingDialog;
     Alert alert;
     TextView infoNot, LocationId;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        toolbar = findViewById(R.id.toolbar_id);
+        setSupportActionBar(toolbar);
         setContentView(R.layout.activity_bell);
         notifi = findViewById(R.id.disc_status);
         area = findViewById(R.id.area_Edit);

@@ -19,6 +19,7 @@
         android:padding="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="اسم المنطفة"
         android:textAppearance="?android:textAppearanceLarge"
         />

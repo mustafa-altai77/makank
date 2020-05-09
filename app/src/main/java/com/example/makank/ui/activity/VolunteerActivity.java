@@ -1,6 +1,7 @@
 package com.example.makank.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -18,9 +19,11 @@ import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.example.makank.Alert;
 import com.example.makank.LoadingDialog;
@@ -65,6 +68,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
     private Button ok;
     private String pdfFileName;
     private PDFView pdfView;
+    private CheckBox aprove;
     public static final int REQUEST_PERMISSION = 200;
     public ProgressDialog pDialog;
     public static final int FILE_PICKER_REQUEST_CODE = 1;
@@ -73,16 +77,19 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
-
-
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volunteer);
+        toolbar = findViewById(R.id.toolbar_id);
+        setSupportActionBar(toolbar);
+
         ivImage = findViewById(R.id.ivImage);
         tvFileName = findViewById(R.id.txt_message);
         pdfView = findViewById(R.id.pdfView);
         ok = findViewById(R.id.confirm);
+        aprove =findViewById(R.id.txtAprove);
         tvFileName.setOnClickListener(this);
         txtSTEP = findViewById(R.id.txtSteps);
         txtSTEP.setText("يسعدنا انضمامكم للحملة الوطنية لمكافحة فيروس \nكورونا (كوفيد-19) و رداً على التساؤلات بشأن كيفية \nالمشاركة في الجهود الحكومية والمساعدة في حملة مكافحة\nفيروس كورونا المنتشر في دولة السودان .\nبدأت الحملة الوطنية لمكافحة فيروس كورونا" +
@@ -115,7 +122,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
         final String f_name = idPref.getString(F_NAME, "f_name");
         final String s_name = idPref.getString(S_NAME, "s_name");
         final String l_name = idPref.getString(L_NAME, "l_name");
-        volunteerName.setText("مرحبا : " + f_name +" "+ s_name +" " +l_name);
+        volunteerName.setText("مرحبا :" + f_name + s_name + l_name);
         initDialog();
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
                 PackageManager.PERMISSION_GRANTED) {
@@ -134,7 +141,10 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
         if (v == ok) {
             SharedPreferences sharedPreference = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
             final String my_id = sharedPreference.getString(USER_ID, "id");
-            uploadImage(my_id);
+            if (aprove.isChecked()) {
+
+                uploadImage(my_id);
+            }else alert.showAlertError("يجب الموافقة على الشروط");
         }
 
     }
@@ -161,7 +171,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
                 Log.d("Path: ", path);
                 pdfPath = path;
                 // Toast.makeText(this, "Picked file: " + path, Toast.LENGTH_LONG).show();
-                alert.showAlertSuccess("تم","تم إرفاق الملف قم بالضغط على أوافق للإرسال","حسنا");
+                alert.showAlertSuccess("تم", "تم إرفاق الملف قم بالضغط على أوافق للإرسال", "حسنا");
                 tvFileName.setText(path);
             }
         }
@@ -229,7 +239,8 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
             alert.showAlertError("الرجاء إرفاق الملف");
             return;
         } else {
-            showpDialog();
+//            showpDialog();
+            loadingDialog.startLoadingDialog();
 
             // Map is used to multipart the file using okhttp3.RequestBody
             Map<String, RequestBody> map = new HashMap<>();
@@ -251,30 +262,35 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
                     RequestBody.create(MediaType.parse("text/plain"), pdfFileName);
 
             ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-            Call<Filresponse> call = apiService.upload(id,id, fullName, body);
+            Call<Filresponse> call = apiService.upload(id, id, body);
             call.enqueue(new Callback<Filresponse>() {
                 @Override
                 public void onResponse(Call<Filresponse> call, Response<Filresponse> response) {
                     if (response.isSuccessful()) {
+                        loadingDialog.dismissDialog();
                         if (response.body() != null) {
-                            hidepDialog();
+                           // hidepDialog();
                             alert.showAlertSuccess("تم إرسال السيرة الذاتية بنجاح");
                             Filresponse serverResponse = response.body();
                             //Toast.makeText(getApplicationContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
                     } else {
-                        hidepDialog();
-                        Log.e("error_req",call.toString());
-                        Log.e("error_res",response.toString());
-                        Toast.makeText(getApplicationContext(), "problem file", Toast.LENGTH_SHORT).show();
+                       // hidepDialog();
+                        loadingDialog.dismissDialog();
+
+                        Log.e("error_req", call.toString());
+                        Log.e("error_res", response.toString());
+                        alert.showAlertError("اسم الملف طويل للغاية");
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Filresponse> call, Throwable t) {
-                    hidepDialog();
+                   // hidepDialog();
                     Log.v("Response gotten is", t.getMessage());
+                    loadingDialog.dismissDialog();
+
                     // Toast.makeText(getApplicationContext(), "problem uploading file " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     alert.showAlertError("صيغة الملف غير صحيحة");
                 }
@@ -304,7 +320,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onPageChanged(int page, int pageCount) {
         pageNumber = page;
-        setTitle(String.format("%s %s / %s", pdfFileName, page + 1, pageCount));
+       // setTitle(String.format("%s  / %s", page + 1, pageCount));
     }
 
     @Override

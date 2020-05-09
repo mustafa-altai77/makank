@@ -1,6 +1,7 @@
 package com.example.makank.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,10 +44,13 @@ public class InstructionsActivity extends AppCompatActivity {
     Typeface typeface;
     TextView question;
     LoadingDialog loadingDialog;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
+        toolbar = findViewById(R.id.toolbar_id);
+        setSupportActionBar(toolbar);
         question=findViewById(R.id.quet);
         webView=findViewById(R.id.web_view_);
         webView.setWebViewClient(new WebViewClient());
@@ -61,13 +65,13 @@ public class InstructionsActivity extends AppCompatActivity {
     public void onBackPressed() {
         if(webView.canGoBack())
         {
-            loadingDialog.startLoadingDialog();
+          //  loadingDialog.startLoadingDialog();
             webView.goBack();
         }
         else
         {
             super.onBackPressed();
-            loadingDialog.dismissDialog();
+          //  loadingDialog.dismissDialog();
         }
         super.onBackPressed();
     }

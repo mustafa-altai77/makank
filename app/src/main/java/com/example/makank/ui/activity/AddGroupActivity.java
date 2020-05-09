@@ -47,7 +47,7 @@ public class AddGroupActivity extends AppCompatActivity {
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
-
+    Person personList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -160,10 +160,7 @@ public class AddGroupActivity extends AppCompatActivity {
     }
 
     private void getStatus(String result) {
-        /*final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(AddGroupActivity.this);
-        progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");*/
+
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<Person> call = apiService.getSaw(result);
         //   progressDoalog.show();
@@ -178,7 +175,14 @@ public class AddGroupActivity extends AppCompatActivity {
                     //   Toast.makeText(AddGroupActivity.this, "تمت الاضافة بنجاح", Toast.LENGTH_SHORT).show();
                     layout.setVisibility(View.VISIBLE);
                     if (response.code() == 200) {
-                        return;
+                       personList = response.body();
+                        final String f_name =personList.getFirst_name();
+                        final   String s_name =personList.getSecond_name();
+                        final  String l_name =personList.getLast_name();
+                        final int p_id =personList.getId();
+
+                        Pname.setText("" + f_name + " " + s_name + " " + l_name);
+                        personal_id.setText(Integer.toString(p_id));
                     }
                     //Intent intent = new Intent(RegisterActivity.this, DiseaseActivity.class);
                     //startActivity(intent);
@@ -215,6 +219,7 @@ public class AddGroupActivity extends AppCompatActivity {
                     loadingDialog.dismissDialog();
 
                     String id_person = String.valueOf(response.body().getId());
+
                   //  Toast.makeText(AddGroupActivity.this, "don", Toast.LENGTH_SHORT).show();
                     //alert.showAlertSuccess("تمت الإضافة");
                     alert.showAlertSuccess("تم ارسال الطلب");
@@ -228,9 +233,10 @@ public class AddGroupActivity extends AppCompatActivity {
             public void onFailure(Call<Member> call, Throwable t) {
              //   progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
+                alert.showAlertSuccess("تم ارسال الطلب");
 
                 //Toast.makeText(AddGroupActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
-                alert.showAlertError("الرجاء التأكد من إتصالك بالإنترنت");
+                //alert.showAlertError("الرجاء التأكد من إتصالك بالإنترنت");
 
             }
         });

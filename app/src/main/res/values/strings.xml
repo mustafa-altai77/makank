@@ -4,20 +4,19 @@
     <string name="send">ارسال</string>
     <string name="Open">Navbar</string>
     <string name="Close">Navbar</string>
-    <string name="scan">بحت</string>
-    <string name="save">حفظ</string>
+    <string name="scan">بــــحث</string>
+    <string name="save">حفــظ</string>
     <string name="value_required">value_required</string>
     <string name="share_using">share</string>
-    <string name="cancel">الغاء</string>
+    <string name="cancel">إلغـــاء</string>
     <string name="next">التالي</string>
     <string name="home_txt">الرئسية</string>
     <string name="news_txt">الاخبار</string>
     <string name="contact_txt">التواصل</string>
     <string name="statistic_txt">الاحصائيات</string>
-    <string name="profile_txt">الحساب</string>
-
+    <string name="profile_txt">الحسـاب</string>
     <string name="skip">SKIP</string>
-    <string name="back">رجوع</string>
+    <string name="back">رجـوع</string>
     <string name="start">GOT IT</string>
     <string name="slide_1_title">Daily Workout</string>
     <string name="slide_2_title">Meditation Techniques </string>
@@ -33,11 +32,14 @@
     <string name="qu4">هل تعاني من العطس ؟</string>
     <string name="qu5">هل تعاني صعوبة في التنفس ؟</string>
     <string name="qu7">هل تعاني من سيلان الانف ؟</string>
-
     <string name="qu8">هل تشعر بإجهاد عام ؟</string>
     <string name="qu9">هل تعاني من أوجاع وآلام ؟</string>
     <string name="qu10">هل يوجد لديك صداع ؟</string>
     <string name="qu11">هل تعاني من إلتهاب الحلق ؟</string>
     <string name="qu12">هل يوجد لديك إسهال ؟</string>
     <string name="ins" >الإرشــادات</string>
+
+    <string name="searchState" >إبحث عن ولايتك</string>
+    <string name="searchCity" >إبحث عن مدينتك</string>
+    <string name="SearchLocal" >إبحث عن منطقتك</string>
 </resources>

@@ -60,7 +60,8 @@ public interface ApiInterface {
 
     @POST("person")
     Call<Person> getUserRegi(@Body Person person);
-
+    @GET("person/{id}/diseases?data=true")
+    Call<List<Disease>> getMydisease(@Path("id") String id);
     @FormUrlEncoded
     @POST("person/{id}/diseases")
     Call<Disease> getDiseaseRegi(@Path("id") String id,
@@ -89,9 +90,9 @@ public interface ApiInterface {
                             @Field("status_description") String notifi);
     @Multipart
     @POST("person/{id}/volunteer")
-    Call<Filresponse> upload(@Path("id") String user_id
-                            ,@Part("person_id") String id,
-                             @Part("document") RequestBody fullName,
+    Call<Filresponse>upload(@Path("id") String user_id,
+                             @Part("person_id") String id,
+
                              @Part MultipartBody.Part file);
     @FormUrlEncoded
     @POST("person/{id}/grouprequest")

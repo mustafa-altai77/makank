@@ -1,6 +1,7 @@
 package com.example.makank.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,21 +41,26 @@ public class DiseaseActivity extends AppCompatActivity {
     private List<Disease> diseases;
     private DiseaseAdapter adapter;
     int d_id;
-    TextView textView;
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
+    Toolbar toolbar;
+    TextView disease_i, info_Insert;
     private androidx.appcompat.widget.AppCompatButton btnGetSelected;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disease);
+        toolbar = findViewById(R.id.toolbar_id);
+        setSupportActionBar(toolbar);
+        alert = new Alert(this);
+        loadingDialog = new LoadingDialog(this);
         this.btnGetSelected = findViewById(R.id.don_all);
-        textView=findViewById(R.id.disease_id);
         this.recyclerView = findViewById(R.id.disease_recycler);
 
 //        getSupportActionBar().setTitle("Multiple Selection");
-
+        disease_i = findViewById(R.id.disease_id);
+        info_Insert = findViewById(R.id.infoInsert);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         adapter = new DiseaseAdapter(this, diseases);
@@ -62,14 +68,13 @@ public class DiseaseActivity extends AppCompatActivity {
         diseases = new ArrayList<>();
         //createList();
 
+
         fetchWeatherDetails();
-        alert = new Alert(this);
-        loadingDialog = new LoadingDialog(this);
 
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         btnGetSelected.setTypeface(typeface);
-        textView.setTypeface(typeface);
-
+        disease_i.setTypeface(typeface);
+        info_Insert.setTypeface(typeface);
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,14 +96,7 @@ public class DiseaseActivity extends AppCompatActivity {
     }
 
     private void fetchWeatherDetails() {
-      //  final ProgressDialog progressDoalog;
-      /*  progressDoalog = new ProgressDialog(DiseaseActivity.this);
-        progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");
-//        progressDoalog.setTitle("ProgressDialog bar example");
-        progressDoalog.show();
-        progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);*/
-       // loadingDialog.startLoadingDialog();
+        loadingDialog.startLoadingDialog();
 
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<List<Disease>> call = apiService.getDisease();
@@ -107,7 +105,7 @@ public class DiseaseActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Disease>> call, Response<List<Disease>> response) {
                 // progressDoalog.dismiss();
-               // loadingDialog.dismissDialog();
+                loadingDialog.dismissDialog();
                 diseases = response.body();
                 adapter.setDiseases(diseases);
 
@@ -116,7 +114,7 @@ public class DiseaseActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Disease>> call, Throwable t) {
                 //progressDoalog.dismiss();
-                //loadingDialog.dismissDialog();
+               loadingDialog.dismissDialog();
                 Log.d("TAG", "Response = " + t.toString());
             }
         });
@@ -141,8 +139,7 @@ public class DiseaseActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
     private void showToast(ArrayList<Integer> des) {
-      //  Toast.makeText(this, des + "", Toast.LENGTH_SHORT).show();
-        final ProgressDialog progressDoalog;
+        //  Toast.makeText(this, des + "", Toast.LENGTH_SHORT).show();
       /*  progressDoalog = new ProgressDialog(DiseaseActivity.this);
         progressDoalog.setMax(100);
         progressDoalog.setMessage("loading....");
@@ -160,7 +157,7 @@ public class DiseaseActivity extends AppCompatActivity {
                     loadingDialog.dismissDialog();
 
                     // Toast.makeText(DiseaseActivity.this, "done", Toast.LENGTH_SHORT).show();
-                    alert.showAlertSuccess("");
+                    alert.showAlertSuccess("تم اتمام العملية بنجاح");
                     Intent intent = new Intent(DiseaseActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
@@ -171,7 +168,7 @@ public class DiseaseActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Disease> call, Throwable t) {
                 // progressDoalog.dismiss();
-                loadingDialog.dismissDialog();
+             //   loadingDialog.dismissDialog();
 
                 // Toast.makeText(DiseaseActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
                 alert.showAlertError("تــأكد من إتصالك بالإنترنت");
