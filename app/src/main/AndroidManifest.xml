@@ -79,7 +79,7 @@
         </activity>
         <activity
             android:name=".ui.activity.PlaceActivity"
-            android:label="location" />
+            android:label="المنطقة" />
         <activity
             android:name=".ui.activity.RegisterActivity"
             android:theme="@style/AppThemeNoActionBar"

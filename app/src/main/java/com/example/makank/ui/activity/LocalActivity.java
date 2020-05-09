@@ -19,6 +19,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,8 +57,21 @@ public class LocalActivity extends AppCompatActivity {
         this.recyclerView = findViewById(R.id.local_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        View.OnClickListener listener = view -> {
 
-        adapter = new LocalAdapter(this, locals);
+            TextView txtLocalID =view.findViewById(R.id.txt_local_id);
+            TextView txtLocalName =view.findViewById(R.id.txt_local_name);
+            String LocalID = txtLocalID.getText().toString();
+            String LocalName = txtLocalName.getText().toString();
+
+            Intent i = new Intent();
+            i.putExtra("local_id",LocalID);
+            i.putExtra("local_name",LocalName);
+
+            setResult(RESULT_OK,i);
+            finish();
+        };
+        adapter = new LocalAdapter(this,locals , listener);
         recyclerView.setAdapter(adapter);
         locals = new ArrayList<>();
         editText = findViewById(R.id.maare);
