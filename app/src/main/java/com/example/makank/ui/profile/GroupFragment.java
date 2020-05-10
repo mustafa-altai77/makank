@@ -5,6 +5,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -22,6 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.makank.Alert;
 import com.example.makank.LoadingDialog;
 import com.example.makank.R;
 import com.example.makank.data.network.ApiClient;
@@ -51,10 +53,13 @@ public class GroupFragment extends Fragment {
     private RecyclerView recyclerView;
     private GroupAdapter groupAdapter;
     private ArrayList<Member> members;
+    Alert alert;
+    Typeface font;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,6 +74,8 @@ public class GroupFragment extends Fragment {
         imageView = view.findViewById(R.id.add_member);
         notfound = view.findViewById(R.id.not_fond);
         notfound.setVisibility(View.GONE);
+        font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Hacen-Algeria.ttf");
+        notfound.setTypeface(font);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,13 +85,13 @@ public class GroupFragment extends Fragment {
             }
         });
 
-        recyclerView =  view.findViewById(R.id.member_recycler);
+        recyclerView = view.findViewById(R.id.member_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         groupAdapter = new GroupAdapter();
 
         recyclerView.setAdapter(groupAdapter);
         getGroupMemeber();
-       // loadingDialog.startLoadingDialog();
+        // loadingDialog.startLoadingDialog();
         return view;
     }
 
@@ -93,7 +100,8 @@ public class GroupFragment extends Fragment {
         super.onStart();
         members = new ArrayList<>();
     }
-    private void getGroupMemeber(){
+
+    private void getGroupMemeber() {
 
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String my_id = sharedPreferences.getString(USER_ID, "id");
@@ -105,46 +113,47 @@ public class GroupFragment extends Fragment {
         try {
 
 
-        call.enqueue(new Callback<List<Member>>() {
-            @Override
-            public void onResponse(Call<List<Member>> call, Response<List<Member>> response) {
-                imageView.setVisibility(View.VISIBLE);
+            call.enqueue(new Callback<List<Member>>() {
+                @Override
+                public void onResponse(Call<List<Member>> call, Response<List<Member>> response) {
+                    imageView.setVisibility(View.VISIBLE);
 
-                if (response.isSuccessful()) {
-                    //loadingDialog.dismissDialog();
-                    members = new ArrayList<>();
+                    if (response.isSuccessful()) {
+                        //loadingDialog.dismissDialog();
+                        members = new ArrayList<>();
 
-                    if (response.code()==200){
-                        members = (ArrayList<Member>) response.body();
-                        if (!members.isEmpty()) {
+                        if (response.code() == 200) {
+                            members = (ArrayList<Member>) response.body();
+                            if (!members.isEmpty()) {
 
-                            for (int i = 0; i < members.size(); i++) {
-                                String g = members.get(i).getGroupID();
-                                member_name.add(members.get(i).getFirst_name());
-                                if (!my_id.equals(g)) {
-                                    imageView.setVisibility(View.GONE);
+                                for (int i = 0; i < members.size(); i++) {
+                                    String g = members.get(i).getGroupID();
+                                    member_name.add(members.get(i).getFirst_name());
+                                    if (!my_id.equals(g)) {
+                                        imageView.setVisibility(View.GONE);
+                                    }
                                 }
-                            }
-                            groupAdapter.setMovieList(getContext(),members);
-                            }
-                        else
-                            notfound.setVisibility(View.VISIBLE);
+                                groupAdapter.setMovieList(getContext(), members);
+                            } else
+                                notfound.setVisibility(View.VISIBLE);
+                        }
                     }
+
                 }
 
-            }
-
-            @Override
-            public void onFailure(Call<List<Member>> call, Throwable t) {
-                //loadingDialog.dismissDialog();
-
-                Toast.makeText(getContext(), "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<List<Member>> call, Throwable t) {
+                    //loadingDialog.dismissDialog();
+                    alert = new Alert(getActivity());
+                    alert.showAlertError("تــأكد من إتصالك بالأنترنت");
+                    //Toast.makeText(getContext(), "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.search_item, menu);

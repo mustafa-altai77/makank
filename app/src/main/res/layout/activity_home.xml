@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/home_a"
     tools:context=".ui.activity.HomeActivity">
+    <include layout="@layout/custom_toolbar"/>
     <androidx.drawerlayout.widget.DrawerLayout
+        android:layout_marginTop="56dp"
         android:id="@+id/id_drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,14 +17,17 @@
             android:id="@+id/frame_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/card_button"
             android:layout_marginBottom="60dp"
             tools:ignore="UnknownId">
         </FrameLayout>
         <com.google.android.material.navigation.NavigationView
+            app:headerLayout="@layout/header_menu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/nav_view2"
             android:layout_gravity="start"
+            app:itemIconTint="@color/color"
             app:menu="@menu/navigation_menu"
            >
         </com.google.android.material.navigation.NavigationView>

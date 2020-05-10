@@ -39,9 +39,21 @@
     <string name="qu10">هل يوجد لديك صداع ؟</string>
     <string name="qu11">هل تعاني من إلتهاب الحلق ؟</string>
     <string name="qu12">هل يوجد لديك إسهال ؟</string>
-    <string name="ins" >الإرشــادات</string>
+    <string name="ins">الإرشــادات</string>
 
-    <string name="searchState" >إبحث عن ولايتك</string>
-    <string name="searchCity" >إبحث عن مدينتك</string>
-    <string name="SearchLocal" >إبحث عن منطقتك</string>
+    <string name="searchState">إبحث عن ولايتك</string>
+    <string name="searchCity">إبحث عن مدينتك</string>
+    <string name="SearchLocal">إبحث عن منطقتك</string>
+
+
+    <integer name="swing_anim_time">750</integer>
+    <string name="phoneNumber">+249903940244‬</string>
+    <string name="url_email">info@primarykeyds.com</string>
+    <string name="url_site">www.primarykeysd.com‬</string>
+    <string name="version_number">1.0‬</string>
+    <string name="policy">(c) 2020 primarykey. All rights reserved</string>
+    <string name="phoneString">الهاتف</string>
+    <string name="email">الايميل‬</string>
+    <string name="site">الموقع الاكتروني</string>
+    <string name="version">نسخة التطبيق </string>
 </resources>

@@ -7,8 +7,8 @@
     android:layout_marginTop="0dp"
     android:weightSum="1"
     android:orientation="vertical"
-
     tools:context=".ui.activity.StateActivity">
+
     <EditText
         android:layout_marginTop="10dp"
         android:id="@+id/maare"
@@ -26,6 +26,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/white"
         android:layout_marginTop="0dp">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -34,5 +36,6 @@
             android:layout_height="match_parent"
             android:layout_marginTop="0dp"
             android:padding="20dp" />
+
     </LinearLayout>
-</LinearLayout>
+    </LinearLayout>

@@ -3,6 +3,7 @@ package com.example.makank.ui.profile;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -40,6 +41,7 @@ public class RequestFragment extends Fragment {
     private RecyclerView recyclerView;
     private RequestAdapter requestAdapter;
     LoadingDialog loadingDialog;
+    Typeface font;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,8 @@ public class RequestFragment extends Fragment {
         recyclerView.setAdapter(requestAdapter);
         notfound.setVisibility(View.GONE);
        // loadingDialog.startLoadingDialog();
-
+         font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Hacen-Algeria.ttf");
+         notfound.setTypeface(font);
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String id = sharedPreferences.getString(USER_ID, "id");
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);

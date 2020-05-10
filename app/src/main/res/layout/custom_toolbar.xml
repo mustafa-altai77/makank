@@ -10,9 +10,8 @@
     android:background="@color/color">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="40dp"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
             android:layout_gravity="center"
-            android:background="@drawable/mkank_name"
-            android:backgroundTint="@color/white" />
+            android:background="@drawable/mkank_white" />
 </androidx.appcompat.widget.Toolbar>

@@ -10,6 +10,7 @@
         android:xlargeScreens="true" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -27,47 +28,52 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.InstructionsActivity"
-            android:theme="@style/AppThemeNoActionBar"
+        <activity
+            android:name=".ui.activity.AboutMakanak"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".ui.activity.InstructionsActivity"
             android:label=""
-            ></activity>
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.news.NewsDetailsActivity"
-            android:theme="@style/AppThemeNoActionBar"
-            android:label=""/>
+            android:label=""
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.activity.DiseaseActivity"
-            android:theme="@style/AppThemeNoActionBar"
-            android:label=""/>
+            android:label=""
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.activity.AddGroupActivity"
-            android:theme="@style/AppThemeNoActionBar"
-            android:label=""/>
+            android:label=""
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.activity.QrCodeActivity"
-            android:theme="@style/AppThemeNoActionBar"
-            android:label=""/>
+            android:label=""
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.activity.SendNotifActivity"
-            android:theme="@style/AppThemeNoActionBar"
-            android:label=""/>
+            android:label=""
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.activity.VolunteerActivity"
-            android:theme="@style/AppThemeNoActionBar"
-            android:label=""/>
+            android:label=""
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.activity.ContactActivity"
-            android:theme="@style/AppThemeNoActionBar"
-            android:label=""/>
+            android:label=""
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.activity.Steper"
-            android:theme="@style/AppThemeNoActionBar"
-            android:label=""/>
-        <activity android:name=".ui.activity.HomeActivity" />
+            android:label=""
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".ui.activity.HomeActivity"
+            android:label=""
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.Splash"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            >
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -76,27 +82,26 @@
         </activity>
         <activity
             android:name=".ui.activity.PlaceActivity"
-            android:label="location" />
+            android:label="" />
         <activity
             android:name=".ui.activity.RegisterActivity"
-            android:theme="@style/AppThemeNoActionBar"
-            android:label=""/>
+            android:label=""
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.activity.StateActivity"
             android:label=""
-            android:theme="@style/AppThemeNoActionBar"/>
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.activity.LocalActivity"
             android:label=""
-            android:theme="@style/AppThemeNoActionBar"/>
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.activity.CityActivity"
             android:label=""
-            android:theme="@style/AppThemeNoActionBar"/>
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
-            android:name=".ui.activity.TestActivity"
-            android:label=""
-            />
+            android:name=".ui.Test.TestActivity"
+            android:theme="@style/AppThemeNoActionBar" />
     </application>
 
 </manifest>

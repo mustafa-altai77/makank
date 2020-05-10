@@ -10,6 +10,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -74,5 +75,22 @@ public class InstructionsActivity extends AppCompatActivity {
           //  loadingDialog.dismissDialog();
         }
         super.onBackPressed();
+    }
+    public class WebViewClient extends android.webkit.WebViewClient {
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            loadingDialog.startLoadingDialog();
+            super.onPageStarted(view, url, favicon);
+        }
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+           loadingDialog.dismissDialog();
+        }
     }
 }

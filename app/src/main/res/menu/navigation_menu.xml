@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/share_nav"
+        android:icon="@drawable/ic_share_black_24dp"
+        android:title="مشاركة التطبيق"></item>
+    <item
+        android:id="@+id/face_book"
+        android:icon="@drawable/facebook"
+        android:title="فيسبوك"></item>
+    <item
+        android:id="@+id/rol_nav"
+        android:icon="@drawable/ic_insert_comment_black_24dp"
+        android:title="الشروط والاحكام"></item>
 
-    <item android:title="مشاركة التطبيق" android:icon="@drawable/ic_share_black_24dp" android:id="@+id/share_nav"> </item>
+    <item
+        android:id="@+id/about_nav"
+        android:icon="@drawable/ic_info_outline_black_24dp"
+        android:title="عن التطبيق"></item>
 
-    <item android:title="الشروط والاحكام" android:icon="@drawable/ic_insert_comment_black_24dp" android:id="@+id/rol_nav"> </item>
 
-    <item android:title="عن التطبيق" android:icon="@drawable/ic_info_outline_black_24dp" android:id="@+id/about_nav"> </item>
+    <gradient
+        android:angle="270"
+        android:endColor="@color/color"
+        android:startColor="@color/color"
+        android:type="linear" />
 
 </menu>

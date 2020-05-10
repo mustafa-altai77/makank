@@ -4,9 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.contact.ContactFragment">
+    <LinearLayout
+        android:id="@+id/layoutSeen"
+        android:layout_width="300dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#A2A1A1"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="الأشخاص الذين تم التواصل معهم : 0"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:id="@+id/mermberInC"
+            />
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_contact"
         android:layout_width="match_parent"
+        android:layout_marginTop="52dp"
         android:layout_height="match_parent">
     </androidx.recyclerview.widget.RecyclerView>
 </FrameLayout>

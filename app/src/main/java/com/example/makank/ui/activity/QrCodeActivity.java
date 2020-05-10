@@ -11,12 +11,14 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Display;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,8 +52,6 @@ public class QrCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_generator);
         qrImage = findViewById(R.id.qr_image);
-
-
 //        edtValue = findViewById(R.id.edt_value);
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String id = sharedPreferences.getString(USER_ID, "id");
@@ -74,7 +74,6 @@ public class QrCodeActivity extends AppCompatActivity {
             int height = point.y;
             int smallerDimension = width < height ? width : height;
             smallerDimension = smallerDimension * 3 / 4;
-
             qrgEncoder = new QRGEncoder(
                     inputValue, null,
                     QRGContents.Type.TEXT,

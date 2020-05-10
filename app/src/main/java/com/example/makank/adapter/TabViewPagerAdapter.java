@@ -1,7 +1,14 @@
 package com.example.makank.adapter;
+
 import android.app.Activity;
 import android.graphics.Typeface;
+import android.os.Build;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.TypefaceSpan;
+import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -16,7 +23,6 @@ import java.util.List;
 public class TabViewPagerAdapter extends FragmentPagerAdapter {
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
-
     public TabViewPagerAdapter(FragmentManager manager) {
         super(manager);
     }
@@ -24,6 +30,8 @@ public class TabViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         return mFragmentList.get(position);
+
+
     }
 
     @Override
@@ -40,4 +48,6 @@ public class TabViewPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         return mFragmentTitleList.get(position);
     }
+
 }
+

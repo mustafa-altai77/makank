@@ -1,5 +1,10 @@
 package com.example.makank.data.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 public class Member {
     String id;
     String my_id;
@@ -7,8 +12,9 @@ public class Member {
     String first_name;
     String second_name;
     String last_name;
-    String updated_at;
-
+    @SerializedName("pivot")
+    @Expose
+    private Pivot pivots;
     private String groupID;
     public Member(String id, String my_id) {
         this.id = id;
@@ -47,6 +53,16 @@ public class Member {
         return first_name;
     }
 
+
+
+    public Pivot getPivots() {
+        return pivots;
+    }
+
+    public void setPivots(Pivot pivots) {
+        this.pivots = pivots;
+    }
+
     public void setFirst_name(String first_name) {
         this.first_name = first_name;
     }
@@ -76,7 +92,4 @@ public class Member {
         this.groupID = groupID;
     }
 
-    public String getUpdated_at() {
-        return updated_at;
-    }
 }

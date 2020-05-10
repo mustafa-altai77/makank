@@ -75,6 +75,7 @@ public class PersonalFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_personal, container, false);
+
         listView = view.findViewById(R.id.disease_list);
         F_name = view.findViewById(R.id.f_na);
         gen = view.findViewById(R.id.gender_pref);
@@ -181,9 +182,6 @@ public class PersonalFragment extends Fragment {
                 @Override
                 public void onFailure(Call<List<Disease>>call, Throwable t) {
                     loadingDialog.dismissDialog();
-
-                    Toast.makeText(getContext(), "" + t, Toast.LENGTH_SHORT).show();
-
                 }
             });
            } catch (Exception e) {

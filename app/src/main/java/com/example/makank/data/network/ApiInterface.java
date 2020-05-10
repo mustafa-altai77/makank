@@ -90,10 +90,10 @@ public interface ApiInterface {
                             @Field("status_description") String notifi);
     @Multipart
     @POST("person/{id}/volunteer")
-    Call<Filresponse> upload(@Path("id") String user_id,
-                             @Part("person_id") String id,
-                             @Part("document") RequestBody fullName,
-                             @Part MultipartBody.Part file);
+    Call<Filresponse>upload(@Path("id") String user_id,
+                            @Part("person_id") String id,
+
+                            @Part MultipartBody.Part file);
     @FormUrlEncoded
     @POST("person/{id}/grouprequest")
     Call<Request> getRequest(@Path("id") String id,

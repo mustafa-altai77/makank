@@ -12,6 +12,8 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -63,6 +65,7 @@ public class ContactActivity extends AppCompatActivity {
     LoadingDialog loadingDialog;
     Alert alert;
     Toolbar toolbar;
+
     @SuppressLint("ResourceAsColor")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -83,9 +86,7 @@ public class ContactActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String my_id = sharedPreferences.getString(USER_ID, "id");
         final String my_status = sharedPreferences.getString(STATUS, "status");
-
-
-
+        check.setVisibility(View.INVISIBLE);
         GpsLocationTracker mGpsLocationTracker = new GpsLocationTracker(ContactActivity.this);
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         personalID.setTypeface(typeface);
@@ -94,15 +95,15 @@ public class ContactActivity extends AppCompatActivity {
         secondTwo.setTypeface(typeface);
         check.setTypeface(typeface);
         receive.setTypeface(typeface);
-            alert = new Alert(this);
-            loadingDialog = new LoadingDialog(this);
+        alert = new Alert(this);
+        loadingDialog = new LoadingDialog(this);
         if (my_status.equals("1")) {
             circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.red));
             status.setText("الحالة :مصاب ");
         } else if (my_status.equals("2")) {
             circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.yellowc));
             status.setText("الحالة : مخالط");
-        } else if (my_status.equals("3")){
+        } else if (my_status.equals("3")) {
             circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.greenc));
             status.setText("الحالة : سليم");
         }
@@ -111,7 +112,7 @@ public class ContactActivity extends AppCompatActivity {
             locationLongitude = mGpsLocationTracker.getLongitude();
             Log.i(TAG, String.format("latitude: %s", locationLatitude));
             Log.i(TAG, String.format("longitude: %s", locationLongitude));
-         //   Toast.makeText(this, locationLatitude + "" + locationLongitude + "", Toast.LENGTH_SHORT).show();
+            //   Toast.makeText(this, locationLatitude + "" + locationLongitude + "", Toast.LENGTH_SHORT).show();
         } else {
             mGpsLocationTracker.showSettingsAlert();
         }
@@ -120,11 +121,28 @@ public class ContactActivity extends AppCompatActivity {
             locationLongitude = mGpsLocationTracker.getLongitude();
             Log.i(TAG, String.format("latitude: %s", locationLatitude));
             Log.i(TAG, String.format("longitude: %s", locationLongitude));
-         //   Toast.makeText(this, locationLatitude + "" + locationLongitude + "", Toast.LENGTH_SHORT).show();
+            //   Toast.makeText(this, locationLatitude + "" + locationLongitude + "", Toast.LENGTH_SHORT).show();
         } else {
             mGpsLocationTracker.showSettingsAlert();
         }
 
+        personalID.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                check.setVisibility(View.INVISIBLE);
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                check.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                check.setVisibility(View.VISIBLE);
+            }
+        });
         //intializing scan object
         qrScan = new IntentIntegrator(this);
 
@@ -133,6 +151,7 @@ public class ContactActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 qrScan.initiateScan();
+                check.setVisibility(View.VISIBLE);
 
             }
         });
@@ -209,28 +228,29 @@ public class ContactActivity extends AppCompatActivity {
             public void onResponse(Call<Member> call, Response<Member> response) {
                 String CaseName = null;
                 if (response.isSuccessful()) {
-                  //  progressDoalog.dismiss();
+                    //  progressDoalog.dismiss();
                     loadingDialog.dismissDialog();
                     //Toast.makeText(ContactActivity.this, "done", Toast.LENGTH_SHORT).show();
 
                     String statu = response.body().getStatus();
-                    String name=response.body().getFirst_name()+" "+response.body().getSecond_name()+ " "+response.body().getLast_name();
+                    String name = response.body().getFirst_name() + " " + response.body().getSecond_name() + " " + response.body().getLast_name();
 
-                   if (statu.equals("3")) {
-                       CaseName="سليم";
+                    if (statu.equals("3")) {
+                        CaseName = "سليم";
                     } else if (statu.equals("2")) {
-                       CaseName="مخالط";
+                        CaseName = "مخالط";
 
-                   } else if (statu.equals("1")) {
-                       CaseName="مصاب";
+                    } else if (statu.equals("1")) {
+                        CaseName = "مصاب";
 
-                   }
-                  //  alert.showAlertSuccess(name+"\n"+""+CaseName);
-                   alert.showAlertNormal("تم التواصل بنجاح",name+"\n"+" - "+CaseName,"موافق");
+                    }
+                    //  alert.showAlertSuccess(name+"\n"+""+CaseName);
+                    alert.showAlertNormal("تم التواصل بنجاح", name + "\n" + " - " + CaseName, "موافق");
 
                 }
 
             }
+
             @Override
             public void onFailure(Call<Member> call, Throwable t) {
                 loadingDialog.dismissDialog();

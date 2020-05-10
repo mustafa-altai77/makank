@@ -1,5 +1,6 @@
 package com.example.makank.ui.home;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -19,6 +20,7 @@ public class GridFragment extends Fragment {
     private  List<Home> grid_list = new ArrayList<>();
     private RecyclerView recyclerView;
     private GridAdapter Gadapter;
+    Typeface typeface;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -44,6 +46,7 @@ public class GridFragment extends Fragment {
         recyclerView.setAdapter(Gadapter);
 
         return v;
+
     }
 
 

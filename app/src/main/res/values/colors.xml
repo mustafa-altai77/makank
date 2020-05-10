@@ -17,6 +17,7 @@
     <color name="recover1">#54a13e</color>
     <color name="recover2">#185a06</color>
 
-    <color name="total1">#8e8e8e</color>
+    <color name="total1">#C9C9C9</color>
+    <color name="gray">#C9C9C9</color>
     <color name="total2">#5a5a5a</color>
 </resources>

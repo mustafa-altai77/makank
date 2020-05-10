@@ -1,27 +1,32 @@
 package com.example.makank.ui.activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.style.TypefaceSpan;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.makank.R;
-import com.example.makank.SharedPref;
 import com.example.makank.ui.contact.ContactFragment;
+import com.example.makank.ui.home.CustomTypefaceSpan;
 import com.example.makank.ui.home.GridFragment;
 import com.example.makank.ui.news.NewsFragment;
 import com.example.makank.ui.profile.ProfileFragment;
@@ -35,43 +40,84 @@ public class HomeActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     private ActionBar toolbar;
     Typeface typeface;
+    Toolbar toolbar1;
+    TextView name, state;
+
+
+    @SuppressLint("WrongViewCast")
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         drawerLayout = findViewById(R.id.id_drawer);
-        drawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.Open,R.string.Close);
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
         drawerLayout.getLayoutDirection();
         bottomNavigationView = findViewById(R.id.nav_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        toolbar = getSupportActionBar();
+        //toolbar = getSupportActionBar();
+        toolbar1 = findViewById(R.id.toolbar_id);
+        setSupportActionBar(toolbar1);
 
-        //typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
+        // typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         loadFragment(new GridFragment());
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView = findViewById(R.id.nav_view2);
+        Menu m = navigationView.getMenu();
+        for (int i = 0; i < m.size(); i++) {
+            MenuItem mi = m.getItem(i);
 
+            //for aapplying a font to subMenu ...
+            SubMenu subMenu = mi.getSubMenu();
+            if (subMenu != null && subMenu.size() > 0) {
+                for (int j = 0; j < subMenu.size(); j++) {
+                    MenuItem subMenuItem = subMenu.getItem(j);
+                    applyFontToMenuItem(subMenuItem);
+                }
+            }
+
+            //the method we have create in activity
+            applyFontToMenuItem(mi);
+        }
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
-                if(id==R.id.share_nav){
+                if (id == R.id.share_nav) {
                     Toast.makeText(getApplicationContext(), "Share", Toast.LENGTH_SHORT).show();
                 }
-                if(id==R.id.about_nav){
-                    Toast.makeText(getApplicationContext(), "About", Toast.LENGTH_SHORT).show();
+                if (id == R.id.about_nav) {
+                   /* Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Hacen-Algeria.ttf");
+                    SpannableString efr = new SpannableString("Toast font changed!");
+                    efr.setSpan(new TypefaceSpan(font),0,efr.length(),Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    Toast.makeText(getApplicationContext(), efr, Toast.LENGTH_SHORT).show();*/
+                    //  Toast.makeText(getApplicationContext(), "About", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), AboutMakanak.class);
+                    startActivity(intent);
                 }
-                if(id==R.id.rol_nav){
-                    Toast.makeText(getApplicationContext(), "Role", Toast.LENGTH_SHORT).show();
+                if (id == R.id.rol_nav) {
+                    String uri = "http://www.primaryKeysd.com/covid/term.html";
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    startActivity(intent);
                 }
+                if (id == R.id.face_book) {
+                    String uri = "https://www.facebook.com/primarykeysd";
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    startActivity(intent);
+                }
+
                 return true;
             }
+
         });
 
+
     }
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -108,15 +154,24 @@ public class HomeActivity extends AppCompatActivity {
             return false;
         }
     };
+
     private void loadFragment(Fragment fragment) {
         // load fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_home,fragment);
+        transaction.replace(R.id.frame_home, fragment);
         transaction.commit();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return drawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
+    }
+
+    public void applyFontToMenuItem(MenuItem mi) {
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Hacen-Algeria.ttf");
+        SpannableString mNewTitle = new SpannableString(mi.getTitle());
+        mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        mi.setTitle(mNewTitle);
     }
 
 }
