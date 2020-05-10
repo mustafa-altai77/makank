@@ -101,7 +101,8 @@
             android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.Test.TestActivity"
-            android:theme="@style/AppThemeNoActionBar" />
+            android:theme="@style/AppThemeNoActionBar"
+            android:label=""/>
     </application>
 
 </manifest>

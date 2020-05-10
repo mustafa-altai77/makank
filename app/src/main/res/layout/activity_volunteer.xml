@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:layoutDirection="rtl"
     android:gravity="center"
     android:weightSum="1"
     tools:context=".ui.activity.VolunteerActivity">
@@ -94,6 +95,7 @@
                     android:text=""
                     android:textSize="18sp"
                     android:layout_margin="10dp"
+                    android:padding="15dp"
                     android:textColor="#645C5C"/>
             </LinearLayout>
             <LinearLayout

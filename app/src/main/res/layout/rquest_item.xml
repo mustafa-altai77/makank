@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layoutDirection="rtl"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -58,9 +59,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/sender_name"
                     android:layout_alignParentRight="true"
-
                     android:layout_marginTop="4dp"
-                    android:layout_marginRight="60dp"
+                    android:layout_marginRight="180dp"
                     android:text="02587140"
                     android:textColor="@color/cardview_dark_background" />
 
@@ -85,20 +85,6 @@
                     android:paddingRight="10dp">
 
                     <Button
-                        android:id="@+id/reject_btn"
-                        android:layout_width="70dp"
-                        android:layout_height="35dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/graybtn"
-                        android:fontFamily="monospace"
-                        android:onClick="whatCase"
-                        android:text="رفض"
-                        android:textColor="#ffffff"
-                        android:textStyle="bold"
-
-                        />
-
-                    <Button
                         android:id="@+id/conf_btn"
                         android:layout_width="70dp"
                         android:layout_height="35dp"
@@ -110,6 +96,18 @@
                         android:text="قبول"
                         android:textColor="#ffffff"
                         android:textStyle="bold" />
+                    <Button
+                        android:id="@+id/reject_btn"
+                        android:layout_width="70dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/graybtn"
+                        android:fontFamily="monospace"
+                        android:onClick="whatCase"
+                        android:text="رفض"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold"
+                        />
 
                 </LinearLayout>
             </RelativeLayout>

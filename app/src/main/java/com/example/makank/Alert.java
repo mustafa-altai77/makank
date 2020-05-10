@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.makank.ui.activity.ContactActivity;
 import com.example.makank.ui.activity.HomeActivity;
+import com.example.makank.ui.activity.SendNotifActivity;
 import com.example.makank.ui.activity.VolunteerActivity;
 import com.example.makank.ui.contact.ContactFragment;
 import com.example.makank.ui.news.NewsFragment;
@@ -93,5 +94,23 @@ public class Alert {
                     }
                 })
                 .show();
+    }
+    public void showAlert(String title, String message, String btnText) {
+
+        new SweetAlertDialog(activity, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText(title)
+                .setContentText(message)
+                .setConfirmText(btnText)
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+                       Intent intent=new Intent(activity, SendNotifActivity.class);
+                         activity.startActivity(intent);
+                        activity.finish();
+                    }
+                })
+                .show();
+
     }
 }

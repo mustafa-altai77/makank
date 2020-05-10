@@ -1,46 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
     tools:context=".ui.Test.TestActivity">
+    <include layout="@layout/custom_toolbar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="vertical"
+        android:background="@color/total2"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/check_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toStartOf="@+id/image_status"
+            android:text="فحص فيروس كورونا"
+           />
+        <TextView
+            android:id="@+id/check_id1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingMultiplier="2"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/image_status"
+            android:text="تأكد مما إذا كان لديك أعراض لفيروس كورونا أو مجرد نزلة برر"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#B9A636"
+        android:layout_height="3dp">
+    </LinearLayout>
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager"
+    <TextView
+        android:id="@+id/final_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="05sp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="@color/color"
+        android:textStyle="bold"
+        android:text="لقد قاربنا على الانتهاء"/>
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingMultiplier="1.5"
+        android:padding="10dp"
+        android:gravity="center"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+        <RadioGroup
+            android:id="@+id/radioGroup1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <LinearLayout
-            android:id="@+id/layoutDots"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dots_height"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/dots_margin_bottom"
-            android:gravity="center"
-            android:orientation="horizontal">
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha=".5"
-            android:layout_above="@id/layoutDots"
-            android:background="@color/colorAccent" />
-        <Button
-            android:id="@+id/btn_next"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:background="@null"
-            android:text="@string/next"
-            android:textColor="@color/colorAccent" />
-        <Button
-            android:id="@+id/btn_skip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:background="@null"
-            android:text="@string/skip"
-            android:textColor="@color/colorAccent" />
-    </RelativeLayout>
+            android:layout_weight="0.04"
+            android:padding="1dp">
+
+            <RadioButton
+                android:id="@+id/radio0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:textSize="18sp"
+                android:onClick="onRadioButtonClick"
+                android:textColor="@color/total2"
+                android:theme="@style/RadioButtonStyle"
+                android:text="RadioButton" />
+
+            <RadioButton
+                android:id="@+id/radio1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:textSize="18sp"
+                android:textColor="@color/total2"
+                android:onClick="onRadioButtonClick"
+                android:theme="@style/RadioButtonStyle"
+                android:text="RadioButton" />
+
+            <RadioButton
+                android:id="@+id/radio2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClick"
+                android:padding="20dp"
+                android:textColor="@color/total2"
+                android:textSize="18sp"
+                android:theme="@style/RadioButtonStyle"
+                android:text="RadioButton" />
+
+            <RadioButton
+                android:id="@+id/radio3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClick"
+                android:padding="20dp"
+                android:textSize="18sp"
+                android:textColor="@color/total2"
+                android:theme="@style/RadioButtonStyle"
+                android:text="RadioButton" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/redbtn"
+        android:text="@string/next_step"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/count_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1sp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Large Text"/>
+</LinearLayout>

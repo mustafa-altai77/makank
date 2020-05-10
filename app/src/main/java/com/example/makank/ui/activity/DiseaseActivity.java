@@ -89,6 +89,7 @@ public class DiseaseActivity extends AppCompatActivity {
                     //showToast("No Selection");
                     Intent intent = new Intent(DiseaseActivity.this, HomeActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layoutDirection="rtl"
     android:layout_height="wrap_content">
     <androidx.cardview.widget.CardView
         android:id="@+id/news_card"
@@ -45,7 +46,7 @@
                 android:text="النص"
                 android:ellipsize ="end"
                 android:maxLines="1"
-                android:padding="15dp"
+                android:padding="5dp"
                 android:lineSpacingMultiplier="1.5"
                 android:lineSpacingExtra="0dp"
                 android:textColor="@color/cardview_dark_background"/>
@@ -58,7 +59,22 @@
 
                 android:gravity="right|center"
                 android:paddingRight="10dp">
-
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="35dp"
+                    android:background="@drawable/share"
+                    android:backgroundTint="@color/white" />
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="140dp"
+                    android:background="@drawable/clock"
+                    android:backgroundTint="@color/white" />
                 <TextView
                     android:id="@+id/dateNew"
                     android:layout_width="wrap_content"
@@ -70,25 +86,6 @@
                     android:text="30-12-2020"
                     android:textColor="@color/white"
                     />
-
-                <ImageView
-                    android:id="@+id/img2"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginRight="140dp"
-                    android:background="@drawable/clock"
-                    android:backgroundTint="@color/white" />
-
-                <ImageView
-                    android:id="@+id/img"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:padding="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="35dp"
-                    android:background="@drawable/share"
-                    android:backgroundTint="@color/white" />
-                />
             </LinearLayout>
 
         </LinearLayout>

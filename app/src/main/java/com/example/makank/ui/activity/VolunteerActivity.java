@@ -122,7 +122,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
         final String f_name = idPref.getString(F_NAME, "f_name");
         final String s_name = idPref.getString(S_NAME, "s_name");
         final String l_name = idPref.getString(L_NAME, "l_name");
-        volunteerName.setText("مرحبا :" + f_name + s_name + l_name);
+        volunteerName.setText("مرحبا : " + f_name +" "+ s_name +" "+ l_name);
         initDialog();
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
                 PackageManager.PERMISSION_GRANTED) {

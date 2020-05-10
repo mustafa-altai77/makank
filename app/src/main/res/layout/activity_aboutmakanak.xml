@@ -5,6 +5,7 @@
     android:id="@+id/endscreen"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
+    android:layoutDirection="rtl"
     android:background="@drawable/card_button"
     android:orientation="vertical"
     tools:context=".ui.activity.AboutMakanak">
@@ -38,7 +39,7 @@
             android:background="@color/white"
             android:orientation="vertical"
             android:paddingLeft="40dp"
-            android:paddingRight="40dp">
+            android:paddingRight="30dp">
 
             <RelativeLayout
                 android:id="@+id/phoneNum"
@@ -52,12 +53,13 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="15dp"
                     android:textColor="@color/total2"
+                    android:layout_marginRight="155dp"
                     android:text="@string/phoneNumber"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/phoneNum2"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginTop="15dp"
                     android:textColor="@color/total2"
@@ -147,11 +149,13 @@
 
                 <TextView
                     android:id="@+id/version1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textColor="@color/total2"
                     android:layout_marginTop="15dp"
                     android:text="@string/version_number"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="240dp"
                     android:textSize="18sp" />
             </RelativeLayout>
         </LinearLayout>
