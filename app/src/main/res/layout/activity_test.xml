@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layoutDirection="rtl"
     android:orientation="vertical"
+    android:background="@drawable/card_button"
     tools:context=".ui.Test.TestActivity">
     <include layout="@layout/custom_toolbar"/>
     <LinearLayout
@@ -33,7 +34,7 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             app:layout_constraintEnd_toStartOf="@+id/image_status"
-            android:text="تأكد مما إذا كان لديك أعراض لفيروس كورونا أو مجرد نزلة برر"
+            android:text="تأكد مما إذا كان لديك أعراض لفيروس كورونا أو مجرد نزلة برد"
             />
     </LinearLayout>
     <LinearLayout

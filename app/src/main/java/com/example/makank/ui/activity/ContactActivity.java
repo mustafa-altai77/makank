@@ -43,6 +43,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.makank.SharedPref.AGE;
 import static com.example.makank.SharedPref.SHARED_PREF_NAME;
 import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.STATUS;
@@ -65,7 +66,7 @@ public class ContactActivity extends AppCompatActivity {
     LoadingDialog loadingDialog;
     Alert alert;
     Toolbar toolbar;
-
+    private Person personList;
     @SuppressLint("ResourceAsColor")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -75,7 +76,7 @@ public class ContactActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setContentView(R.layout.activity_contact);
         buttonScan = findViewById(R.id.qr_image);
-        circleImageView = findViewById(R.id.image_status);
+        //circleImageView = findViewById(R.id.image_status);
         personalID = findViewById(R.id.p_text);
         firstNo = findViewById(R.id.first);
         secondTwo = findViewById(R.id.second);
@@ -86,6 +87,7 @@ public class ContactActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String my_id = sharedPreferences.getString(USER_ID, "id");
         final String my_status = sharedPreferences.getString(STATUS, "status");
+        final String age = sharedPreferences.getString(AGE, "age");
         check.setVisibility(View.INVISIBLE);
         GpsLocationTracker mGpsLocationTracker = new GpsLocationTracker(ContactActivity.this);
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
@@ -97,16 +99,17 @@ public class ContactActivity extends AppCompatActivity {
         receive.setTypeface(typeface);
         alert = new Alert(this);
         loadingDialog = new LoadingDialog(this);
-        if (my_status.equals("1")) {
-            circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.red));
-            status.setText("الحالة :مصاب ");
+        //Person person=new Person(this);
+        /*if (my_status.equals("1")) {
+           circleImageView.setImageResource(R.color.colorAccent);
+           status.setText("الحالة :مصاب ");
         } else if (my_status.equals("2")) {
-            circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.yellowc));
+            circleImageView.setImageResource(R.color.yellow);
             status.setText("الحالة : مخالط");
         } else if (my_status.equals("3")) {
-            circleImageView.setBackground(ContextCompat.getDrawable(this, R.drawable.greenc));
+            circleImageView.setImageResource(R.color.green);
             status.setText("الحالة : سليم");
-        }
+        }*/
         if (mGpsLocationTracker.canGetLocation()) {
             locationLatitude = mGpsLocationTracker.getLatitude();
             locationLongitude = mGpsLocationTracker.getLongitude();
@@ -206,7 +209,7 @@ public class ContactActivity extends AppCompatActivity {
                     personalID.setText(obj.getString(String.valueOf(requestCode)));
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
+                   // Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
                     personalID.setText(result.getContents());
 
                 }
@@ -215,8 +218,6 @@ public class ContactActivity extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-
-    @SuppressLint("ResourceAsColor")
     private void addSee(String result, String my_id, double locationLatitude, double locationLongitude) {
 
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
@@ -248,6 +249,11 @@ public class ContactActivity extends AppCompatActivity {
                     alert.showAlertNormal("تم التواصل بنجاح", name + "\n" + " - " + CaseName, "موافق");
 
                 }
+                else {
+
+                    alert.showAlertError("هذا الرقم خاطىء");
+                    loadingDialog.dismissDialog();
+                }
 
             }
 
@@ -259,6 +265,7 @@ public class ContactActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
 }

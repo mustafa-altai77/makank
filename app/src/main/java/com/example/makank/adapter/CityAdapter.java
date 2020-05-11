@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder> implements Filterable {
@@ -125,6 +126,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder
                     i.putExtra("city_id",CityID);
                     i.putExtra("city_name",CityName);
                     context.startActivity(i);
+                    ((AppCompatActivity)context).finish();
 
                 }
             });

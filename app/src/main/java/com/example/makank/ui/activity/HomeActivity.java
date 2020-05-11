@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 
 import com.example.makank.R;
 import com.example.makank.ui.contact.ContactFragment;
+import com.example.makank.ui.home.Call_Isolation;
 import com.example.makank.ui.home.CustomTypefaceSpan;
 import com.example.makank.ui.home.GridFragment;
 import com.example.makank.ui.news.NewsFragment;
@@ -42,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
     Typeface typeface;
     Toolbar toolbar1;
     TextView name, state;
+    NavigationView navigationView;
 
 
     @SuppressLint("WrongViewCast")
@@ -66,8 +69,9 @@ public class HomeActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView = findViewById(R.id.nav_view2);
+        navigationView = findViewById(R.id.nav_view2);
         Menu m = navigationView.getMenu();
+
         for (int i = 0; i < m.size(); i++) {
             MenuItem mi = m.getItem(i);
 
@@ -86,36 +90,49 @@ public class HomeActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                int id = menuItem.getItemId();
-                if (id == R.id.share_nav) {
-                    Toast.makeText(getApplicationContext(), "Share", Toast.LENGTH_SHORT).show();
-                }
-                if (id == R.id.about_nav) {
-                   /* Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Hacen-Algeria.ttf");
-                    SpannableString efr = new SpannableString("Toast font changed!");
-                    efr.setSpan(new TypefaceSpan(font),0,efr.length(),Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    Toast.makeText(getApplicationContext(), efr, Toast.LENGTH_SHORT).show();*/
-                    //  Toast.makeText(getApplicationContext(), "About", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), AboutMakanak.class);
-                    startActivity(intent);
-                }
-                if (id == R.id.rol_nav) {
-                    String uri = "http://www.primaryKeysd.com/covid/term.html";
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-                    startActivity(intent);
-                }
-                if (id == R.id.face_book) {
-                    String uri = "https://www.facebook.com/primarykeysd";
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-                    startActivity(intent);
-                }
+                // int id = menuItem.getItemId();
+                switch (menuItem.getItemId()) {
+                    case R.id.share_nav:
+                        Toast.makeText(getApplicationContext(), "Share", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.about_nav:
+                        Intent intent = new Intent(getApplicationContext(), AboutMakanak.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.rol_nav:
+                        String uri = "http://www.primaryKeysd.com/covid/term.html";
+                        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                        startActivity(i);
+                        break;
 
+                    case R.id.face_book:
+                        String urii = "https://www.facebook.com/primarykeysd";
+                        Intent iy = new Intent(Intent.ACTION_VIEW, Uri.parse(urii));
+                        startActivity(iy);
+                        break;
+                    case R.id.waba:
+                        Intent in = new Intent(getApplicationContext(), Call_Isolation.class);
+                        startActivity(in);
+                        break;
+                        default:
+
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
 
         });
 
+    }
 
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+
+        } else {
+            super.onBackPressed();
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

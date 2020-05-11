@@ -63,7 +63,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
     @Override
     public void onBindViewHolder(@NonNull RequestAdapter.RequestViewHolder holder, int position) {
         //final Request item = requestList.get(position);
-        holder.sender.setText(requestList.get(position).getSender_name() + "أرسل إاليك : ");
+        holder.sender.setText("أرسل إاليك : " + requestList.get(position).getSender_name());
         holder.owner_id.setText(Integer.toString(requestList.get(position).getOwner_id()));
         holder.conf.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,8 +140,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
                 if (response.isSuccessful()) {
                     //  progressDoalog.dismiss();
                     loadingDialog.dismissDialog();
-
-                    Toast.makeText(context, "don", Toast.LENGTH_SHORT).show();
+                    alert.showAlertSuccess("تم قبول الطلب");
+                    //Toast.makeText(context, "don", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -150,7 +150,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
                 //   progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
                 // Toast.makeText(context, "خطاء في النظام الخارجي", Toast.LENGTH_SHORT).show();
-                alert.showAlertSuccess("خطاء في النظام الخارجي");
+                alert.showAlertError("خطاء في النظام الخارجي");
 
             }
         });

@@ -108,7 +108,7 @@ public class LocalActivity extends AppCompatActivity {
             public void onFailure(Call<List<Local>>call, Throwable t) {
                 loadingDialog.dismissDialog();
 
-                Toast.makeText(LocalActivity.this, "غير متصل بالشبكة" + t, Toast.LENGTH_SHORT).show();
+                alert.showAlertError("تــأكد من إتصالك بالإنترنت");
             }
         });
     }

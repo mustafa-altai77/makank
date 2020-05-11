@@ -45,7 +45,8 @@ public class StateActivity extends AppCompatActivity {
     LoadingDialog loadingDialog;
     Alert alert;
     EditText editText;
-Typeface typeface;
+    Typeface typeface;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

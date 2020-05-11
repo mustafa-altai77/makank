@@ -28,6 +28,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.home.Call_Isolation"
+            android:label=""
+            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert"></activity>
         <activity
             android:name=".ui.activity.AboutMakanak"
             android:theme="@style/AppThemeNoActionBar" />
@@ -81,9 +84,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.PlaceActivity"
-            android:label="" />
-        <activity
             android:name=".ui.activity.RegisterActivity"
             android:label=""
             android:theme="@style/AppThemeNoActionBar" />
@@ -101,8 +101,9 @@
             android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.Test.TestActivity"
-            android:theme="@style/AppThemeNoActionBar"
-            android:label=""/>
+            android:label=""
+            android:theme="@style/AppThemeNoActionBar" />
+
     </application>
 
 </manifest>

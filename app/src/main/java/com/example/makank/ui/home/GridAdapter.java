@@ -7,11 +7,16 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.TypefaceSpan;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -73,7 +78,21 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CategoryViewHo
                     Intent intent = new Intent(context, TestActivity.class);
                     context.startActivity(intent);
                 }
+                if (item.getId() == 4) {
+                 Typeface   typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
+                    SpannableString efr = new SpannableString("قريبــاً");
+                    efr.setSpan(new TypefaceSpan(typeface),0,efr.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    Toast toast=Toast.makeText(context,efr,Toast.LENGTH_SHORT);
+                    View view=toast.getView();
+                    view.setBackgroundColor(Color.TRANSPARENT);
+                    TextView text=(TextView) view.findViewById(android.R.id.message);
+                    text.setShadowLayer(0,0,0,Color.TRANSPARENT);
+                    text.setTextColor(Color.RED);
+                    text.setTextSize(Integer.valueOf(20));
+                    toast.show();
+                }
                 return;
+
             }
 
         });

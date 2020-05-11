@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layoutDirection="rtl"
     android:orientation="vertical"
+    android:background="@drawable/card_button"
     tools:context=".ui.activity.SendNotifActivity">
     <include layout="@layout/custom_toolbar"/>
     <LinearLayout

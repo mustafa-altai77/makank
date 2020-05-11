@@ -16,29 +16,8 @@
     <string name="statistic_txt">الاحصائيات</string>
     <string name="profile_txt">الحسـاب</string>
     <string name="next_step">الخطوة التالية</string>
-    <string name="skip">SKIP</string>
     <string name="back">رجـوع</string>
-    <string name="start">GOT IT</string>
-    <string name="slide_1_title">Daily Workout</string>
-    <string name="slide_2_title">Meditation Techniques </string>
-    <string name="slide_3_title">Diet Chart</string>
 
-    <string name="qu1">هل تعملت مع شخص مصاب بفيروس كورونا في اخر 25 يوم ؟</string>
-    <string name="no">لا</string>
-    <string name="little">قليلاً</string>
-    <string name="maybe">أحياناً</string>
-    <string name="yes">نعم</string>
-    <string name="qu2">هل يوجد لديك ارتفاع في درجة الحرارة؟</string>
-    <string name="qu3"> هل تعاني من سعال ؟</string>
-    <string name="qu4">هل تعاني من العطس ؟</string>
-    <string name="qu5">هل تعاني صعوبة في التنفس ؟</string>
-    <string name="qu7">هل تعاني من سيلان الانف ؟</string>
-
-    <string name="qu8">هل تشعر بإجهاد عام ؟</string>
-    <string name="qu9">هل تعاني من أوجاع وآلام ؟</string>
-    <string name="qu10">هل يوجد لديك صداع ؟</string>
-    <string name="qu11">هل تعاني من إلتهاب الحلق ؟</string>
-    <string name="qu12">هل يوجد لديك إسهال ؟</string>
     <string name="ins">الإرشــادات</string>
 
     <string name="searchState">إبحث عن ولايتك</string>
@@ -46,13 +25,11 @@
     <string name="SearchLocal">إبحث عن منطقتك</string>
 
 
-    <integer name="swing_anim_time">750</integer>
-    <string name="phoneNumber">+249903940244‬</string>
+    <string name="phoneNumber">249903940244+‬</string>
     <string name="url_email">info@primarykeyds.com</string>
     <string name="url_site">www.primarykeysd.com‬</string>
     <string name="version_number">1.0‬</string>
     <string name="policy">(c) 2020 primarykey. All rights reserved</string>
-    <string name="phoneString">الهاتف</string>
     <string name="email">الايميل‬</string>
     <string name="site">الموقع الاكتروني</string>
     <string name="version">نسخة التطبيق </string>

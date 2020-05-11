@@ -112,7 +112,7 @@ public class DiseaseActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Disease>> call, Response<List<Disease>> response) {
                 // progressDoalog.dismiss();
-//                loadingDialog.dismissDialog();
+//               loadingDialog.dismissDialog();
                 diseases = response.body();
                 adapter.setDiseases(diseases);
 
@@ -121,7 +121,7 @@ public class DiseaseActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Disease>> call, Throwable t) {
                 //progressDoalog.dismiss();
-             //   loadingDialog.dismissDialog();
+               // loadingDialog.dismissDialog();
                 Log.d("TAG", "Response = " + t.toString());
             }
         });

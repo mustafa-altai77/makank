@@ -2,11 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/endscreen"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:layoutDirection="rtl"
     android:background="@drawable/card_button"
+    android:layoutDirection="rtl"
     android:orientation="vertical"
     tools:context=".ui.activity.AboutMakanak">
 
@@ -41,31 +40,31 @@
             android:paddingLeft="40dp"
             android:paddingRight="30dp">
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/phoneNum"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/phoneNum1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="15dp"
-                    android:textColor="@color/total2"
-                    android:layout_marginRight="155dp"
+                    android:layout_marginRight="10dp"
                     android:text="@string/phoneNumber"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/phoneNum2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="15dp"
                     android:textColor="@color/total2"
-                    android:text="@string/phoneString"
-                    android:textSize="18sp" />
-            </RelativeLayout>
+                    android:textSize="13sp" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:backgroundTint="@color/total2"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/ic_call_black_24dp" />
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -75,27 +74,29 @@
             <RelativeLayout
                 android:id="@+id/email"
                 android:layout_width="wrap_content"
-                android:textColor="@color/total2"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:textColor="@color/total2">
 
                 <TextView
                     android:id="@+id/email1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColor="@color/total2"
                     android:layout_marginTop="15dp"
                     android:text="@string/email"
-                    android:textSize="18sp" />
+                    android:textColor="@color/total2"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/email2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColor="@color/total2"
                     android:layout_marginTop="15dp"
                     android:text="@string/url_email"
-                    android:textSize="19sp" />
+                    android:textColor="@color/total2"
+                    android:textSize="13sp" />
             </RelativeLayout>
 
             <View
@@ -107,25 +108,27 @@
                 android:id="@+id/site"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/site1"
                     android:layout_width="match_parent"
-                    android:textColor="@color/total2"
                     android:layout_height="match_parent"
                     android:layout_marginTop="15dp"
                     android:text="@string/site"
-                    android:textSize="18sp" />
+                    android:textColor="@color/total2"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/site2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColor="@color/total2"
                     android:layout_marginTop="15dp"
                     android:text="@string/url_site"
-                    android:textSize="19sp" />
+                    android:textColor="@color/total2"
+                    android:textSize="13sp" />
             </RelativeLayout>
 
             <View
@@ -136,27 +139,28 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/version2"
                     android:layout_width="match_parent"
-                    android:textColor="@color/total2"
                     android:layout_height="match_parent"
                     android:layout_marginTop="15dp"
                     android:text="@string/version"
-                    android:textSize="18sp" />
+                    android:textColor="@color/total2"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/version1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColor="@color/total2"
                     android:layout_marginTop="15dp"
+                    android:layout_marginRight="220dp"
                     android:text="@string/version_number"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="240dp"
-                    android:textSize="18sp" />
+                    android:textColor="@color/total2"
+                    android:textSize="13sp" />
             </RelativeLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -179,7 +183,7 @@
                 android:gravity="center"
                 android:text="@string/policy"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="13sp" />
         </RelativeLayout>
     </LinearLayout>
 

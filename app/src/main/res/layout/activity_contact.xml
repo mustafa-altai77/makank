@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layoutDirection="rtl"
+    android:background="@drawable/card_button"
     tools:context=".ui.activity.ContactActivity"
     android:orientation="vertical">
     <include layout="@layout/custom_toolbar"/>
@@ -34,93 +35,92 @@
                 app:layout_constraintEnd_toStartOf="@+id/image_status"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="الحالة : سليم "
+                android:text="التواصــل مع شخص"
                 app:layout_constraintTop_toTopOf="parent" />
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_status"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                app:civ_border_width="10dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="2dp"
-                tools:layout_editor_absoluteX="195dp"
-                tools:layout_editor_absoluteY="25dp" />
+            <!-- <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image_status"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="18dp"
+                    android:layout_marginTop="2dp"
+                    android:visibility="invisible"
+                     /> -->
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="#B9A636"
+                android:layout_height="3dp">
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/qr_image"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_width="180dp"
+                android:layout_height="170dp"
+                android:background="@drawable/qr">
+            </ImageView>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/second"
+                android:textColor="@color/cardview_dark_background"
+                android:text="اضغط على الصورة للبحث عن طريق الرمز التعريفي (QrCode)"
+                android:layout_gravity="center">
+
+            </TextView>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/cardview_dark_background"
+                android:text="او ادخل الرقم التعريفي"
+                android:id="@+id/first"
+                android:layout_gravity="center">
+            </TextView>
+
+            <EditText
+                android:id="@+id/p_text"
+                android:layout_width="282dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_edittext"
+                android:hint="الرقم التعريفي: xxxxx"
+                android:inputType="number"
+                android:textColorHint="@color/cardview_dark_background"
+                android:textColor="@color/cardview_dark_background"
+                android:textAlignment="center">
+            </EditText>
+
+            <Button
+                android:id="@+id/check_status"
+                android:layout_width="285dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/redbtn"
+                android:text="بحـــث"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/cardview_light_background">
+
+            </Button>
+
+            <Button
+                android:id="@+id/receive"
+                android:layout_width="283dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/graybtn"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="إستقبــال"
+                android:textColor="@color/cardview_light_background">
+            </Button>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:background="#B9A636"
-            android:layout_height="3dp">
-
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/qr_image"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_width="180dp"
-            android:layout_height="170dp"
-            android:background="@drawable/qr">
-        </ImageView>
-        <TextView
-            android:layout_marginTop="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/second"
-            android:textColor="@color/cardview_dark_background"
-            android:text="اضغط على الصورة للبحث عن طريق الرمز التعريفي (QrCode)"
-            android:layout_gravity="center">
-
-        </TextView>
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/cardview_dark_background"
-            android:text="او ادخل الرقم التعريفي"
-            android:id="@+id/first"
-            android:layout_gravity="center">
-        </TextView>
-
-        <EditText
-            android:id="@+id/p_text"
-            android:layout_width="282dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/rounded_edittext"
-            android:hint="الرقم التعريفي: xxxxx"
-            android:inputType="number"
-            android:textColorHint="@color/cardview_dark_background"
-            android:textColor="@color/cardview_dark_background"
-            android:textAlignment="center">
-        </EditText>
-
-        <Button
-            android:id="@+id/check_status"
-            android:layout_width="285dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/redbtn"
-            android:text="بحـــث"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/cardview_light_background">
-
-        </Button>
-
-        <Button
-            android:id="@+id/receive"
-            android:layout_width="283dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/graybtn"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:text="إستقبــال"
-            android:textColor="@color/cardview_light_background">
-        </Button>
+        </ScrollView>
     </LinearLayout>
-    </ScrollView>
-</LinearLayout>

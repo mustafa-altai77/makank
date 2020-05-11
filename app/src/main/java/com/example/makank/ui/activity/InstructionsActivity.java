@@ -66,13 +66,11 @@ public class InstructionsActivity extends AppCompatActivity {
     public void onBackPressed() {
         if(webView.canGoBack())
         {
-          //  loadingDialog.startLoadingDialog();
             webView.goBack();
         }
         else
         {
             super.onBackPressed();
-          //  loadingDialog.dismissDialog();
         }
         super.onBackPressed();
     }

@@ -63,6 +63,8 @@ public class SendNotifActivity extends AppCompatActivity {
         area.setTypeface(typeface);
         infoNot.setTypeface(typeface);
         LocationId.setTypeface(typeface);
+        loadingDialog = new LoadingDialog(this);
+        alert = new Alert(this);
         maerker.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -73,7 +75,7 @@ public class SendNotifActivity extends AppCompatActivity {
                     Longitude = mGpsLocationTracker.getLongitude();
 //                   Log.i(TAG, String.format("latitude: %s", Latitude));
 //                   Log.i(TAG, String.format("longitude: %s",Longitude));
-                    Toast.makeText(SendNotifActivity.this, Latitude + "" + Longitude + "", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(SendNotifActivity.this, Latitude + "" + Longitude + "", Toast.LENGTH_SHORT).show();
                 } else {
                     mGpsLocationTracker.showSettingsAlert();
                 }
@@ -84,11 +86,13 @@ public class SendNotifActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (notifi.getText().toString().equals("")) {
-                    Toast.makeText(SendNotifActivity.this, "اوصف الحالة", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SendNotifActivity.this, "اوصف الحالة", Toast.LENGTH_SHORT).show();
+                    alert.showAlertError("اوصف الحالة");
                     return;
                 }
                 if (area.getText().toString().equals("")) {
-                    Toast.makeText(SendNotifActivity.this, "وصف المنطقة", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(SendNotifActivity.this, "وصف المنطقة", Toast.LENGTH_SHORT).show();
+                    alert.showAlertError("وصف المنطقة");
                     return;
                 }
                 SharedPreferences sharedPreference = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -104,31 +108,31 @@ public class SendNotifActivity extends AppCompatActivity {
     private void sendNotification(String my_id, String local, String notif) {
         // Toast.makeText(SendNotifActivity.this, member_id+my_id+"", Toast.LENGTH_SHORT).show();
 
-        final ProgressDialog progressDoalog;
+      /*  final ProgressDialog progressDoalog;
         progressDoalog = new ProgressDialog(SendNotifActivity.this);
         progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");
+        progressDoalog.setMessage("loading....");*/
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<Person> call = apiService.sendNotifi(my_id, local, notif);
-        progressDoalog.show();
-
+        // progressDoalog.show();
+        loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<Person>() {
             @Override
             public void onResponse(Call<Person> call, Response<Person> response) {
 
                 if (response.isSuccessful()) {
-                    progressDoalog.dismiss();
+                    //progressDoalog.dismiss();
+                    loadingDialog.dismissDialog();
 
-                    Toast.makeText(SendNotifActivity.this, "don", Toast.LENGTH_SHORT).show();
+                    alert.showAlertInTest("تم اتمام العملية بنجاح البلاغ","تم رفع البلاغ","موافق");
                 }
             }
 
             @Override
             public void onFailure(Call<Person> call, Throwable t) {
-                progressDoalog.dismiss();
-
-                Toast.makeText(SendNotifActivity.this, "خطاء في النظام الخارجي", Toast.LENGTH_SHORT).show();
-
+                //progressDoalog.dismiss();
+                loadingDialog.dismissDialog();
+                alert.showAlertError("تــأكد من إتصالك بالإنترنت");
             }
         });
     }

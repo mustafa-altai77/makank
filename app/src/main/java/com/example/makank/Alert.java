@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.DrawableWrapper;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 
@@ -105,12 +106,28 @@ public class Alert {
                     @Override
                     public void onClick(SweetAlertDialog sDialog) {
                         sDialog.dismissWithAnimation();
-                       Intent intent=new Intent(activity, SendNotifActivity.class);
-                         activity.startActivity(intent);
+                        Intent intent=new Intent(Intent.ACTION_DIAL, Uri.parse("tel:221"));
+                        activity.startActivity(intent);
                         activity.finish();
                     }
                 })
                 .show();
 
+    }
+    public void showAlertInTest(String title, String message, String btnText) {
+        new SweetAlertDialog(activity, SweetAlertDialog.SUCCESS_TYPE)
+                .setTitleText(title)
+                .setContentText(message)
+                .setConfirmText(btnText)
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+                        Intent intent=new Intent(activity, HomeActivity.class);
+                        activity.startActivity(intent);
+                        activity.finish();
+                    }
+                })
+                .show();
     }
 }

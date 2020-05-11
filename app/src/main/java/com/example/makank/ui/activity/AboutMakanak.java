@@ -7,15 +7,17 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.makank.R;
 
 public class AboutMakanak extends AppCompatActivity {
-RelativeLayout phonePress,emailPress,sitePress;
+RelativeLayout emailPress,sitePress;
 TextView t1,t2,t3,t4,t5,t6,t7,t8,t9;
 Typeface typeface;
+LinearLayout phonePress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,6 @@ Typeface typeface;
         sitePress=findViewById(R.id.site);
 
         t1=findViewById(R.id.phoneNum1);
-        t2=findViewById(R.id.phoneNum2);
         t3=findViewById(R.id.email1);
         t4=findViewById(R.id.email2);
         t5=findViewById(R.id.site1);
@@ -35,7 +36,7 @@ Typeface typeface;
         t9=findViewById(R.id.policy);
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         t1.setTypeface(typeface);
-        t2.setTypeface(typeface);
+      //  t2.setTypeface(typeface);
         t3.setTypeface(typeface);
         t4.setTypeface(typeface);
         t5.setTypeface(typeface);

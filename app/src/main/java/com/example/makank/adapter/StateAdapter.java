@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class StateAdapter  extends RecyclerView.Adapter<StateAdapter.StateViewHolder> implements Filterable {
@@ -120,6 +121,7 @@ public class StateAdapter  extends RecyclerView.Adapter<StateAdapter.StateViewHo
                     i.putExtra("state_id",stateID);
                     i.putExtra("state_name",stateName);
                     context.startActivity(i);
+                    ((AppCompatActivity)context).finish();
                 }
             });
         }

@@ -15,12 +15,8 @@ import android.widget.Toast;
 
 import com.example.makank.R;
 import com.example.makank.SharedPref;
-import com.example.makank.adapter.StateAdapter;
 import com.example.makank.ui.activity.HomeActivity;
-import com.example.makank.ui.activity.PlaceActivity;
-import com.example.makank.ui.activity.RegisterActivity;
 import com.example.makank.ui.activity.StateActivity;
-import com.example.makank.ui.home.Home;
 
 public class Splash extends AppCompatActivity {
     Animation topAnim,bottomAnim;

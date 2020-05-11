@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center|top"
     android:layoutDirection="rtl"
-    android:background="@color/white"
+    android:background="@drawable/card_button"
     tools:context=".ui.activity.QrCodeActivity">
     <TextView
         android:id="@+id/info"

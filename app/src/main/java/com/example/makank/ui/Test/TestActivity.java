@@ -150,9 +150,9 @@ public class TestActivity extends AppCompatActivity {
     {
         if (score== 0 || score <=3)
         {
-           alert.showAlertSuccess("نتيجة الفحص","انت بصحة جيدة ,اطمئن ولاتقلق","موافق");
+           alert.showAlertInTest("نتيجة الفحص","انت بصحة جيدة ,اطمئن ولاتقلق","موافق");
         }else if(score==4 || score <=6){
-            alert.showAlertSuccess("نتيجة الفحص","انت تعاني من نزلة برد","موافق");
+            alert.showAlertInTest("نتيجة الفحص","انت تعاني من نزلة برد","موافق");
         }
         else
         {

@@ -15,24 +15,12 @@
         <item name="colorAccent">@color/colorAccent</item>
 
     </style>
-    <style name="Theme.Transparent" parent="android:Theme">
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:backgroundDimEnabled">false</item>
-    </style>
 
     <style name="RadioButtonStyle" parent="Theme.AppCompat.Light">
         <!-- color of radio button -->
-        <item name="colorAccent">@android:color/holo_red_light</item>
+        <item name="colorPrimaryDark">@color/color</item>
         <!-- default color of radio button -->
         <item name="android:textColorPrimary">@android:color/darker_gray</item>
 
     </style>
-
-<style name="sizeMenu" >
-    <item name="android:textSize">30sp</item>
-</style>
 </resources>

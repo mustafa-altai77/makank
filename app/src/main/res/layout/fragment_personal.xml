@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/card_button"
     android:layoutDirection="rtl"
     tools:context=".ui.profile.PersonalFragment">
 
@@ -23,7 +24,7 @@
                 android:layout_height="180dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
-                android:background="@drawable/technology_scan" />
+                android:background="@drawable/qr" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,7 +72,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="2dp"
                         android:text="الحالة"
-                        android:textSize="15sp" />
+                        android:textSize="17sp" />
 
                     <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/img_status"

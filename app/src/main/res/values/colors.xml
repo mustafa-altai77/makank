@@ -7,17 +7,8 @@
     <color name="yellow">#ECD92F</color>
     <color name="white">#ffffff</color>
     <color name="color">#C7212D</color>
-    <color name="color1">#fcb6bb</color>
-    <color name="color2">#742b30</color>
     <color name="color3">#B9757A</color>
 
-    <color name="death1">#255479</color>
-    <color name="death2">#081325</color>
-
-    <color name="recover1">#54a13e</color>
-    <color name="recover2">#185a06</color>
-
     <color name="total1">#C9C9C9</color>
-    <color name="gray">#C9C9C9</color>
     <color name="total2">#5a5a5a</color>
 </resources>

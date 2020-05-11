@@ -1,4 +1,5 @@
 package com.example.makank.adapter;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.LocalViewHolder> implements Filterable {
@@ -122,11 +124,11 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.LocalViewHol
                     i.putExtra("local_id",LocalID);
                     i.putExtra("local_name",LocalName);
                     context.startActivity(i);
+                    ((AppCompatActivity)context).finish();
                 }
             });
         }
     }
-
     public List<Local> getAll() {
         return locals;
     }
@@ -140,5 +142,4 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.LocalViewHol
         }
         return selected;
     }*/
-
 }

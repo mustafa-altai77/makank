@@ -101,7 +101,6 @@ public class PersonalFragment extends Fragment {
         statusName.setTypeface(typeface);
         disease_list.setTypeface(typeface);
         disease_name = new ArrayList<>();
-
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String my_id = sharedPreferences.getString(USER_ID, "id");
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
@@ -126,7 +125,6 @@ public class PersonalFragment extends Fragment {
                         personalID.setText("الرقم التعريفي : " + my_id);
                         age_.setText(age);
                         ph.setText(num);
-
                         if (status.equals("1")) {
                             statusImage.setImageResource(R.color.colorAccent);
                             statusName.setText("مصاب");
@@ -176,8 +174,6 @@ public class PersonalFragment extends Fragment {
                         );
                         listView.setAdapter(itemsAdapter );
                     }
-
-
                 }
                 @Override
                 public void onFailure(Call<List<Disease>>call, Throwable t) {
