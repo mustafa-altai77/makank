@@ -1,5 +1,6 @@
 package com.example.makank.ui.profile;
 
+import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.text.style.TypefaceSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.makank.R;
@@ -32,6 +34,7 @@ public class ProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,18 +46,36 @@ public class ProfileFragment extends Fragment {
         setupViewPager(firstViewPager);
         return view;
     }
+
     private void setupViewPager(ViewPager viewPager) {
         TabViewPagerAdapter adapter = new TabViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new PersonalFragment(),"الحساب الشخصي");
+        adapter.addFragment(new PersonalFragment(), "الحساب الشخصي");
         adapter.addFragment(new GroupFragment(), "المجموعة");
         adapter.addFragment(new RequestFragment(), "الطلبات");
         viewPager.setAdapter(adapter);
+        Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Hacen-Algeria.ttf");
+
+        ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
+        int tabsCount = vg.getChildCount();
+        for (int j = 0; j < tabsCount; j++) {
+            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
+            int tabChildsCount = vgTab.getChildCount();
+            for (int i = 0; i < tabChildsCount; i++) {
+                View tabViewChild = vgTab.getChildAt(i);
+                if (tabViewChild instanceof TextView) {
+                    ((TextView) tabViewChild).setTypeface(typeface, Typeface.NORMAL);
+                }
             }
+        }
+    }
+
+
     @Override
     public void onStart() {
         super.onStart();
         setupViewPager(firstViewPager);
 
     }
+
 }
 

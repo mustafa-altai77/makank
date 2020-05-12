@@ -48,6 +48,7 @@
             android:text="  221"
             android:gravity="center"
             android:id="@+id/id3"
+            android:textColor="@color/color"
             android:textSize="18dp"
             />
     </LinearLayout>
@@ -83,6 +84,7 @@
             android:text="9090"
             android:gravity="center"
             android:textSize="18dp"
+            android:textColor="@color/color"
             android:id="@+id/id5"
             />
     </LinearLayout>

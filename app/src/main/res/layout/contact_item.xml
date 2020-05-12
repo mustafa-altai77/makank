@@ -2,18 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layoutDirection="rtl"
-    >
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="10dp"
-        android:stateListAnimator="@anim/animation"
-        android:foreground="?attr/selectableItemBackground"
         android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:stateListAnimator="@anim/animation"
         app:cardCornerRadius="5dp">
 
         <LinearLayout
@@ -29,8 +29,7 @@
                     android:layout_width="6dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:background="@color/color">
-                </LinearLayout>
+                    android:background="@color/color"></LinearLayout>
 
                 <TextView
                     android:id="@+id/full_name"
@@ -48,8 +47,8 @@
                     android:id="@+id/status_mg"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginRight="290dp"
                     android:layout_marginTop="22dp"
+                    android:layout_marginRight="290dp"
                     android:background="@drawable/recover" />
 
                 <TextView
@@ -66,8 +65,8 @@
                     android:id="@+id/person_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
                     android:layout_below="@+id/full_name"
+                    android:layout_alignParentRight="true"
                     android:layout_marginTop="0dp"
                     android:fontFamily="sans-serif-condensed"
                     android:paddingRight="20dp"
@@ -78,32 +77,31 @@
                 <LinearLayout
                     android:layout_width="388dp"
                     android:layout_height="36dp"
-                    android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
-                    android:background="#d9d9d9"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/color"
                     android:gravity="right|center"
                     android:paddingRight="10dp">
-
-
 
 
                     <ImageView
                         android:id="@+id/img"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:background="@drawable/clock"
-                        android:backgroundTint="@color/color" />
+                        android:background="@drawable/ic_clock"
+                        android:backgroundTint="@color/white" />
+
                     <TextView
                         android:id="@+id/date_seen"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
                         android:layout_below="@+id/txt1"
+                        android:layout_alignParentRight="true"
                         android:layout_marginTop="0dp"
                         android:fontFamily="sans-serif-condensed"
                         android:paddingRight="10dp"
                         android:text="05:59"
-                        android:textColor="@color/cardview_dark_background"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
 
@@ -111,8 +109,9 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginRight="105dp"
-                        android:background="@drawable/event"
-                        android:backgroundTint="@color/color" />
+                        android:background="@drawable/ic_calendar"
+                        android:backgroundTint="@color/white" />
+
                     <TextView
                         android:id="@+id/dateComm"
                         android:layout_width="wrap_content"
@@ -122,7 +121,7 @@
                         android:fontFamily="sans-serif-condensed"
                         android:paddingRight="10dp"
                         android:text="30-12-2020"
-                        android:textColor="@color/cardview_dark_background"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
                 </LinearLayout>
             </RelativeLayout>

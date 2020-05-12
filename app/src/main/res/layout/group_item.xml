@@ -58,7 +58,7 @@
                     />
                 <LinearLayout
                     android:layout_width="358dp"
-                    android:background="#d9d9d9"
+                    android:background="@color/total2"
                     android:gravity="center"
                     android:paddingRight="10dp"
                     android:layout_height="36dp"
@@ -71,7 +71,7 @@
                         android:layout_height="wrap_content"
                         android:text="مصاب"
                         android:textSize="18sp"
-                        android:textColor="@color/cardview_dark_background" />
+                        android:textColor="@color/white" />
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/status_mgG"
                         android:layout_width="20dp"

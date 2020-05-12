@@ -5,13 +5,22 @@
         android:icon="@drawable/ic_share_black_24dp"
         android:title="مشاركة التطبيق"></item>
     <item
-        android:id="@+id/face_book"
-        android:icon="@drawable/facebook"
-        android:title="فيسبوك"></item>
+        android:id="@+id/qr_code"
+        android:icon="@drawable/ic_qr_code"
+        android:title="رمز QR Code"></item>
+    <item
+        android:id="@+id/inst"
+        android:icon="@drawable/ic_virus"
+        android:title="الإرشادات"></item>
+
     <item
         android:id="@+id/waba"
         android:icon="@drawable/ic_call_black_24dp"
         android:title="التواصل مع الوبائيات"></item>
+    <item
+        android:id="@+id/face_book"
+        android:icon="@drawable/facebook"
+        android:title="فيسبوك"></item>
     <item
         android:id="@+id/rol_nav"
         android:icon="@drawable/ic_insert_comment_black_24dp"

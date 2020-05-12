@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
@@ -45,8 +46,6 @@ public class HomeActivity extends AppCompatActivity {
     Toolbar toolbar1;
     TextView name, state;
     NavigationView navigationView;
-
-
     @SuppressLint("WrongViewCast")
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
@@ -63,7 +62,6 @@ public class HomeActivity extends AppCompatActivity {
         //toolbar = getSupportActionBar();
         toolbar1 = findViewById(R.id.toolbar_id);
         setSupportActionBar(toolbar1);
-
         // typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         loadFragment(new GridFragment());
         drawerLayout.addDrawerListener(drawerToggle);
@@ -71,9 +69,24 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView = findViewById(R.id.nav_view2);
         Menu m = navigationView.getMenu();
-
+        Menu me = bottomNavigationView.getMenu();
         for (int i = 0; i < m.size(); i++) {
             MenuItem mi = m.getItem(i);
+
+            //for aapplying a font to subMenu ...
+            SubMenu subMenu = mi.getSubMenu();
+            if (subMenu != null && subMenu.size() > 0) {
+                for (int j = 0; j < subMenu.size(); j++) {
+                    MenuItem subMenuItem = subMenu.getItem(j);
+                    applyFontToMenuItem(subMenuItem);
+                }
+            }
+
+            //the method we have create in activity
+            applyFontToMenuItem(mi);
+        }
+        for (int i = 0; i < me.size(); i++) {
+            MenuItem mi = me.getItem(i);
 
             //for aapplying a font to subMenu ...
             SubMenu subMenu = mi.getSubMenu();
@@ -95,6 +108,14 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.share_nav:
                         Toast.makeText(getApplicationContext(), "Share", Toast.LENGTH_SHORT).show();
                         break;
+                    case R.id.qr_code:
+                        Intent in = new Intent(getApplicationContext(), QrCodeActivity.class);
+                        startActivity(in);
+                        break;
+                    case R.id.inst:
+                        Intent iin = new Intent(getApplicationContext(), InstructionsActivity.class);
+                        startActivity(iin);
+                        break;
                     case R.id.about_nav:
                         Intent intent = new Intent(getApplicationContext(), AboutMakanak.class);
                         startActivity(intent);
@@ -111,11 +132,10 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(iy);
                         break;
                     case R.id.waba:
-                        Intent in = new Intent(getApplicationContext(), Call_Isolation.class);
-                        startActivity(in);
+                        Intent inr = new Intent(getApplicationContext(), Call_Isolation.class);
+                        startActivity(inr);
                         break;
                         default:
-
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;

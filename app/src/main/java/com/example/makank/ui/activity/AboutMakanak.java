@@ -47,7 +47,7 @@ LinearLayout phonePress;
         phonePress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+249903940244"));
+                Intent intent=new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+249118135130"));
                 startActivity(intent);
             }
         });

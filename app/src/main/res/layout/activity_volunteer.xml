@@ -45,7 +45,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_margin="15dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="2">
@@ -71,7 +71,7 @@
                 android:lineSpacingExtra="5dp"
                 android:lineSpacingMultiplier="1"
                 android:maxLines="2"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:text="المبادرة الوطنية لمكافحة فيروس كورونا كوفيد 19 في دولة السودان"
                 android:textColor="@color/color"
                 android:textSize="23sp">
@@ -93,9 +93,9 @@
                     android:lineSpacingExtra="5dp"
                     android:lineSpacingMultiplier="1.5"
                     android:text=""
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:layout_margin="10dp"
-                    android:padding="15dp"
+                    android:padding="10dp"
                     android:textColor="#645C5C"/>
             </LinearLayout>
             <LinearLayout
@@ -111,7 +111,7 @@
                     android:layout_height="50dp"
                     android:background="@drawable/attach"
                     android:backgroundTint="@color/total1"
-                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="80dp"
                     android:onClick="onClick"/>
                 <com.github.barteksc.pdfviewer.PDFView
                     android:id="@+id/pdfView"
@@ -123,14 +123,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="90dp"
                     android:textColor="#645C5C"
+                    android:maxLines="1"
                     android:text=" رفع السيرة الذاتية (بصيغة pdf)" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:gravity="right"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="2">
                 <CheckBox
@@ -139,23 +139,24 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:checked="false"
+                    style="@style/RadioButtonStyle"
                     android:text="اوافق على الشروط والاحكام"
-                    android:textSize="15dp">
-
+                    android:textSize="15dp"
+                    android:padding="15dp"
+                    >
                 </CheckBox>
             </LinearLayout>
-
             <Button
                 android:id="@+id/confirm"
                 android:layout_width="196dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/redbtn"
                 android:text="اوافق"
-                android:textColor="@color/cardview_light_background">
-
+                android:textColor="@color/white">
             </Button>
         </LinearLayout>
     </ScrollView>

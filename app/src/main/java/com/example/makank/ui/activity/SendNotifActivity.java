@@ -124,7 +124,7 @@ public class SendNotifActivity extends AppCompatActivity {
                     //progressDoalog.dismiss();
                     loadingDialog.dismissDialog();
 
-                    alert.showAlertInTest("تم اتمام العملية بنجاح البلاغ","تم رفع البلاغ","موافق");
+                    alert.showAlertInTest("تم تقديم البلاغ بنجاح","","موافـق");
                 }
             }
 
@@ -137,5 +137,3 @@ public class SendNotifActivity extends AppCompatActivity {
         });
     }
 }
-
-

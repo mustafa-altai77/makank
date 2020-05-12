@@ -72,7 +72,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
                 SharedPreferences sharedPreference = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
                 final String my_id = sharedPreference.getString(USER_ID, "id");
                 final int owner_id = requestList.get(position).getOwner_id();
-                Toast.makeText(context, accept + "", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(context, accept + "", Toast.LENGTH_SHORT).show();
                 postRequest(my_id, owner_id, accept);
             }
         });
@@ -140,7 +140,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
                 if (response.isSuccessful()) {
                     //  progressDoalog.dismiss();
                     loadingDialog.dismissDialog();
-                    alert.showAlertSuccess("تم قبول الطلب");
+                    //alert.showAlertSuccess("تم قبول الطلب");
+                    alert.showAlertInTest("","تمت العملية","موافق");
                     //Toast.makeText(context, "don", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -150,7 +151,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
                 //   progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
                 // Toast.makeText(context, "خطاء في النظام الخارجي", Toast.LENGTH_SHORT).show();
-                alert.showAlertError("خطاء في النظام الخارجي");
+                alert.showAlertInTest("","تمت العملية","موافق");
 
             }
         });

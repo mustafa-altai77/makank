@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="rtl"
     android:background="@color/white"
+    android:layoutDirection="rtl"
     tools:context=".ui.activity.Steper">
     <TextView
         android:layout_width="match_parent"
@@ -56,5 +56,6 @@
         android:layout_alignParentLeft="true"
         android:background="@null"
         android:text="@string/back"
+        android:visibility="invisible"
         android:textColor="@color/color" />
 </RelativeLayout>

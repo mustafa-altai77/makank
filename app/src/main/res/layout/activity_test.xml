@@ -136,7 +136,7 @@
         android:id="@+id/count_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1sp"
+        android:layout_marginTop="5dp"
         android:gravity="center"
         android:padding="5dp"
         android:text="Large Text"/>

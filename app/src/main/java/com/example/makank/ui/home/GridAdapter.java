@@ -24,6 +24,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.makank.R;
+import com.example.makank.data.model.Person;
 import com.example.makank.ui.activity.Steper;
 import com.example.makank.ui.activity.SendNotifActivity;
 import com.example.makank.ui.activity.ContactActivity;
@@ -36,12 +37,12 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CategoryViewHo
     private Context context;
     private List<Home> items;
 
+
     public GridAdapter(List<Home> items, Context context) {
         this.context = context;
         this.items = items;
 
     }
-
     @NonNull
     @Override
     public CategoryViewHolider onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -58,7 +59,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CategoryViewHo
         final Home item = items.get(position);
         holder.categoryText.setText(item.getName());
         holder.categoryImage.setImageResource(item.image);
-        holder.categoryImage.setOnClickListener(new View.OnClickListener() {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (item.getId() == 1) {
@@ -79,7 +80,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CategoryViewHo
                     context.startActivity(intent);
                 }
                 if (item.getId() == 4) {
-                 Typeface   typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
+                    Typeface   typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
                     SpannableString efr = new SpannableString("قريبــاً");
                     efr.setSpan(new TypefaceSpan(typeface),0,efr.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     Toast toast=Toast.makeText(context,efr,Toast.LENGTH_SHORT);
@@ -89,6 +90,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CategoryViewHo
                     text.setShadowLayer(0,0,0,Color.TRANSPARENT);
                     text.setTextColor(Color.RED);
                     text.setTextSize(Integer.valueOf(20));
+                    if( text != null) text.setGravity(Gravity.CENTER);
                     toast.show();
                 }
                 return;

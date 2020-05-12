@@ -3,9 +3,15 @@ package com.example.makank.ui.activity;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -57,7 +63,7 @@ public class ContactActivity extends AppCompatActivity {
     Button receive, check;
     IntentIntegrator qrScan;
     TextView status, firstNo, secondTwo;
-    Person person;
+    private Person personList;
     double locationLatitude;
     double locationLongitude;
 
@@ -66,7 +72,7 @@ public class ContactActivity extends AppCompatActivity {
     LoadingDialog loadingDialog;
     Alert alert;
     Toolbar toolbar;
-    private Person personList;
+
     @SuppressLint("ResourceAsColor")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -83,10 +89,8 @@ public class ContactActivity extends AppCompatActivity {
         receive = findViewById(R.id.receive);
         status = findViewById(R.id.status_id);
         check = findViewById(R.id.check_status);
-
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String my_id = sharedPreferences.getString(USER_ID, "id");
-        final String my_status = sharedPreferences.getString(STATUS, "status");
         final String age = sharedPreferences.getString(AGE, "age");
         check.setVisibility(View.INVISIBLE);
         GpsLocationTracker mGpsLocationTracker = new GpsLocationTracker(ContactActivity.this);
@@ -99,26 +103,8 @@ public class ContactActivity extends AppCompatActivity {
         receive.setTypeface(typeface);
         alert = new Alert(this);
         loadingDialog = new LoadingDialog(this);
-        //Person person=new Person(this);
-        /*if (my_status.equals("1")) {
-           circleImageView.setImageResource(R.color.colorAccent);
-           status.setText("الحالة :مصاب ");
-        } else if (my_status.equals("2")) {
-            circleImageView.setImageResource(R.color.yellow);
-            status.setText("الحالة : مخالط");
-        } else if (my_status.equals("3")) {
-            circleImageView.setImageResource(R.color.green);
-            status.setText("الحالة : سليم");
-        }*/
-        if (mGpsLocationTracker.canGetLocation()) {
-            locationLatitude = mGpsLocationTracker.getLatitude();
-            locationLongitude = mGpsLocationTracker.getLongitude();
-            Log.i(TAG, String.format("latitude: %s", locationLatitude));
-            Log.i(TAG, String.format("longitude: %s", locationLongitude));
-            //   Toast.makeText(this, locationLatitude + "" + locationLongitude + "", Toast.LENGTH_SHORT).show();
-        } else {
-            mGpsLocationTracker.showSettingsAlert();
-        }
+
+
         if (mGpsLocationTracker.canGetLocation()) {
             locationLatitude = mGpsLocationTracker.getLatitude();
             locationLongitude = mGpsLocationTracker.getLongitude();
@@ -161,8 +147,6 @@ public class ContactActivity extends AppCompatActivity {
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 String result = personalID.getText().toString();
                 if (personalID.getText().toString().equals("")) {
                     //Toast.makeText(ContactActivity.this, "يرجى ادخال رقم التعريف الشخصي", Toast.LENGTH_SHORT).show();
@@ -209,7 +193,7 @@ public class ContactActivity extends AppCompatActivity {
                     personalID.setText(obj.getString(String.valueOf(requestCode)));
                 } catch (JSONException e) {
                     e.printStackTrace();
-                   // Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
+                    // Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
                     personalID.setText(result.getContents());
 
                 }
@@ -218,6 +202,7 @@ public class ContactActivity extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
     private void addSee(String result, String my_id, double locationLatitude, double locationLongitude) {
 
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
@@ -232,8 +217,7 @@ public class ContactActivity extends AppCompatActivity {
                     //  progressDoalog.dismiss();
                     loadingDialog.dismissDialog();
                     //Toast.makeText(ContactActivity.this, "done", Toast.LENGTH_SHORT).show();
-
-                    String statu = response.body().getStatus();
+                    final String statu = response.body().getStatus();
                     String name = response.body().getFirst_name() + " " + response.body().getSecond_name() + " " + response.body().getLast_name();
 
                     if (statu.equals("3")) {
@@ -247,14 +231,12 @@ public class ContactActivity extends AppCompatActivity {
                     }
                     //  alert.showAlertSuccess(name+"\n"+""+CaseName);
                     alert.showAlertNormal("تم التواصل بنجاح", name + "\n" + " - " + CaseName, "موافق");
+                } else {
 
-                }
-                else {
-
-                    alert.showAlertError("هذا الرقم خاطىء");
+                    alert.showAlertError("هذا الرقم لايــوجد");
                     loadingDialog.dismissDialog();
+                    personalID.setText("");
                 }
-
             }
 
             @Override
@@ -267,5 +249,4 @@ public class ContactActivity extends AppCompatActivity {
         });
 
     }
-
 }

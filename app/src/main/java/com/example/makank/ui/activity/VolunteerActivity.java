@@ -95,10 +95,8 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
         txtSTEP.setText("يسعدنا انضمامكم للحملة الوطنية لمكافحة فيروس \nكورونا (كوفيد-19) و رداً على التساؤلات بشأن كيفية \nالمشاركة في الجهود الحكومية والمساعدة في حملة مكافحة فيروس كورونا المنتشر في دولة السودان .\nبدأت الحملة الوطنية لمكافحة فيروس كورونا" +
                 "(كوفيد-19) بتطوير الأنشطة التطوعية وتحديد مجالات العمل ,يمكنك أدناه ارفاع المستند الخاص بك ولكم فرصة المشاركة في الجهود الوطنية من خلال الموقة" +
                 " ");
-
         conn = findViewById(R.id.txtCon);
         ok = findViewById(R.id.confirm);
-
         volunteerName = findViewById(R.id.voluName);
         condition = findViewById(R.id.txtCon);
         message = findViewById(R.id.txt_message);
@@ -171,7 +169,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
                 Log.d("Path: ", path);
                 pdfPath = path;
                 // Toast.makeText(this, "Picked file: " + path, Toast.LENGTH_LONG).show();
-                alert.showAlertSuccess("تم", "تم إرفاق الملف قم بالضغط على أوافق للإرسال", "حسنا");
+                alert.showAlertSuccess("تم", "إرفاق الملف قم بالضغط على أوافق للإرسال", "موافق");
                 tvFileName.setText(path);
             }
         }
@@ -270,10 +268,9 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
                         loadingDialog.dismissDialog();
                         if (response.body() != null) {
                             // hidepDialog();
-                            alert.showAlertSuccess("تم إرسال السيرة الذاتية بنجاح");
+                            alert.showAlertInTest("تــم","إرسال السيرة الذاتية بنجاح","موافـق");
                             Filresponse serverResponse = response.body();
                             //Toast.makeText(getApplicationContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
-
                         }
                     } else {
                         // hidepDialog();
@@ -293,7 +290,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
 
                     // Toast.makeText(getApplicationContext(), "problem uploading file " + t.getMessage(), Toast.LENGTH_SHORT).show();
                   //  alert.showAlertError("صيغة الملف غير صحيحة");
-                    alert.showAlertSuccess("تم إرسال السيرة الذاتية بنجاح");
+                   // alert.showAlertSuccess("تم إرسال السيرة الذاتية بنجاح");
 
                 }
             });

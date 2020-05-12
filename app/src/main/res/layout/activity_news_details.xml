@@ -60,9 +60,9 @@
                 android:autoLink="all"
                 android:text="....."
                 android:padding="10dp"
+                android:lineSpacingMultiplier="1.5"
                 android:textColor="@color/color"
                 android:textSize="20sp" />
-
             <TextView
                 android:id="@+id/desc_details"
                 android:layout_width="wrap_content"
@@ -73,7 +73,7 @@
                 android:lineSpacingMultiplier="2"
                 android:padding="10dp"
                 android:text="....."
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

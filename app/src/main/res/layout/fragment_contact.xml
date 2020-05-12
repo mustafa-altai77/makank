@@ -10,7 +10,7 @@
         android:id="@+id/layoutSeen"
         android:layout_width="300dp"
         android:layout_gravity="center_horizontal"
-        android:background="#A2A1A1"
+        android:background="#7C7979"
         android:layout_height="50dp">
         <TextView
             android:layout_width="match_parent"

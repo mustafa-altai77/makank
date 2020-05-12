@@ -48,6 +48,7 @@ public class AddGroupActivity extends AppCompatActivity {
     LoadingDialog loadingDialog;
     Alert alert;
     Person personList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +123,7 @@ public class AddGroupActivity extends AppCompatActivity {
                 } else if (personalID.getText().toString().equals(my_id)) {
                     // Toast.makeText(AddGroupActivity.this, "ادخال خاطئ", Toast.LENGTH_SHORT).show();
                     alert.showAlertError("إدخال خاطئ");
+                    personalID.setText("");
                     return;
                 } else
                     addMember(member_id, my_id);
@@ -175,11 +177,11 @@ public class AddGroupActivity extends AppCompatActivity {
                     //   Toast.makeText(AddGroupActivity.this, "تمت الاضافة بنجاح", Toast.LENGTH_SHORT).show();
                     layout.setVisibility(View.VISIBLE);
                     if (response.code() == 200) {
-                       personList = response.body();
-                        final String f_name =personList.getFirst_name();
-                        final   String s_name =personList.getSecond_name();
-                        final  String l_name =personList.getLast_name();
-                        final int p_id =personList.getId();
+                        personList = response.body();
+                        final String f_name = personList.getFirst_name();
+                        final String s_name = personList.getSecond_name();
+                        final String l_name = personList.getLast_name();
+                        final int p_id = personList.getId();
 
                         Pname.setText("" + f_name + " " + s_name + " " + l_name);
                         personal_id.setText(Integer.toString(p_id));
@@ -187,8 +189,11 @@ public class AddGroupActivity extends AppCompatActivity {
                     //Intent intent = new Intent(RegisterActivity.this, DiseaseActivity.class);
                     //startActivity(intent);
                     //finish();
+                } else {
+                    alert.showAlertError("هذا الرقم لايــوجد");
+                    loadingDialog.dismissDialog();
+                    personalID.setText("");
                 }
-
             }
 
             @Override
@@ -219,20 +224,23 @@ public class AddGroupActivity extends AppCompatActivity {
                     loadingDialog.dismissDialog();
 
                     String id_person = String.valueOf(response.body().getId());
-                  //  Toast.makeText(AddGroupActivity.this, "don", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(AddGroupActivity.this, "don", Toast.LENGTH_SHORT).show();
                     //alert.showAlertSuccess("تمت الإضافة");
                     alert.showAlertSuccess("تم ارسال الطلب");
-                }
-                else
+                    personalID.setText("");
+
+                } else
                     alert.showAlertError("لايمكن اضافة هذا الشخص");
+                personalID.setText("");
 
             }
 
             @Override
             public void onFailure(Call<Member> call, Throwable t) {
-             //   progressDoalog.dismiss();
+                //   progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
                 alert.showAlertSuccess("تم ارسال الطلب");
+                personalID.setText("");
 
                 //Toast.makeText(AddGroupActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
                 //alert.showAlertError("الرجاء التأكد من إتصالك بالإنترنت");
