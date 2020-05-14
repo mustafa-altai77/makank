@@ -119,7 +119,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CategoryViewHo
             categoryText = itemView.findViewById(R.id.grid_text);
             categoryText = itemView.findViewById(R.id.grid_text);
             cardView = itemView.findViewById(R.id.card_grid);
-            categoryImage.setColorFilter(Color.argb(255, 255, 0, 0));
+            categoryImage.setColorFilter(Color.argb(255, 255, 255, 255));
             typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
             categoryText.setTypeface(typeface);
         }
