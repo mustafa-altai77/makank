@@ -23,7 +23,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layoutDirection="inherit">
 
                 <LinearLayout
                     android:layout_width="6dp"
@@ -31,48 +32,68 @@
                     android:layout_alignParentRight="true"
                     android:background="@color/color"></LinearLayout>
 
-                <TextView
-                    android:id="@+id/full_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="2dp"
-                    android:paddingRight="10dp"
-                    android:text="عبدالرحمن سيد عبدالله"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/status_mg"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="22dp"
-                    android:layout_marginRight="290dp"
-                    android:background="@drawable/recover" />
+                    <TextView
+                        android:id="@+id/full_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="5dp"
+                        android:paddingRight="10dp"
+                        android:text="عبدالرحمن سيد عبدالله"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/status_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="245dp"
-                    android:text="سليم"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="20sp" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layoutDirection="inherit"
+                        android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/person_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/full_name"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="0dp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:paddingRight="20dp"
-                    android:text="0000001"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="18sp" />
+                        <TextView
+                            android:id="@+id/status_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="27dp"
+                            android:gravity="center"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="60dp"
+                            android:paddingLeft="0dp"
+                            android:layout_alignParentTop="true"
+                            android:text="dfdffdgddftd"
+                            android:textColor="@color/cardview_dark_background"
+                            android:textSize="20sp" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/status_mg"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="25dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="28dp"
+                            android:background="@drawable/recover" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/person_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/full_name"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:paddingRight="20dp"
+                        android:text="0000001"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="18sp" />
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="388dp"

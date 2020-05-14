@@ -150,12 +150,12 @@ public class ContactActivity extends AppCompatActivity {
                 String result = personalID.getText().toString();
                 if (personalID.getText().toString().equals("")) {
                     //Toast.makeText(ContactActivity.this, "يرجى ادخال رقم التعريف الشخصي", Toast.LENGTH_SHORT).show();
-                    alert.showAlertError("يرجى ادخال رقم التعريف ");
+                    alert.showErrorDialog(getResources().getString(R.string.place_enter_id));
                     return;
                 }
                 if (personalID.getText().toString().equals(my_id)) {
                     //Toast.makeText(ContactActivity.this, "ادخال خاطئ", Toast.LENGTH_SHORT).show();
-                    alert.showAlertError("ادخال خاطئ");
+                    alert.showErrorDialog(getResources().getString(R.string.input_error));
                 } else
                     //else
                     addSee(result, my_id, locationLatitude, locationLongitude);
@@ -178,7 +178,8 @@ public class ContactActivity extends AppCompatActivity {
 
             //if qrcode has nothing in it
             if (result.getContents() == null) {
-                alert.showAlertError("لا توجد نتيجة");
+               // alert.showAlertError("لا توجد نتيجة");
+                alert.showErrorDialog(getResources().getString(R.string.no_result));
                 // Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
             } else {
                 //if qr contains data
@@ -221,19 +222,21 @@ public class ContactActivity extends AppCompatActivity {
                     String name = response.body().getFirst_name() + " " + response.body().getSecond_name() + " " + response.body().getLast_name();
 
                     if (statu.equals("3")) {
-                        CaseName = "سليم";
+                        CaseName = getResources().getString(R.string.healthy_case);
                     } else if (statu.equals("2")) {
-                        CaseName = "مخالط";
+                        CaseName = getResources().getString(R.string.suspicious_case);
 
                     } else if (statu.equals("1")) {
-                        CaseName = "مصاب";
+                        CaseName = getResources().getString(R.string.sufferer_case);;
 
                     }
                     //  alert.showAlertSuccess(name+"\n"+""+CaseName);
-                    alert.showAlertNormal("تم التواصل بنجاح", name + "\n" + " - " + CaseName, "موافق");
+                   alert.showSuccessDialog(getResources().getString(R.string.success_contact),name + " \n "+CaseName,1);
+                   // alert.showAlertInTest("تم التواصل بنجاح", name + "\n" + " - " + CaseName, "موافق");
                 } else {
 
-                    alert.showAlertError("هذا الرقم لايــوجد");
+                   // alert.showAlertError("هذا الرقم لايــوجد");
+                    alert.showErrorDialog(getResources().getString(R.string.this_number_not_found));
                     loadingDialog.dismissDialog();
                     personalID.setText("");
                 }
@@ -243,7 +246,8 @@ public class ContactActivity extends AppCompatActivity {
             public void onFailure(Call<Member> call, Throwable t) {
                 loadingDialog.dismissDialog();
                 //Toast.makeText(ContactActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
-                alert.showAlertError("تــأكد من إتصالك بالإنترنت");
+               // alert.showAlertError("تــأكد من إتصالك بالإنترنت");
+                alert.showWarningDialog();
 
             }
         });

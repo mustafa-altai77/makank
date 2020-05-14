@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    android:layoutDirection="rtl"
+    android:layoutDirection="inherit"
     android:background="@drawable/card_button"
     android:padding="5dp"
     tools:context=".ui.activity.CityActivity">

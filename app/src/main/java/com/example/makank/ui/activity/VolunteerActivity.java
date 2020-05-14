@@ -1,5 +1,6 @@
 package com.example.makank.ui.activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -12,11 +13,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.TypefaceSpan;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -142,7 +149,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
             if (aprove.isChecked()) {
 
                 uploadImage(my_id);
-            }else alert.showAlertError("يجب الموافقة على الشروط");
+            }else alert.showErrorDialog(getResources().getString(R.string.must_done_condition));
         }
 
     }
@@ -153,10 +160,11 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
                 .withRequestCode(FILE_PICKER_REQUEST_CODE)
                 .withHiddenFiles(true)
                 .withFilter(Pattern.compile(".*\\.pdf$"))
-                .withTitle("Select PDF file")
+                .withTitle(getResources().getString(R.string.must_select_pdf))
                 .start();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -169,7 +177,18 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
                 Log.d("Path: ", path);
                 pdfPath = path;
                 // Toast.makeText(this, "Picked file: " + path, Toast.LENGTH_LONG).show();
-                alert.showAlertSuccess("تم", "إرفاق الملف قم بالضغط على أوافق للإرسال", "موافق");
+                Typeface   typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
+                SpannableString efr = new SpannableString(getResources().getString(R.string.press_to_send));
+                efr.setSpan(new TypefaceSpan(typeface),0,efr.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                Toast toast=Toast.makeText(this,efr,Toast.LENGTH_SHORT);
+                View view=toast.getView();
+                view.setBackgroundColor(Color.TRANSPARENT);
+                TextView text=(TextView) view.findViewById(android.R.id.message);
+                text.setShadowLayer(0,0,0,Color.TRANSPARENT);
+                text.setTextColor(Color.RED);
+                text.setTextSize(Integer.valueOf(20));
+                if( text != null) text.setGravity(Gravity.CENTER);
+                toast.show();
                 tvFileName.setText(path);
             }
         }
@@ -234,7 +253,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
     public void uploadImage(String id) {
         if (pdfPath == null) {
             //Toast.makeText(this, "please select file", Toast.LENGTH_LONG).show();
-            alert.showAlertError("الرجاء إرفاق الملف");
+          alert.showErrorDialog(getResources().getString(R.string.please_add_file));
             return;
         } else {
 //            showpDialog();
@@ -268,7 +287,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
                         loadingDialog.dismissDialog();
                         if (response.body() != null) {
                             // hidepDialog();
-                            alert.showAlertInTest("تــم","إرسال السيرة الذاتية بنجاح","موافـق");
+                            alert.showSuccessDialog(getResources().getString(R.string.success_notification),getResources().getString(R.string.done_send_cv),1);
                             Filresponse serverResponse = response.body();
                             //Toast.makeText(getApplicationContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -278,7 +297,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
 
                         Log.e("error_req", call.toString());
                         Log.e("error_res", response.toString());
-                        alert.showAlertError("اسم الملف طويل للغاية");
+                        alert.showErrorDialog(getResources().getString(R.string.length_file_long));
                     }
                 }
 

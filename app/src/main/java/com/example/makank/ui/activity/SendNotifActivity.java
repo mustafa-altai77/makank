@@ -87,12 +87,12 @@ public class SendNotifActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (notifi.getText().toString().equals("")) {
                     //Toast.makeText(SendNotifActivity.this, "اوصف الحالة", Toast.LENGTH_SHORT).show();
-                    alert.showAlertError("اوصف الحالة");
+                    alert.showErrorDialog(getResources().getString(R.string.disc_case));
                     return;
                 }
                 if (area.getText().toString().equals("")) {
                     // Toast.makeText(SendNotifActivity.this, "وصف المنطقة", Toast.LENGTH_SHORT).show();
-                    alert.showAlertError("وصف المنطقة");
+                    alert.showErrorDialog(getResources().getString(R.string.disc_area));
                     return;
                 }
                 SharedPreferences sharedPreference = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -124,7 +124,7 @@ public class SendNotifActivity extends AppCompatActivity {
                     //progressDoalog.dismiss();
                     loadingDialog.dismissDialog();
 
-                    alert.showAlertInTest("تم تقديم البلاغ بنجاح","","موافـق");
+                    alert.showSuccessDialog(getResources().getString(R.string.success_notification),getResources().getString(R.string.success_approve_notification),1);
                 }
             }
 
@@ -132,7 +132,7 @@ public class SendNotifActivity extends AppCompatActivity {
             public void onFailure(Call<Person> call, Throwable t) {
                 //progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
-                alert.showAlertError("تــأكد من إتصالك بالإنترنت");
+               alert.showWarningDialog();
             }
         });
     }

@@ -86,14 +86,14 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder
         holder.stat.setText(newsListFiltered.get(position).getStatus());
 
         if (model.getStatus().equals("3")) {
-            holder.stat.setText("سليم");
+            holder.stat.setText(context.getResources().getString(R.string.healthy_case));
             holder.image.setImageResource(R.color.green);
         }else if (model.getStatus().equals("2")) {
-            holder.stat.setText("مخالط");
+            holder.stat.setText(context.getResources().getString(R.string.suspicious_case));
             holder.image.setImageResource(R.color.yellow);
         }
         else if(model.getStatus().equals("1")) {
-            holder.stat.setText("مصاب");
+            holder.stat.setText(context.getResources().getString(R.string.sufferer_case));
           holder.image.setImageResource(R.color.colorAccent);
 //
 //        Glide.with(context).load(newsList.get(position).getImage()).apply(RequestOptions.centerCropTransform()).into(holder.image);

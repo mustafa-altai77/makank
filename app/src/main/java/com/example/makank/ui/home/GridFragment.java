@@ -20,7 +20,6 @@ public class GridFragment extends Fragment {
     private  List<Home> grid_list = new ArrayList<>();
     private RecyclerView recyclerView;
     private GridAdapter Gadapter;
-    Typeface typeface;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -35,12 +34,12 @@ public class GridFragment extends Fragment {
         recyclerView = v.findViewById(R.id.grid_recycler);
         grid_list.clear();
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        grid_list.add(new Home(1,"التواصل مع شخص",R.drawable.communication));
-        grid_list.add(new Home(2,"التبليغ عن حالة",R.drawable.notification));
-        grid_list.add(new Home(3,"الاختبار المعرفي",R.drawable.qualification));
-        grid_list.add(new Home(4,"اماكن الاصابات",R.drawable.radar));
-        grid_list.add(new Home(5,"التطوع",R.drawable.volunteer));
-        grid_list.add(new Home(6,"النصائح والارشادات",R.drawable.socialcare));
+        grid_list.add(new Home(1,getResources().getString(R.string.contact_screen),R.drawable.communication));
+        grid_list.add(new Home(2,getResources().getString(R.string.notification_screen),R.drawable.notification));
+        grid_list.add(new Home(3,getResources().getString(R.string.testing_screen),R.drawable.qualification));
+        grid_list.add(new Home(4,getResources().getString(R.string.effected_screen),R.drawable.radar));
+        grid_list.add(new Home(5,getResources().getString(R.string.volunteer_screen),R.drawable.volunteer));
+        grid_list.add(new Home(6,getResources().getString(R.string.tips_screen),R.drawable.socialcare));
 
          Gadapter = new GridAdapter(grid_list,getContext());
         recyclerView.setAdapter(Gadapter);

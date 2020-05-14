@@ -35,11 +35,12 @@ public class RegisterActivity extends AppCompatActivity {
     RadioButton radioButton;
     String local_id, ln;
     EditText f_name, s_name, l_name, phone;
-    TextView textView, Fmale, Male,info;
+    TextView textView, Fmale, Male, info;
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
     Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
         textView = findViewById(R.id.type_gender);
         Male = findViewById(R.id.male);
         Fmale = findViewById(R.id.female);
-        info=findViewById(R.id.infoInsert);
+        info = findViewById(R.id.infoInsert);
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         btn.setTypeface(typeface);
         f_name.setTypeface(typeface);
@@ -84,7 +85,6 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     private void createPerson() {
-
         loadingDialog.startLoadingDialog();
         final String first_name = f_name.getText().toString();
         final String second_name = s_name.getText().toString();
@@ -94,27 +94,27 @@ public class RegisterActivity extends AppCompatActivity {
         int selectedID = radioGroupGender.getCheckedRadioButtonId();
         radioButton = findViewById(selectedID);
         final String gender = (String) radioButton.getText();
-        String message = "يجب ملئ جميع الحقول";
+        int length = phone_number.length();
+        String message = getResources().getString(R.string.fill_field);
 
         if (TextUtils.isEmpty(first_name)) {
-            alert.showAlertError(message);
+            alert.showErrorDialog(message);
             loadingDialog.dismissDialog();
             return;
         }
         if (TextUtils.isEmpty(second_name)) {
-            alert.showAlertError(message);
+            alert.showErrorDialog(message);
             loadingDialog.dismissDialog();
             return;
         }
         if (TextUtils.isEmpty(last_name)) {
-
-            alert.showAlertError(message);
+            alert.showErrorDialog(message);
             loadingDialog.dismissDialog();
             return;
 
         }
         if (TextUtils.isEmpty(phone_number)) {
-            alert.showAlertError(message);
+            alert.showErrorDialog(message);
             loadingDialog.dismissDialog();
             return;
 
@@ -122,11 +122,17 @@ public class RegisterActivity extends AppCompatActivity {
 //        String ageText = bDay.getText().toString();
 
         if (TextUtils.isEmpty(age)) {
-            alert.showAlertError(message);
+            alert.showErrorDialog(message);
             loadingDialog.dismissDialog();
             return;
 
         }
+        if (length <= 8) {
+            alert.showErrorDialog(getResources().getString(R.string.length_phone));
+            loadingDialog.dismissDialog();
+            return;
+        }
+
         Person person = new Person(first_name, second_name, last_name, phone_number, gender, age, local_id);
         // progressDoalog.show();
         loadingDialog.startLoadingDialog();
@@ -163,7 +169,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onFailure(Call<Person> call, Throwable t) {
                 loadingDialog.dismissDialog();
 
-                alert.showAlertError("خطاء في النظام الخارجي");
+                alert.showWarningDialog();
             }
         });
     }

@@ -62,7 +62,7 @@ public class QrCodeActivity extends AppCompatActivity {
         personalID.setTypeface(typeface);
         information.setTypeface(typeface);
         activity = this;
-        personalID.setText("الرقم التعريفي الخاص بك هو : "+id);
+        personalID.setText(" "+getResources().getString(R.string.the_id_is)+id);
         inputValue = id;
 //                inputValue = edtValue.getText().toString().trim();
         if (inputValue.length() > 0) {

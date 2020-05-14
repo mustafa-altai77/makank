@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="rtl"
+    android:layoutDirection="inherit"
     tools:context=".ui.statistic.StatisticFragment">
 
     <ScrollView
@@ -41,7 +41,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
-                            android:text=" الحالات الجديدة"
+                            android:text="@string/new_case"
                             android:textColor="@color/white"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -83,7 +83,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
-                            android:text="حالات الشفاء الجديدة"
+                            android:text="@string/case_recover"
                             android:textColor="@color/white"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -136,7 +136,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
-                            android:text=" الوفيات الجديدة"
+                            android:text="@string/new_death"
                             android:textColor="@color/white"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -178,7 +178,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
-                            android:text="الحالات المشتبهة"
+                            android:text="@string/suspicious_num"
                             android:textColor="@color/white"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -230,7 +230,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
-                            android:text="إجمالي حالات الشفاء"
+                            android:text="@string/total_recover"
                             android:textColor="@color/white"
 
                             android:textSize="20sp"
@@ -273,7 +273,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
-                            android:text="إجمالي الوفيات"
+                            android:text="@string/total_death"
                             android:textColor="@color/white"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -324,10 +324,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
-                            android:text="عدد الإصابات الكلي"
+                            android:text="@string/total_effected_num"
                             android:textColor="@color/white"
 
-                            android:textSize="20sp"
+                            android:textSize="17sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 

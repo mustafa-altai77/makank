@@ -108,7 +108,7 @@ public class LocalActivity extends AppCompatActivity {
             public void onFailure(Call<List<Local>>call, Throwable t) {
                 loadingDialog.dismissDialog();
 
-                alert.showAlertError("تــأكد من إتصالك بالإنترنت");
+               alert.showWarningDialog();
             }
         });
     }

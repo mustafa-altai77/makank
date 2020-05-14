@@ -122,20 +122,20 @@ public class PersonalFragment extends Fragment {
                         final String status = personList.getStatus();
                         F_name.setText("" + f_name + " " + s_name + " " + l_name);
                         gen.setText(gender);
-                        personalID.setText("الرقم التعريفي : " + my_id);
+                        personalID.setText(getResources().getString(R.string.the_id_is) + my_id);
                         age_.setText(age);
                         ph.setText(num);
                         if (status.equals("1")) {
                             statusImage.setImageResource(R.color.colorAccent);
-                            statusName.setText("مصاب");
+                            statusName.setText(getResources().getString(R.string.sufferer_case));
 
                         } else if (status.equals("2")) {
                             statusImage.setImageResource(R.color.yellow);
-                            statusName.setText("مخالط");
+                            statusName.setText(getResources().getString(R.string.suspicious_case));
 
                         } else if (status.equals("3")) {
                             statusImage.setImageResource(R.color.green);
-                            statusName.setText("سليم");
+                            statusName.setText(getResources().getString(R.string.healthy_case));
                         }
                     }
 
@@ -146,7 +146,7 @@ public class PersonalFragment extends Fragment {
             public void onFailure(Call<Person> call, Throwable t) {
                 loadingDialog.dismissDialog();
 
-                alert.showAlertError("تــأكد من إتصالك بإنترنت");
+                alert.showWarningDialog();
                 //Toast.makeText(getContext(), "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
             }
         });

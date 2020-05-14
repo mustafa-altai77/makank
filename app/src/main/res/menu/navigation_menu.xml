@@ -3,36 +3,34 @@
     <item
         android:id="@+id/share_nav"
         android:icon="@drawable/ic_share_black_24dp"
-        android:title="مشاركة التطبيق"></item>
+        android:title="@string/share_app"></item>
     <item
         android:id="@+id/qr_code"
         android:icon="@drawable/ic_qr_code"
-        android:title="رمز QR Code"></item>
+        android:title="@string/qr_code"></item>
     <item
         android:id="@+id/inst"
         android:icon="@drawable/ic_virus"
-        android:title="الإرشادات"></item>
+        android:title="@string/instruction"></item>
 
     <item
         android:id="@+id/waba"
         android:icon="@drawable/ic_call_black_24dp"
-        android:title="التواصل مع الوبائيات"></item>
+        android:title="@string/phone_edemi"></item>
+    <item
+        android:id="@+id/change_lang"
+        android:icon="@drawable/ic_language"
+        android:title="@string/change_language"></item>
     <item
         android:id="@+id/face_book"
         android:icon="@drawable/facebook"
-        android:title="فيسبوك"></item>
+        android:title="@string/facebook"></item>
     <item
         android:id="@+id/rol_nav"
         android:icon="@drawable/ic_insert_comment_black_24dp"
-        android:title="الشروط والاحكام"></item>
+        android:title="@string/terms"></item>
     <item
         android:id="@+id/about_nav"
         android:icon="@drawable/ic_info_outline_black_24dp"
-        android:title="عن التطبيق"></item>
-    <gradient
-        android:angle="270"
-        android:endColor="@color/color"
-        android:startColor="@color/color"
-        android:type="linear" />
-
+        android:title="@string/about_app"></item>
 </menu>

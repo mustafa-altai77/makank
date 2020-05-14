@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="rtl"
+    android:layoutDirection="inherit"
     tools:context=".ui.activity.InstructionsActivity"
     android:orientation="vertical">
     <include layout="@layout/custom_toolbar"/>
@@ -20,7 +20,7 @@
             android:id="@+id/quet"
             android:textColor="#FFFFFF"
             android:gravity="center"
-            android:text="الأسئلة الشائعة حول جائحة كورونا" />
+            android:text="@string/common_questions" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

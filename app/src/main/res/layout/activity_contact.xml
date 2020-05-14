@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="rtl"
+    android:layoutDirection="inherit"
     android:background="@drawable/card_button"
     tools:context=".ui.activity.ContactActivity"
     android:orientation="vertical">
@@ -35,7 +35,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/image_status"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="التواصــل مع شخص"
+                android:text="@string/contact_screen"
                 app:layout_constraintTop_toTopOf="parent" />
             <!-- <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/image_status"
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/second"
                 android:textColor="@color/cardview_dark_background"
-                android:text="اضغط على الصورة للبحث عن طريق الرمز التعريفي (QrCode)"
+                android:text="@string/search_qr"
                 android:layout_gravity="center">
 
             </TextView>
@@ -76,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/cardview_dark_background"
-                android:text="او ادخل الرقم التعريفي"
+                android:text="@string/or_input_id"
                 android:id="@+id/first"
                 android:layout_gravity="center">
             </TextView>
@@ -88,7 +88,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/rounded_edittext"
-                android:hint="الرقم التعريفي: xxxxx"
+                android:hint="@string/hint_id"
                 android:inputType="number"
                 android:textColorHint="@color/cardview_dark_background"
                 android:textColor="@color/cardview_dark_background"
@@ -102,13 +102,11 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/redbtn"
-                android:text="بحـــث"
+                android:text="@string/scan"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/cardview_light_background">
-
             </Button>
-
             <Button
                 android:id="@+id/receive"
                 android:layout_width="283dp"
@@ -118,7 +116,7 @@
                 android:background="@drawable/graybtn"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="إستقبــال"
+                android:text="@string/receive"
                 android:textColor="@color/cardview_light_background">
             </Button>
         </LinearLayout>

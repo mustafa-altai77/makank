@@ -74,6 +74,7 @@ public class DiseaseActivity extends AppCompatActivity {
         btnGetSelected.setTypeface(typeface);
         disease_i.setTypeface(typeface);
         info_Insert.setTypeface(typeface);
+       
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,6 +85,9 @@ public class DiseaseActivity extends AppCompatActivity {
 //                        stringBuilder.append("\n");
                     }
                     showToast(arr);
+                   // btnGetSelected.setText(getResources().getString(R.string.save));
+                   // Toast.makeText(DiseaseActivity.this, "12345", Toast.LENGTH_SHORT).show();
+
                 } else {
 
                     //showToast("No Selection");
@@ -93,6 +97,7 @@ public class DiseaseActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     private void fetchWeatherDetails() {
@@ -121,7 +126,7 @@ public class DiseaseActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Disease>> call, Throwable t) {
                 //progressDoalog.dismiss();
-               // loadingDialog.dismissDialog();
+                // loadingDialog.dismissDialog();
                 Log.d("TAG", "Response = " + t.toString());
             }
         });
@@ -132,7 +137,7 @@ public class DiseaseActivity extends AppCompatActivity {
         diseases = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             Disease disease = new Disease();
-            disease.setName("المرض " + (i + 1));
+            disease.setName(getResources().getString(R.string.disease_name) + " " + (i + 1));
             disease.setId(i + 1);
             // for example to show at least one selection
 //            if (i == 0) {
@@ -165,7 +170,7 @@ public class DiseaseActivity extends AppCompatActivity {
                     loadingDialog.dismissDialog();
 
                     // Toast.makeText(DiseaseActivity.this, "done", Toast.LENGTH_SHORT).show();
-                    alert.showAlertSuccess("");
+                    //alert.showAlertSuccess("");
                     Intent intent = new Intent(DiseaseActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
@@ -176,10 +181,10 @@ public class DiseaseActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Disease> call, Throwable t) {
                 // progressDoalog.dismiss();
-             //   loadingDialog.dismissDialog();
+                //   loadingDialog.dismissDialog();
 
                 // Toast.makeText(DiseaseActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
-                alert.showAlertError("تــأكد من إتصالك بالإنترنت");
+                alert.showWarningDialog();
 
             }
         });

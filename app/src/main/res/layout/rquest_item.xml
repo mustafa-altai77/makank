@@ -33,6 +33,7 @@
 
                 <TextView
                     android:id="@+id/sender_name"
+                    android:layoutDirection="inherit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -50,7 +51,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="4dp"
                     android:paddingRight="15dp"
-                    android:text="الرقم التعريفي الخاص به :"
+                    android:text="@string/id_own"
                     android:textColor="@color/cardview_dark_background" />
 
                 <TextView
@@ -72,7 +73,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="56dp"
                     android:layout_marginRight="183dp"
-                    android:text=" طلب للإنضمام لمجموعته"
+                    android:text="@string/request_for_him"
                     android:textColor="@color/cardview_dark_background" />
 
                 <LinearLayout
@@ -93,7 +94,7 @@
                         android:background="@drawable/graybtn"
                         android:fontFamily="monospace"
                         android:onClick="whatCase"
-                        android:text="قبول"
+                        android:text="@string/accepted"
                         android:textColor="#ffffff"
                         android:textStyle="bold" />
                     <Button
@@ -104,7 +105,7 @@
                         android:background="@drawable/redbtn"
                         android:fontFamily="monospace"
                         android:onClick="whatCase"
-                        android:text="رفض"
+                        android:text="@string/rejected"
                         android:textColor="#ffffff"
                         android:textStyle="bold"
                         />

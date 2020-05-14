@@ -104,14 +104,14 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
 
 
         if (model.getStatus().equals("3")) {
-            holder.stat.setText("سليم");
+            holder.stat.setText(context.getResources().getString(R.string.healthy_case));
             holder.image.setImageResource(R.color.green);
         } else if (model.getStatus().equals("2")) {
-            holder.stat.setText("مخالط");
+            holder.stat.setText(context.getResources().getString(R.string.suspicious_case));
             holder.image.setImageResource(R.color.yellow);
         } else if (model.getStatus().equals("1")) {
-            holder.stat.setText("مصاب");
             holder.image.setImageResource(R.color.colorAccent);
+            holder.stat.setText(context.getResources().getString(R.string.sufferer_case));
         }
     }
 

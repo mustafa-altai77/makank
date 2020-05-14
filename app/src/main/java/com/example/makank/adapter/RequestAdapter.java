@@ -141,7 +141,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
                     //  progressDoalog.dismiss();
                     loadingDialog.dismissDialog();
                     //alert.showAlertSuccess("تم قبول الطلب");
-                    alert.showAlertInTest("","تمت العملية","موافق");
+                    alert.showSuccessDialog(context.getResources().getString(R.string.success_notification),"",1);
                     //Toast.makeText(context, "don", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -151,7 +151,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
                 //   progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
                 // Toast.makeText(context, "خطاء في النظام الخارجي", Toast.LENGTH_SHORT).show();
-                alert.showAlertInTest("","تمت العملية","موافق");
+                alert.showSuccessDialog(context.getResources().getString(R.string.success_notification),"",1);
 
             }
         });

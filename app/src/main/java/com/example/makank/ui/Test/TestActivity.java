@@ -70,7 +70,7 @@ public class TestActivity extends AppCompatActivity {
         txtCheck=findViewById(R.id.check_id);
         txtCheck1=findViewById(R.id.check_id1);
         txtFinal.setVisibility(View.INVISIBLE);
-        txtCount.setText("الخطوة 1 من 11");
+        txtCount.setText(getResources().getString(R.string.step_1_11));
         setQuestionView();
         alert=new Alert(this);
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
@@ -100,7 +100,7 @@ public class TestActivity extends AppCompatActivity {
                     if (qid < 11) {
                         currentQ = quesList.get(qid);
                         setQuestionView();
-                        txtCount.setText("الخطوة "+""+qid+" من 11");
+                        txtCount.setText(" "+getResources().getString(R.string.step)+""+qid+getResources().getString(R.string.step_11));
                         defColor();
                         //Toast.makeText(TestActivity.this, ""+qid, Toast.LENGTH_SHORT).show();
                         //grp.clearCheck();
@@ -109,7 +109,7 @@ public class TestActivity extends AppCompatActivity {
                     }
                     if (qid>=7) txtFinal.setVisibility(View.VISIBLE);
                 } else {
-                    SpannableString efr = new SpannableString("يجب عليك الإجابة على جميع الأسئلة");
+                    SpannableString efr = new SpannableString(getResources().getString(R.string.must_question_all));
                     efr.setSpan(new TypefaceSpan(typeface),0,efr.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     //Toast.makeText(getApplicationContext(), efr, Toast.LENGTH_SHORT).show();
                     //Toast.makeText(TestActivity.this, efr, Toast.LENGTH_SHORT).show();
@@ -150,14 +150,13 @@ public class TestActivity extends AppCompatActivity {
     {
         if (score== 0 || score <=3)
         {
-           alert.showAlertInTest("نتيجة الفحص","انت بصحة جيدة ,اطمئن ولاتقلق","موافق");
+           alert.showSuccessDialog(getResources().getString(R.string.result_check),getResources().getString(R.string.do_not_worry),1);
         }else if(score==4 || score <=6){
-            alert.showAlertInTest("نتيجة الفحص","انت تعاني من نزلة برد","موافق");
+            alert.showSuccessDialog(getResources().getString(R.string.result_check),getResources().getString(R.string.catch_cold),1);
         }
         else
         {
-            alert.showAlert("نتيجة الفحص","يجب عليك الإتصال بوحودة الوبائيات","موافق");
-
+            alert.showSuccessDialog(getResources().getString(R.string.result_check),getResources().getString(R.string.effected),2);
 
         }
     }

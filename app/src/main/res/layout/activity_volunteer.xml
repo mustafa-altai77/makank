@@ -35,7 +35,7 @@
                     android:id="@+id/infoVol"
                     android:textColor="#FFFFFF"
                     android:gravity="center"
-                    android:text="شــروط التطوع" />
+                    android:text="@string/cond_volunteer" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:text="مرحبا :"
+                    android:text=""
                     android:textColor="#645C5C"
                     android:textSize="15dp"/>
 
@@ -72,7 +72,7 @@
                 android:lineSpacingMultiplier="1"
                 android:maxLines="2"
                 android:padding="10dp"
-                android:text="المبادرة الوطنية لمكافحة فيروس كورونا كوفيد 19 في دولة السودان"
+                android:text="@string/covid"
                 android:textColor="@color/color"
                 android:textSize="23sp">
 
@@ -124,7 +124,7 @@
                     android:layout_marginLeft="90dp"
                     android:textColor="#645C5C"
                     android:maxLines="1"
-                    android:text=" رفع السيرة الذاتية (بصيغة pdf)" />
+                    android:text="@string/upload_pdf" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -140,7 +140,7 @@
                     android:layout_gravity="left"
                     android:checked="false"
                     style="@style/RadioButtonStyle"
-                    android:text="اوافق على الشروط والاحكام"
+                    android:text="@string/approve_cond"
                     android:textSize="15dp"
                     android:padding="15dp"
                     >
@@ -155,7 +155,7 @@
                 android:textSize="18sp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/redbtn"
-                android:text="اوافق"
+                android:text="@string/accept"
                 android:textColor="@color/white">
             </Button>
         </LinearLayout>

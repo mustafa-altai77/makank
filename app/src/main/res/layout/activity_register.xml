@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layoutDirection="rtl"
+    android:layoutDirection="inherit"
     android:background="@drawable/card_button"
     tools:context=".ui.activity.RegisterActivity">
     <include layout="@layout/custom_toolbar"/>
@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="0dp"
-        android:layoutDirection="rtl"
+        android:layoutDirection="inherit"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:id="@+id/infoInsert"
                 android:textColor="#FFFFFF"
                 android:gravity="center"
-                android:text="أدخل بياناتك الشخصية" />
+                android:text="@string/input_person_data" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,12 +58,13 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
-                android:hint="الاسم الاول "
+                android:hint="@string/first_name"
                 android:inputType="textPersonName"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
                 android:textAlignment="textStart"
                 android:textColor="#4D4646"
+                android:maxLength="12"
                 android:textColorHint="#8B8686" />
 
             <EditText
@@ -75,8 +76,9 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
+                android:maxLength="12"
                 android:paddingLeft="20dp"
-                android:hint="الاسم الثاني "
+                android:hint="@string/md_name"
                 android:inputType="textPersonName"
                 android:paddingRight="20dp"
                 android:textAlignment="textStart"
@@ -93,7 +95,8 @@
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
                 android:paddingLeft="20dp"
-                android:hint="الاسم الثالث"
+                android:hint="@string/last_name"
+                android:maxLength="12"
                 android:inputType="textPersonName"
                 android:paddingRight="20dp"
                 android:textAlignment="textStart"
@@ -109,34 +112,33 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
-                android:hint="رقم الهاتف"
+                android:hint="@string/phone"
                 android:paddingLeft="20dp"
                 android:inputType="number"
                 android:paddingRight="20dp"
                 android:textAlignment="textStart"
+                android:maxLength="9"
                 android:textColor="#4D4646"
                 android:textColorHint="#8B8686" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
                 android:background="#C4C2C2"
                 android:gravity="center|center_vertical"
-
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/type_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="الجنس"
+                    android:gravity="center"
+                    android:text="@string/gender"
                     android:paddingLeft="20dp"
                     android:textSize="15sp" />
-
                 <RadioGroup
                     android:id="@+id/gender_radiogroup"
                     android:layout_width="wrap_content"
@@ -146,20 +148,18 @@
                     android:textAlignment="center"
                     android:textColorHint="#4D4646">
 
-
-
                     <RadioButton
                         android:id="@+id/male"
                         android:layout_width="wrap_content"
                         android:theme="@style/RadioButtonStyle"
                         android:layout_height="wrap_content"
-                        android:text="ذكر" />
+                        android:text="@string/male" />
                     <RadioButton
                         android:id="@+id/female"
                         android:theme="@style/RadioButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="انثى" />
+                        android:text="@string/female" />
                 </RadioGroup>
             </LinearLayout>
 
@@ -171,11 +171,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_edittext"
-                android:hint="العمر"
+                android:hint="@string/age"
                 android:inputType="number"
                 android:paddingRight="20dp"
+                android:paddingLeft="20dp"
                 android:textAlignment="textStart"
                 android:textColor="#4D4646"
+                android:maxLength="3"
                 android:textColorHint="#8B8686" />
         </LinearLayout>
         <!--    </FrameLayout>-->

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layoutDirection="rtl"
+    android:layoutDirection="inherit"
     android:layout_height="match_parent"
     tools:context=".ui.activity.AddGroupActivity">
     <LinearLayout
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/total2"
         android:textSize="15sp"
-        android:text="اضغط على الصورة للبحث عن طريق الرمز التعريفي (QrCode)"
+        android:text="@string/search_qr"
         android:layout_gravity="center">
 
     </TextView>
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/total2"
         android:textSize="15sp"
-        android:text="او ادخل الرقم التعريفي"
+        android:text="@string/or_input_id"
         android:layout_gravity="center">
     </TextView>
 
@@ -51,7 +51,7 @@
         android:layout_marginTop="20dp"
         android:textColorHint="@color/total2"
         android:background="@drawable/rounded_edittext"
-        android:hint="الرقم التعريفي: xxxxx"
+        android:hint="@string/hint_id"
         android:inputType="text"
         android:textAlignment="center">
     </EditText>
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/total2"
                 android:textStyle="bold"
-                android:text="ابراهيم عوض"/>
+                android:text=""/>
         </LinearLayout>
 
         <LinearLayout
@@ -100,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/total2"
-                android:text="0255684"/>
+                android:text=""/>
         </LinearLayout>
 
     <Button

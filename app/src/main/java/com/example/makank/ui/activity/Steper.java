@@ -102,7 +102,7 @@ public class Steper extends AppCompatActivity {
                 back.setEnabled(false);
                 back.setVisibility(View.VISIBLE);
 
-                next.setText("التالي");
+                next.setText(getResources().getString(R.string.next));
                 back.setText("");
             } else if (i == mDots.length - 1) {
                 next.setEnabled(true);
@@ -110,13 +110,13 @@ public class Steper extends AppCompatActivity {
                 back.setVisibility(View.VISIBLE);
 
                 next.setText("");
-                back.setText("رجوع");
+                back.setText(getResources().getString(R.string.back));
             } else {
                 next.setEnabled(true);
                 back.setEnabled(true);
                 back.setVisibility(View.VISIBLE);
-                next.setText("التالي");
-                back.setText("رجوع");
+                next.setText(getResources().getString(R.string.next));
+                back.setText(getResources().getString(R.string.back));
             }
         }
 

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +21,7 @@ import java.util.List;
 public class DiseaseAdapter extends RecyclerView.Adapter<DiseaseAdapter.DiseaseViewHolder> {
     private Context context;
     private List<Disease> diseases;
+
 
 
     @NonNull
@@ -73,6 +75,7 @@ public class DiseaseAdapter extends RecyclerView.Adapter<DiseaseAdapter.DiseaseV
                 @Override
                 public void onClick(View view) {
                     disease.setChecked(!disease.isChecked());
+                    //Toast.makeText(context, "checed", Toast.LENGTH_SHORT).show();
                     imageView.setVisibility(disease.isChecked() ? View.VISIBLE : View.GONE);
                 }
             });
@@ -89,6 +92,7 @@ public class DiseaseAdapter extends RecyclerView.Adapter<DiseaseAdapter.DiseaseV
             if (diseases.get(i).isChecked()) {
                 selected.add(diseases.get(i));
             }
+
         }
         return selected;
     }

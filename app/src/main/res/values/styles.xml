@@ -27,4 +27,10 @@
         <item name="android:textColorPrimary">@android:color/darker_gray</item>
 
     </style>
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="colorPrimaryDark">@color/color</item>
+        <!-- default color of radio button -->
+        <item name="android:textColorPrimary">@android:color/darker_gray</item>
+    </style>
 </resources>

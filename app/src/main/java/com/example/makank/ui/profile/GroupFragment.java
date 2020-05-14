@@ -145,7 +145,7 @@ public class GroupFragment extends Fragment {
                 public void onFailure(Call<List<Member>> call, Throwable t) {
                     //loadingDialog.dismissDialog();
                     alert = new Alert(getActivity());
-                    alert.showAlertError("تــأكد من إتصالك بالأنترنت");
+                    alert.showWarningDialog();
                     //Toast.makeText(getContext(), "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
                 }
             });

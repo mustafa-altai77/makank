@@ -30,7 +30,7 @@
                 android:id="@+id/detNew"
                 android:textColor="#FFFFFF"
                 android:gravity="center"
-                android:text="تفاصــــيل الخـــبر" />
+                android:text="@string/detail_news" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

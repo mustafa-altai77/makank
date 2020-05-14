@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="rtl"
+    android:layoutDirection="inherit"
     tools:context=".ui.activity.HomeActivity">
     <include layout="@layout/custom_toolbar"/>
     <androidx.drawerlayout.widget.DrawerLayout
@@ -35,7 +35,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
-        android:layoutDirection="rtl"
+        android:layoutDirection="inherit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/cardview_light_background"

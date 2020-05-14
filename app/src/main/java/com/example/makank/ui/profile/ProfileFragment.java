@@ -49,9 +49,9 @@ public class ProfileFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         TabViewPagerAdapter adapter = new TabViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new PersonalFragment(), "الحساب الشخصي");
-        adapter.addFragment(new GroupFragment(), "المجموعة");
-        adapter.addFragment(new RequestFragment(), "الطلبات");
+        adapter.addFragment(new PersonalFragment(), getResources().getString(R.string.person_account));
+        adapter.addFragment(new GroupFragment(), getResources().getString(R.string.group));
+        adapter.addFragment(new RequestFragment(), getResources().getString(R.string.requests));
         viewPager.setAdapter(adapter);
         Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Hacen-Algeria.ttf");
 
@@ -68,7 +68,6 @@ public class ProfileFragment extends Fragment {
             }
         }
     }
-
 
     @Override
     public void onStart() {

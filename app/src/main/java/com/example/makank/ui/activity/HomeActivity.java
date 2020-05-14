@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -12,7 +13,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -27,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.makank.R;
+import com.example.makank.ui.Splash;
 import com.example.makank.ui.contact.ContactFragment;
 import com.example.makank.ui.home.Call_Isolation;
 import com.example.makank.ui.home.CustomTypefaceSpan;
@@ -36,6 +42,8 @@ import com.example.makank.ui.profile.ProfileFragment;
 import com.example.makank.ui.statistic.StatisticFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
@@ -53,7 +61,6 @@ public class HomeActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         drawerLayout = findViewById(R.id.id_drawer);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
         drawerLayout.getLayoutDirection();
@@ -117,7 +124,7 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(iin);
                         break;
                     case R.id.about_nav:
-                        Intent intent = new Intent(getApplicationContext(), AboutMakanak.class);
+                        Intent intent = new Intent(getApplicationContext(), About.class);
                         startActivity(intent);
                         break;
                     case R.id.rol_nav:
@@ -134,6 +141,11 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.waba:
                         Intent inr = new Intent(getApplicationContext(), Call_Isolation.class);
                         startActivity(inr);
+                        break;
+
+                    case R.id.change_lang:
+                       Intent intent1=new Intent(getApplicationContext(),Language.class);
+                       startActivity(intent1);
                         break;
                         default:
                 }
@@ -210,5 +222,8 @@ public class HomeActivity extends AppCompatActivity {
         mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         mi.setTitle(mNewTitle);
     }
+
+
+
 
 }

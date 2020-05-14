@@ -124,7 +124,7 @@ public class CityActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<City>> call, Throwable t) {
                 loadingDialog.dismissDialog();
-                alert.showAlertError("تأكد من إتصالك بالإنترنت");
+               alert.showWarningDialog();
                 //Toast.makeText(CityActivity.this, "" + t, Toast.LENGTH_SHORT).show();
 
             }

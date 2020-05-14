@@ -99,14 +99,14 @@ public class ContactFragment extends Fragment {
                     seenAdapter.setMovieList(getContext(), memberList);
                 }
 //                Toast.makeText(getContext(), ""+memberList.size(), Toast.LENGTH_SHORT).show();
-            member.setText("الأشخاص الذين تم التواصل معهم : "+memberList.size());
+            member.setText(" "+getResources().getString(R.string.number_persons_seen)+memberList.size());
             }
 
             @Override
             public void onFailure(Call<List<Member>> call, Throwable t) {
                 loadingDialog.dismissDialog();
                 layout.setVisibility(View.INVISIBLE);
-                alert.showAlertError("تــأكد من إتصالك بالإنترنت");
+               alert.showWarningDialog();
                 //Toast.makeText(getContext(), "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
             }
         });

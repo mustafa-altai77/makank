@@ -104,7 +104,7 @@ public class AddGroupActivity extends AppCompatActivity {
                 //else
                 if (personalID.getText().toString().equals(""))
                     //  Toast.makeText(AddGroupActivity.this, "يرجى ادخال رقم التعريف الشخصي", Toast.LENGTH_SHORT).show();
-                    alert.showAlertError("يرجى ادخال رقم التعريف");
+                    alert.showErrorDialog(getResources().getString(R.string.place_enter_id));
                 else
                     getStatus(id);
 
@@ -117,12 +117,10 @@ public class AddGroupActivity extends AppCompatActivity {
                 SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
                 final String my_id = sharedPreferences.getString(USER_ID, "id");
                 if (personalID.getText().toString().equals("")) {
-                    //Toast.makeText(AddGroupActivity.this, "يرجى ادخال رقم التعريف الشخصي", Toast.LENGTH_SHORT).show();
-                    alert.showAlertError("يرجى إدخال رقم التعريف");
+                    alert.showErrorDialog(getResources().getString(R.string.place_enter_id));
                     return;
                 } else if (personalID.getText().toString().equals(my_id)) {
-                    // Toast.makeText(AddGroupActivity.this, "ادخال خاطئ", Toast.LENGTH_SHORT).show();
-                    alert.showAlertError("إدخال خاطئ");
+                    alert.showErrorDialog(getResources().getString(R.string.input_error));
                     personalID.setText("");
                     return;
                 } else
@@ -140,7 +138,7 @@ public class AddGroupActivity extends AppCompatActivity {
             //if qrcode has nothing in it
             if (result.getContents() == null) {
                 //   Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
-                alert.showAlertError("لاتوجد نتيجة");
+                alert.showErrorDialog(getResources().getString(R.string.no_result));
 
             } else {
                 //if qr contains data
@@ -151,7 +149,7 @@ public class AddGroupActivity extends AppCompatActivity {
                     personalID.setText(obj.getString(String.valueOf(requestCode)));
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
                     personalID.setText(result.getContents());
 //                    getStatus(result.getContents());
                 }
@@ -190,7 +188,7 @@ public class AddGroupActivity extends AppCompatActivity {
                     //startActivity(intent);
                     //finish();
                 } else {
-                    alert.showAlertError("هذا الرقم لايــوجد");
+                    alert.showErrorDialog(getResources().getString(R.string.this_number_not_found));
                     loadingDialog.dismissDialog();
                     personalID.setText("");
                 }
@@ -201,7 +199,7 @@ public class AddGroupActivity extends AppCompatActivity {
                 // progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
                 //  Toast.makeText(AddGroupActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
-                alert.showAlertError("الرجاء التأكد من إتصالك بالإنترنت");
+               alert.showWarningDialog();
             }
         });
     }
@@ -226,11 +224,11 @@ public class AddGroupActivity extends AppCompatActivity {
                     String id_person = String.valueOf(response.body().getId());
                     //  Toast.makeText(AddGroupActivity.this, "don", Toast.LENGTH_SHORT).show();
                     //alert.showAlertSuccess("تمت الإضافة");
-                    alert.showAlertSuccess("تم ارسال الطلب");
+                    alert.showSuccessDialog(getResources().getString(R.string.add_member),getResources().getString(R.string.requested_done),1);
                     personalID.setText("");
 
                 } else
-                    alert.showAlertError("لايمكن اضافة هذا الشخص");
+                    alert.showErrorDialog(getResources().getString(R.string.cannot_add_this_person));
                 personalID.setText("");
 
             }
@@ -239,7 +237,7 @@ public class AddGroupActivity extends AppCompatActivity {
             public void onFailure(Call<Member> call, Throwable t) {
                 //   progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
-                alert.showAlertSuccess("تم ارسال الطلب");
+                alert.showSuccessDialog(getResources().getString(R.string.add_member),getResources().getString(R.string.requested_done),1);
                 personalID.setText("");
 
                 //Toast.makeText(AddGroupActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();

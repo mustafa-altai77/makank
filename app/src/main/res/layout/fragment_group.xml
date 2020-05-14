@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/card_button"
-    android:layoutDirection="rtl"
+    android:layoutDirection="inherit"
     tools:context=".ui.profile.GroupFragment">
    <ScrollView
 
@@ -40,7 +40,7 @@
    <TextView
        android:id="@+id/not_fond"
        android:layout_gravity="center"
-       android:text="لايوجد اعضاء"
+       android:text="@string/not_found_member"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content">
 

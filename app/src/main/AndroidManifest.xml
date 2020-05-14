@@ -28,12 +28,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.home.Call_Isolation"
-            android:label=""
-            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert"></activity>
+        <activity android:name=".ui.activity.Language"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert"
+            android:label=""></activity>
         <activity
-            android:name=".ui.activity.AboutMakanak"
-            android:theme="@style/AppThemeNoActionBar" />
+            android:name=".ui.activity.About"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert" />
+        <activity
+            android:name=".ui.home.Call_Isolation"
+            android:label=""
+            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert" />
         <activity
             android:name=".ui.activity.InstructionsActivity"
             android:label=""
@@ -103,7 +107,6 @@
             android:name=".ui.Test.TestActivity"
             android:label=""
             android:theme="@style/AppThemeNoActionBar" />
-
     </application>
 
 </manifest>

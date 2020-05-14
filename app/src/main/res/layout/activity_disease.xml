@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layoutDirection="rtl"
+    android:layoutDirection="inherit"
     tools:context=".ui.activity.DiseaseActivity">
     <include layout="@layout/custom_toolbar"/>
     <ScrollView
@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="الأمراض المزمنة"
+                android:text="@string/disease"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -53,7 +53,7 @@
             android:textSize="18sp"
             android:padding="15dp"
             android:textColor="@color/color"
-            android:text="قم بالضغط على المرض المصاحب أو المصاحبة" />
+            android:text="@string/press_disease" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/disease_recycler"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="rtl"
+    android:layoutDirection="inherit"
     android:orientation="vertical"
     android:background="@drawable/card_button"
     tools:context=".ui.Test.TestActivity">
@@ -23,7 +23,7 @@
             android:textColor="@color/white"
             android:textSize="18dp"
             app:layout_constraintEnd_toStartOf="@+id/image_status"
-            android:text="فحص فيروس كورونا"
+            android:text="@string/check_corona"
            />
         <TextView
             android:id="@+id/check_id1"
@@ -34,7 +34,7 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             app:layout_constraintEnd_toStartOf="@+id/image_status"
-            android:text="تأكد مما إذا كان لديك أعراض لفيروس كورونا أو مجرد نزلة برد"
+            android:text="@string/info_desc"
             />
     </LinearLayout>
     <LinearLayout
@@ -52,7 +52,7 @@
         android:padding="5dp"
         android:textColor="@color/color"
         android:textStyle="bold"
-        android:text="لقد قاربنا على الانتهاء"/>
+        android:text="@string/almost_done"/>
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"

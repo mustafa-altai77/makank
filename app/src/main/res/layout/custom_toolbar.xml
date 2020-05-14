@@ -6,7 +6,7 @@
     android:layout_height="?attr/actionBarSize"
     android:id="@+id/toolbar_id"
     android:gravity=""
-    android:layoutDirection="rtl"
+    android:layoutDirection="inherit"
     app:popupTheme="@style/AppThemeNoActionBar"
     android:background="@color/color">
 

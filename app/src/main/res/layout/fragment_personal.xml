@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/card_button"
-    android:layoutDirection="rtl"
+    android:layoutDirection="inherit"
     tools:context=".ui.profile.PersonalFragment">
 
     <ScrollView
@@ -43,7 +43,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="5dp"
-                    android:text="الاسم "
+                    android:text=" "
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="18dp" />
 
@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:text="00000"
+                    android:text=""
                     android:textSize="15sp" />
 
                 <LinearLayout
@@ -70,8 +70,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
                         android:layout_marginBottom="2dp"
-                        android:text="الحالة"
+                        android:text=""
                         android:textSize="17sp" />
 
                     <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -79,7 +80,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="12dp"
                         android:layout_marginBottom="2dp"
                         app:civ_border_width="0dp" />
                 </LinearLayout>
@@ -99,6 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0.5dp"
                     android:background="@color/total1" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -109,7 +111,7 @@
                         android:id="@+id/txtPhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="رقم الهاتف">
+                        android:text="@string/phone">
 
                     </TextView>
 
@@ -123,10 +125,12 @@
 
                     </TextView>
                 </LinearLayout>
+
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="0.5dp"
                     android:background="@color/total1" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -137,7 +141,7 @@
                         android:id="@+id/txtGender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="الجنس">
+                        android:text="@string/gender">
 
                     </TextView>
 
@@ -149,10 +153,12 @@
                         android:textColor="@color/cardview_dark_background"
                         android:textSize="20dp" />
                 </LinearLayout>
+
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="0.5dp"
                     android:background="@color/total1" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -163,7 +169,7 @@
                         android:id="@+id/txtAge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="العمر" />
+                        android:text="@string/age" />
 
                     <TextView
                         android:id="@+id/age_prf"
@@ -172,10 +178,12 @@
                         android:textColor="@color/cardview_dark_background"
                         android:textSize="20dp" />
                 </LinearLayout>
+
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="0.5dp"
                     android:background="@color/total1" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -190,7 +198,7 @@
                             android:id="@+id/disease_listt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="الامرض المزمنة">
+                            android:text="@string/disease">
 
                         </TextView>
                     </LinearLayout>
@@ -199,6 +207,7 @@
                         android:id="@+id/disease_list"
                         android:layout_width="match_parent"
                         android:layout_height="192dp">
+
                     </ListView>
                 </LinearLayout>
             </LinearLayout>
