@@ -9,7 +9,6 @@ import android.os.Build;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.TypefaceSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,12 +32,8 @@ import com.example.makank.ui.news.NewsDetailsActivity;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.StringTokenizer;
-import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> implements Filterable {
@@ -118,28 +113,28 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             long days = TimeUnit.MILLISECONDS.toDays(now.getTime() - past.getTime());
 
             if (seconds < 60) {
-                holder.datePublisher.setText("قبل " + "" + seconds + " ثانية");
+                holder.datePublisher.setText(context.getResources().getString(R.string.before) + " " + seconds +" "+ context.getResources().getString(R.string.second));
             } else if (minutes < 60) {
-                holder.datePublisher.setText("قبل " + "" + minutes + " دقيقة");
+                holder.datePublisher.setText(context.getResources().getString(R.string.before) + " " + minutes +" "+ context.getResources().getString(R.string.minute));
             } else if (hours < 24) {
-                holder.datePublisher.setText("قبل " + "" + hours + " ساعة");
+                holder.datePublisher.setText(context.getResources().getString(R.string.before) + " " + hours +" "+ context.getResources().getString(R.string.hour));
             } else if (days == 2) {
-                holder.datePublisher.setText("قبل " + "" + days + " يومان");
+                holder.datePublisher.setText(context.getResources().getString(R.string.before) + " " + days +" "+ context.getResources().getString(R.string.days));
             } else if (days >= 31) {
-                holder.datePublisher.setText("قبل شهر ");
-                if (days>=62)holder.datePublisher.setText("قبل شهرين ");
-                if (days>=93)holder.datePublisher.setText("قبل 3 أشهر ");
-                if (days>=124)holder.datePublisher.setText("قبل 4 أشهر ");
-                if (days>=155)holder.datePublisher.setText("قبل 5 أشهر ");
-                if (days>=186)holder.datePublisher.setText("قبل 6 أشهر ");
-                if (days>=217)holder.datePublisher.setText("قبل 7 أشهر ");
-                if (days>=248)holder.datePublisher.setText("قبل 8 أشهر ");
-                if (days>=279)holder.datePublisher.setText("قبل 9 أشهر ");
-                if (days>=310)holder.datePublisher.setText("قبل 10 أشهر ");
-                if (days>=341)holder.datePublisher.setText("قبل 11 شهر ");
-                if (days>=342) holder.datePublisher.setText("قبل سنة");
+                holder.datePublisher.setText(context.getResources().getString(R.string.before_month));
+                if (days>=62)holder.datePublisher.setText(context.getResources().getString(R.string.before2month));
+                if (days>=93)holder.datePublisher.setText(context.getResources().getString(R.string.before3month));
+                if (days>=124)holder.datePublisher.setText(context.getResources().getString(R.string.before4month));
+                if (days>=155)holder.datePublisher.setText(context.getResources().getString(R.string.before5month));
+                if (days>=186)holder.datePublisher.setText(context.getResources().getString(R.string.before6month));
+                if (days>=217)holder.datePublisher.setText(context.getResources().getString(R.string.before7month));
+                if (days>=248)holder.datePublisher.setText(context.getResources().getString(R.string.before8month));
+                if (days>=279)holder.datePublisher.setText(context.getResources().getString(R.string.before9month));
+                if (days>=310)holder.datePublisher.setText(context.getResources().getString(R.string.before10month));
+                if (days>=341)holder.datePublisher.setText(context.getResources().getString(R.string.before11month));
+                if (days>=342) holder.datePublisher.setText(context.getResources().getString(R.string.before_year));
             } else {
-                holder.datePublisher.setText("قبل " + "" + days + " أيام");
+                holder.datePublisher.setText(context.getResources().getString(R.string.before) + " " + +days + " "+context.getResources().getString(R.string.days));
             }
         } catch (Exception j) {
             j.printStackTrace();
@@ -166,33 +161,33 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
                 context.startActivity(Intent.createChooser(sharingIntent, context.getResources().getString(R.string.share_using)));
             }
         });
-    holder.datePublisher.setOnClickListener(new View.OnClickListener() {
-        @RequiresApi(api = Build.VERSION_CODES.P)
-        @Override
-        public void onClick(View v) {
-            String created = newsListFiltered.get(position).getCreated_at();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
-            SimpleDateFormat outputTime = new SimpleDateFormat("HH:mm:ss");
-            Date d = null;
-            try {
-                d = sdf.parse(created);
-            } catch (ParseException e) {
-                e.printStackTrace();
+        holder.datePublisher.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.P)
+            @Override
+            public void onClick(View v) {
+                String created = newsListFiltered.get(position).getCreated_at();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat outputTime = new SimpleDateFormat("HH:mm:ss");
+                Date d = null;
+                try {
+                    d = sdf.parse(created);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Typeface   typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
+                SpannableString efr = new SpannableString(output.format(d));
+                efr.setSpan(new TypefaceSpan(typeface),0,efr.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                Toast toast=Toast.makeText(context,efr,Toast.LENGTH_SHORT);
+                View view=toast.getView();
+                view.setBackgroundColor(Color.RED);
+                TextView text=(TextView) view.findViewById(android.R.id.message);
+                text.setShadowLayer(0,0,0,Color.TRANSPARENT);
+                text.setTextColor(Color.WHITE);
+                text.setTextSize(Integer.valueOf(18));
+                toast.show();
             }
-            Typeface   typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
-            SpannableString efr = new SpannableString(output.format(d));
-            efr.setSpan(new TypefaceSpan(typeface),0,efr.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            Toast toast=Toast.makeText(context,efr,Toast.LENGTH_SHORT);
-            View view=toast.getView();
-            view.setBackgroundColor(Color.RED);
-            TextView text=(TextView) view.findViewById(android.R.id.message);
-            text.setShadowLayer(0,0,0,Color.TRANSPARENT);
-            text.setTextColor(Color.WHITE);
-            text.setTextSize(Integer.valueOf(18));
-            toast.show();
-        }
-    });
+        });
     }
 
 

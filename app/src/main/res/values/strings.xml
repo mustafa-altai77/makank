@@ -135,4 +135,22 @@
     <string name="please_wait">الرجاء الإنتظار...</string>
     <string name="change_language">تغيير اللغة</string>
     <string name="no">لا</string>
+    <string name="before">قبل</string>
+    <string name="minute">دقيقة</string>
+    <string name="second">ثانية</string>
+    <string name="hour">ساعة</string>
+    <string name="two_days">يومان</string>
+    <string name="days">أيام</string>
+    <string name="before_month">قبل شهر</string>
+    <string name="before2month">قبل شهرين</string>
+    <string name="before3month">قبل 3 أشهر</string>
+    <string name="before4month">قبل 4 أشهر</string>
+    <string name="before5month">قبل 5 أشهر</string>
+    <string name="before6month">قبل 6 أشهر</string>
+    <string name="before7month">قبل 7 أشهر</string>
+    <string name="before8month">قبل 9 أشهر</string>
+    <string name="before9month">قبل 9 أشهر</string>
+    <string name="before10month">قبل 10 أشهر</string>
+    <string name="before11month">قبل 11 أشهر</string>
+    <string name="before_year">قبل سنة</string>
 </resources>

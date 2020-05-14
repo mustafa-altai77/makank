@@ -13,7 +13,7 @@
     <string name="receive">Receive</string>
     <string name="home_txt">Main Menu</string>
     <string name="news_txt">News</string>
-    <string name="contact_txt">Communication</string>
+    <string name="contact_txt">Contact</string>
     <string name="statistic_txt">Statistic</string>
     <string name="profile_txt">Account</string>
     <string name="next_step">Next Step</string>
@@ -24,7 +24,7 @@
     <string name="searchState">Search for your State</string>
     <string name="searchCity">Search for your City</string>
     <string name="SearchLocal">Search for your Area</string>
-    <string name="phoneNumber">249118135130+‬</string>
+    <string name="phoneNumber">+249118135130</string>
     <string name="url_email">info@primarykeysd.com</string>
     <string name="url_site">www.primarykeysd.com‬</string>
     <string name="version_number">Version 1.1</string>
@@ -68,7 +68,7 @@
     <string name="effected_screen">Casualty Map</string>
     <string name="volunteer_screen">Volunteering</string>
     <string name="tips_screen">Tips and Advice</string>
-    <string name="person_account">Person Account</string>
+    <string name="person_account">Account</string>
     <string name="group">The Group</string>
     <string name="requests">Requests</string>
     <string name="step_1_11">Step 1 form 11</string>
@@ -136,4 +136,22 @@
     <string name="please_wait">Please Wait ...</string>
     <string name="change_language">Change Language</string>
     <string name="no">No</string>
+    <string name="before">Before</string>
+    <string name="minute">Minute</string>
+    <string name="second">Second</string>
+    <string name="hour">Hour</string>
+    <string name="two_days">2 Days</string>
+    <string name="days">Dayes</string>
+    <string name="before_month">Before Month</string>
+    <string name="before2month">Before 2 month</string>
+    <string name="before3month">Before 3 Month</string>
+    <string name="before4month">Before 4 Month</string>
+    <string name="before5month">Before 5 Month</string>
+    <string name="before6month">Before 6 Month</string>
+    <string name="before7month">Before 7 Month</string>
+    <string name="before8month">Before 8 Month</string>
+    <string name="before9month">Before 9 month</string>
+    <string name="before10month">Before 10 Month</string>
+    <string name="before11month">Before 11 Month</string>
+    <string name="before_year">Before Year</string>
 </resources>

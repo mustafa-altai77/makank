@@ -56,6 +56,5 @@ public class About extends AppCompatActivity {
                 startActivity(Intent.createChooser(intent, "Makank"));
             }
         });
-
     }
 }
