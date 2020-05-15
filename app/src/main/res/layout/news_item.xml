@@ -37,7 +37,6 @@
                 android:textColor="@color/color"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
             <TextView
                 android:id="@+id/news_desc"
                 android:layout_width="match_parent"
@@ -54,28 +53,31 @@
                 android:text="النص"
                 android:textColor="@color/cardview_dark_background" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_marginTop="5dp"
                 android:gravity="right|center"
-                android:layoutDirection="inherit"
+                android:layoutDirection="rtl"
                 android:paddingRight="10dp">
 
                 <ImageView
                     android:id="@+id/img"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentStart="true"
                     android:background="@drawable/ic_share"
+                    android:layout_marginRight="15dp"
+                    android:layout_alignParentTop="true"
                     android:backgroundTint="@color/total2"
                     android:padding="10dp" />
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginRight="140dp"
+                    android:layout_toStartOf="@+id/dateNew"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentTop="true"
                     android:background="@drawable/ic_clock"
                     android:backgroundTint="@color/total2" />
 
@@ -86,10 +88,12 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="0dp"
                     android:fontFamily="sans-serif-condensed"
-                    android:paddingRight="10dp"
                     android:text="30-12-2020"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignParentTop="true"
                     android:textColor="@color/total2" />
-            </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 

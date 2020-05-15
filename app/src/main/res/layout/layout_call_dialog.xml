@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:layout_margin="20dp"
-    android:layoutDirection="inherit"
+    android:layoutDirection="rtl"
     android:id="@+id/layoutDialogContainer"
     android:padding="10dp"
     tools:context=".ui.home.Call_Isolation">

@@ -4,39 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="inherit"
+    android:layoutDirection="rtl"
     android:orientation="vertical"
     android:background="@drawable/card_button"
     tools:context=".ui.Test.TestActivity">
     <include layout="@layout/custom_toolbar"/>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:orientation="vertical"
         android:background="@color/total2"
+        android:layout_gravity="center"
         android:gravity="center">
         <TextView
             android:id="@+id/check_id"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
             android:textColor="@color/white"
+            android:layout_marginTop="-15dp"
+            android:textAlignment="center"
             android:textSize="18dp"
-            app:layout_constraintEnd_toStartOf="@+id/image_status"
-            android:text="@string/check_corona"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"            android:text="@string/check_corona"
            />
         <TextView
             android:id="@+id/check_id1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lineSpacingMultiplier="2"
+            android:lineSpacingMultiplier="1"
+            android:layout_alignParentTop="true"
             android:layout_marginTop="10dp"
             android:textColor="@color/white"
             android:textSize="15sp"
-            app:layout_constraintEnd_toStartOf="@+id/image_status"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:textAlignment="center"
             android:text="@string/info_desc"
             />
-    </LinearLayout>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:background="#B9A636"
@@ -136,7 +142,7 @@
         android:id="@+id/count_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:padding="5dp"
         android:text="Large Text"/>

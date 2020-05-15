@@ -142,11 +142,6 @@ public class HomeActivity extends AppCompatActivity {
                         Intent inr = new Intent(getApplicationContext(), Call_Isolation.class);
                         startActivity(inr);
                         break;
-
-                    case R.id.change_lang:
-                       Intent intent1=new Intent(getApplicationContext(),Language.class);
-                       startActivity(intent1);
-                        break;
                         default:
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);

@@ -18,10 +18,6 @@
         android:icon="@drawable/ic_call_black_24dp"
         android:title="@string/phone_edemi"></item>
     <item
-        android:id="@+id/change_lang"
-        android:icon="@drawable/ic_language"
-        android:title="@string/change_language"></item>
-    <item
         android:id="@+id/face_book"
         android:icon="@drawable/facebook"
         android:title="@string/facebook"></item>

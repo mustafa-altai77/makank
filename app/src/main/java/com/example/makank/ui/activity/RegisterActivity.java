@@ -33,8 +33,8 @@ public class RegisterActivity extends AppCompatActivity {
     EditText bDay;
     RadioGroup radioGroupGender;
     RadioButton radioButton;
-    String local_id, ln;
-    EditText f_name, s_name, l_name, phone;
+    String local_id, ln, holdKeyPhone;
+    EditText f_name, s_name, l_name, phone, editPhone;
     TextView textView, Fmale, Male, info;
     Typeface typeface;
     LoadingDialog loadingDialog;
@@ -52,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
         s_name = findViewById(R.id.s_name);
         l_name = findViewById(R.id.l_name);
         phone = findViewById(R.id.phone);
+        editPhone = findViewById(R.id.edit_phone);
         bDay = findViewById(R.id.age);
         textView = findViewById(R.id.type_gender);
         Male = findViewById(R.id.male);
@@ -69,6 +70,9 @@ public class RegisterActivity extends AppCompatActivity {
         Fmale.setTypeface(typeface);
         info.setTypeface(typeface);
         btn.setTypeface(typeface);
+        holdKeyPhone = getResources().getString(R.string.edit_phone);
+        editPhone.setText(holdKeyPhone);
+        editPhone.setEnabled(false);
         radioGroupGender = findViewById(R.id.gender_radiogroup);
         loadingDialog = new LoadingDialog(this);
         alert = new Alert(this);
@@ -86,11 +90,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void createPerson() {
         loadingDialog.startLoadingDialog();
-        final String first_name = f_name.getText().toString();
-        final String second_name = s_name.getText().toString();
-        final String last_name = l_name.getText().toString();
-        final String phone_number = phone.getText().toString();
-        final String age = bDay.getText().toString();
+        final String first_name = f_name.getText().toString().trim();
+        final String second_name = s_name.getText().toString().trim();
+        final String last_name = l_name.getText().toString().trim();
+        final String phone_number = phone.getText().toString().trim();
+        final String age = bDay.getText().toString().trim();
         int selectedID = radioGroupGender.getCheckedRadioButtonId();
         radioButton = findViewById(selectedID);
         final String gender = (String) radioButton.getText();
@@ -127,13 +131,20 @@ public class RegisterActivity extends AppCompatActivity {
             return;
 
         }
-        if (length <= 8) {
+
+        if (length <= 8 || phone_number.startsWith("0") ||phone_number.startsWith("3")||phone_number.startsWith("4")
+                |phone_number.startsWith("5")|phone_number.startsWith("6") |phone_number.startsWith("7")
+                |phone_number.startsWith("8") ||phone_number.startsWith("2") || phone_number.contains("#") || phone_number.contains(")")
+                || phone_number.contains("(") || phone_number.contains("*") || phone_number.contains(",")
+                || phone_number.contains(";") || phone_number.contains("-") || phone_number.contains("N")
+                || phone_number.contains("+") || phone_number.contains("/") || phone_number.contains(".")
+                || phone_number.contains(" ")) {
             alert.showErrorDialog(getResources().getString(R.string.length_phone));
             loadingDialog.dismissDialog();
             return;
         }
 
-        Person person = new Person(first_name, second_name, last_name, phone_number, gender, age, local_id);
+        Person person = new Person(first_name, second_name, last_name, holdKeyPhone + phone_number, gender, age, local_id);
         // progressDoalog.show();
         loadingDialog.startLoadingDialog();
 

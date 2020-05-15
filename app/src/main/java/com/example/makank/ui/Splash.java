@@ -40,11 +40,6 @@ public class Splash extends AppCompatActivity {
         imageView1.setAnimation(topAnim);
         imageView2.setAnimation(bottomAnim);
 
-        Locale locale = new Locale("ar");
-        Locale.setDefault(locale);
-         config = new Configuration();
-        config.locale = locale;
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -65,13 +60,11 @@ public class Splash extends AppCompatActivity {
     public void checkConnection(){
         if(isOnline()){
             if (SharedPref.getInstance(this).isLoggedIn()) {
-                this.getApplicationContext().getResources().updateConfiguration(config,null);
                 startActivity(new Intent(this, HomeActivity.class));
               //  Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
                 finish();
             }
            else {
-                this.getApplicationContext().getResources().updateConfiguration(config,null);
                 startActivity(new Intent(this, StateActivity.class));
                 finish();
             }

@@ -2,16 +2,16 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layoutDirection="inherit"
+    android:layoutDirection="rtl"
     android:background="@drawable/card_button"
     android:layout_height="match_parent"
     tools:context=".ui.contact.ContactFragment">
     <LinearLayout
         android:id="@+id/layoutSeen"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_gravity="center_horizontal"
-        android:background="#7C7979"
-        android:layout_height="50dp">
+        android:background="#520C0C0C"
+        android:layout_height="40dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -26,7 +26,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_contact"
         android:layout_width="match_parent"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="41dp"
         android:layout_height="match_parent">
     </androidx.recyclerview.widget.RecyclerView>
 </FrameLayout>

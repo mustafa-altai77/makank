@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layoutDirection="inherit"
+    android:layoutDirection="rtl"
     android:layout_height="match_parent"
     tools:context=".ui.activity.AddGroupActivity">
     <LinearLayout
@@ -29,7 +29,8 @@
         android:textColor="@color/total2"
         android:textSize="15sp"
         android:text="@string/search_qr"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:gravity="center">
 
     </TextView>
     <TextView
@@ -39,6 +40,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/total2"
         android:textSize="15sp"
+        android:gravity="center"
         android:text="@string/or_input_id"
         android:layout_gravity="center">
     </TextView>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">مكانك</string>
+    <string name="app_name">Makank</string>
     <string name="add_member">اضافة للمجموعة</string>
     <string name="send">ارسال</string>
     <string name="Open">Navbar</string>
@@ -153,4 +153,6 @@
     <string name="before10month">قبل 10 أشهر</string>
     <string name="before11month">قبل 11 أشهر</string>
     <string name="before_year">قبل سنة</string>
+    <string name="edit_phone">+249</string>
+
 </resources>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="inherit"
+    android:layoutDirection="rtl"
     android:background="@drawable/card_button"
     tools:context=".ui.news.NewsFragment">
 <androidx.recyclerview.widget.RecyclerView

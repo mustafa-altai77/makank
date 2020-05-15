@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="inherit"
+    android:layoutDirection="rtl"
     tools:context=".ui.activity.HomeActivity">
     <include layout="@layout/custom_toolbar"/>
     <androidx.drawerlayout.widget.DrawerLayout

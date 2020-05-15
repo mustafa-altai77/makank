@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -113,6 +114,7 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
             holder.image.setImageResource(R.color.colorAccent);
             holder.stat.setText(context.getResources().getString(R.string.sufferer_case));
         }
+
     }
 
     @Override

@@ -76,7 +76,7 @@
                     android:text="@string/request_for_him"
                     android:textColor="@color/cardview_dark_background" />
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="365dp"
                     android:layout_height="40dp"
                     android:layout_alignParentStart="true"
@@ -93,6 +93,7 @@
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/graybtn"
                         android:fontFamily="monospace"
+
                         android:onClick="whatCase"
                         android:text="@string/accepted"
                         android:textColor="#ffffff"
@@ -100,6 +101,7 @@
                     <Button
                         android:id="@+id/reject_btn"
                         android:layout_width="70dp"
+                        android:layout_toEndOf="@+id/conf_btn"
                         android:layout_height="35dp"
                         android:layout_gravity="center"
                         android:background="@drawable/redbtn"
@@ -109,7 +111,7 @@
                         android:textColor="#ffffff"
                         android:textStyle="bold"
                         />
-                </LinearLayout>
+                </RelativeLayout>
             </RelativeLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="inherit"
+    android:layoutDirection="rtl"
     android:background="@drawable/card_button"
     tools:context=".ui.activity.ContactActivity"
     android:orientation="vertical">
@@ -66,6 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/second"
+                android:gravity="center"
                 android:textColor="@color/cardview_dark_background"
                 android:text="@string/search_qr"
                 android:layout_gravity="center">
@@ -77,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/cardview_dark_background"
                 android:text="@string/or_input_id"
+                android:gravity="center"
                 android:id="@+id/first"
                 android:layout_gravity="center">
             </TextView>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center|top"
-    android:layoutDirection="inherit"
+    android:layoutDirection="rtl"
     android:background="@drawable/card_button"
     tools:context=".ui.activity.QrCodeActivity">
     <TextView

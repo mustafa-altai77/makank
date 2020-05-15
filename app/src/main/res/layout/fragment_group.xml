@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/card_button"
-    android:layoutDirection="inherit"
+    android:layoutDirection="rtl"
     tools:context=".ui.profile.GroupFragment">
    <ScrollView
 
