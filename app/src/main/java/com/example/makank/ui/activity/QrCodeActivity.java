@@ -32,6 +32,7 @@ import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 import androidmads.library.qrgenearator.QRGSaver;
 
+import static com.example.makank.SharedPref.QRCODE;
 import static com.example.makank.SharedPref.SHARED_PREF_NAME;
 import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.mCtx;
@@ -54,7 +55,7 @@ public class QrCodeActivity extends AppCompatActivity {
         qrImage = findViewById(R.id.qr_image);
 //        edtValue = findViewById(R.id.edt_value);
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        final String id = sharedPreferences.getString(USER_ID, "id");
+        final String id = sharedPreferences.getString(QRCODE, "qr_code");
 
         personalID = findViewById(R.id.personal_id);
         information = findViewById(R.id.info);

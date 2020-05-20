@@ -15,9 +15,9 @@ public class Person {
     @SerializedName("last_name")
     @Expose
     private String last_name;
-    @SerializedName("phone")
+    @SerializedName("qr_code")
     @Expose
-    private String phone;
+    private String qr_code;
     @SerializedName("gender")
     @Expose
     private String gender;
@@ -34,11 +34,10 @@ public class Person {
     @Expose
     private int id;
 
-    public Person(String first_name, String second_name, String last_name, String phone, String gender, String age, String local_id) {
+    public Person(String first_name, String second_name, String last_name, String gender, String age, String local_id) {
         this.first_name = first_name;
         this.second_name = second_name;
         this.last_name = last_name;
-        this.phone = phone;
         this.gender = gender;
         this.age = age;
         this.local_id = local_id;
@@ -78,13 +77,7 @@ public class Person {
         this.last_name = last_name;
     }
 
-    public String getPhone() {
-        return phone;
-    }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     public String getGender() {
         return gender;
@@ -120,5 +113,7 @@ public class Person {
         this.local_id = local_id;
     }
 
-
+    public String getQr_code() {
+        return qr_code;
+    }
 }

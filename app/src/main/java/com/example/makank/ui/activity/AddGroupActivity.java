@@ -34,6 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.makank.SharedPref.SHARED_PREF_NAME;
+import static com.example.makank.SharedPref.TOKEN;
 import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.mCtx;
 
@@ -160,9 +161,11 @@ public class AddGroupActivity extends AppCompatActivity {
     }
 
     private void getStatus(String result) {
-
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        final String token = sharedPreferences.getString(TOKEN, "token");
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-        Call<Person> call = apiService.getSaw(result);
+
+        Call<Person> call = apiService.getSaw(token,result);
         //   progressDoalog.show();
         loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<Person>() {
@@ -205,12 +208,14 @@ public class AddGroupActivity extends AppCompatActivity {
     }
 
     private void addMember(String member_id, String my_id) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        final String token = sharedPreferences.getString(TOKEN, "token");
        /* final ProgressDialog progressDoalog;
         progressDoalog = new ProgressDialog(AddGroupActivity.this);
         progressDoalog.setMax(100);
         progressDoalog.setMessage("loading....");*/
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-        Call<Member> call = apiService.addMem(my_id, member_id);
+        Call<Member> call = apiService.addMem(token,my_id, member_id);
         // progressDoalog.show();
         loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<Member>() {

@@ -18,6 +18,7 @@ import com.example.makank.Alert;
 import com.example.makank.R;
 import com.example.makank.SharedPref;
 import com.example.makank.ui.activity.HomeActivity;
+import com.example.makank.ui.activity.PhoneNumberActivity;
 import com.example.makank.ui.activity.StateActivity;
 
 import java.util.Locale;
@@ -65,7 +66,7 @@ public class Splash extends AppCompatActivity {
                 finish();
             }
            else {
-                startActivity(new Intent(this, StateActivity.class));
+                startActivity(new Intent(this, PhoneNumberActivity.class));
                 finish();
             }
         }else{

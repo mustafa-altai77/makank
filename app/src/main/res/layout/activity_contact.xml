@@ -91,7 +91,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/rounded_edittext"
                 android:hint="@string/hint_id"
-                android:inputType="number"
+                android:inputType="text"
                 android:textColorHint="@color/cardview_dark_background"
                 android:textColor="@color/cardview_dark_background"
                 android:textAlignment="center">

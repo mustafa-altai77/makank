@@ -51,6 +51,7 @@ import retrofit2.Response;
 
 import static com.example.makank.SharedPref.AGE;
 import static com.example.makank.SharedPref.SHARED_PREF_NAME;
+import static com.example.makank.SharedPref.TOKEN;
 import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.STATUS;
 import static com.example.makank.SharedPref.mCtx;
@@ -205,14 +206,15 @@ public class ContactActivity extends AppCompatActivity {
     }
 
     private void addSee(String result, String my_id, double locationLatitude, double locationLongitude) {
-
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        final String token = sharedPreferences.getString(TOKEN, "token");
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-        Call<Member> call = apiService.addSeen(result, my_id, locationLatitude, locationLongitude);
+        Call<Person> call = apiService.addSeen(token,result, my_id, locationLatitude, locationLongitude);
         loadingDialog.startLoadingDialog();
-        call.enqueue(new Callback<Member>() {
+        call.enqueue(new Callback<Person>() {
             @SuppressLint("ResourceAsColor")
             @Override
-            public void onResponse(Call<Member> call, Response<Member> response) {
+            public void onResponse(Call<Person> call, Response<Person> response) {
                 String CaseName = null;
                 if (response.isSuccessful()) {
                     //  progressDoalog.dismiss();
@@ -243,7 +245,7 @@ public class ContactActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Member> call, Throwable t) {
+            public void onFailure(Call<Person> call, Throwable t) {
                 loadingDialog.dismissDialog();
                 //Toast.makeText(ContactActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
                // alert.showAlertError("تــأكد من إتصالك بالإنترنت");

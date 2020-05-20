@@ -33,6 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.makank.SharedPref.SHARED_PREF_NAME;
+import static com.example.makank.SharedPref.TOKEN;
 import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.mCtx;
 
@@ -40,7 +41,6 @@ public class DiseaseActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<Disease> diseases;
     private DiseaseAdapter adapter;
-    int d_id;
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
@@ -74,7 +74,6 @@ public class DiseaseActivity extends AppCompatActivity {
         btnGetSelected.setTypeface(typeface);
         disease_i.setTypeface(typeface);
         info_Insert.setTypeface(typeface);
-       
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,9 +84,6 @@ public class DiseaseActivity extends AppCompatActivity {
 //                        stringBuilder.append("\n");
                     }
                     showToast(arr);
-                   // btnGetSelected.setText(getResources().getString(R.string.save));
-                   // Toast.makeText(DiseaseActivity.this, "12345", Toast.LENGTH_SHORT).show();
-
                 } else {
 
                     //showToast("No Selection");
@@ -97,7 +93,6 @@ public class DiseaseActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void fetchWeatherDetails() {
@@ -137,7 +132,7 @@ public class DiseaseActivity extends AppCompatActivity {
         diseases = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             Disease disease = new Disease();
-            disease.setName(getResources().getString(R.string.disease_name) + " " + (i + 1));
+            disease.setName("المرض " + (i + 1));
             disease.setId(i + 1);
             // for example to show at least one selection
 //            if (i == 0) {
@@ -159,8 +154,10 @@ public class DiseaseActivity extends AppCompatActivity {
         progressDoalog.show();*/
         loadingDialog.startLoadingDialog();
         final String id = sharedPreferences.getString(USER_ID, "id");
+        final String token = sharedPreferences.getString(TOKEN, "token");
+
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-        Call<Disease> call = apiService.getDiseaseRegi(id, des);
+        Call<Disease> call = apiService.getDiseaseRegi(id, des,token);
         call.enqueue(new Callback<Disease>() {
             @Override
             public void onResponse(Call<Disease> call, Response<Disease> response) {
@@ -184,7 +181,7 @@ public class DiseaseActivity extends AppCompatActivity {
                 //   loadingDialog.dismissDialog();
 
                 // Toast.makeText(DiseaseActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
-                alert.showWarningDialog();
+                alert.showErrorDialog("تــأكد من إتصالك بالإنترنت");
 
             }
         });

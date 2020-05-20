@@ -30,6 +30,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.makank.SharedPref.SHARED_PREF_NAME;
+import static com.example.makank.SharedPref.TOKEN;
 import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.mCtx;
 
@@ -112,8 +113,10 @@ public class SendNotifActivity extends AppCompatActivity {
         progressDoalog = new ProgressDialog(SendNotifActivity.this);
         progressDoalog.setMax(100);
         progressDoalog.setMessage("loading....");*/
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        final String token = sharedPreferences.getString(TOKEN, "token");
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-        Call<Person> call = apiService.sendNotifi(my_id, local, notif);
+        Call<Person> call = apiService.sendNotifi(token,my_id, local, notif);
         // progressDoalog.show();
         loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<Person>() {

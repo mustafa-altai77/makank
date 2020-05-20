@@ -18,10 +18,13 @@ public class SharedPref {
     public static final String F_NAME = "first_name";
     public static final String S_NAME = "second_name";
     public static final String L_NAME = "last_name";
+    public static final String QRCODE = "qr_cod";
+
     public static final String PHONE = "phone";
     public static final String GENDER = "gender";
     public static final String STATUS = "status";
     public static final String AGE = "age";
+    public static final String TOKEN = "token";
 
     public static final String USER_LOCAL = "local";
 
@@ -54,7 +57,7 @@ public class SharedPref {
         editor.putString(USER_LOCAL, local);
         editor.commit();    }
     //method to store user data
-    public void storeUserID(String id,String f_name,String s_name,String l_name,String phone,String gender,String age,String status) {
+    public void storeUserID(String id,String f_name,String s_name,String l_name,String qr_cod,String gender,String age,String status) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -62,14 +65,27 @@ public class SharedPref {
         editor.putString(F_NAME, f_name);
         editor.putString(S_NAME, s_name);
         editor.putString(L_NAME, l_name);
-        editor.putString(PHONE, phone);
+        editor.putString(QRCODE, qr_cod);
         editor.putString(GENDER, gender);
         editor.putString(AGE, age);
         editor.putString(STATUS, status);
         editor.commit();
        // Toast.makeText(mCtx, ""+USER_ID, Toast.LENGTH_SHORT).show();
     }
-
+    public void storeNumber(String phone) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(PHONE, phone);
+        editor.commit();
+        // Toast.makeText(mCtx, ""+USER_ID, Toast.LENGTH_SHORT).show();
+    }
+    public void storeToken(String token) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(TOKEN, token);
+        editor.commit();
+        // Toast.makeText(mCtx, ""+USER_ID, Toast.LENGTH_SHORT).show();
+    }
     //check if user is logged in
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);

@@ -32,6 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.makank.SharedPref.SHARED_PREF_NAME;
+import static com.example.makank.SharedPref.TOKEN;
 import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.mCtx;
 
@@ -66,8 +67,8 @@ public class RequestFragment extends Fragment {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String id = sharedPreferences.getString(USER_ID, "id");
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-
-        Call<List<Request>> call = apiService.getRequst(id);
+        final String token = sharedPreferences.getString(TOKEN, "token");
+        Call<List<Request>> call = apiService.getRequst(token,id);
 
         call.enqueue(new Callback<List<Request>>() {
             @Override

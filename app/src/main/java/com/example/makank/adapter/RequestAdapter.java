@@ -30,6 +30,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.makank.SharedPref.SHARED_PREF_NAME;
+import static com.example.makank.SharedPref.TOKEN;
 import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.mCtx;
 
@@ -127,8 +128,10 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
         progressDoalog = new ProgressDialog(context);
         progressDoalog.setMax(100);
         progressDoalog.setMessage("loading....");*/
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        final String token = sharedPreferences.getString(TOKEN, "token");
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-        Call<Request> call = apiService.getRequest(my_id, owner_id, accept);
+        Call<Request> call = apiService.getRequest(token,my_id,owner_id, accept);
         //  progressDoalog.show();
         loadingDialog = new LoadingDialog((Activity) context);
         alert = new Alert((Activity) context);

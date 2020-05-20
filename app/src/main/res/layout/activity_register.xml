@@ -109,49 +109,49 @@
                     android:textColor="#4D4646"
                     android:textColorHint="#8B8686" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
 
-                    android:layout_marginTop="8dp">
+<!--                    android:layout_marginTop="8dp">-->
 
-                    <EditText
-                        android:id="@+id/phone"
-                        android:layout_width="250dp"
-                        android:layout_height="52dp"
-                        android:layout_gravity="start"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginRight="20dp"
-                        android:background="@drawable/rounded_edittext"
-                        android:ems="10"
-                        android:hint="@string/phone"
-                        android:inputType="phone"
-                        android:maxLength="9"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:textAlignment="viewStart"
-                        android:textColor="#4D4646"
-                        android:textColorHint="#8B8686" />
-                    <EditText
-                        android:id="@+id/edit_phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="52dp"
-                        android:layout_gravity="start"
-                        android:layout_marginLeft="18dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/rounded_edittext"
-                        android:ems="10"
-                        android:hint="@string/edit_phone"
-                        android:inputType="phone"
-                        android:maxLength="9"
-                        android:paddingLeft="0dp"
-                        android:paddingRight="15dp"
-                        android:textAlignment="viewStart"
-                        android:textColor="#4D4646"
-                        android:textColorHint="#8B8686" />
+<!--                    <EditText-->
+<!--                        android:id="@+id/phone"-->
+<!--                        android:layout_width="250dp"-->
+<!--                        android:layout_height="52dp"-->
+<!--                        android:layout_gravity="start"-->
+<!--                        android:layout_marginLeft="10dp"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:layout_marginRight="20dp"-->
+<!--                        android:background="@drawable/rounded_edittext"-->
+<!--                        android:ems="10"-->
+<!--                        android:hint="@string/phone"-->
+<!--                        android:inputType="phone"-->
+<!--                        android:maxLength="9"-->
+<!--                        android:paddingLeft="20dp"-->
+<!--                        android:paddingRight="20dp"-->
+<!--                        android:textAlignment="viewStart"-->
+<!--                        android:textColor="#4D4646"-->
+<!--                        android:textColorHint="#8B8686" />-->
+<!--                    <EditText-->
+<!--                        android:id="@+id/edit_phone"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="52dp"-->
+<!--                        android:layout_gravity="start"-->
+<!--                        android:layout_marginLeft="18dp"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:background="@drawable/rounded_edittext"-->
+<!--                        android:ems="10"-->
+<!--                        android:hint="@string/edit_phone"-->
+<!--                        android:inputType="phone"-->
+<!--                        android:maxLength="9"-->
+<!--                        android:paddingLeft="0dp"-->
+<!--                        android:paddingRight="15dp"-->
+<!--                        android:textAlignment="viewStart"-->
+<!--                        android:textColor="#4D4646"-->
+<!--                        android:textColorHint="#8B8686" />-->
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"

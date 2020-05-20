@@ -64,6 +64,7 @@ import static com.example.makank.SharedPref.F_NAME;
 import static com.example.makank.SharedPref.L_NAME;
 import static com.example.makank.SharedPref.SHARED_PREF_NAME;
 import static com.example.makank.SharedPref.S_NAME;
+import static com.example.makank.SharedPref.TOKEN;
 import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.mCtx;
 
@@ -279,7 +280,9 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
                     RequestBody.create(MediaType.parse("text/plain"), pdfFileName);
 
             ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-            Call<Filresponse> call = apiService.upload(id, id, body);
+            SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            final String token = sharedPreferences.getString(TOKEN, "token");
+            Call<Filresponse> call = apiService.upload(token,id,body);
             call.enqueue(new Callback<Filresponse>() {
                 @Override
                 public void onResponse(Call<Filresponse> call, Response<Filresponse> response) {

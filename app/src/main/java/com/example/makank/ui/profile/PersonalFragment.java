@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.example.makank.Alert;
 import com.example.makank.LoadingDialog;
 import com.example.makank.R;
+import com.example.makank.data.model.Details;
 import com.example.makank.data.model.Disease;
 import com.example.makank.data.model.Person;
 import com.example.makank.data.network.ApiClient;
@@ -41,7 +42,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.content.Context.WINDOW_SERVICE;
+import static com.example.makank.SharedPref.PHONE;
+import static com.example.makank.SharedPref.QRCODE;
 import static com.example.makank.SharedPref.SHARED_PREF_NAME;
+import static com.example.makank.SharedPref.TOKEN;
 import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.mCtx;
 
@@ -53,13 +57,13 @@ public class PersonalFragment extends Fragment {
     ListView listView;
     LoadingDialog loadingDialog;
     Alert alert;
-    private List<Disease> diseases;
+    private List<Disease> diseases ;
 
     String inputValue;
     QRGEncoder qrgEncoder;
     Bitmap bitmap;
     Typeface typeface;
-    private Person personList;
+    private Details personList;
     ArrayList<String> disease_name;
 
     @Override
@@ -104,26 +108,32 @@ public class PersonalFragment extends Fragment {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String my_id = sharedPreferences.getString(USER_ID, "id");
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-        Call<Person> call = apiService.getMyData(my_id);
+        final String token = sharedPreferences.getString(TOKEN, "token");
+        Call<List<Details>> call = apiService.getMyData(token);
         loadingDialog.startLoadingDialog();
-        call.enqueue(new Callback<Person>() {
+        call.enqueue(new Callback<List<Details>>() {
             @Override
-            public void onResponse(Call<Person> call, Response<Person> response) {
+            public void onResponse(Call<List<Details>> call, Response<List<Details>> response) {
                 if (response.isSuccessful()) {
                     loadingDialog.dismissDialog();
-                    personList =  response.body();
+                    personList = (Details) response.body();
 //                        final String my_id = personList.getLocal_id();
-                        final String f_name = personList.getFirst_name();
-                        final String s_name = personList.getSecond_name();
-                        final String l_name = personList.getLast_name();
-                        final String num = personList.getPhone();
+//                    for (int i = 0; i < personList.size(); i++) {
+                    final String f_name = personList.getFirst_name();
+
+                    final String s_name = personList.getSecond_name();
+                    final String l_name = personList.getLast_name();
+
+                        final String qr_cod = personList.getQr_code();
                         final String gender = personList.getGender();
                         final String age = personList.getAge();
                         final String status = personList.getStatus();
+
                         F_name.setText("" + f_name + " " + s_name + " " + l_name);
                         gen.setText(gender);
-                        personalID.setText(getResources().getString(R.string.the_id_is) + my_id);
+                        personalID.setText(getResources().getString(R.string.the_id_is) + qr_cod);
                         age_.setText(age);
+                        final String num = sharedPreferences.getString(PHONE, "phone");
                         ph.setText(num);
                         if (status.equals("1")) {
                             statusImage.setImageResource(R.color.colorAccent);
@@ -143,7 +153,7 @@ public class PersonalFragment extends Fragment {
 
 
             @Override
-            public void onFailure(Call<Person> call, Throwable t) {
+            public void onFailure(Call<List<Details>> call, Throwable t) {
                 loadingDialog.dismissDialog();
 
                 alert.showWarningDialog();
@@ -154,38 +164,40 @@ public class PersonalFragment extends Fragment {
 //        private void fetchCity(){
 //            loadingDialog.startLoadingDialog();
 
-        final String id = sharedPreferences.getString(USER_ID, "id");
-           try {
+        final String id = sharedPreferences.getString(QRCODE, "id");
+//           try {
+//
+//            Call<Disease> call2 = apiService.getMydisease(id,token);
+//            call2.enqueue(new Callback<Disease>() {
+//                @Override
+//                public void onResponse(Call<Disease> call, Response<Disease> response) {
+//
+//                    loadingDialog.dismissDialog();
+//
+//                        diseases = new ArrayList<>();
+//                        diseases = (List<Disease>) response.body();
+//
+//                        for (int i = 0; i < diseases.size(); i++) {
+//                            disease_name.add(diseases.get(i).getName());
+//                            ArrayAdapter<String> itemsAdapter = new ArrayAdapter<>(
+//                                    getContext(), android.R.layout.simple_list_item_1, disease_name
+//                            );
+//
+//                            listView.setAdapter(itemsAdapter);
+//
+//                    }
+//                }
+//                @Override
+//                public void onFailure(Call<Disease>call, Throwable t) {
+//                    loadingDialog.dismissDialog();
+//                }
+//            });
+//           } catch (Exception e) {
+//               e.printStackTrace();
+//           }
 
 
-            Call<List<Disease>> call2 = apiService.getMydisease(id);
-            call2.enqueue(new Callback<List<Disease>>() {
-                @Override
-                public void onResponse(Call<List<Disease>> call, Response<List<Disease>> response) {
-
-                    loadingDialog.dismissDialog();
-//                if (!response.isSuccessful()) {
-
-                    diseases = response.body();
-                    for (int i =0;i<diseases.size();i++) {
-                         disease_name.add(diseases.get(i).getName());
-                        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<>(
-                                getContext(), android.R.layout.simple_list_item_1, disease_name
-                        );
-                        listView.setAdapter(itemsAdapter );
-                    }
-                }
-                @Override
-                public void onFailure(Call<List<Disease>>call, Throwable t) {
-                    loadingDialog.dismissDialog();
-                }
-            });
-           } catch (Exception e) {
-               e.printStackTrace();
-           }
-
-
-        //final String id = sharedPreferences.getString(USER_ID, "id");
+//        final String id = sharedPreferences.getString(USER_ID, "id");
 
         getActivity();
         personalID.setText(id);
