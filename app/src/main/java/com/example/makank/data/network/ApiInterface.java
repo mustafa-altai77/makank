@@ -79,13 +79,13 @@ public interface ApiInterface {
                                  @Header ("Authorization") String token
     );
 
-    @POST("person/{id}/saw")
+    @GET("person/{id}")
     Call<Person> getSaw(@Header ("Authorization") String token,
                         @Path("id") String result);
 
     @POST("person/{id}/saw")
     @FormUrlEncoded
-    Call<Person> addSeen(@Header ("Authorization") String token,
+    Call<Member> addSeen(@Header ("Authorization") String token,
                          @Path("id") String my_id,
                          @Field("seen_person_id") String member_id,
                          @Field("lan") double lan,

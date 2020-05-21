@@ -107,6 +107,7 @@ public class AddGroupActivity extends AppCompatActivity {
                     //  Toast.makeText(AddGroupActivity.this, "يرجى ادخال رقم التعريف الشخصي", Toast.LENGTH_SHORT).show();
                     alert.showErrorDialog(getResources().getString(R.string.place_enter_id));
                 else
+
                     getStatus(id);
 
             }

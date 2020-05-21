@@ -296,6 +296,7 @@ public class VolunteerActivity extends AppCompatActivity implements View.OnClick
                         }
                     } else {
                         // hidepDialog();
+
                         loadingDialog.dismissDialog();
 
                         Log.e("error_req", call.toString());
