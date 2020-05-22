@@ -117,18 +117,19 @@
                 android:text="تواصل"
                 android:textColor="@color/cardview_light_background">
             </Button>
-            <Button
-                android:id="@+id/cancel"
-                android:layout_width="283dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:textStyle="bold"
-                android:textSize="17sp"
-                android:background="@drawable/graybtn"
-                android:text="@string/receive"
-                android:textColor="@color/cardview_light_background">
-            </Button>
+
         </LinearLayout>
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="283dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:background="@drawable/graybtn"
+            android:text="@string/receive"
+            android:textColor="@color/cardview_light_background">
+        </Button>
     </LinearLayout>
 </ScrollView>

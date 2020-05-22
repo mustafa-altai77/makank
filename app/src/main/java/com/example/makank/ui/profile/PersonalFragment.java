@@ -1,6 +1,7 @@
 package com.example.makank.ui.profile;
 
 import android.annotation.SuppressLint;
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -57,7 +58,7 @@ public class PersonalFragment extends Fragment {
     ListView listView;
     LoadingDialog loadingDialog;
     Alert alert;
-    private List<Disease> diseases ;
+    private List<Disease> diseases;
 
     String inputValue;
     QRGEncoder qrgEncoder;
@@ -106,24 +107,21 @@ public class PersonalFragment extends Fragment {
         disease_list.setTypeface(typeface);
         disease_name = new ArrayList<>();
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        final String my_id = sharedPreferences.getString(USER_ID, "id");
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         final String token = sharedPreferences.getString(TOKEN, "token");
-        Call<List<Details>> call = apiService.getMyData(token);
+        Call<Details> call = apiService.getMyData(token);
         loadingDialog.startLoadingDialog();
-        call.enqueue(new Callback<List<Details>>() {
+        call.enqueue(new Callback<Details>() {
             @Override
-            public void onResponse(Call<List<Details>> call, Response<List<Details>> response) {
+            public void onResponse(Call<Details> call, Response<Details> response) {
                 if (response.isSuccessful()) {
                     loadingDialog.dismissDialog();
                     personList = (Details) response.body();
 //                        final String my_id = personList.getLocal_id();
 //                    for (int i = 0; i < personList.size(); i++) {
-                    final String f_name = personList.getFirst_name();
-
-                    final String s_name = personList.getSecond_name();
-                    final String l_name = personList.getLast_name();
-
+                        final String f_name = personList.getFirst_name();
+                        final String s_name = personList.getSecond_name();
+                        final String l_name = personList.getLast_name();
                         final String qr_cod = personList.getQr_code();
                         final String gender = personList.getGender();
                         final String age = personList.getAge();
@@ -148,12 +146,10 @@ public class PersonalFragment extends Fragment {
                             statusName.setText(getResources().getString(R.string.healthy_case));
                         }
                     }
-
                 }
 
-
             @Override
-            public void onFailure(Call<List<Details>> call, Throwable t) {
+            public void onFailure(Call<Details> call, Throwable t) {
                 loadingDialog.dismissDialog();
 
                 alert.showWarningDialog();
@@ -164,43 +160,44 @@ public class PersonalFragment extends Fragment {
 //        private void fetchCity(){
 //            loadingDialog.startLoadingDialog();
 
-        final String id = sharedPreferences.getString(QRCODE, "id");
-//           try {
-//
-//            Call<Disease> call2 = apiService.getMydisease(id,token);
-//            call2.enqueue(new Callback<Disease>() {
-//                @Override
-//                public void onResponse(Call<Disease> call, Response<Disease> response) {
-//
-//                    loadingDialog.dismissDialog();
-//
-//                        diseases = new ArrayList<>();
-//                        diseases = (List<Disease>) response.body();
-//
-//                        for (int i = 0; i < diseases.size(); i++) {
-//                            disease_name.add(diseases.get(i).getName());
-//                            ArrayAdapter<String> itemsAdapter = new ArrayAdapter<>(
-//                                    getContext(), android.R.layout.simple_list_item_1, disease_name
-//                            );
-//
-//                            listView.setAdapter(itemsAdapter);
-//
-//                    }
-//                }
-//                @Override
-//                public void onFailure(Call<Disease>call, Throwable t) {
-//                    loadingDialog.dismissDialog();
-//                }
-//            });
-//           } catch (Exception e) {
-//               e.printStackTrace();
-//           }
+        final String id = sharedPreferences.getString(USER_ID, "id");
+           try {
+
+            Call<List<Disease>>call2 = apiService.getMydisease(id,token);
+            call2.enqueue(new Callback<List<Disease>>() {
+                @Override
+                public void onResponse(Call<List<Disease>> call, Response<List<Disease>> response) {
+
+                    loadingDialog.dismissDialog();
+
+                        diseases = new ArrayList<>();
+                        diseases = (List<Disease>) response.body();
+
+                    if (diseases != null) {
+                        for (int i = 0; i < diseases.size(); i++) {
+                            disease_name.add(diseases.get(i).getName());
+                            ArrayAdapter<String> itemsAdapter = new ArrayAdapter<>(
+                                    getContext(), android.R.layout.simple_list_item_1, disease_name
+                            );
+
+                            listView.setAdapter(itemsAdapter);
+                    }
+                    }
+                }
+                @Override
+                public void onFailure(Call<List<Disease>>call, Throwable t) {
+                    loadingDialog.dismissDialog();
+                }
+            });
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
 
 
-//        final String id = sharedPreferences.getString(USER_ID, "id");
+        final String qr_code = sharedPreferences.getString(QRCODE, "qr_cod");
 
         getActivity();
-        personalID.setText(id);
+        personalID.setText(qr_code);
         inputValue = id;
 //                inputValue = edtValue.getText().toString().trim();
         if (inputValue.length() > 0) {

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,6 +13,8 @@ import com.example.makank.Alert;
 import com.example.makank.LoadingDialog;
 import com.example.makank.R;
 import com.example.makank.SharedPref;
+import com.example.makank.SmsListener;
+import com.example.makank.SmsReceiver;
 import com.example.makank.data.model.SendNumber;
 import com.example.makank.data.model.Verify;
 import com.example.makank.data.network.ApiClient;
@@ -32,6 +35,16 @@ public class VerifyCodeActivity extends AppCompatActivity {
         editTextCode = findViewById(R.id.editTextCode);
         alert = new Alert(this);
         loadingDialog = new LoadingDialog(this);
+
+        SmsReceiver.bindListener(new SmsListener() {
+            @Override
+            public void messageReceived(String messageText) {
+                editTextCode.setText(messageText);
+                Log.d("Text",messageText);
+            }
+        });
+
+
         findViewById(R.id.buttonSignIn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +62,7 @@ public class VerifyCodeActivity extends AppCompatActivity {
     }
 
     private void verifyVerificationCode(String code) {
-        loadingDialog.startLoadingDialog();
+        loadingDialog.startLoadingDialog(false);
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<Verify> call = apiService.verfiy(code);
         call.enqueue(new Callback<Verify>() {
@@ -60,7 +73,7 @@ public class VerifyCodeActivity extends AppCompatActivity {
                     //progressDoalog.dismiss();
                     loadingDialog.dismissDialog();
                     String token = response.body().getToken();
-                    Toast.makeText(VerifyCodeActivity.this, token+"", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(VerifyCodeActivity.this, token+"", Toast.LENGTH_SHORT).show();
                     SharedPref.getInstance(VerifyCodeActivity.this).storeToken("Bearer "+token);
 
                     Intent intent = new Intent(VerifyCodeActivity.this, StateActivity.class);

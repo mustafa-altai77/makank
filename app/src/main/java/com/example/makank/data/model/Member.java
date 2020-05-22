@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Member {
     String id;
-    String my_id;
     String status;
     String first_name;
     String second_name;
@@ -18,7 +17,6 @@ public class Member {
     private String groupID;
     public Member(String id, String my_id) {
         this.id = id;
-        this.my_id = my_id;
     }
 
     public String getId() {
@@ -29,13 +27,6 @@ public class Member {
         this.id = id;
     }
 
-    public String getMy_id() {
-        return my_id;
-    }
-
-    public void setMy_id(String my_id) {
-        this.my_id = my_id;
-    }
 
     public String getstatus() {
         return status;

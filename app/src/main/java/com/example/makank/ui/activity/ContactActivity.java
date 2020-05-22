@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.makank.Alert;
 import com.example.makank.GpsLocationTracker;
@@ -54,26 +55,27 @@ public class ContactActivity extends AppCompatActivity {
     LoadingDialog loadingDialog;
     Alert alert;
     Person personList;
-    double locationLatitude;
-    double locationLongitude;
+    double Latitude;
+    double Longitude;
     String TAG = "";
-    @SuppressLint("ResourceAsColor")
+    int p_id;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
+        GpsLocationTracker mGpsLocationTracker = new GpsLocationTracker(ContactActivity.this);
+
         buttonScan = findViewById(R.id.qr_image);
         personalID = findViewById(R.id.p_id);
         personal_id = findViewById(R.id.p_number);
-
         info1 = findViewById(R.id.infor);
         info2 = findViewById(R.id.infor2);
         Pname = findViewById(R.id.p_name);
         add = findViewById(R.id.add);
         check = findViewById(R.id.check_status);
         recive = findViewById(R.id.cancel);
-
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         personalID.setTypeface(typeface);
         personal_id.setTypeface(typeface);
@@ -83,13 +85,11 @@ public class ContactActivity extends AppCompatActivity {
         add.setTypeface(typeface);
         check.setTypeface(typeface);
         recive.setTypeface(typeface);
-        GpsLocationTracker mGpsLocationTracker = new GpsLocationTracker(ContactActivity.this);
         if (mGpsLocationTracker.canGetLocation()) {
-            locationLatitude = mGpsLocationTracker.getLatitude();
-            locationLongitude = mGpsLocationTracker.getLongitude();
-            Log.i(TAG, String.format("latitude: %s", locationLatitude));
-            Log.i(TAG, String.format("longitude: %s", locationLongitude));
-            //   Toast.makeText(this, locationLatitude + "" + locationLongitude + "", Toast.LENGTH_SHORT).show();
+            Latitude = mGpsLocationTracker.getLatitude();
+            Longitude = mGpsLocationTracker.getLongitude();
+            Log.i(TAG, String.format("latitude: %s", Latitude));
+            Log.i(TAG, String.format("longitude: %s", Longitude));
         } else {
             mGpsLocationTracker.showSettingsAlert();
         }
@@ -99,7 +99,7 @@ public class ContactActivity extends AppCompatActivity {
         loadingDialog = new LoadingDialog(this);
 
         layout = findViewById(R.id.anotherPerson);
-        layout.setVisibility(View.VISIBLE);
+        layout.setVisibility(View.INVISIBLE);
         //intializing scan object
         qrScan = new IntentIntegrator(this);
         recive.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +122,8 @@ public class ContactActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                if (TextUtils.isEmpty(id))
+                Toast.makeText(getApplicationContext(), +Latitude + "" + Longitude + "", Toast.LENGTH_SHORT).show();
+
                 String id = personalID.getText().toString();
                 //else
                 if (personalID.getText().toString().equals(""))
@@ -136,7 +138,7 @@ public class ContactActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String member_id = personalID.getText().toString();
+                String result = personalID.getText().toString();
                 SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
                 final String my_id = sharedPreferences.getString(USER_ID, "id");
                 if (personalID.getText().toString().equals("")) {
@@ -147,7 +149,9 @@ public class ContactActivity extends AppCompatActivity {
                     personalID.setText("");
                     return;
                 } else
-                    addSee(member_id, my_id,locationLongitude,locationLatitude);
+                    Toast.makeText(getApplicationContext(), +Latitude + "" + Longitude + "", Toast.LENGTH_SHORT).show();
+
+                addSee(my_id, Longitude, Latitude);
 
             }
         });
@@ -204,10 +208,11 @@ public class ContactActivity extends AppCompatActivity {
                         final String f_name = personList.getFirst_name();
                         final String s_name = personList.getSecond_name();
                         final String l_name = personList.getLast_name();
-                        final int p_id = personList.getId();
+
+                         p_id = personList.getId();
 
                         Pname.setText("" + f_name + " " + s_name + " " + l_name);
-                        personal_id.setText(Integer.toString(p_id));
+//                        personal_id.setText(Integer.toString(p_id));
 
 
                         final String statu = response.body().getStatus();
@@ -223,7 +228,8 @@ public class ContactActivity extends AppCompatActivity {
 
                         }
                         //  alert.showAlertSuccess(name+"\n"+""+CaseName);
-                        alert.showSuccessDialog("تم البحث",name + " \n "+CaseName,1);
+                      //  alert.showSuccessDialog("تم البحث",name + " \n "+CaseName,1);
+                        personal_id.setText(CaseName);
                     }
                     //Intent intent = new Intent(RegisterActivity.this, DiseaseActivity.class);
                     //startActivity(intent);
@@ -245,11 +251,11 @@ public class ContactActivity extends AppCompatActivity {
         });
     }
 
-    private void addSee(String result, String my_id, double locationLatitude, double locationLongitude) {
+    private void addSee(  String my_id, double locationLatitude, double locationLongitude) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String token = sharedPreferences.getString(TOKEN, "token");
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-        Call<Member> call = apiService.addSeen(token,result, my_id, locationLatitude, locationLongitude);
+        Call<Member> call = apiService.addSeen(token,my_id,p_id , locationLatitude, locationLongitude);
         loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<Member>() {
             @SuppressLint("ResourceAsColor")

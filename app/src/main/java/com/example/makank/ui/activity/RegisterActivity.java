@@ -150,7 +150,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Person person = new Person(first_name, second_name, last_name, gender, age, local_id);
         // progressDoalog.show();
-        loadingDialog.startLoadingDialog();
+        loadingDialog.startLoadingDialog(false);
 
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);

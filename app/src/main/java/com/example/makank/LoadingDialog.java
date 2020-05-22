@@ -38,6 +38,20 @@ public class LoadingDialog {
         dialog.show();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
     }
+    public void startLoadingDialog(boolean cancelable) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        LayoutInflater inflater = activity.getLayoutInflater();
+        //builder.setView(inflater.inflate(R.layout.custom_dialog2, null));
+        View view = inflater.inflate(R.layout.custom_dialog2, null);
+        builder.setView(view);
+        textView = view.findViewById(R.id.txtWa);
+        typeface = Typeface.createFromAsset(activity.getAssets(), "fonts/Hacen-Algeria.ttf");
+        textView.setTypeface(typeface);
+        dialog = builder.create();
+        dialog.setCancelable(cancelable);
+        dialog.show();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+    }
 
     public void dismissDialog() {
         dialog.dismiss();

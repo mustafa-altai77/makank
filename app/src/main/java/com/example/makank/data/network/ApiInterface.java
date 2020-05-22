@@ -63,13 +63,13 @@ public interface ApiInterface {
     Call<List<Member>> getMyseen(@Header ("Authorization") String token,
                                  @Path("id") String id);
     @GET("detials")
-    Call<List<Details>> getMyData(@Header("Authorization") String token);
+    Call<Details> getMyData(@Header("Authorization") String token);
 
     @POST("person")
     Call<Person> getUserRegi(@Header("Authorization") String token,
                              @Body Person person);
     @GET("person/{id}/diseases?data=true")
-    Call<Disease> getMydisease(@Path("id") String id,
+    Call<List<Disease>> getMydisease(@Path("id") String id,
     @Header ("Authorization") String token);
     @FormUrlEncoded
     @POST("person/{id}/diseases")
@@ -87,7 +87,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<Member> addSeen(@Header ("Authorization") String token,
                          @Path("id") String my_id,
-                         @Field("seen_person_id") String member_id,
+                         @Field("seen_person_id") int person_id,
                          @Field("lan") double lan,
                          @Field("lat") double lat);
 
@@ -95,7 +95,7 @@ public interface ApiInterface {
     @POST("person/{id}/group")
     Call<Member> addMem(@Header ("Authorization") String token,
                         @Path("id") String my_id,
-                        @Field("member_id") String member_id);
+                        @Field("member_id") int member_id);
 
     @FormUrlEncoded
     @POST("person/{id}/notifications")

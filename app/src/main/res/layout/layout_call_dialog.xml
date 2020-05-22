@@ -20,7 +20,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/textTitle"
-    android:background="@drawable/title_error_background"
+    android:background="@color/color"
     android:padding="10dp"
     android:textColor="@color/white"
     android:textSize="18sp"

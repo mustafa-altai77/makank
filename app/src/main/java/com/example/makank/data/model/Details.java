@@ -37,6 +37,46 @@ public class Details {
     @Expose
     private int user_id;
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public void setSecond_name(String second_name) {
+        this.second_name = second_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public void setQr_code(String qr_code) {
+        this.qr_code = qr_code;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public void setLocal_id(String local_id) {
+        this.local_id = local_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
     public int getId() {
         return id;
     }

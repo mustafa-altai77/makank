@@ -82,7 +82,8 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CategoryViewHo
                 if (item.getId() == 4) {
                     Typeface   typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
                     SpannableString efr = new SpannableString(context.getResources().getString(R.string.soon));
-                    efr.setSpan(new TypefaceSpan(typeface),0,efr.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    //cause an exception
+                    //efr.setSpan(new TypefaceSpan(typeface),0,efr.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     Toast toast=Toast.makeText(context,efr,Toast.LENGTH_SHORT);
                     View view=toast.getView();
                     view.setBackgroundColor(Color.TRANSPARENT);

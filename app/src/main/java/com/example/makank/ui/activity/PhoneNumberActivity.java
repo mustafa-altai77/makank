@@ -50,7 +50,7 @@ public class PhoneNumberActivity extends AppCompatActivity {
     }
 
     private void sendNumber(String mobile) {
-        loadingDialog.startLoadingDialog();
+        loadingDialog.startLoadingDialog(false);
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<SendNumber> call = apiService.sendNum(mobile);
         call.enqueue(new Callback<SendNumber>() {

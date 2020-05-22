@@ -65,6 +65,10 @@ public class Splash extends AppCompatActivity {
               //  Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
                 finish();
             }
+            else if(SharedPref.getInstance(this).HasToken()){
+                startActivity(new Intent(this, StateActivity.class));
+                finish();
+            }
            else {
                 startActivity(new Intent(this, PhoneNumberActivity.class));
                 finish();

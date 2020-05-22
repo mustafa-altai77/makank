@@ -98,9 +98,12 @@ public class ContactFragment extends Fragment {
                     memberList = response.body();
                     layout.setVisibility(View.VISIBLE);
                     seenAdapter.setMovieList(getContext(), memberList);
+
+                    if (getContext()!=null)
+                        member.setText(" "+getResources().getString(R.string.number_persons_seen)+memberList.size());
                 }
 //                Toast.makeText(getContext(), ""+memberList.size(), Toast.LENGTH_SHORT).show();
-            member.setText(" "+getResources().getString(R.string.number_persons_seen)+memberList.size());
+
             }
 
             @Override

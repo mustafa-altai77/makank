@@ -94,14 +94,16 @@ public class StatisticFragment extends Fragment {
                 //progressDoalog.dismiss();
 //                if (!response.isSuccessful()) {
 //                  statistcs = new ArrayList<>();
-                statistcs = response.body();
+                if(response.body() != null) {
+                    statistcs = response.body();
 //                for (int i = 0; i < statistcs.size(); i++) {
 
-                case_red.setText(Integer.toString(statistcs.getRed()));
-                case_yellow.setText(Integer.toString(statistcs.getYellow()));
-                caseNew_daeth.setText(Integer.toString(statistcs.getDeath()));
+                    case_red.setText(statistcs.getRed()+"");
+                    case_yellow.setText(statistcs.getYellow()+"");
+                    caseNew_daeth.setText(statistcs.getDeath()+"");
 
-                //  }
+                    //  }
+                }
             }
 
             @Override
@@ -109,7 +111,7 @@ public class StatisticFragment extends Fragment {
                 //   progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
 
-                Toast.makeText(getContext(), "" + t, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "" + t, Toast.LENGTH_SHORT).show();
 
             }
         });

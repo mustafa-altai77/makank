@@ -49,6 +49,7 @@ public class AddGroupActivity extends AppCompatActivity {
     LoadingDialog loadingDialog;
     Alert alert;
     Person personList;
+    int p_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +127,7 @@ public class AddGroupActivity extends AppCompatActivity {
                     personalID.setText("");
                     return;
                 } else
-                    addMember(member_id, my_id);
+                    addMember(my_id);
 
             }
         });
@@ -183,7 +184,7 @@ public class AddGroupActivity extends AppCompatActivity {
                         final String f_name = personList.getFirst_name();
                         final String s_name = personList.getSecond_name();
                         final String l_name = personList.getLast_name();
-                        final int p_id = personList.getId();
+                        p_id = personList.getId();
 
                         Pname.setText("" + f_name + " " + s_name + " " + l_name);
                         personal_id.setText(Integer.toString(p_id));
@@ -208,7 +209,7 @@ public class AddGroupActivity extends AppCompatActivity {
         });
     }
 
-    private void addMember(String member_id, String my_id) {
+    private void addMember(String my_id) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String token = sharedPreferences.getString(TOKEN, "token");
        /* final ProgressDialog progressDoalog;
@@ -216,7 +217,7 @@ public class AddGroupActivity extends AppCompatActivity {
         progressDoalog.setMax(100);
         progressDoalog.setMessage("loading....");*/
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-        Call<Member> call = apiService.addMem(token,my_id, member_id);
+        Call<Member> call = apiService.addMem(token,my_id, p_id);
         // progressDoalog.show();
         loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<Member>() {

@@ -86,6 +86,11 @@ public class SharedPref {
         editor.commit();
         // Toast.makeText(mCtx, ""+USER_ID, Toast.LENGTH_SHORT).show();
     }
+
+    public boolean HasToken() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return !sharedPreferences.getString(TOKEN, "-1").equals("-1");
+    }
     //check if user is logged in
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
