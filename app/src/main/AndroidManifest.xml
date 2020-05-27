@@ -74,13 +74,7 @@
         <activity
             android:name=".ui.activity.DiseaseActivity"
             android:label=""
-            android:theme="@style/AppThemeNoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.activity.AddGroupActivity"
             android:label=""
@@ -112,7 +106,11 @@
         <activity
             android:name=".ui.Splash"
             android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.RegisterActivity"
