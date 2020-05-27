@@ -53,6 +53,6 @@
         android:textIsSelectable="false"
         android:textSize="20sp"
         app:pinAnimationType="popIn"
-        app:0="@drawable/bg_pin" />
+        app:pinBackgroundDrawable="@drawable/bg_pin" />
 
 </LinearLayout>

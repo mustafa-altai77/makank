@@ -9,12 +9,13 @@
         android:smallScreens="true"
         android:xlargeScreens="true" />
 
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.READ_SMS"/>
-
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <uses-feature android:name="android.hardware.location.gps" />
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -22,6 +23,7 @@
     <uses-permission android:name="android.hardware.camera" />
     <uses-permission android:name="android.hardware.camera.autofocus" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -37,16 +39,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.Areas"
+        <activity android:name=".ui.activity.DetailsActivity"></activity>
+        <activity
+            android:name=".ui.activity.Areas"
             android:label=""
-            android:theme="@style/AppThemeNoActionBar">
-        </activity>
-        <activity android:name=".ui.activity.VerifyCodeActivity"
-            android:theme="@style/AppThemeNoActionBar"
-            android:label=""></activity>
-        <activity android:name=".ui.activity.PhoneNumberActivity"
-            android:theme="@style/AppThemeNoAction"
-            android:label=""></activity>
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".ui.activity.VerifyCodeActivity"
+            android:label=""
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".ui.activity.PhoneNumberActivity"
+            android:label=""
+            android:theme="@style/AppThemeNoAction" />
         <activity
             android:name=".ui.activity.Language"
             android:label=""
@@ -70,7 +75,11 @@
             android:name=".ui.activity.DiseaseActivity"
             android:label=""
             android:theme="@style/AppThemeNoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.AddGroupActivity"
@@ -103,17 +112,12 @@
         <activity
             android:name=".ui.Splash"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.RegisterActivity"
             android:label=""
-            android:theme="@style/AppThemeNoAction">
-        </activity>
+            android:theme="@style/AppThemeNoAction" />
         <activity
             android:name=".ui.activity.StateActivity"
             android:label=""
@@ -133,10 +137,9 @@
 
         <receiver android:name=".SmsReceiver">
             <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>

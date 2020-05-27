@@ -65,10 +65,10 @@ public class DiseaseActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         diseases = new ArrayList<>();
         //createList();
-
-        fetchWeatherDetails();
         alert = new Alert(this);
         loadingDialog = new LoadingDialog(this);
+        fetchWeatherDetails();
+
 
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         btnGetSelected.setTypeface(typeface);
@@ -104,7 +104,7 @@ public class DiseaseActivity extends AppCompatActivity {
         progressDoalog.show();
         progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);*/
 //        loadingDialog.startLoadingDialog();
-
+        loadingDialog.startLoadingDialog();
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<List<Disease>> call = apiService.getDisease();
 
@@ -112,7 +112,7 @@ public class DiseaseActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Disease>> call, Response<List<Disease>> response) {
                 // progressDoalog.dismiss();
-//               loadingDialog.dismissDialog();
+               loadingDialog.dismissDialog();
                 diseases = response.body();
                 adapter.setDiseases(diseases);
 
@@ -178,7 +178,7 @@ public class DiseaseActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Disease> call, Throwable t) {
                 // progressDoalog.dismiss();
-                //   loadingDialog.dismissDialog();
+                   loadingDialog.dismissDialog();
 
                 // Toast.makeText(DiseaseActivity.this, "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
                 alert.showErrorDialog("تــأكد من إتصالك بالإنترنت");

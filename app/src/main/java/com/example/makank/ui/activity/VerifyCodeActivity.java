@@ -55,7 +55,7 @@ public class VerifyCodeActivity extends AppCompatActivity {
         editTextCode.setTypeface(typeface);
         mTextField.setTypeface(typeface);
         message.setTypeface(typeface);
-        storeMobile = getIntent().getStringExtra("mobile");
+        //storeMobile = getIntent().getStringExtra("mobile");
         startStop();
         editTextCode.setFocusable(true);
         message.setText(getResources().getString(R.string.input_verify) + " " + storeMobile + " " + "خلال");
@@ -102,7 +102,8 @@ public class VerifyCodeActivity extends AppCompatActivity {
                     //Toast.makeText(VerifyCodeActivity.this, token+"", Toast.LENGTH_SHORT).show();
                     SharedPref.getInstance(VerifyCodeActivity.this).storeToken("Bearer " + token);
 
-                    Intent intent = new Intent(VerifyCodeActivity.this, Areas.class);
+                    Intent intent = new Intent(VerifyCodeActivity.this, DetailsActivity.class);
+
                     startActivity(intent);
                     finish();
 
