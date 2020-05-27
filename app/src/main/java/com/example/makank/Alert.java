@@ -18,6 +18,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.makank.ui.activity.ContactActivity;
 import com.example.makank.ui.activity.HomeActivity;
+import com.example.makank.ui.activity.PhoneNumberActivity;
 import com.example.makank.ui.activity.SendNotifActivity;
 import com.example.makank.ui.activity.VolunteerActivity;
 import com.example.makank.ui.contact.ContactFragment;
@@ -42,7 +43,6 @@ public class Alert {
 
     public Alert(Activity myaActivity) {
         activity = myaActivity;
-
 
     }
 
@@ -72,13 +72,11 @@ public class Alert {
                     activity.startActivity(intent);
                     activity.finish();
                 }
-                    if (whichActivityNeed==2)
-                    {
-                        Intent intent=new Intent(Intent.ACTION_DIAL, Uri.parse("tel:221"));
-                        activity.startActivity(intent);
-                        activity.finish();
-                    }
-                 else {
+                if (whichActivityNeed == 2) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:221"));
+                    activity.startActivity(intent);
+                    activity.finish();
+                } else {
                     alertDialog.dismiss();
                 }
             }
@@ -143,6 +141,47 @@ public class Alert {
             public void onClick(View v) {
                 alertDialog.dismiss();
 
+            }
+        });
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        alertDialog.show();
+    }
+
+    public void showRegisterDialog() {
+        Typeface typeface = Typeface.createFromAsset(activity.getAssets(), "fonts/Hacen-Algeria.ttf");
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.AlertDialogTheme);
+        View view = LayoutInflater.from(activity).inflate(
+                R.layout.layout_register_dialog, null);
+        builder.setView(view);
+        t1 = view.findViewById(R.id.textTitle);
+        t1.setText(activity.getResources().getString(R.string.register));
+        t2 = view.findViewById(R.id.textMessage);
+        t2.setText(activity.getResources().getString(R.string.registerMessage));
+        Button buttonNo = view.findViewById(R.id.buttonNo);
+        buttonNo.setText(activity.getResources().getString(R.string.cancel));
+        Button buttonYes = view.findViewById(R.id.buttonYes);
+        buttonYes.setText(activity.getResources().getString(R.string.ok));
+        t1.setTypeface(typeface);
+        t2.setTypeface(typeface);
+        buttonNo.setTypeface(typeface);
+        buttonYes.setTypeface(typeface);
+        ((ImageView) view.findViewById(R.id.imageIcon)).setImageResource(R.drawable.ic_person);
+        final AlertDialog alertDialog = builder.create();
+        buttonNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+
+            }
+        });
+        buttonYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, PhoneNumberActivity.class);
+                activity.startActivity(intent);
+                activity.finish();
             }
         });
         if (alertDialog.getWindow() != null) {

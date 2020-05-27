@@ -105,7 +105,6 @@ public class SharedPref {
 
     }
 
-
     //Logout user
     public void logout() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);

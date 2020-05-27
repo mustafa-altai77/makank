@@ -37,17 +37,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.VerifyCodeActivity">
-
+        <activity android:name=".ui.activity.Areas"
+            android:label=""
+            android:theme="@style/AppThemeNoActionBar">
         </activity>
-        <activity android:name=".ui.activity.PhoneNumberActivity" />
+        <activity android:name=".ui.activity.VerifyCodeActivity"
+            android:theme="@style/AppThemeNoActionBar"
+            android:label=""></activity>
+        <activity android:name=".ui.activity.PhoneNumberActivity"
+            android:theme="@style/AppThemeNoAction"
+            android:label=""></activity>
         <activity
             android:name=".ui.activity.Language"
             android:label=""
             android:theme="@style/Theme.AppCompat.Light.Dialog.Alert" />
         <activity
             android:name=".ui.activity.About"
-            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert" />
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.home.Call_Isolation"
             android:label=""
@@ -106,7 +112,8 @@
         <activity
             android:name=".ui.activity.RegisterActivity"
             android:label=""
-            android:theme="@style/AppThemeNoActionBar" />
+            android:theme="@style/AppThemeNoAction">
+        </activity>
         <activity
             android:name=".ui.activity.StateActivity"
             android:label=""

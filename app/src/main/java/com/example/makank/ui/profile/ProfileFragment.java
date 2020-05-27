@@ -75,6 +75,5 @@ public class ProfileFragment extends Fragment {
         setupViewPager(firstViewPager);
 
     }
-
 }
 

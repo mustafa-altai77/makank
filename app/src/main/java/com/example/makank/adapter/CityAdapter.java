@@ -122,10 +122,10 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityViewHolder
                     String CityID = txtCityID.getText().toString();
                     String CityName = txtCityName.getText().toString();
 
-                    Intent i = new Intent(context, LocalActivity.class);
+                    Intent i = new Intent();
                     i.putExtra("city_id",CityID);
                     i.putExtra("city_name",CityName);
-                    context.startActivity(i);
+                    ((AppCompatActivity)context).setResult(2,i);
                     ((AppCompatActivity)context).finish();
 
                 }

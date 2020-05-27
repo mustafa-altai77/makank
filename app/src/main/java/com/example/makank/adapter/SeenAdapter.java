@@ -2,7 +2,9 @@ package com.example.makank.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +34,7 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
     private List<Member> seenList;
     private List<Member> seenListFiltered;
     private Context context;
+
     public void setMovieList(Context context, final List<Member> movieList) {
         this.context = context;
         if (this.seenList == null) {
@@ -83,18 +86,18 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
         final Member model = seenList.get(position);
 
         holder.Fneme.setText(seenListFiltered.get(position).getFirst_name() + " " + seenListFiltered.get(position).getSecond_name() + " " + seenListFiltered.get(position).getLast_name());
-        holder.Pid.setText(seenListFiltered.get(position).getId());
+        //  holder.Pid.setText(seenListFiltered.get(position).getId());
 //        holder.date.setText(seenListFiltered.get(position).getPivots().getUpdated_at());
         holder.stat.setText(seenListFiltered.get(position).getStatus());
         String created = seenListFiltered.get(position).getPivots().getCreated_at();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat outputTime = new SimpleDateFormat("HH:mm:ss");
-        Date d =null ;
+        Date d = null;
 
         try {
 
-        d = sdf.parse(created);
+            d = sdf.parse(created);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -103,6 +106,14 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
         holder.date.setText(formattedDate);
         holder.time.setText(formattedTime);
 
+       /*preparing for u 500 to use phone number when catch from API
+       img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+249118135130"));
+                startActivity(intent);
+            }
+        });*/
 
         if (model.getStatus().equals("3")) {
             holder.stat.setText(context.getResources().getString(R.string.healthy_case));
@@ -162,22 +173,24 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
         TextView Fneme, Pid, stat, date, time;
         CircleImageView image;
         Typeface typeface;
+        ImageView imageView;
 
+        //preparing for u 500 to use phone number
         @SuppressLint("WrongViewCast")
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             Fneme = itemView.findViewById(R.id.full_name);
-            Pid = itemView.findViewById(R.id.person_id);
+            //Pid = itemView.findViewById(R.id.person_id);
             date = itemView.findViewById(R.id.dateComm);
             stat = itemView.findViewById(R.id.status_txt);
             time = itemView.findViewById(R.id.date_seen);
 
             image = itemView.findViewById(R.id.status_mg);
 
-
+            imageView = itemView.findViewById(R.id.phoneSeen);
             typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
             Fneme.setTypeface(typeface);
-            Pid.setTypeface(typeface);
+            //  Pid.setTypeface(typeface);
             date.setTypeface(typeface);
             stat.setTypeface(typeface);
             time.setTypeface(typeface);

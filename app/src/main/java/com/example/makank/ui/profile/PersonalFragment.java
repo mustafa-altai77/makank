@@ -52,7 +52,7 @@ import static com.example.makank.SharedPref.mCtx;
 
 
 public class PersonalFragment extends Fragment {
-    TextView F_name, gen, age_, ph, personalID, TxtPhone, TxtAge, TxtGender,statusName,disease_list;
+    TextView F_name, gen, age_, ph, personalID, TxtPhone, TxtAge, TxtGender, statusName, disease_list;
     ImageView qrImage;
     CircleImageView statusImage;
     ListView listView;
@@ -119,34 +119,34 @@ public class PersonalFragment extends Fragment {
                     personList = (Details) response.body();
 //                        final String my_id = personList.getLocal_id();
 //                    for (int i = 0; i < personList.size(); i++) {
-                        final String f_name = personList.getFirst_name();
-                        final String s_name = personList.getSecond_name();
-                        final String l_name = personList.getLast_name();
-                        final String qr_cod = personList.getQr_code();
-                        final String gender = personList.getGender();
-                        final String age = personList.getAge();
-                        final String status = personList.getStatus();
+                    final String f_name = personList.getFirst_name();
+                    final String s_name = personList.getSecond_name();
+                    final String l_name = personList.getLast_name();
+                    final String qr_cod = personList.getQr_code();
+                    final String gender = personList.getGender();
+                    final String age = personList.getAge();
+                    final String status = personList.getStatus();
 
-                        F_name.setText("" + f_name + " " + s_name + " " + l_name);
-                        gen.setText(gender);
-                        personalID.setText(getResources().getString(R.string.the_id_is) + qr_cod);
-                        age_.setText(age);
-                        final String num = sharedPreferences.getString(PHONE, "phone");
-                        ph.setText(num);
-                        if (status.equals("1")) {
-                            statusImage.setImageResource(R.color.colorAccent);
-                            statusName.setText(getResources().getString(R.string.sufferer_case));
+                    F_name.setText("" + f_name + " " + s_name + " " + l_name);
+                    gen.setText(gender);
+                    personalID.setText(getResources().getString(R.string.the_id_is) + qr_cod);
+                    age_.setText(age);
+                    final String num = sharedPreferences.getString(PHONE, "phone");
+                    ph.setText(num);
+                    if (status.equals("1")) {
+                        statusImage.setImageResource(R.color.colorAccent);
+                        statusName.setText(getResources().getString(R.string.sufferer_case));
 
-                        } else if (status.equals("2")) {
-                            statusImage.setImageResource(R.color.yellow);
-                            statusName.setText(getResources().getString(R.string.suspicious_case));
+                    } else if (status.equals("2")) {
+                        statusImage.setImageResource(R.color.yellow);
+                        statusName.setText(getResources().getString(R.string.suspicious_case));
 
-                        } else if (status.equals("3")) {
-                            statusImage.setImageResource(R.color.green);
-                            statusName.setText(getResources().getString(R.string.healthy_case));
-                        }
+                    } else if (status.equals("3")) {
+                        statusImage.setImageResource(R.color.green);
+                        statusName.setText(getResources().getString(R.string.healthy_case));
                     }
                 }
+            }
 
             @Override
             public void onFailure(Call<Details> call, Throwable t) {
@@ -161,17 +161,17 @@ public class PersonalFragment extends Fragment {
 //            loadingDialog.startLoadingDialog();
 
         final String id = sharedPreferences.getString(USER_ID, "id");
-           try {
+        try {
 
-            Call<List<Disease>>call2 = apiService.getMydisease(id,token);
+            Call<List<Disease>> call2 = apiService.getMydisease(id, token);
             call2.enqueue(new Callback<List<Disease>>() {
                 @Override
                 public void onResponse(Call<List<Disease>> call, Response<List<Disease>> response) {
 
                     loadingDialog.dismissDialog();
 
-                        diseases = new ArrayList<>();
-                        diseases = (List<Disease>) response.body();
+                    diseases = new ArrayList<>();
+                    diseases = (List<Disease>) response.body();
 
                     if (diseases != null) {
                         for (int i = 0; i < diseases.size(); i++) {
@@ -179,19 +179,20 @@ public class PersonalFragment extends Fragment {
                             ArrayAdapter<String> itemsAdapter = new ArrayAdapter<>(
                                     getContext(), android.R.layout.simple_list_item_1, disease_name
                             );
-
+                            diseases.clear();
                             listView.setAdapter(itemsAdapter);
-                    }
+                        }
                     }
                 }
+
                 @Override
-                public void onFailure(Call<List<Disease>>call, Throwable t) {
+                public void onFailure(Call<List<Disease>> call, Throwable t) {
                     loadingDialog.dismissDialog();
                 }
             });
-           } catch (Exception e) {
-               e.printStackTrace();
-           }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         final String qr_code = sharedPreferences.getString(QRCODE, "qr_cod");

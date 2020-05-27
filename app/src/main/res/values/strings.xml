@@ -28,9 +28,6 @@
     <string name="url_email">info@primarykeysd.com</string>
     <string name="url_site">www.primarykeysd.com‬</string>
     <string name="version_number">الإصدارة 1.1</string>
-    <string name="email">الايميل‬</string>
-    <string name="site">الموقع الاكتروني</string>
-    <string name="version">نسخة التطبيق </string>
 
     <string name="kh">ولاية الخرطوم</string>
     <string name="allVellige">كافة الولايات</string>
@@ -49,7 +46,6 @@
     <string name="requested_done">تم ارسال الطلب</string>
     <string name="cannot_add_this_person">لايمكن اضافة هذا الشخص</string>
     <string name="fill_field">يجب ملئ جميع الحقول</string>
-    <string name="disease_name">المرض</string>
     <string name="the_id_is">الرقم التعريفي :</string>
     <string name="disc_case">اوصف الحالة</string>\
     <string name="disc_area">وصف المنطقة</string>
@@ -122,9 +118,6 @@
     <string name="request_for_him">طلب للإنضمام لمجموعته</string>
     <string name="accepted">قبول</string>
     <string name="rejected">رفض</string>
-    <string name="length_phone">يجب ان يكون رقم الهاتف مكون من 9 خانات </string>
-    <string name="escape">تخطي</string>
-    <string name="choose_language">إخر اللغة</string>
     <string name="share_app">مشاركة التطبيق</string>
     <string name="qr_code">رمز QR Code</string>
     <string name="instruction">الإرشادات</string>
@@ -133,13 +126,10 @@
     <string name="terms">الشروط والاحكام</string>
     <string name="about_app">عن التطبيق</string>
     <string name="please_wait">الرجاء الإنتظار...</string>
-    <string name="change_language">تغيير اللغة</string>
-    <string name="no">لا</string>
     <string name="before">قبل</string>
     <string name="minute">دقيقة</string>
     <string name="second">ثانية</string>
     <string name="hour">ساعة</string>
-    <string name="two_days">يومان</string>
     <string name="days">أيام</string>
     <string name="before_month">قبل شهر</string>
     <string name="before2month">قبل شهرين</string>
@@ -153,6 +143,18 @@
     <string name="before10month">قبل 10 أشهر</string>
     <string name="before11month">قبل 11 أشهر</string>
     <string name="before_year">قبل سنة</string>
-    <string name="edit_phone">+249</string>
+    <string name="wait_code">الرجاء الإنتظار قليلاً جاري إرسال رمز التحقق</string>
+    <string name="error_code">رمز التحقق الذي تم ادخاله غير صحيح</string>
+    <string name="phone_verify">الرجاء إدخال رقم الهاتف للتحقق</string>
+    <string name="input_verify">الرجاءإدخال رمز التفعيل سيصلك برسالة نصية على رقمك </string>
+    <string name="error_phone_number">رقم الهاتف غير صحيح</string>
+    <string name="chooseState">إختر الولاية</string>
+    <string name="chooseCity">إختر المدينة</string>
+    <string name="chooseLocal">إختر المنطقة</string>
+    <string name="messageLocal">يرجى إختيار المنطقة</string>
 
+    <string name="register">تسجيل دخول</string>
+    <string name="registerMessage">يجب عليك تسجيل الدخول لمعرفة الميزات الأخرى</string>
+    <string name="test_string"> "برايمري كي \u00a9 جميع حقوق الطبع محفوظة 2020"</string>
+    <string name="choosePlace"> إختر منطقة سكنك الحالي"</string>
 </resources>

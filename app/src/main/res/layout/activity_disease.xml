@@ -71,7 +71,7 @@
             android:layout_margin="8dp"
             android:textSize="18dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/redbtn"
+            android:background="@drawable/button_error_background"
             android:text="@string/save"
             android:textColor="@color/cardview_light_background">
 

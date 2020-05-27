@@ -62,7 +62,7 @@
     android:layout_marginStart="40dp"
     android:layout_marginEnd="40dp"
     tools:ignore="MissingConstraints"
-    android:background="@color/color"
+    android:background="@drawable/button_error_background"
     android:textColor="@color/white"
     android:textSize="14sp"
     app:layout_constraintBottom_toBottomOf="@id/layoutDialog"

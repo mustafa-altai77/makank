@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.makank.Alert;
 import com.example.makank.R;
 import com.example.makank.SharedPref;
+import com.example.makank.ui.activity.Areas;
 import com.example.makank.ui.activity.HomeActivity;
 import com.example.makank.ui.activity.PhoneNumberActivity;
 import com.example.makank.ui.activity.StateActivity;
@@ -66,11 +67,11 @@ public class Splash extends AppCompatActivity {
                 finish();
             }
             else if(SharedPref.getInstance(this).HasToken()){
-                startActivity(new Intent(this, StateActivity.class));
+                startActivity(new Intent(this, Areas.class));
                 finish();
             }
            else {
-                startActivity(new Intent(this, PhoneNumberActivity.class));
+                startActivity(new Intent(this, HomeActivity.class));
                 finish();
             }
         }else{

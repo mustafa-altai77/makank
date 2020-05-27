@@ -154,7 +154,7 @@
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/redbtn"
+                android:background="@drawable/button_error_background"
                 android:text="@string/accept"
                 android:textColor="@color/white">
             </Button>

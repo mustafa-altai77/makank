@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.makank.R;
@@ -28,7 +29,7 @@ import java.util.Locale;
 
 public class Call_Isolation extends AppCompatActivity {
     TextView t1, t2, t3, t4, t5;
-    LinearLayout layout, layout2;
+    RelativeLayout layout, layout2;
     Typeface typeface;
 
     @Override

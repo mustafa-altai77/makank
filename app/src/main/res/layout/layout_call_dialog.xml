@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="300dp"
     android:layout_margin="20dp"
     android:layoutDirection="rtl"
     android:id="@+id/layoutDialogContainer"
@@ -13,7 +13,7 @@
         android:id="@+id/layoutDialog"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:background="@drawable/dialog_background"
         app:layout_constraintTop_toTopOf="parent">
 <TextView
@@ -34,22 +34,18 @@
             android:layout_width="match_parent"
             android:gravity="center"
             android:id="@+id/id2"
+            android:layout_marginTop="25dp"
             android:layout_height="wrap_content"
             android:text="@string/kh"
             android:textSize="18sp"
             />
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:id="@+id/layout_kh"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
+
             android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_marginRight="50dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/total2"
-                android:background="@drawable/ic_call_black_24dp"/>
             <TextView
                 android:padding="0dp"
                 android:layout_width="wrap_content"
@@ -57,14 +53,25 @@
                 android:text="  221"
                 android:gravity="center"
                 android:id="@+id/id3"
+                android:layout_marginRight="50dp"
+                android:layout_alignParentRight="true"
                 android:textColor="@color/color"
                 android:textSize="18dp"
                 />
-        </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_marginRight="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="50dp"
+                android:backgroundTint="@color/total2"
+                android:background="@drawable/ic_call_black_24dp"/>
+
+        </RelativeLayout>
         <View
             android:layout_width="wrap_content"
             android:background="@color/total1"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             android:layout_height="0.5dp"/>
         <TextView
             android:padding="5dp"
@@ -72,31 +79,38 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:id="@+id/id4"
+            android:layout_marginTop="25dp"
             android:textSize="18sp"
             android:text="@string/allVellige"
             />
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/layout_su"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:padding="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9090"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:layout_marginRight="50dp"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/color"
+                android:id="@+id/id5"
+                />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_marginRight="50dp"
                 android:backgroundTint="@color/total2"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="50dp"
                 android:background="@drawable/ic_call_black_24dp"/>
-            <TextView
-                android:padding="0dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="9090"
-                android:gravity="center"
-                android:textSize="18dp"
-                android:textColor="@color/color"
-                android:id="@+id/id5"
-                />
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/card_button"
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context=".ui.activity.Areas">
+
+    <include layout="@layout/custom_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/total2"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/info_place"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/choosePlace"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#B9A636"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp "
+            android:background="@drawable/dialog_background"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnState"
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_edittext"
+                android:text="@string/chooseState"
+                android:textColor="@color/total2"
+                android:textSize="18sp"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/btnCity"
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_edittext"
+                android:text="@string/chooseCity"
+                android:textColor="@color/total2"
+                android:textSize="18sp"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/btnLocal"
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_edittext"
+                android:text="@string/chooseLocal"
+                android:textColor="@color/total2"
+                android:textSize="18sp"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/gotoRegister"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/button_error_background"
+                android:text="@string/next"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

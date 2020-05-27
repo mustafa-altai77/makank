@@ -33,4 +33,14 @@
         <!-- default color of radio button -->
         <item name="android:textColorPrimary">@android:color/darker_gray</item>
     </style>
+
+    <style name="AppThemeNoAction"  parent="Theme.MaterialComponents.Light.NoActionBar">
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/color</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+    <item name="colorControlNormal">@color/white</item>
+    <item name="android:colorControlNormal">@color/color</item>
+    </style>
 </resources>

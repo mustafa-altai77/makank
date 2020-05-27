@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:background="@color/color"
+            android:background="@color/white"
             android:orientation="vertical">
             <ImageView
                 android:layout_width="70dp"
@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_margin="10dp"
-                android:background="#e6e6e6" />
+                android:background="@color/color" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
                 android:textStyle="bold"
                 android:layout_marginTop="4dp"
                 android:text="@string/notification_screen"
-                android:textColor="@color/white"
+                android:textColor="@color/color"
                 />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

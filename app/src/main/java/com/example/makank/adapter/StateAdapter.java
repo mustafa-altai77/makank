@@ -117,10 +117,10 @@ public class StateAdapter  extends RecyclerView.Adapter<StateAdapter.StateViewHo
                     String stateID = txtStateID.getText().toString();
                     String stateName = txtStateName.getText().toString();
 
-                    Intent i = new Intent(context, CityActivity.class);
+                    Intent i = new Intent();
                     i.putExtra("state_id",stateID);
                     i.putExtra("state_name",stateName);
-                    context.startActivity(i);
+                    ((AppCompatActivity)context).setResult(1,i);
                     ((AppCompatActivity)context).finish();
                 }
             });

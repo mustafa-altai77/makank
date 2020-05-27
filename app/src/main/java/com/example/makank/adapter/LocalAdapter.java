@@ -120,10 +120,10 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.LocalViewHol
                     String LocalID = txtLocalID.getText().toString();
                     String LocalName = txtLocalName.getText().toString();
 
-                    Intent i = new Intent(context, RegisterActivity.class);
+                    Intent i = new Intent();
                     i.putExtra("local_id",LocalID);
                     i.putExtra("local_name",LocalName);
-                    context.startActivity(i);
+                    ((AppCompatActivity)context).setResult(3,i);
                     ((AppCompatActivity)context).finish();
                 }
             });

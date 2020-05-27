@@ -48,7 +48,7 @@
                 android:gravity="right"
                 android:lineSpacingExtra="0dp"
                 android:lineSpacingMultiplier="1.5"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:padding="6dp"
                 android:text="النص"
                 android:textColor="@color/cardview_dark_background" />

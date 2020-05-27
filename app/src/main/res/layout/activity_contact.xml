@@ -64,7 +64,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:textSize="18sp"
-            android:background="@drawable/redbtn"
+            android:background="@drawable/button_error_background"
             android:text="@string/scan"
             android:textColor="@color/white">
         </Button>

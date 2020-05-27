@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,6 +32,7 @@ import android.view.SubMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.makank.Alert;
 import com.example.makank.R;
 import com.example.makank.ui.Splash;
 import com.example.makank.ui.contact.ContactFragment;
@@ -45,6 +47,10 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.Locale;
 
+import static com.example.makank.SharedPref.SHARED_PREF_NAME;
+import static com.example.makank.SharedPref.TOKEN;
+import static com.example.makank.SharedPref.mCtx;
+
 public class HomeActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
@@ -54,6 +60,8 @@ public class HomeActivity extends AppCompatActivity {
     Toolbar toolbar1;
     TextView name, state;
     NavigationView navigationView;
+    Alert alert;
+
     @SuppressLint("WrongViewCast")
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
@@ -110,14 +118,21 @@ public class HomeActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                alert = new Alert(HomeActivity.this);
                 // int id = menuItem.getItemId();
                 switch (menuItem.getItemId()) {
                     case R.id.share_nav:
                         Toast.makeText(getApplicationContext(), "Share", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.qr_code:
-                        Intent in = new Intent(getApplicationContext(), QrCodeActivity.class);
-                        startActivity(in);
+                        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                        final String token = sharedPreferences.getString(TOKEN, "token");
+                        if (token.equals("token")) {
+                            alert.showRegisterDialog();
+                        } else {
+                            Intent in = new Intent(getApplicationContext(), QrCodeActivity.class);
+                            startActivity(in);
+                        }
                         break;
                     case R.id.inst:
                         Intent iin = new Intent(getApplicationContext(), InstructionsActivity.class);
@@ -142,7 +157,7 @@ public class HomeActivity extends AppCompatActivity {
                         Intent inr = new Intent(getApplicationContext(), Call_Isolation.class);
                         startActivity(inr);
                         break;
-                        default:
+                    default:
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
@@ -168,6 +183,9 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment;
+            SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            final String token = sharedPreferences.getString(TOKEN, "token");
+            alert = new Alert(HomeActivity.this);
             switch (item.getItemId()) {
                 case R.id.navigationHome:
 //                    toolbar.setTitle("الرئسية");
@@ -176,8 +194,12 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigationMyContact:
 //                    toolbar.setTitle("التواصل");
-                    fragment = new ContactFragment();
-                    loadFragment(fragment);
+                    if (token.equals("token")) {
+                        alert.showRegisterDialog();
+                    } else {
+                        fragment = new ContactFragment();
+                        loadFragment(fragment);
+                    }
                     return true;
                 case R.id.navigationNews:
 //                    toolbar.setTitle("الاخبار");
@@ -186,8 +208,12 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigationMyProfile:
 //                    toolbar.setTitle("الحساب");
-                    fragment = new ProfileFragment();
-                    loadFragment(fragment);
+                    if (token.equals("token")) {
+                        alert.showRegisterDialog();
+                    } else {
+                        fragment = new ProfileFragment();
+                        loadFragment(fragment);
+                    }
                     return true;
                 case R.id.navigationStatistic:
 //                    toolbar.setTitle("الاحصائيات");
@@ -217,8 +243,6 @@ public class HomeActivity extends AppCompatActivity {
         mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         mi.setTitle(mNewTitle);
     }
-
-
 
 
 }
