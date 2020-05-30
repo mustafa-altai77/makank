@@ -14,6 +14,9 @@ public class Member {
     @SerializedName("pivot")
     @Expose
     private Pivot pivots;
+    @SerializedName("user")
+    @Expose
+    private User user;
     private String groupID;
     public Member(String id, String my_id) {
         this.id = id;
@@ -48,6 +51,10 @@ public class Member {
 
     public Pivot getPivots() {
         return pivots;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public void setPivots(Pivot pivots) {

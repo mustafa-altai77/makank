@@ -171,7 +171,7 @@ public class PersonalFragment extends Fragment {
                     loadingDialog.dismissDialog();
 
                     diseases = new ArrayList<>();
-                    diseases = (List<Disease>) response.body();
+                    diseases =  response.body();
 
                     if (diseases != null) {
                         for (int i = 0; i < diseases.size(); i++) {

@@ -125,6 +125,14 @@ public class SeenAdapter extends RecyclerView.Adapter<SeenAdapter.MyViewHolder> 
             holder.image.setImageResource(R.color.colorAccent);
             holder.stat.setText(context.getResources().getString(R.string.sufferer_case));
         }
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber = seenListFiltered.get(position).getUser().getPhone_number();
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+                context.startActivity(intent);
+            }
+        });
 
     }
 

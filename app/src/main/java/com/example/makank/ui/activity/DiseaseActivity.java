@@ -14,6 +14,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +47,7 @@ public class DiseaseActivity extends AppCompatActivity {
     Alert alert;
     Toolbar toolbar;
     TextView disease_i, info_Insert;
-    private androidx.appcompat.widget.AppCompatButton btnGetSelected;
+    private androidx.appcompat.widget.AppCompatButton btnGetSelected,scape;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,8 @@ public class DiseaseActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar_id);
         setSupportActionBar(toolbar);
         this.btnGetSelected = findViewById(R.id.don_all);
+        this.scape = findViewById(R.id.scape);
+
         this.recyclerView = findViewById(R.id.disease_recycler);
 
 //        getSupportActionBar().setTitle("Multiple Selection");
@@ -74,6 +77,14 @@ public class DiseaseActivity extends AppCompatActivity {
         btnGetSelected.setTypeface(typeface);
         disease_i.setTypeface(typeface);
         info_Insert.setTypeface(typeface);
+        scape.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DiseaseActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
