@@ -1,10 +1,15 @@
 package com.example.makank.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +35,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
         this.context = context;
         this.hospitalsList = hospitalsList;
     }
+
     public void setHospitalsList(Context context, List<Hospital> hospitalsList) {
         this.context = context;
         if (this.hospitalsList == null) {
@@ -68,6 +74,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
             result.dispatchUpdatesTo(this);
         }
     }
+
     @NonNull
     @Override
     public HospitalAdapter.HospitalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -82,13 +89,20 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
         holder.adress.setText(hospitalsListFiltered.get(position).getDesc_address());
         holder.bad.setText(hospitalsListFiltered.get(position).getBed_count());
         isCorona.setText(isCorona.getText());
-        if (model.getIs_corona().equals("1")){
-            isCorona.setVisibility(View.VISIBLE);
 
+        if (model.getIs_corona().equals("1")) {
+            //isCorona.setVisibility(View.VISIBLE);
+            isCorona.setText(context.getResources().getString(R.string.hospital_azl));
+
+        } else {
+            // isCorona.setVisibility(View.GONE);
+            isCorona.setText(context.getResources().getString(R.string.hospital_emer));
+            holder.linearLayout.setBackgroundColor(context.getResources().getColor(R.color.total2));
+            holder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.total2));
+            holder.bad.setVisibility(View.GONE);
+            holder.bed_num.setVisibility(View.GONE);
+            holder.imageView.setVisibility(View.GONE);
         }
-        else
-            isCorona.setVisibility(View.GONE);
-
     }
 
     @Override
@@ -97,7 +111,9 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
             return hospitalsListFiltered.size();
         } else {
             return 0;
-        }    }
+        }
+    }
+
     public Filter getFilter() {
         return new Filter() {
             @Override
@@ -129,14 +145,28 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
         };
     }
     public class HospitalViewHolder extends RecyclerView.ViewHolder {
-        TextView hospital_name, adress, bad;
+        TextView hospital_name, adress, bad, bed_num;
+        ImageView imageView;
+        LinearLayout linearLayout;
+        RelativeLayout relativeLayout;
+        Typeface typeface;
+
         public HospitalViewHolder(View view) {
             super(view);
             hospital_name = itemView.findViewById(R.id.hospital_name);
             adress = itemView.findViewById(R.id.hospital_address);
             isCorona = itemView.findViewById(R.id.isCorona);
             bad = itemView.findViewById(R.id.bad_count);
-
+            linearLayout = itemView.findViewById(R.id.linear_left);
+            relativeLayout = itemView.findViewById(R.id.relative_center);
+            bed_num = itemView.findViewById(R.id.number_bed);
+            imageView = itemView.findViewById(R.id.img);
+            typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
+            hospital_name.setTypeface(typeface);
+            isCorona.setTypeface(typeface);
+            bad.setTypeface(typeface);
+            adress.setTypeface(typeface);
+            bed_num.setTypeface(typeface);
         }
     }
 }

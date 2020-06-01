@@ -70,7 +70,6 @@ public class ContactFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
-
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
         recyclerView = view.findViewById(R.id.recycler_contact);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.makank.Alert;
 import com.example.makank.R;
 import com.example.makank.data.model.Person;
+import com.example.makank.ui.activity.HospitalsActivity;
 import com.example.makank.ui.activity.Steper;
 import com.example.makank.ui.activity.SendNotifActivity;
 import com.example.makank.ui.activity.ContactActivity;
@@ -105,7 +106,9 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CategoryViewHo
                     context.startActivity(intent);
                 }
                 if (item.getId() == 4) {
-                    Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
+                    Intent inten = new Intent(context, HospitalsActivity.class);
+                   context.startActivity(inten);
+                    /*Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
                     SpannableString efr = new SpannableString(context.getResources().getString(R.string.soon));
                     //TODO:
                     //cause an exception
@@ -118,10 +121,9 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.CategoryViewHo
                     text.setTextColor(Color.RED);
                     text.setTextSize(Integer.valueOf(20));
                     if (text != null) text.setGravity(Gravity.CENTER);
-                    toast.show();
+                    toast.show();*/
                 }
                 return;
-
             }
 
         });

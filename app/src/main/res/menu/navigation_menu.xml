@@ -13,10 +13,6 @@
         android:icon="@drawable/ic_virus"
         android:title="@string/instruction"></item>
     <item
-        android:id="@+id/hospital_nav"
-        android:icon="@drawable/ic_local_hospital_black_24dp"
-        android:title="@string/hospital"></item>
-    <item
         android:id="@+id/waba"
         android:icon="@drawable/ic_call_black_24dp"
         android:title="@string/phone_edemi"></item>

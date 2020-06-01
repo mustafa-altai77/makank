@@ -189,4 +189,41 @@ public class Alert {
         }
         alertDialog.show();
     }
+    //___________________________Testing Activity
+    public void showAlertSuccess(String title,String message) {
+        new SweetAlertDialog(activity, SweetAlertDialog.SUCCESS_TYPE)
+                .setTitleText(title)
+                .setContentText(message)
+                .setConfirmText(activity.getResources().getString(R.string.ok))
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+                        Intent intent=new Intent(activity,HomeActivity.class);
+                        activity.startActivity(intent);
+                        activity.finish();
+
+                    }
+                })
+                .show();
+    }
+
+    public void  showAlertError(String title,String message) {
+        activity.setFinishOnTouchOutside(false);
+        new SweetAlertDialog(activity, SweetAlertDialog.ERROR_TYPE)
+                .setTitleText(title)
+                .setContentText(message)
+                .setConfirmText(activity.getResources().getString(R.string.ok))
+                .showCancelButton(true)
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:221"));
+                        activity.startActivity(intent);
+                        activity.finish();
+                        sDialog.cancel();
+                    }
+                })
+                .show();
+    }
 }

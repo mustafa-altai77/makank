@@ -19,8 +19,6 @@
         android:layout_height="match_parent"
         android:layout_marginTop="0dp"
         android:orientation="vertical">
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -41,9 +39,6 @@
             android:background="#B9A636"
             android:layout_height="3dp">
         </LinearLayout>
-
-
-
         <TextView
             android:id="@+id/disease_id"
             android:layout_width="match_parent"
@@ -55,12 +50,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:weightSum="2"
+            android:gravity="center"
             android:orientation="horizontal"
             android:layout_height="wrap_content" >
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/don_all"
-            android:layout_width="186dp"
-            android:layout_height="49dp"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_margin="8dp"
             android:textSize="18dp"
@@ -72,8 +68,8 @@
         </androidx.appcompat.widget.AppCompatButton>
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/scape"
-                android:layout_width="186dp"
-                android:layout_height="49dp"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_margin="8dp"
                 android:textSize="18dp"

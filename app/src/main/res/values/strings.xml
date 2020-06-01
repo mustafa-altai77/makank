@@ -64,7 +64,7 @@
     <string name="testing_screen">الاختبار المعرفي</string>
     <string name="effected_screen">اماكن الاصابات</string>
     <string name="volunteer_screen">التطوع</string>
-    <string name="tips_screen">النصائح والارشادات</string>
+    <string name="tips_screen">النصائح</string>
     <string name="person_account">الحساب الشخصي</string>
     <string name="group">المجموعة</string>
     <string name="hospital">المستشفيات</string>
@@ -158,6 +158,12 @@
     <string name="registerMessage">يجب عليك تسجيل الدخول لمعرفة الميزات الأخرى</string>
     <string name="test_string"> "برايمري كي \u00a9 جميع حقوق الطبع محفوظة 2020"</string>
     <string name="choosePlace"> إختر منطقة سكنك الحالي"</string>
+    <string name="hospital_info">المستشفيات المتاحة</string>
+    <string name="hospital_azl">للعزل فقط</string>
+    <string name="hospital_emer">للطوارىء فقط</string>
+    <string name="azl">عزل</string>
+    <string name="emer">طوارىء</string>
+    <string name="verify">التحقق من الهاتف</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

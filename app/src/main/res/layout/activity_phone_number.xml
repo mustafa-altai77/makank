@@ -10,15 +10,25 @@
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="180dp"
     android:gravity="center"
+    android:orientation="vertical"
     android:background="@color/color">
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:backgroundTint="@color/white"
         android:background="@drawable/ic_sms"/>
-
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="@string/phone_verify"
+        android:textStyle="bold"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+        android:textColor="@color/white" />
 </LinearLayout>
     <LinearLayout
         android:id="@+id/container"
@@ -26,25 +36,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:padding="20dp">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
-            android:text="@string/phone_verify"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-            android:textColor="@color/total2" />
-
+        android:padding="10dp">
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextMobile"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="0dp"
             android:layout_marginRight="20dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"

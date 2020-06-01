@@ -33,7 +33,7 @@ import retrofit2.Response;
 public class VerifyCodeActivity extends AppCompatActivity {
     PinEntryEditText editTextCode;
     LoadingDialog loadingDialog;
-    TextView mTextField, message;
+    TextView mTextField, message,title;
     Alert alert;
     private long time_left = 600000;
     private CountDownTimer countDownTimer;
@@ -51,10 +51,12 @@ public class VerifyCodeActivity extends AppCompatActivity {
         loadingDialog = new LoadingDialog(this);
         mTextField = findViewById(R.id.edTimer);
         message = findViewById(R.id.messageWaite);
+        title=findViewById(R.id.textView);
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         editTextCode.setTypeface(typeface);
         mTextField.setTypeface(typeface);
         message.setTypeface(typeface);
+        title.setTypeface(typeface);
         //storeMobile = getIntent().getStringExtra("mobile");
         startStop();
         editTextCode.setFocusable(true);

@@ -16,6 +16,8 @@ import com.example.makank.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.security.AccessController.getContext;
+
 public class GridFragment extends Fragment {
     private  List<Home> grid_list = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -37,10 +39,9 @@ public class GridFragment extends Fragment {
         grid_list.add(new Home(1,getResources().getString(R.string.contact_screen),R.drawable.communication));
         grid_list.add(new Home(2,getResources().getString(R.string.notification_screen),R.drawable.notification));
         grid_list.add(new Home(3,getResources().getString(R.string.testing_screen),R.drawable.qualification));
-        grid_list.add(new Home(4,getResources().getString(R.string.effected_screen),R.drawable.radar));
+        grid_list.add(new Home(4,getResources().getString(R.string.hospital),R.drawable.ic_hospital));
         grid_list.add(new Home(5,getResources().getString(R.string.volunteer_screen),R.drawable.volunteer));
         grid_list.add(new Home(6,getResources().getString(R.string.tips_screen),R.drawable.socialcare));
-
          Gadapter = new GridAdapter(grid_list,getContext());
         recyclerView.setAdapter(Gadapter);
 

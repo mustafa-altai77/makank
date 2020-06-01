@@ -153,10 +153,10 @@ public class HomeActivity extends AppCompatActivity {
                         Intent iy = new Intent(Intent.ACTION_VIEW, Uri.parse(urii));
                         startActivity(iy);
                         break;
-                    case R.id.hospital_nav:
-                        Intent inten = new Intent(getApplicationContext(), HospitalsActivity.class);
+                   /* case R.id.tips:
+                        Intent inten = new Intent(getApplicationContext(), Steper.class);
                         startActivity(inten);
-                        break;
+                        break;*/
                     case R.id.waba:
                         Intent inr = new Intent(getApplicationContext(), Call_Isolation.class);
                         startActivity(inr);

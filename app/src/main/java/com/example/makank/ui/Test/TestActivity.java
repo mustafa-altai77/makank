@@ -146,17 +146,13 @@ public class TestActivity extends AppCompatActivity {
 
         qid++;
     }
-    public void result(int result)
-    {
-        if (score== 0 || score <=3)
-        {
-           alert.showSuccessDialog(getResources().getString(R.string.result_check),getResources().getString(R.string.do_not_worry),1);
-        }else if(score==4 || score <=6){
-            alert.showSuccessDialog(getResources().getString(R.string.result_check),getResources().getString(R.string.catch_cold),1);
-        }
-        else
-        {
-            alert.showSuccessDialog(getResources().getString(R.string.result_check),getResources().getString(R.string.effected),2);
+    public void result(int result) {
+        if (score == 0 || score <= 3) {
+            alert.showAlertSuccess(getResources().getString(R.string.result_check), getResources().getString(R.string.do_not_worry));
+        } else if (score == 4 || score <= 6) {
+            alert.showAlertSuccess(getResources().getString(R.string.result_check), getResources().getString(R.string.catch_cold));
+        } else {
+            alert.showAlertError(getResources().getString(R.string.result_check), getResources().getString(R.string.effected));
 
         }
     }
