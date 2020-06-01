@@ -62,7 +62,6 @@ public class PhoneNumberActivity extends AppCompatActivity {
                    editTextMobile.setErrorEnabled(true);
                    editTextMobile.setError(getResources().getString(R.string.error_phone_number));
                    editTextMobile.requestFocus();
-
                     SpannableString efr = new SpannableString(getResources().getString(R.string.error_phone_number));
                     Toast toast = Toast.makeText(PhoneNumberActivity.this,efr, Toast.LENGTH_SHORT);
                     View view = toast.getView();
@@ -73,14 +72,12 @@ public class PhoneNumberActivity extends AppCompatActivity {
                     text.setTextSize(Integer.valueOf(20));
                     if (text != null) text.setGravity(Gravity.CENTER);
                     toast.show();
-
                     return;
                 }
              sendNumber(mobile);
             }
         });
     }
-
     private void sendNumber(String mobile) {
         loadingDialog.startLoadingDialog(false);
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
@@ -112,6 +109,5 @@ public class PhoneNumberActivity extends AppCompatActivity {
             }
         });
     }
-
 }
 

@@ -6,6 +6,7 @@ import com.example.makank.data.model.City;
 import com.example.makank.data.model.Details;
 import com.example.makank.data.model.Disease;
 import com.example.makank.data.model.Filresponse;
+import com.example.makank.data.model.Hospital;
 import com.example.makank.data.model.Local;
 import com.example.makank.data.model.Member;
 import com.example.makank.data.model.News;
@@ -82,6 +83,8 @@ public interface ApiInterface {
     @GET("person/{id}")
     Call<Person> getSaw(@Header ("Authorization") String token,
                         @Path("id") String result);
+    @GET("hospitals?data=true")
+    Call<List<Hospital>> getHospitals();
 
     @POST("person/{id}/saw")
     @FormUrlEncoded

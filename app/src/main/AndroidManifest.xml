@@ -39,7 +39,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.DetailsActivity"></activity>
+        <activity android:name=".ui.activity.HospitalsActivity" android:label="المستشفيات">
+
+        </activity>
+        <activity android:name=".ui.activity.DetailsActivity" />
         <activity
             android:name=".ui.activity.Areas"
             android:label=""
