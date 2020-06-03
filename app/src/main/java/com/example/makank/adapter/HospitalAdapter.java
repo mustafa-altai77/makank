@@ -5,23 +5,17 @@ import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
-
-
 import com.example.makank.R;
 import com.example.makank.data.model.Hospital;
-import com.example.makank.data.model.News;
-
-import java.security.AccessControlContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +23,8 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
     private List<Hospital> hospitalsList;
     private List<Hospital> hospitalsListFiltered;
     TextView isCorona;
+    CardView cardView;
+
     private Context context;
 
     public HospitalAdapter() {
@@ -62,11 +58,11 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
 
-                    Hospital newNew = HospitalAdapter.this.hospitalsList.get(oldItemPosition);
+                    Hospital hospital = HospitalAdapter.this.hospitalsList.get(oldItemPosition);
 
-                    Hospital oldNews = hospitalsList.get(newItemPosition);
+                    Hospital hospital1 = hospitalsList.get(newItemPosition);
 
-                    return newNew.getName() == oldNews.getName();
+                    return hospital.getName() == hospital1.getName();
                 }
             });
             this.hospitalsList = hospitalsList;
@@ -160,6 +156,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
             linearLayout = itemView.findViewById(R.id.linear_left);
             relativeLayout = itemView.findViewById(R.id.relative_center);
             bed_num = itemView.findViewById(R.id.number_bed);
+            cardView = itemView.findViewById(R.id.card);
             imageView = itemView.findViewById(R.id.img);
             typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
             hospital_name.setTypeface(typeface);
@@ -167,6 +164,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
             bad.setTypeface(typeface);
             adress.setTypeface(typeface);
             bed_num.setTypeface(typeface);
+
         }
     }
 }

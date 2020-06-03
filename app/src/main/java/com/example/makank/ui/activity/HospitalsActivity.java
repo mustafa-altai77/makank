@@ -77,6 +77,11 @@ public class HospitalsActivity extends AppCompatActivity {
         emergency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Hospital hospital = new Hospital();
+                String s = hospital.getIs_corona();
+                if (s.equals("1")){
+
+                }
                 emergency.setBackgroundResource(R.drawable.custom_button2);
                 emergency.setTextColor(getResources().getColor(R.color.white));
                 isolation.setBackgroundResource(R.drawable.custom_button);
@@ -129,10 +134,10 @@ public class HospitalsActivity extends AppCompatActivity {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.search_item, menu);
 
-        SearchManager searchManager2 = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) menu.findItem(R.id.action_search)
                 .getActionView();
-        searchView.setSearchableInfo(searchManager2
+        searchView.setSearchableInfo(searchManager
                 .getSearchableInfo(getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
 

@@ -78,7 +78,7 @@ public class StatisticFragment extends Fragment {
         progressDoalog = new ProgressDialog(getContext());
         progressDoalog.setMax(100);
         progressDoalog.setMessage("loading....");
-//        progressDoalog.setTitle("ProgressDialog bar example");
+//        progressDoalog.setTitle("PzrogressDialog bar example");
         progressDoalog.show();
         progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);*/
 
@@ -98,9 +98,15 @@ public class StatisticFragment extends Fragment {
                     statistcs = response.body();
 //                for (int i = 0; i < statistcs.size(); i++) {
 
-                    case_red.setText(statistcs.getRed()+"");
-                    case_yellow.setText(statistcs.getYellow()+"");
-                    caseNew_daeth.setText(statistcs.getDeath()+"");
+                    newRed.setText(statistcs.getNew_sure_cases());
+                    case_yellow.setText(statistcs.getSuspected_cases()+"");
+                    caseNew_daeth.setText(statistcs.getNew_Deaths()+"");
+                    newRecover.setText(statistcs.getRecovery_cases());
+                    totalRecover.setText(statistcs.getRecovery_cases());
+                    totalDeath.setText(statistcs.getSum_Deaths());
+                    case_red.setText(statistcs.getSum_cases());
+
+
 
                     //  }
                 }
