@@ -14,9 +14,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.makank.Alert;
 import com.example.makank.LoadingDialog;
@@ -70,7 +68,7 @@ public class DiseaseActivity extends AppCompatActivity {
         //createList();
         alert = new Alert(this);
         loadingDialog = new LoadingDialog(this);
-        fetchWeatherDetails();
+        fetchDiseases();
 
 
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
@@ -106,7 +104,7 @@ public class DiseaseActivity extends AppCompatActivity {
         });
     }
 
-    private void fetchWeatherDetails() {
+    private void fetchDiseases() {
         //  final ProgressDialog progressDoalog;
       /*  progressDoalog = new ProgressDialog(DiseaseActivity.this);
         progressDoalog.setMax(100);

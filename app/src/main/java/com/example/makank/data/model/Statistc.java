@@ -7,31 +7,24 @@ public class Statistc {
     @SerializedName("id")
     @Expose
     int id;
-    @SerializedName("new_sure_cases")
+    @SerializedName("name")
     @Expose
-    String new_sure_cases;
+    String name;
+    @SerializedName("updated_at")
+    @Expose
+    String updated_at;
+    @SerializedName("cases_count")
+    @Expose
+    String cases_count;
     @SerializedName("recovery_cases")
     @Expose
     String recovery_cases;
     @SerializedName("new_Deaths")
     @Expose
     String new_Deaths;
-    @SerializedName("suspected_cases")
+    @SerializedName("latest_cases")
     @Expose
-    String suspected_cases;
-    @SerializedName("sum_cases")
-    @Expose
-    String sum_cases;
-    @SerializedName("sum_recovery_cases")
-    @Expose
-    String sum_recovery_cases;
-    @SerializedName("sum_Deaths")
-    @Expose
-    String sum_Deaths;
-    @SerializedName("updated_at")
-    @Expose
-    String updated_at;
-
+    private LastCase latest_cases;
     public int getId() {
         return id;
     }
@@ -40,12 +33,28 @@ public class Statistc {
         this.id = id;
     }
 
-    public String getNew_sure_cases() {
-        return new_sure_cases;
+    public String getName() {
+        return name;
     }
 
-    public void setNew_sure_cases(String new_sure_cases) {
-        this.new_sure_cases = new_sure_cases;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public String getCases_count() {
+        return cases_count;
+    }
+
+    public void setCases_count(String cases_count) {
+        this.cases_count = cases_count;
     }
 
     public String getRecovery_cases() {
@@ -64,43 +73,11 @@ public class Statistc {
         this.new_Deaths = new_Deaths;
     }
 
-    public String getSuspected_cases() {
-        return suspected_cases;
+    public LastCase getLatest_cases() {
+        return latest_cases;
     }
 
-    public void setSuspected_cases(String suspected_cases) {
-        this.suspected_cases = suspected_cases;
-    }
-
-    public String getSum_cases() {
-        return sum_cases;
-    }
-
-    public void setSum_cases(String sum_cases) {
-        this.sum_cases = sum_cases;
-    }
-
-    public String getSum_recovery_cases() {
-        return sum_recovery_cases;
-    }
-
-    public void setSum_recovery_cases(String sum_recovery_cases) {
-        this.sum_recovery_cases = sum_recovery_cases;
-    }
-
-    public String getSum_Deaths() {
-        return sum_Deaths;
-    }
-
-    public void setSum_Deaths(String sum_Deaths) {
-        this.sum_Deaths = sum_Deaths;
-    }
-
-    public String getUpdated_at() {
-        return updated_at;
-    }
-
-    public void setUpdated_at(String updated_at) {
-        this.updated_at = updated_at;
+    public void setLatest_cases(LastCase latest_cases) {
+        this.latest_cases = latest_cases;
     }
 }

@@ -79,9 +79,10 @@ public class HospitalsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Hospital hospital = new Hospital();
                 String s = hospital.getIs_corona();
-                if (s.equals("1")){
-
+                if (s.equals("0")){
+                   hospitalsList.remove(hospital);
                 }
+                else
                 emergency.setBackgroundResource(R.drawable.custom_button2);
                 emergency.setTextColor(getResources().getColor(R.color.white));
                 isolation.setBackgroundResource(R.drawable.custom_button);

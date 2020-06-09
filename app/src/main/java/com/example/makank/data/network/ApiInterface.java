@@ -54,8 +54,8 @@ public interface ApiInterface {
     Call<List<Request>> getRequst(@Header ("Authorization") String token,
                                   @Path("id") String id);
 
-    @GET("cases")
-    Call<Statistc> getCases();
+    @GET("caseStates?data=true")
+    Call<List<Statistc>> getCases();
     @GET("person/{id}/group?data=true")
     Call<List<Member>> getMygroup(@Header ("Authorization") String token,
                                   @Path("id") String id);
