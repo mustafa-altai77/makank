@@ -52,7 +52,7 @@ import static com.example.makank.SharedPref.mCtx;
 
 
 public class PersonalFragment extends Fragment {
-    TextView F_name, gen, age_, ph, personalID, TxtPhone, TxtAge, TxtGender, statusName, disease_list;
+    TextView F_name, gen, age_, ph, personalID, TxtPhone, TxtAge, TxtGender, statusName,not_found,disease_list;
     ImageView qrImage;
     CircleImageView statusImage;
     ListView listView;
@@ -85,6 +85,8 @@ public class PersonalFragment extends Fragment {
         F_name = view.findViewById(R.id.f_na);
         gen = view.findViewById(R.id.gender_pref);
         age_ = view.findViewById(R.id.age_prf);
+        not_found = view.findViewById(R.id.notFound);
+
         ph = view.findViewById(R.id.phone);
         qrImage = view.findViewById(R.id.qr_person);
         statusImage = view.findViewById(R.id.img_status);
@@ -109,6 +111,7 @@ public class PersonalFragment extends Fragment {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         final String token = sharedPreferences.getString(TOKEN, "token");
+        not_found.setVisibility(View.GONE);
         Call<Details> call = apiService.getMyData(token);
         loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<Details>() {
@@ -182,6 +185,9 @@ public class PersonalFragment extends Fragment {
                             diseases.clear();
                             listView.setAdapter(itemsAdapter);
                         }
+                        if (diseases.isEmpty()){
+                            not_found.setVisibility(View.VISIBLE);
+                        }else not_found.setVisibility(View.GONE);
                     }
                 }
 

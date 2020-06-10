@@ -201,6 +201,7 @@
                             android:text="@string/disease">
 
                         </TextView>
+
                     </LinearLayout>
 
                     <ListView
@@ -209,7 +210,12 @@
                         android:layout_height="wrap_content">
 
                     </ListView>
-
+                    <TextView
+                        android:id="@+id/notFound"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="لايوجد"/>
                 </LinearLayout>
             </LinearLayout>
 
