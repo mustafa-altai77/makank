@@ -139,7 +139,7 @@ public class StatisticFragment extends Fragment {
                         total3 += Integer.parseInt(statistcs.get(i).getNew_Deaths());
                         sumDeath.setText(Integer.toString(total3));
                     }
-                   int total4 = total2-total3;
+                   int total4 = total+total3-total2;
                     sum_active.setText(Integer.toString(total4));
               statistcAdapter.setCases(statistcs);
                     case_view.setVisibility(View.VISIBLE);
