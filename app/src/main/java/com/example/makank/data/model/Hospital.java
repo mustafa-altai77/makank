@@ -19,6 +19,9 @@ public class Hospital {
     @SerializedName("desc_address")
     @Expose
     private String desc_address;
+    @SerializedName("details")
+    @Expose
+    private String details;
     @SerializedName("bed_count")
     @Expose
     private String bed_count;
@@ -80,5 +83,12 @@ public class Hospital {
 
     public void setIs_corona(String is_corona) {
         this.is_corona = is_corona;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+    public void setDetails(String details) {
+        this.details = details;
     }
 }

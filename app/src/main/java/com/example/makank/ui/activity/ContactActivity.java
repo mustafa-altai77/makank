@@ -122,7 +122,6 @@ public class ContactActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                if (TextUtils.isEmpty(id))
-                Toast.makeText(getApplicationContext(), +Latitude + "" + Longitude + "", Toast.LENGTH_SHORT).show();
 
                 String id = personalID.getText().toString();
                 //else
@@ -149,7 +148,6 @@ public class ContactActivity extends AppCompatActivity {
                     personalID.setText("");
                     return;
                 } else
-                    Toast.makeText(getApplicationContext(), +Latitude + "" + Longitude + "", Toast.LENGTH_SHORT).show();
 
                 addSee(my_id, Longitude, Latitude);
 

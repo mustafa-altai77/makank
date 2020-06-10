@@ -44,7 +44,6 @@
         android:textColorHint="#8B8686"
         android:textColor="#4D4646"
         tools:ignore="RtlCompat" />
-
     <EditText
         android:id="@+id/area_Edit"
         android:layout_width="200dp"
@@ -59,26 +58,25 @@
         android:textColor="#4D4646"
         android:hint="@string/area">
     </EditText>
-    <TextView
-        android:id="@+id/LocationID"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/cardview_dark_background"
-        android:text="@string/send_location"
-        android:layout_width="wrap_content"
-        android:textSize="18sp"
-        android:layout_height="wrap_content">
-    </TextView>
-    <ImageView
-        android:id="@+id/location_image"
-        android:background="@drawable/map"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_width="70dp"
-        android:layout_height="70dp">
+<!--    <TextView-->
+<!--        android:id="@+id/LocationID"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:textColor="@color/cardview_dark_background"-->
+<!--        android:text="@string/send_location"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:textSize="18sp"-->
+<!--        android:layout_height="wrap_content">-->
+<!--    </TextView>-->
+<!--    <ImageView-->
+<!--        android:id="@+id/location_image"-->
+<!--        android:background="@drawable/map"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_width="70dp"-->
+<!--        android:layout_height="70dp">-->
 
-    </ImageView>
-
+<!--    </ImageView>-->
     <Button
         android:id="@+id/send_notification"
         android:layout_width="223dp"
@@ -89,7 +87,5 @@
         android:background="@drawable/redbtn"
         android:text="@string/send"
         android:textColor="@color/cardview_light_background">
-
     </Button>
-
 </LinearLayout>

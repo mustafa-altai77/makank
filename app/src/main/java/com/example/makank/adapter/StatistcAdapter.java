@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -49,9 +50,12 @@ public class StatistcAdapter extends RecyclerView.Adapter<StatistcAdapter.Catego
             holder.case_txt.setText(statistcs.get(position).getCases_count());
             holder.recovery.setText(statistcs.get(position).getRecovery_cases());
             holder.deathes.setText(statistcs.get(position).getNew_Deaths());
-//            for (int i = 0; i < statistcs.size(); i++)
-//                holder.sum.setText(i+statistcs.get(position).getCases_count());
-//
+
+            String newCases= statistcs.get(position).getLatest_cases().getNew_sure_cases();
+            String newRecovery = statistcs.get(position).getLatest_cases().getRecovery_cases();
+            String newDeath = statistcs.get(position).getLatest_cases().getNew_Deaths();
+
+            Toast.makeText(context,  "Cases "+newCases+"Recovery "+newRecovery+"Deaths "+newDeath+"", Toast.LENGTH_LONG).show();
 
             String created = statistcs.get(position).getLatest_cases().getCreated_at();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -81,7 +85,7 @@ public class StatistcAdapter extends RecyclerView.Adapter<StatistcAdapter.Catego
 
         public class CategoryViewHolider extends RecyclerView.ViewHolder{
             ImageView categoryImage ;
-            TextView stateName,case_txt,deathes,recovery,date,sum;
+            TextView stateName,case_txt,deathes,recovery,date,sum,newCases,newRecovery,newDeath;
             CardView cardView;
             @SuppressLint("ResourceAsColor")
             public CategoryViewHolider(@NonNull View itemView) {

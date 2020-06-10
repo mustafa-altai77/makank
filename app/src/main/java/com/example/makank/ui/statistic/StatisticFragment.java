@@ -36,10 +36,13 @@ public class StatisticFragment extends Fragment {
     private RecyclerView recyclerView;
     private StatistcAdapter statistcAdapter;
     LinearLayout case_view;
-    TextView sumCase,sumRecov,sumDeath;
+    TextView sumCase,sumRecov,sumDeath,sum_active;
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
+    int total = 0;
+    int total2 = 0;
+    int total3 = 0;
 
     @Override
 
@@ -58,6 +61,7 @@ public class StatisticFragment extends Fragment {
         sumCase = view.findViewById(R.id.sum_cases);
         sumRecov = view.findViewById(R.id.sum_recova);
         sumDeath = view.findViewById(R.id.sum_death);
+        sum_active = view.findViewById(R.id.sumActive);
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -118,28 +122,25 @@ public class StatisticFragment extends Fragment {
 //                  statistcs = new ArrayList<>();
                 if(response.body() != null) {
                     statistcs = response.body();
-                    int total = 0;
-
-                    //String.valueOf(statistcs.get(0).getCases_count());
 
                     for (int i = 0; i < statistcs.size(); i++) {
                         total += Integer.parseInt(statistcs.get(i).getCases_count());
                         sumCase.setText(Integer.toString(total));
                     }
-                    int total2 = 0;
+
 
                     for (int i = 0; i < statistcs.size(); i++) {
                         total2 += Integer.parseInt(statistcs.get(i).getRecovery_cases());
                         sumRecov.setText(Integer.toString(total2));
 
                     }
-                    int total3 = 0;
 
                     for (int i = 0; i < statistcs.size(); i++) {
                         total3 += Integer.parseInt(statistcs.get(i).getNew_Deaths());
                         sumDeath.setText(Integer.toString(total3));
-
                     }
+                   int total4 = total2-total3;
+                    sum_active.setText(Integer.toString(total4));
               statistcAdapter.setCases(statistcs);
                     case_view.setVisibility(View.VISIBLE);
 

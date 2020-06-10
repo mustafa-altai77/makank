@@ -55,33 +55,33 @@ public class SendNotifActivity extends AppCompatActivity {
         notifi = findViewById(R.id.disc_status);
         area = findViewById(R.id.area_Edit);
         send = findViewById(R.id.send_notification);
-        maerker = findViewById(R.id.location_image);
+        //maerker = findViewById(R.id.location_image);
         infoNot = findViewById(R.id.infoNoti);
-        LocationId = findViewById(R.id.LocationID);
+        //LocationId = findViewById(R.id.LocationID);
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         notifi.setTypeface(typeface);
         send.setTypeface(typeface);
         area.setTypeface(typeface);
         infoNot.setTypeface(typeface);
-        LocationId.setTypeface(typeface);
+//        LocationId.setTypeface(typeface);
         loadingDialog = new LoadingDialog(this);
         alert = new Alert(this);
-        maerker.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onClick(View v) {
-                GpsLocationTracker mGpsLocationTracker = new GpsLocationTracker(SendNotifActivity.this);
-                if (mGpsLocationTracker.canGetLocation()) {
-                    Latitude = mGpsLocationTracker.getLatitude();
-                    Longitude = mGpsLocationTracker.getLongitude();
-//                   Log.i(TAG, String.format("latitude: %s", Latitude));
-//                   Log.i(TAG, String.format("longitude: %s",Longitude));
-                    //  Toast.makeText(SendNotifActivity.this, Latitude + "" + Longitude + "", Toast.LENGTH_SHORT).show();
-                } else {
-                    mGpsLocationTracker.showSettingsAlert();
-                }
-            }
-        });
+//        maerker.setOnClickListener(new View.OnClickListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.M)
+//            @Override
+//            public void onClick(View v) {
+//                GpsLocationTracker mGpsLocationTracker = new GpsLocationTracker(SendNotifActivity.this);
+//                if (mGpsLocationTracker.canGetLocation()) {
+//                    Latitude = mGpsLocationTracker.getLatitude();
+//                    Longitude = mGpsLocationTracker.getLongitude();
+////                   Log.i(TAG, String.format("latitude: %s", Latitude));
+////                   Log.i(TAG, String.format("longitude: %s",Longitude));
+//                    //  Toast.makeText(SendNotifActivity.this, Latitude + "" + Longitude + "", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    mGpsLocationTracker.showSettingsAlert();
+//                }
+//            }
+//        });
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override

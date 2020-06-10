@@ -68,6 +68,9 @@
     <string name="person_account">الحساب الشخصي</string>
     <string name="group">المجموعة</string>
     <string name="hospital">المستشفيات</string>
+    <string name="emergancy">طوارئ</string>
+    <string name="quarantin">عزل</string>
+
     <string name="requests">الطلبات</string>
     <string name="step_1_11">الخطوة 1 من 11</string>
     <string name="step">الخطوة </string>
