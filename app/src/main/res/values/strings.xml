@@ -79,7 +79,7 @@
     <string name="result_check">نتيجة الفحص</string>
     <string name="do_not_worry">انت بصحة جيدة اطمئن ولاتقلق</string>
     <string name="catch_cold">انت تعاني من نزلة برد</string>
-    <string name="effected">يجب عليك الإتصال بوحودة الوبائيات</string>
+    <string name="effected">يجب عليك الإتصال بوحدة الوبائيات</string>
     <string name="search_qr">اضغط على الصورة للبحث عن طريق الرمز التعريفي (QrCode)</string>
     <string name="or_input_id">او ادخل الرقم التعريفي</string>
     <string name="hint_id">الرقم التعريفي: xxxxx</string>
@@ -167,7 +167,11 @@
     <string name="azl">عزل</string>
     <string name="emer">طوارىء</string>
     <string name="verify">التحقق من الهاتف</string>
-
+    <string name="info_hospital">معلومات المشفى</string>
+    <string name="more">المزيد</string>
+    <string name="email">الإيميل</string>
+    <string name="site">الموقع الإلكتروني</string>
+    <string name="version">الإصدارة</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

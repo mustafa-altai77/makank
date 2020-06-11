@@ -2,7 +2,9 @@ package com.example.makank.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +84,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder
     public void onBindViewHolder(GroupAdapter.MyViewHolder holder, int position) {
         final Member model = newsList.get(position);
         holder.Fullneme.setText(newsListFiltered.get(position).getFirst_name()+" "+newsListFiltered.get(position).getSecond_name()+" "+newsListFiltered.get(position).getLast_name());
-        holder.Pid.setText(newsListFiltered.get(position).getId());
+       //holder.Pid.setText(newsListFiltered.get(position).getUser().getPhone_number());
         holder.stat.setText(newsListFiltered.get(position).getStatus());
 
         if (model.getStatus().equals("3")) {
@@ -98,6 +100,14 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder
 //
 //        Glide.with(context).load(newsList.get(position).getImage()).apply(RequestOptions.centerCropTransform()).into(holder.image);
         }
+      /*  holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber = newsListFiltered.get(position).getUser().getPhone_number();
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+                context.startActivity(intent);
+            }
+        });*/
     }
 
     @Override
@@ -145,19 +155,20 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView Fullneme,Pid,stat;
         CircleImageView image;
+        ImageView imageView;
         CardView cardView;
         Typeface typeface;
         @SuppressLint("WrongViewCast")
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             Fullneme = itemView.findViewById(R.id.personInGroup);
-            Pid = itemView.findViewById(R.id.idPerson);
+            //Pid = itemView.findViewById(R.id.idPerson);
             stat = itemView.findViewById(R.id.statusofPerson);
             image = itemView.findViewById(R.id.status_mgG);
-
+            imageView = itemView.findViewById(R.id.phoneSeen);
             typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
             Fullneme.setTypeface(typeface);
-            Pid.setTypeface(typeface);
+//            Pid.setTypeface(typeface);
             stat.setTypeface(typeface);
         }
     }

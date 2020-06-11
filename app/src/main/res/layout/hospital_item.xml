@@ -90,7 +90,8 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="30dp"
-                        android:text="@string/hospital_azl"
+                        android:textColor="@color/color"
+                        android:text="@string/more"
                         android:layout_alignParentLeft="true"
                         android:backgroundTint="@color/total2" />
                 </RelativeLayout>
@@ -150,7 +151,6 @@
                         android:layout_marginLeft="40dp"
                         android:layout_marginTop="7dp"
                         android:fontFamily="sans-serif-condensed"
-                        android:text="20"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
                 </RelativeLayout>

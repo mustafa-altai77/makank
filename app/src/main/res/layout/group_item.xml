@@ -35,7 +35,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="10dp"
                     android:text="sdsdsdsd"
                     android:textColor="@color/cardview_dark_background"
                     android:textStyle="bold"
@@ -44,7 +44,17 @@
                     android:paddingRight="10dp"
                     android:id="@+id/personInGroup"
                     />
-                <TextView
+                <ImageView
+                    android:id="@+id/phoneSeen"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/ic_phone_forwarded_black_24dp"
+                    android:backgroundTint="@color/total2" />
+            <!--    <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
@@ -54,7 +64,7 @@
                     android:paddingRight="20dp"
                     android:id="@+id/idPerson"
                     android:layout_below="@+id/personInGroup"
-                    android:textSize="18sp"
+                    android:textSize="18sp" -->
                     />
                 <LinearLayout
                     android:layout_width="358dp"

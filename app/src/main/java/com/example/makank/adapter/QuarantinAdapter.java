@@ -1,5 +1,6 @@
 package com.example.makank.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.makank.Alert;
 import com.example.makank.R;
 import com.example.makank.data.model.Hospital;
 
@@ -26,7 +28,7 @@ public class QuarantinAdapter extends RecyclerView.Adapter<QuarantinAdapter.Hosp
     private List<Hospital> hospitalsListFiltered;
     TextView isCorona;
     CardView cardView;
-
+    Alert alert;
     private Context context;
 
     public QuarantinAdapter() {
@@ -101,7 +103,9 @@ public class QuarantinAdapter extends RecyclerView.Adapter<QuarantinAdapter.Hosp
             @Override
             public void onClick(View v) {
                 String details = hospitalsListFiltered.get(position).getDetails();
-                Toast.makeText(context, details+"", Toast.LENGTH_SHORT).show();
+                alert=new Alert((Activity) context);
+                alert.showHospitalDialog(details);
+                //Toast.makeText(context, details+"", Toast.LENGTH_SHORT).show();
             }
         });
     }

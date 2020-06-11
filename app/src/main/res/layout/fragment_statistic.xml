@@ -6,132 +6,274 @@
     android:layout_height="match_parent"
     android:layoutDirection="rtl"
     tools:context=".ui.statistic.StatisticFragment">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+
     <LinearLayout
-        android:layout_marginTop="10dp"
-        android:id="@+id/casesView"
-        android:weightSum="4"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/NewcasesView"
+            android:background="@color/total1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="3">
+            <androidx.cardview.widget.CardView
+                android:layout_width="114dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="3dp"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="3dp">
 
-        <androidx.cardview.widget.CardView
+                <LinearLayout
+                    android:layout_width="114dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" الاصابات الجديدة"
+                        android:id="@+id/NewtxtS1"
+                        android:textAlignment="center"
+                        android:gravity="center"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/Newsum_cases"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="0"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="114dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="3dp"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="3dp">
+
+                <LinearLayout
+
+                    android:layout_width="114dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/green"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" حالات الشفاء الجديدة"
+                        android:textAlignment="center"
+                        android:id="@+id/NewtxtS2"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/Newsum_recova"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="0"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="114dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="3dp"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="3dp">
+
+                <LinearLayout
+                    android:layout_width="114dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="الوفيات الجديدة"
+                        android:textAlignment="center"
+                        android:id="@+id/NewtxtS3"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/Newsum_death"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="0"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+            android:background="@color/total1"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+            android:id="@+id/casesView"
             android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_marginTop="5dp">
-
-            <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="اجمالي الاصابات"
-                    android:textAlignment="center">
-
-                </TextView>
-
-                <TextView
-                    android:id="@+id/sum_cases"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:text="0"
-                    android:textColor="@color/color"></TextView>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
+            android:layout_height="60dp"
+            android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:layout_width="100dp"
-            android:layout_height="80dp">
+            android:gravity="center"
+        android:layout_margin="5dp"
+            android:orientation="horizontal"
+            android:weightSum="4">
 
-            <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="85dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="3dp"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="3dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" حالات اللشفاء"
-                    android:textAlignment="center"></TextView>
-                <TextView
-                    android:id="@+id/sum_recova"
-                    android:textColor="@color/green"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:text="0">
-                </TextView>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_marginTop="5dp"
-            android:layout_width="100dp"
-            android:layout_height="80dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="الوفيات"
-                    android:textAlignment="center">
-                </TextView>
-                <TextView
-                    android:id="@+id/sum_death"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textColor="@color/cardview_dark_background"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    >
-                </TextView>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_marginTop="5dp"
-            android:layout_width="100dp"
-            android:layout_height="80dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="الحالات النشطة"
-                    android:textAlignment="center">
-                </TextView>
-                <TextView
-                    android:id="@+id/sumActive"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textColor="@color/cardview_dark_background"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    >
-                </TextView>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="85dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color"
+                    android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_static"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="اجمالي الاصابات"
+                        android:id="@+id/txtS1"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/sum_cases"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="0"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="85dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="3dp"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="3dp">
+
+                <LinearLayout
+
+                    android:layout_width="85dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/green"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" حالات الشفاء"
+                        android:textAlignment="center"
+                        android:id="@+id/txtS2"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/sum_recova"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="0"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="85dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="3dp"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="3dp">
+
+                <LinearLayout
+                    android:layout_width="85dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="الوفيات"
+                        android:textAlignment="center"
+                        android:id="@+id/txtS3"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/sum_death"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="0"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="85dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="3dp"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="3dp">
+
+                <LinearLayout
+                    android:layout_width="85dp"
+                    android:layout_height="match_parent"
+                    android:background="#AA4128"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="الحالات النشطة"
+                        android:textAlignment="center"
+                        android:id="@+id/txtS4"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/sumActive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="0"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
 </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_static"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
 </FrameLayout>

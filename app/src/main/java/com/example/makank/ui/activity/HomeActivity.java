@@ -121,9 +121,9 @@ public class HomeActivity extends AppCompatActivity {
                 alert = new Alert(HomeActivity.this);
                 // int id = menuItem.getItemId();
                 switch (menuItem.getItemId()) {
-                    case R.id.share_nav:
+                    /*case R.id.share_nav:
                         Toast.makeText(getApplicationContext(), "Share", Toast.LENGTH_SHORT).show();
-                        break;
+                        break;*/
                     case R.id.qr_code:
                         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
                         final String token = sharedPreferences.getString(TOKEN, "token");

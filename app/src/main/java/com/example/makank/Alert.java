@@ -226,4 +226,36 @@ public class Alert {
                 })
                 .show();
     }
+    public void showHospitalDialog( String message) {
+        Typeface typeface = Typeface.createFromAsset(activity.getAssets(), "fonts/Hacen-Algeria.ttf");
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.AlertDialogTheme);
+        View view = LayoutInflater.from(activity).inflate(
+                R.layout.layout_success_dialog, null);
+        builder.setView(view);
+
+        t1 = view.findViewById(R.id.textTitle);
+        t1.setText(activity.getResources().getString(R.string.info_hospital));
+        t2 = view.findViewById(R.id.textMessage);
+        t2.setText(message);
+        button = view.findViewById(R.id.buttonAction);
+        button.setText(activity.getResources().getString(R.string.ok));
+        t1.setTypeface(typeface);
+        t2.setTypeface(typeface);
+        button.setTypeface(typeface);
+        ((ImageView) view.findViewById(R.id.imageIcon)).setImageResource(R.drawable.ic_success);
+        final AlertDialog alertDialog = builder.create();
+        view.findViewById(R.id.buttonAction).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                    alertDialog.dismiss();
+
+            }
+        });
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        alertDialog.show();
+    }
+
 }

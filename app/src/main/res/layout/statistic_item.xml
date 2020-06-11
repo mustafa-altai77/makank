@@ -1,155 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layoutDirection="rtl"
+    android:layout_margin="3dp"
+    android:orientation="vertical">
+
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        android:layout_height="80dp"
         android:layout_gravity="center"
-        android:layout_margin="10dp">
+       >
+
         <LinearLayout
             android:layout_width="wrap_content"
-            android:weightSum="4"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_height="match_parent">
+            android:layout_marginTop="0dp"
+            android:weightSum="4">
+
             <LinearLayout
-                android:background="@color/cardview_shadow_start_color"
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:id="@+id/lColor"
+                android:background="#E7E7E7"
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/state_name"
-                    android:layout_width="match_parent"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:text="الخرطوم"
-                    android:textAlignment="center">
-                </TextView>
+                    android:lineSpacingMultiplier="1.5"                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="8dp"
+                    android:textStyle="bold"
+                    android:text="الخرطوم" />
+
                 <RelativeLayout
-                    android:layout_marginTop="30dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:paddingRight="10dp">
+                    android:layout_marginTop="0dp"
+                    android:paddingRight="0dp">
+
+                    <!--  <TextView
+                           android:id="@+id/dateComm"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="3dp"
+                           android:fontFamily="sans-serif-condensed"
+                           android:text="2020"
+                           android:layout_marginRight="5dp"
+                           android:textColor="@color/total2"
+                           android:textSize="14sp" />-->
+                   </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="11dp"
+                    android:layout_height="wrap_content">
                     <TextView
-                        android:id="@+id/dateComm"
+                        android:id="@+id/newCase"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="7dp"
+                        android:layout_marginTop="3dp"
                         android:fontFamily="sans-serif-condensed"
-                        android:text="30-12-2020"
-                        android:textColor="@color/red_btn_bg_color"
-                        android:textSize="18sp" />
-                </RelativeLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="الاصابات"
-                    android:textColor="@color/white"
-                    android:background="@color/color"
-                    >
-                </TextView>
-                <TextView
-                    android:id="@+id/cases_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:text="0"
-                    android:textColor="@color/red_btn_bg_color"
-                    >
-                </TextView>
-            </LinearLayout>
+                        android:text="الجديدة"
+                        android:layout_marginRight="5dp"
+                        android:textColor="@color/total2"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="التراكمي"
+                        android:layout_marginRight="5dp"
+                        android:textColor="@color/total2"
+                        android:textSize="14sp" />
+                </LinearLayout>
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:orientation="horizontal"
+                   android:layout_marginTop="41dp"
+                   android:layout_height="wrap_content">
+               <LinearLayout
+                   android:layout_width="75dp"
+                   android:layout_height="match_parent"
+                   android:background="@color/color"
+                   android:gravity="center"
+                   android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="الشفاء"
-                    android:textColor="@color/white"
-                    android:background="@color/green"
-                    >
-                </TextView>
-                <TextView
-                    android:id="@+id/recovery_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:text="0"
-                    android:textColor="@color/red_btn_bg_color"
-                    >
-                </TextView>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:background="@color/color"
+                       android:text="الاصابات"
+                       android:id="@+id/s1"
+                       android:textAlignment="center"
+                       android:textColor="@color/white" />
+                   <TextView
+                       android:id="@+id/cases_count"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginTop="0dp"
+                       android:text="0"
+                       android:textAlignment="center"
+                       android:textColor="@color/white" />
+               </LinearLayout>
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="الوفيات"
-                    android:textColor="@color/white"
-                    android:background="@color/cardview_dark_background"
-                    >
-                </TextView>
-                <TextView
-                    android:id="@+id/death_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_gravity="center"
-                    android:textAlignment="center"
-                    android:text="0"
-                    android:textColor="@color/red_btn_bg_color"
-                    >
-                </TextView>
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
-<!--<androidx.cardview.widget.CardView-->
-<!--android:layout_width="150dp"-->
-<!--android:layout_height="80dp">-->
-<!--<LinearLayout-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    android:orientation="vertical">-->
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="العدد الكلي للاصابات"-->
-<!--        android:textAlignment="center"-->
-<!--        >-->
+               <LinearLayout
+                   android:layout_width="75dp"
+                   android:layout_height="match_parent"
+                   android:background="@color/green"
+                   android:gravity="center"
+                   android:orientation="vertical">
 
-<!--    </TextView>-->
-<!--    <TextView-->
-<!--        android:id="@+id/sum_cases"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="0"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        >-->
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:background="@color/green"
+                       android:text="الشفاء"
+                       android:id="@+id/s2"
+                       android:textAlignment="center"
+                       android:textColor="@color/white" />
 
-<!--    </TextView>-->
-<!--</LinearLayout>-->
-<!--</androidx.cardview.widget.CardView>-->
+                   <TextView
+                       android:id="@+id/recovery_count"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginTop="0dp"
+                       android:text="0"
+                       android:textAlignment="center"
+                       android:textColor="@color/white" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="75dp"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:background="@color/black"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:background="@color/black"
+                       android:text="الوفيات"
+                       android:id="@+id/s3"
+                       android:textAlignment="center"
+                       android:textColor="@color/white" />
+
+                   <TextView
+                       android:id="@+id/death_count"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginTop="0dp"
+                       android:text="0"
+                       android:textAlignment="center"
+                       android:textColor="@color/white" />
+               </LinearLayout>
+
+               </LinearLayout>
+
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:orientation="horizontal"
+               android:layout_marginRight="120dp"
+               android:layout_height="wrap_content">
+               <LinearLayout
+                   android:layout_width="75dp"
+                   android:layout_height="match_parent"
+                   android:background="@color/color"
+                   android:gravity="center"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:background="@color/color"
+                       android:text="الاصابات"
+                       android:id="@+id/s4"
+                       android:textAlignment="center"
+                       android:textColor="@color/white" />
+                   <TextView
+                       android:id="@+id/cases_count1"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginTop="00dp"
+                       android:text="0"
+                       android:textAlignment="center"
+                       android:textColor="@color/white" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="75dp"
+                   android:layout_height="match_parent"
+                   android:background="@color/green"
+                   android:gravity="center"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:background="@color/green"
+                       android:text="الشفاء"
+                       android:id="@+id/s5"
+                       android:textAlignment="center"
+                       android:textColor="@color/white" />
+
+                   <TextView
+                       android:id="@+id/recovery_count1"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginTop="0dp"
+                       android:text="0"
+                       android:textAlignment="center"
+                       android:textColor="@color/white" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="75dp"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:background="@color/black"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:background="@color/black"
+                       android:text="الوفيات"
+                       android:id="@+id/s6"
+                       android:textAlignment="center"
+                       android:textColor="@color/white" />
+
+                   <TextView
+                       android:id="@+id/death_count1"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginTop="0dp"
+                       android:text="0"
+                       android:textAlignment="center"
+                       android:textColor="@color/white" />
+               </LinearLayout>
+           </LinearLayout>
+
+       </androidx.cardview.widget.CardView>
+   </LinearLayout><!--<androidx.cardview.widget.CardView-->
+    <!--android:layout_width="150dp"-->
+    <!--android:layout_height="80dp">-->
+    <!--<LinearLayout-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent"-->
+    <!--    android:orientation="vertical">-->
+    <!--    <TextView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="العدد الكلي للاصابات"-->
+    <!--        android:textAlignment="center"-->
+    <!--        >-->
+
+    <!--    </TextView>-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/sum_cases"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="0"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        >-->
+
+    <!--    </TextView>-->
+    <!--</LinearLayout>-->
+    <!--</androidx.cardview.widget.CardView>-->

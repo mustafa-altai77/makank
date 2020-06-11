@@ -36,7 +36,7 @@ public class GridFragment extends Fragment {
         recyclerView = v.findViewById(R.id.grid_recycler);
         grid_list.clear();
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        grid_list.add(new Home(1,getResources().getString(R.string.contact_screen),R.drawable.communication));
+        grid_list.add(new Home(1,getResources().getString(R.string.contact_txt),R.drawable.communication));
         grid_list.add(new Home(2,getResources().getString(R.string.notification_screen),R.drawable.notification));
         grid_list.add(new Home(3,getResources().getString(R.string.testing_screen),R.drawable.qualification));
         grid_list.add(new Home(4,getResources().getString(R.string.hospital),R.drawable.ic_hospital));

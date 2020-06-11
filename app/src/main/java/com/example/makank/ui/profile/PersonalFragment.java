@@ -107,6 +107,7 @@ public class PersonalFragment extends Fragment {
         TxtGender.setTypeface(typeface);
         statusName.setTypeface(typeface);
         disease_list.setTypeface(typeface);
+        not_found.setTypeface(typeface);
         disease_name = new ArrayList<>();
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);

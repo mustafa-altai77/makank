@@ -1,5 +1,6 @@
 package com.example.makank.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -17,6 +18,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.makank.Alert;
 import com.example.makank.R;
 import com.example.makank.data.model.Hospital;
 
@@ -25,8 +27,9 @@ import java.util.List;
 public class EmergancyAdapter extends RecyclerView.Adapter<EmergancyAdapter.HospitalViewHolder> {
     private List<Hospital> hospitalsList;
     private List<Hospital> hospitalsListFiltered;
-    TextView isCorona;
+    // TextView isCorona;
     CardView cardView;
+    Alert alert;
 
     private Context context;
 
@@ -87,22 +90,25 @@ public class EmergancyAdapter extends RecyclerView.Adapter<EmergancyAdapter.Hosp
         holder.hospital_name.setText(hospitalsListFiltered.get(position).getName());
         holder.adress.setText(hospitalsListFiltered.get(position).getDesc_address());
         holder.bad.setText(hospitalsListFiltered.get(position).getBed_count());
-        isCorona.setVisibility(View.GONE);
+      //  holder.isCorona.setVisibility(View.GONE);
         holder.bad.setVisibility(View.GONE);
         holder.bed_num.setVisibility(View.GONE);
         holder.imageView.setVisibility(View.GONE);
 
         if (model.getIs_corona().equals("1")) {
 
-            isCorona.setText(context.getResources().getString(R.string.hospital_azl));
+            holder.isCorona.setText(context.getResources().getString(R.string.more));
+           // holder.bad.setText(context.getResources().getString(R.string.more));
 
             holder.cardView.setVisibility(View.GONE);
-       }
+        }
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String details = hospitalsListFiltered.get(position).getDetails();
-                Toast.makeText(context, details+"", Toast.LENGTH_SHORT).show();
+                alert = new Alert((Activity) context);
+                alert.showHospitalDialog(details);
+                //Toast.makeText(context, details+"", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -115,8 +121,9 @@ public class EmergancyAdapter extends RecyclerView.Adapter<EmergancyAdapter.Hosp
             return 0;
         }
     }
+
     public class HospitalViewHolder extends RecyclerView.ViewHolder {
-        TextView hospital_name, adress, bad, bed_num;
+        TextView hospital_name, adress, bad, bed_num, isCorona;
         ImageView imageView;
         LinearLayout linearLayout;
         CardView cardView;

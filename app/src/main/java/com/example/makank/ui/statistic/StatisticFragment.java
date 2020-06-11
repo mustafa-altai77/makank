@@ -35,8 +35,8 @@ public class StatisticFragment extends Fragment {
     private List<Statistc> statistcs;
     private RecyclerView recyclerView;
     private StatistcAdapter statistcAdapter;
-    LinearLayout case_view;
-    TextView sumCase,sumRecov,sumDeath,sum_active;
+    LinearLayout case_view,case_view2;
+    TextView sumCase, sumRecov, sumDeath, sum_active, t1, t2, t3, t4, t1New, t2New, t3New;
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
@@ -58,10 +58,32 @@ public class StatisticFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recycler_static);
         case_view = view.findViewById(R.id.casesView);
+        case_view2 = view.findViewById(R.id.NewcasesView);
         sumCase = view.findViewById(R.id.sum_cases);
         sumRecov = view.findViewById(R.id.sum_recova);
         sumDeath = view.findViewById(R.id.sum_death);
         sum_active = view.findViewById(R.id.sumActive);
+        t1 = view.findViewById(R.id.txtS1);
+        t2 = view.findViewById(R.id.txtS2);
+        t3 = view.findViewById(R.id.txtS3);
+        t4 = view.findViewById(R.id.txtS4);
+
+        t1New = view.findViewById(R.id.NewtxtS1);
+        t2New = view.findViewById(R.id.NewtxtS2);
+        t3New = view.findViewById(R.id.NewtxtS3);
+
+        typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Hacen-Algeria.ttf");
+        sumCase.setTypeface(typeface);
+        sumRecov.setTypeface(typeface);
+        sumDeath.setTypeface(typeface);
+        sum_active.setTypeface(typeface);
+        t1.setTypeface(typeface);
+        t2.setTypeface(typeface);
+        t3.setTypeface(typeface);
+        t4.setTypeface(typeface);
+        t1New.setTypeface(typeface);
+        t2New.setTypeface(typeface);
+        t3New.setTypeface(typeface);
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -108,6 +130,7 @@ public class StatisticFragment extends Fragment {
         progressDoalog.show();
         progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);*/
         case_view.setVisibility(View.GONE);
+        case_view2.setVisibility(View.GONE);
         alert = new Alert(getActivity());
         loadingDialog = new LoadingDialog(getActivity());
         loadingDialog.startLoadingDialog();
@@ -120,7 +143,7 @@ public class StatisticFragment extends Fragment {
                 //progressDoalog.dismiss();
 //                if (!response.isSuccessful()) {
 //                  statistcs = new ArrayList<>();
-                if(response.body() != null) {
+                if (response.body() != null) {
                     statistcs = response.body();
 
                     for (int i = 0; i < statistcs.size(); i++) {
@@ -139,10 +162,11 @@ public class StatisticFragment extends Fragment {
                         total3 += Integer.parseInt(statistcs.get(i).getNew_Deaths());
                         sumDeath.setText(Integer.toString(total3));
                     }
-                   int total4 = total+total3-total2;
+                    int total4 = total - (total3 + total2);
                     sum_active.setText(Integer.toString(total4));
-              statistcAdapter.setCases(statistcs);
+                    statistcAdapter.setCases(statistcs);
                     case_view.setVisibility(View.VISIBLE);
+                    case_view2.setVisibility(View.VISIBLE);
 
 //                    newRed.setText(statistcs.getNew_sur   e_cases());
 //                    case_yellow.setText(statistcs.getSuspected_cases()+"");
@@ -153,13 +177,12 @@ public class StatisticFragment extends Fragment {
 //                    case_red.setText(statistcs.getSum_cases());
 
 
-
                     //  }
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Statistc>>call, Throwable t) {
+            public void onFailure(Call<List<Statistc>> call, Throwable t) {
                 //   progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
 
