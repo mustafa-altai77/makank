@@ -70,6 +70,7 @@ public class SendNotifActivity extends AppCompatActivity {
         final String phoneNum = sharedPreference.getString(PHONE, "phone");
         editTextMobile.setText(phoneNum);
         editTextMobile.setEnabled(false);
+        editTextMobile.setBackgroundColor(getResources().getColor(R.color.dark));
         notifi.setTypeface(typeface);
         send.setTypeface(typeface);
         area.setTypeface(typeface);
@@ -97,6 +98,7 @@ public class SendNotifActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 editTextMobile.setEnabled(true);
+                editTextMobile.setBackgroundColor(getResources().getColor(R.color.white));
 
             }
         });
