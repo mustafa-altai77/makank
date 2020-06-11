@@ -33,10 +33,11 @@
         android:layout_marginTop="50dp"
         android:lineSpacingMultiplier="2"
         android:padding="30dp"
+        android:textAlignment="center"
         android:text="@string/wait_code"
         android:textColor="@color/total2"
-        android:textSize="14sp" />
-    <TextView
+        android:textSize="18sp" />
+<TextView
         android:id="@+id/edTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,8 +46,8 @@
         android:lineSpacingMultiplier="2"
         android:padding="10dp"
         android:text="....."
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="20sp" />
+        android:textColor="@color/color"
+        android:textSize="30sp" />
 
 
     <com.alimuzaffar.lib.pin.PinEntryEditText

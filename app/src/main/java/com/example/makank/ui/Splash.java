@@ -25,7 +25,7 @@ import com.example.makank.ui.activity.StateActivity;
 import java.util.Locale;
 
 public class Splash extends AppCompatActivity {
-    Animation topAnim,bottomAnim;
+    //Animation topAnim,bottomAnim;
     ImageView imageView1,imageView2;
     Configuration config;
     @Override
@@ -35,12 +35,12 @@ public class Splash extends AppCompatActivity {
         imageView1 =  findViewById(R.id.imageView);
         imageView2 =  findViewById(R.id.imageView2);
 
-        imageView1.setAnimation(topAnim);
+       /* imageView1.setAnimation(topAnim);
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
         imageView1.setAnimation(topAnim);
-        imageView2.setAnimation(bottomAnim);
+        imageView2.setAnimation(bottomAnim);*/
 
         new Handler().postDelayed(new Runnable() {
             @Override

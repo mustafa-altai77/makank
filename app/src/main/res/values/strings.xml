@@ -147,7 +147,7 @@
     <string name="before10month">قبل 10 أشهر</string>
     <string name="before11month">قبل 11 أشهر</string>
     <string name="before_year">قبل سنة</string>
-    <string name="wait_code">الرجاء الإنتظار قليلاً جاري إرسال رمز التحقق</string>
+    <string name="wait_code">الرجاء الإنتظار جاري إرسال رمز التحقق</string>
     <string name="error_code">رمز التحقق الذي تم ادخاله غير صحيح</string>
     <string name="phone_verify">الرجاء إدخال رقم الهاتف للتحقق</string>
     <string name="input_verify">الرجاءإدخال رمز التفعيل سيصلك برسالة نصية على رقمك </string>

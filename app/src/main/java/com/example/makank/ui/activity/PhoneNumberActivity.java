@@ -95,12 +95,12 @@ public class PhoneNumberActivity extends AppCompatActivity {
                     SharedPref.getInstance(PhoneNumberActivity.this).storeNumber(mobile);
 
                     Intent intent = new Intent(PhoneNumberActivity.this, VerifyCodeActivity.class);
-                    //intent.putExtra("mobile",mobile);
+                    intent.putExtra("mobile",mobile);
                     startActivity(intent);
                     finish();
                 }
-                else
-                    Toast.makeText(PhoneNumberActivity.this,response.errorBody()+ "", Toast.LENGTH_SHORT).show();
+              //  else
+                   // Toast.makeText(PhoneNumberActivity.this,response.errorBody()+ "", Toast.LENGTH_SHORT).show();
             }
 
             @Override
