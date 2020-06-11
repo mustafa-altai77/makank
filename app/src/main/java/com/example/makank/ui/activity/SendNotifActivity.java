@@ -7,9 +7,12 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +32,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.makank.SharedPref.PHONE;
 import static com.example.makank.SharedPref.SHARED_PREF_NAME;
 import static com.example.makank.SharedPref.TOKEN;
 import static com.example.makank.SharedPref.USER_ID;
@@ -43,8 +47,9 @@ public class SendNotifActivity extends AppCompatActivity {
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
-    TextView infoNot, LocationId;
+    TextView infoNot, editTextMobile;
     Toolbar toolbar;
+    ImageView edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +59,17 @@ public class SendNotifActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bell);
         notifi = findViewById(R.id.disc_status);
         area = findViewById(R.id.area_Edit);
+        editTextMobile = findViewById(R.id.number);
+        edit=findViewById(R.id.image_event);
+
         send = findViewById(R.id.send_notification);
-        //maerker = findViewById(R.id.location_image);
         infoNot = findViewById(R.id.infoNoti);
         //LocationId = findViewById(R.id.LocationID);
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
+        SharedPreferences sharedPreference = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        final String phoneNum = sharedPreference.getString(PHONE, "phone");
+        editTextMobile.setText(phoneNum);
+        editTextMobile.setEnabled(false);
         notifi.setTypeface(typeface);
         send.setTypeface(typeface);
         area.setTypeface(typeface);
@@ -82,7 +93,13 @@ public class SendNotifActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editTextMobile.setEnabled(true);
 
+            }
+        });
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,27 +113,38 @@ public class SendNotifActivity extends AppCompatActivity {
                     alert.showErrorDialog(getResources().getString(R.string.disc_area));
                     return;
                 }
-                SharedPreferences sharedPreference = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                String mobile = editTextMobile.getText().toString();
+                if(mobile.isEmpty() || mobile.length() < 10){
+//                    editTextMobile.setErrorEnabled(true);
+                    editTextMobile.setError(getResources().getString(R.string.error_phone_number));
+                    editTextMobile.requestFocus();
+                    SpannableString efr = new SpannableString(getResources().getString(R.string.error_phone_number));
+                    Toast toast = Toast.makeText(SendNotifActivity.this,efr, Toast.LENGTH_SHORT);
+                    View view = toast.getView();
+                    view.setBackgroundColor(Color.TRANSPARENT);
+                    TextView text = (TextView) view.findViewById(android.R.id.message);
+                    text.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
+                    text.setTextColor(Color.RED);
+                    text.setTextSize(Integer.valueOf(20));
+                    if (text != null) text.setGravity(Gravity.CENTER);
+                    toast.show();
+                    return;
+                }
                 final String my_id = sharedPreference.getString(USER_ID, "id");
                 String notif = notifi.getText().toString();
                 String local = area.getText().toString();
 
-                sendNotification(my_id, local, notif);
+                sendNotification(my_id, local, notif,mobile);
             }
         });
     }
 
-    private void sendNotification(String my_id, String local, String notif) {
-        // Toast.makeText(SendNotifActivity.this, member_id+my_id+"", Toast.LENGTH_SHORT).show();
+    private void sendNotification(String my_id, String local, String notif,String phone) {
 
-      /*  final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(SendNotifActivity.this);
-        progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");*/
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String token = sharedPreferences.getString(TOKEN, "token");
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-        Call<Person> call = apiService.sendNotifi(token,my_id, local, notif);
+        Call<Person> call = apiService.sendNotifi(token,my_id, local,notif,phone);
         // progressDoalog.show();
         loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<Person>() {
@@ -124,16 +152,12 @@ public class SendNotifActivity extends AppCompatActivity {
             public void onResponse(Call<Person> call, Response<Person> response) {
 
                 if (response.isSuccessful()) {
-                    //progressDoalog.dismiss();
                     loadingDialog.dismissDialog();
-
                     alert.showSuccessDialog(getResources().getString(R.string.success_notification),getResources().getString(R.string.success_approve_notification),1);
                 }
             }
-
             @Override
             public void onFailure(Call<Person> call, Throwable t) {
-                //progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
                alert.showWarningDialog();
             }

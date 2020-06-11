@@ -105,7 +105,9 @@ public interface ApiInterface {
     Call<Person> sendNotifi(@Header ("Authorization") String token,
                             @Path("id") String my_id,
                             @Field("postion_description") String local,
-                            @Field("status_description") String notifi);
+                            @Field("status_description") String notifi,
+                            @Field("phone") String phone);
+
     @Multipart
     @POST("person/{id}/volunteer")
     Call<Filresponse>upload(@Header ("Authorization") String token,

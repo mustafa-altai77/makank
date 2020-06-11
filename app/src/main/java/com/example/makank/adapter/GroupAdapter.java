@@ -100,6 +100,15 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.MyViewHolder
 //
 //        Glide.with(context).load(newsList.get(position).getImage()).apply(RequestOptions.centerCropTransform()).into(holder.image);
         }
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber = newsListFiltered.get(position).getUser().getPhone_number();
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+                context.startActivity(intent);
+            }
+        });
+
       /*  holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

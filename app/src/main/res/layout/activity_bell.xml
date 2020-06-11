@@ -58,6 +58,31 @@
         android:textColor="#4D4646"
         android:hint="@string/area">
     </EditText>
+    <ImageView
+        android:id="@+id/image_event"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:background="@drawable/edit_black_24dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp">
+
+    </ImageView>
+    <EditText
+        android:id="@+id/number"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_edittext"
+        android:textAlignment="center"
+        android:inputType="number"
+        android:maxLength="10"
+        android:textColorHint="#8B8686"
+        android:padding="5dp"
+        android:textColor="#4D4646"
+        android:hint="@string/phone">
+    </EditText>
+
 <!--    <TextView-->
 <!--        android:id="@+id/LocationID"-->
 <!--        android:layout_gravity="center"-->

@@ -3,7 +3,9 @@ package com.example.makank.ui.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -20,6 +22,7 @@ import com.example.makank.R;
 import com.example.makank.SharedPref;
 import com.example.makank.SmsListener;
 import com.example.makank.SmsReceiver;
+import com.example.makank.data.model.Details;
 import com.example.makank.data.model.SendNumber;
 import com.example.makank.data.model.Verify;
 import com.example.makank.data.network.ApiClient;
@@ -29,6 +32,10 @@ import com.example.makank.ui.Test.TestActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.example.makank.SharedPref.SHARED_PREF_NAME;
+import static com.example.makank.SharedPref.TOKEN;
+import static com.example.makank.SharedPref.mCtx;
 
 public class VerifyCodeActivity extends AppCompatActivity {
     PinEntryEditText editTextCode;
@@ -104,10 +111,11 @@ public class VerifyCodeActivity extends AppCompatActivity {
                     //Toast.makeText(VerifyCodeActivity.this, token+"", Toast.LENGTH_SHORT).show();
                     SharedPref.getInstance(VerifyCodeActivity.this).storeToken("Bearer " + token);
 
-                    Intent intent = new Intent(VerifyCodeActivity.this, DetailsActivity.class);
-
-                    startActivity(intent);
-                    finish();
+//                    Intent intent = new Intent(VerifyCodeActivity.this, DetailsActivity.class);
+//
+//                    startActivity(intent);
+//                    finish();
+                    getDetails();
 
                 } else
                     // Toast.makeText(VerifyCodeActivity.this, response.errorBody() + "", Toast.LENGTH_SHORT).show();
@@ -163,6 +171,55 @@ public class VerifyCodeActivity extends AppCompatActivity {
         timeLeftText += seconds;
 
         mTextField.setText(timeLeftText);
+
+    }
+
+    private void getDetails(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        final String token = sharedPreferences.getString(TOKEN, "token");
+        ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
+
+        loadingDialog.startLoadingDialog();
+        Call<Details> call = apiService.getMyData(token);
+        call.enqueue(new Callback<Details>() {
+            @Override
+            public void onResponse(Call<Details> call, Response<Details> response) {
+                loadingDialog.dismissDialog();
+                if (response.isSuccessful()) {
+                    if(response.body().toString().isEmpty()) {
+                        Intent intent = new Intent(VerifyCodeActivity.this, Areas.class);
+                        startActivity(intent);
+                        finish();
+                    }else {
+                        int id_person = response.body().getId();
+                        String f_name = response.body().getFirst_name();
+                        String s_name = response.body().getSecond_name();
+                        String l_name = response.body().getLast_name();
+                        String qr_code = response.body().getQr_code();
+                        String gender = response.body().getGender();
+                        String age = response.body().getAge();
+                        String status = response.body().getStatus();
+
+                        SharedPref.getInstance(VerifyCodeActivity.this).storeUserID(String.valueOf(id_person), f_name, s_name, l_name, qr_code, gender, age, status);
+                        Toast.makeText(VerifyCodeActivity.this, f_name+"", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(VerifyCodeActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                        finish();
+//                        F_name.setText("" + f_name + " " + s_name + " " + l_name);
+//                        gen.setText(gender);
+//                        age_.setText(age);
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Details> call, Throwable t) {
+                loadingDialog.dismissDialog();
+                alert.showWarningDialog();
+            }
+        });
 
     }
 }

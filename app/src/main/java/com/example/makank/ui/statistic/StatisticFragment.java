@@ -36,13 +36,16 @@ public class StatisticFragment extends Fragment {
     private RecyclerView recyclerView;
     private StatistcAdapter statistcAdapter;
     LinearLayout case_view,case_view2;
-    TextView sumCase, sumRecov, sumDeath, sum_active, t1, t2, t3, t4, t1New, t2New, t3New;
+    TextView sumCase, sumRecov, sumDeath, sum_active, t1, t2, t3, t4, t1New, t2New, t3New,new_sumCase,new_sumRecov,new_sumDeath;
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
     int total = 0;
     int total2 = 0;
     int total3 = 0;
+    int new_total =0;
+    int new_total2 =0;
+    int new_total3 =0;
 
     @Override
 
@@ -63,6 +66,10 @@ public class StatisticFragment extends Fragment {
         sumRecov = view.findViewById(R.id.sum_recova);
         sumDeath = view.findViewById(R.id.sum_death);
         sum_active = view.findViewById(R.id.sumActive);
+
+        new_sumCase = view.findViewById(R.id.Newsum_cases);
+        new_sumRecov = view.findViewById(R.id.Newsum_recova);
+        new_sumDeath = view.findViewById(R.id.Newsum_death);
         t1 = view.findViewById(R.id.txtS1);
         t2 = view.findViewById(R.id.txtS2);
         t3 = view.findViewById(R.id.txtS3);
@@ -168,6 +175,23 @@ public class StatisticFragment extends Fragment {
                     case_view.setVisibility(View.VISIBLE);
                     case_view2.setVisibility(View.VISIBLE);
 
+
+                    for (int i = 0; i < statistcs.size(); i++) {
+                        new_total += Integer.parseInt(statistcs.get(i).getLatest_cases().getNew_sure_cases());
+                        new_sumCase.setText(Integer.toString(new_total));
+                    }
+
+
+                    for (int i = 0; i < statistcs.size(); i++) {
+                        new_total2 += Integer.parseInt(statistcs.get(i).getLatest_cases().getRecovery_cases());
+                        new_sumRecov.setText(Integer.toString(new_total2));
+
+                    }
+
+                    for (int i = 0; i < statistcs.size(); i++) {
+                        new_total3 += Integer.parseInt(statistcs.get(i).getLatest_cases().getNew_Deaths());
+                        new_sumDeath.setText(Integer.toString(new_total3));
+                    }
 //                    newRed.setText(statistcs.getNew_sur   e_cases());
 //                    case_yellow.setText(statistcs.getSuspected_cases()+"");
 //                    caseNew_daeth.setText(statistcs.getNew_Deaths()+"");

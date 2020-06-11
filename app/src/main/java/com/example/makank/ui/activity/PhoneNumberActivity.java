@@ -48,11 +48,13 @@ public class PhoneNumberActivity extends AppCompatActivity {
         editTextMobile = findViewById(R.id.editTextMobile);
         button= findViewById(R.id.buttonContinue);
         text_View=findViewById(R.id.textView);
+
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         editTextMobile.setTypeface(typeface);
         editTextMobile.getEditText().setTypeface(typeface);
         button.setTypeface(typeface);
         text_View.setTypeface(typeface);
+
        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

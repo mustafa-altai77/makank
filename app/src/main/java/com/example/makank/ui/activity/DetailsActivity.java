@@ -43,6 +43,8 @@ public class DetailsActivity extends AppCompatActivity {
         gen = findViewById(R.id.gender_pref);
         start =findViewById(R.id.start_home);
         age_ = findViewById(R.id.age_prf);
+        alert = new Alert(this);
+        loadingDialog = new LoadingDialog(this);
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String token = sharedPreferences.getString(TOKEN, "token");
