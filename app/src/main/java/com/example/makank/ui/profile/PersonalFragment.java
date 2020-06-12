@@ -112,7 +112,7 @@ public class PersonalFragment extends Fragment {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         final String token = sharedPreferences.getString(TOKEN, "token");
-        not_found.setVisibility(View.GONE);
+//        not_found.setVisibility(View.GONE);
         Call<Details> call = apiService.getMyData(token);
         loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<Details>() {
@@ -183,12 +183,14 @@ public class PersonalFragment extends Fragment {
                             ArrayAdapter<String> itemsAdapter = new ArrayAdapter<>(
                                     getContext(), android.R.layout.simple_list_item_1, disease_name
                             );
-                            diseases.clear();
+                            if (diseases.isEmpty()) {
+                                not_found.setVisibility(View.VISIBLE);
+                            }else
+//                            diseases.clear();
                             listView.setAdapter(itemsAdapter);
+                            not_found.setVisibility(View.GONE);
                         }
-                        if (diseases.isEmpty()){
-                            not_found.setVisibility(View.VISIBLE);
-                        }else not_found.setVisibility(View.GONE);
+
                     }
                 }
 
@@ -202,11 +204,11 @@ public class PersonalFragment extends Fragment {
         }
 
 
-        final String qr_code = sharedPreferences.getString(QRCODE, "qr_cod");
+        final String qr_code = sharedPreferences.getString(QRCODE, "qr_code");
 
         getActivity();
         personalID.setText(qr_code);
-        inputValue = id;
+        inputValue = qr_code;
 //                inputValue = edtValue.getText().toString().trim();
         if (inputValue.length() > 0) {
             WindowManager manager = (WindowManager) getActivity().getSystemService(WINDOW_SERVICE);

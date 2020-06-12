@@ -14,6 +14,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.makank.Alert;
@@ -41,6 +42,7 @@ public class DiseaseActivity extends AppCompatActivity {
     private List<Disease> diseases;
     private DiseaseAdapter adapter;
     Typeface typeface;
+    LinearLayout linearLayout;
     LoadingDialog loadingDialog;
     Alert alert;
     Toolbar toolbar;
@@ -51,12 +53,14 @@ public class DiseaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disease);
         toolbar = findViewById(R.id.toolbar_id);
+        linearLayout = findViewById(R.id.view_confirm);
+
         setSupportActionBar(toolbar);
         this.btnGetSelected = findViewById(R.id.don_all);
         this.scape = findViewById(R.id.scape);
 
         this.recyclerView = findViewById(R.id.disease_recycler);
-
+        linearLayout.setVisibility(View.GONE);
 //        getSupportActionBar().setTitle("Multiple Selection");
         disease_i = findViewById(R.id.disease_id);
         info_Insert = findViewById(R.id.infoInsert);
@@ -93,8 +97,9 @@ public class DiseaseActivity extends AppCompatActivity {
 //                        stringBuilder.append("\n");
                     }
                     showToast(arr);
-                } else {
-
+                } else if (adapter.getSelected().size()<= 0) {
+                    alert.showErrorDialog("لم يتم اختيار اي مرض");
+                }else{
                     //showToast("No Selection");
                     Intent intent = new Intent(DiseaseActivity.this, HomeActivity.class);
                     startActivity(intent);
@@ -124,6 +129,7 @@ public class DiseaseActivity extends AppCompatActivity {
                loadingDialog.dismissDialog();
                 diseases = response.body();
                 adapter.setDiseases(diseases);
+                linearLayout.setVisibility(View.VISIBLE);
 
             }
 

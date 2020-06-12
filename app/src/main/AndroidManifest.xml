@@ -77,7 +77,9 @@
         <activity
             android:name=".ui.activity.DiseaseActivity"
             android:label=""
-            android:theme="@style/AppThemeNoActionBar" />
+            android:theme="@style/AppThemeNoActionBar" >
+
+        </activity>
         <activity
             android:name=".ui.activity.AddGroupActivity"
             android:label=""

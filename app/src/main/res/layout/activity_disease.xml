@@ -48,6 +48,7 @@
             android:textColor="@color/color"
             android:text="@string/press_disease" />
         <LinearLayout
+            android:id="@+id/view_confirm"
             android:layout_width="match_parent"
             android:weightSum="2"
             android:gravity="center"
