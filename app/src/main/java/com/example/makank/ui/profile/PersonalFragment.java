@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -66,6 +67,7 @@ public class PersonalFragment extends Fragment {
     Typeface typeface;
     private Details personList;
     ArrayList<String> disease_name;
+    LinearLayout layout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,8 @@ public class PersonalFragment extends Fragment {
         gen = view.findViewById(R.id.gender_pref);
         age_ = view.findViewById(R.id.age_prf);
         not_found = view.findViewById(R.id.notFound);
+        layout=view.findViewById(R.id.linearAll);
+        layout.setVisibility(View.GONE);
 
         ph = view.findViewById(R.id.phone);
         qrImage = view.findViewById(R.id.qr_person);
@@ -120,6 +124,7 @@ public class PersonalFragment extends Fragment {
             public void onResponse(Call<Details> call, Response<Details> response) {
                 if (response.isSuccessful()) {
                     loadingDialog.dismissDialog();
+                    layout.setVisibility(View.VISIBLE);
                     personList = (Details) response.body();
 //                        final String my_id = personList.getLocal_id();
 //                    for (int i = 0; i < personList.size(); i++) {

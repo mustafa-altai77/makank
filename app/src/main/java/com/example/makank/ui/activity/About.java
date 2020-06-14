@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.example.makank.R;
 
 public class About extends AppCompatActivity {
-    TextView t1, t2, t3, t4, copyR;
+    TextView t1, t2, t3, t4, copyR,phoneTxt,idNameTxt;
     Typeface typeface;
 
     @Override
@@ -25,12 +25,16 @@ public class About extends AppCompatActivity {
         t2 = findViewById(R.id.id2);
         t3 = findViewById(R.id.id3);
         t4 = findViewById(R.id.id4);
+        phoneTxt=findViewById(R.id.phone);
+        idNameTxt=findViewById(R.id.idName);
         copyR = findViewById(R.id.copyRight);
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         t1.setTypeface(typeface);
         t2.setTypeface(typeface);
         t3.setTypeface(typeface);
         copyR.setTypeface(typeface);
+        phoneTxt.setTypeface(typeface);
+        idNameTxt.setTypeface(typeface);
         t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

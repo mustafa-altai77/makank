@@ -7,6 +7,8 @@ import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,7 +30,7 @@ import java.util.List;
 public class StatistcAdapter extends RecyclerView.Adapter<StatistcAdapter.CategoryViewHolider> {
     private Context context;
     private List<Statistc> statistcs;
-
+    private int lastPosition = -1;
 
     public StatistcAdapter(List<Statistc> statistcs, Context context) {
         this.context = context;
@@ -51,8 +53,7 @@ public class StatistcAdapter extends RecyclerView.Adapter<StatistcAdapter.Catego
 
     @SuppressLint("ResourceType")
     @Override
-    public void onBindViewHolder(@NonNull CategoryViewHolider holder, final int position) {
-
+    public void onBindViewHolder(@NonNull CategoryViewHolider holder, int position) {
         holder.stateName.setText(statistcs.get(position).getName());
         holder.case_txt.setText(statistcs.get(position).getCases_count());
         holder.recovery.setText(statistcs.get(position).getRecovery_cases());
@@ -86,9 +87,20 @@ public class StatistcAdapter extends RecyclerView.Adapter<StatistcAdapter.Catego
             holder.layout.setBackgroundColor(context.getResources().getColor(R.color.white));
         }
         num++;*/
+        setAnimation(holder.cardView, position);
     }
+    private void setAnimation(View viewToAnimate, int position)
+    {
 
+        // If the bound view wasn't previously displayed on screen, it's animated
+        if (position > lastPosition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(context, R.anim.anim);
+            viewToAnimate.startAnimation(animation);
 
+            lastPosition = position;
+        }
+    }
     @Override
     public int getItemCount() {
         if (statistcs != null) {
@@ -109,6 +121,7 @@ public class StatistcAdapter extends RecyclerView.Adapter<StatistcAdapter.Catego
         public CategoryViewHolider(@NonNull View itemView) {
             super(itemView);
             // categoryImage = itemView.findViewById(R.id.grid_image);
+            cardView =itemView.findViewById(R.id.cardStatistic);
             case_txt = itemView.findViewById(R.id.cases_count);
             stateName = itemView.findViewById(R.id.state_name);
             recovery = itemView.findViewById(R.id.recovery_count);

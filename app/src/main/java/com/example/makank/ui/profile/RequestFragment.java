@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.makank.Alert;
 import com.example.makank.LoadingDialog;
 import com.example.makank.R;
 import com.example.makank.adapter.RequestAdapter;
@@ -36,20 +38,21 @@ import static com.example.makank.SharedPref.TOKEN;
 import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.mCtx;
 
-public class RequestFragment extends Fragment {
+public class RequestFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     private List<Request> requestList;
     private TextView notfound;
     private RecyclerView recyclerView;
     private RequestAdapter requestAdapter;
-    LoadingDialog loadingDialog;
     Typeface font;
-
+    LoadingDialog loadingDialog;
+    Alert alert;
+    SwipeRefreshLayout refreshLayout;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        alert = new Alert(getActivity());
+        loadingDialog = new LoadingDialog(getActivity());
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,35 +67,54 @@ public class RequestFragment extends Fragment {
        // loadingDialog.startLoadingDialog();
          font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Hacen-Algeria.ttf");
          notfound.setTypeface(font);
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        final String id = sharedPreferences.getString(USER_ID, "id");
-        ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
-        final String token = sharedPreferences.getString(TOKEN, "token");
-        Call<List<Request>> call = apiService.getRequst(token,id);
 
-        call.enqueue(new Callback<List<Request>>() {
-            @Override
-            public void onResponse(Call<List<Request>> call, Response<List<Request>> response) {
-                //loadingDialog.dismissDialog();
+        refreshLayout = view.findViewById(R.id.srRequest);
+        refreshLayout.setOnRefreshListener(this);
+        refreshLayout.setColorSchemeResources(R.color.color);
 
-                requestList = response.body();
-                if (!requestList.isEmpty()) {
-                Log.d("TAG", "Response = " + requestList);
-                    requestAdapter.setRequestList(requestList);
-                }
-                else
-                    notfound.setVisibility(View.VISIBLE);
-            }
 
-            @Override
-            public void onFailure(Call<List<Request>> call, Throwable t) {
-                //loadingDialog.dismissDialog();
-                Log.d("TAG", "Response = " + t.toString());
-            }
-        });
+        loadingDialog.startLoadingDialog();
+        refreshLayout.setRefreshing(true);
+        fetchData();
+
         return view;
     }
+public void fetchData()
+{
+    SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+    final String id = sharedPreferences.getString(USER_ID, "id");
+    ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
+    final String token = sharedPreferences.getString(TOKEN, "token");
+    Call<List<Request>> call = apiService.getRequst(token,id);
+
+    call.enqueue(new Callback<List<Request>>() {
+        @Override
+        public void onResponse(Call<List<Request>> call, Response<List<Request>> response) {
+            //loadingDialog.dismissDialog();
+            refreshLayout.setRefreshing(false);
+            loadingDialog.dismissDialog();
+            requestList = response.body();
+            if (!requestList.isEmpty()) {
+                Log.d("TAG", "Response = " + requestList);
+                requestAdapter.setRequestList(requestList);
+            }
+            else
+                notfound.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        public void onFailure(Call<List<Request>> call, Throwable t) {
+            refreshLayout.setRefreshing(false);
+            loadingDialog.dismissDialog();
+            Log.d("TAG", "Response = " + t.toString());
+        }
+    });
+}
 
 
-
+    @Override
+    public void onRefresh() {
+        fetchData();
+        refreshLayout.setRefreshing(false);
+    }
 }

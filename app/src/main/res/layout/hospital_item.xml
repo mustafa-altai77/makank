@@ -142,7 +142,16 @@
 <!--                        android:layout_toStartOf="@+id/dateComm"-->
 <!--                        android:background="@drawable/ic_calendar"-->
 <!--                        android:backgroundTint="@color/white" />-->
-
+                    <TextView
+                        android:id="@+id/more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="7dp"
+                        android:text="@string/more"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
                     <TextView
                         android:id="@+id/bad_count"
                         android:layout_width="wrap_content"
@@ -150,6 +159,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="40dp"
                         android:layout_marginTop="7dp"
+                        android:text="0"
                         android:fontFamily="sans-serif-condensed"
                         android:textColor="@color/white"
                         android:textSize="18sp" />

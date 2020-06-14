@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,28 +27,26 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EmergancyFragment extends Fragment {
+public class EmergancyFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     private EmergancyAdapter emergancyAdapter;
     private List<Hospital> hospitalsList;
     private RecyclerView recyclerView;
-    private TextView notfound;
-    public EmergancyFragment() {
-        // Required empty public constructor
-    }
-
-
+   // private TextView notfound;
+    LoadingDialog loadingDialog;
+    Alert alert;
+    SwipeRefreshLayout refreshLayout;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        alert = new Alert(getActivity());
+        loadingDialog = new LoadingDialog(getActivity());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        LoadingDialog loadingDialog;
-        Alert alert;
+
         View view = inflater.inflate(R.layout.fragment_emergancy, container, false);
         recyclerView = view.findViewById(R.id.emer_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -55,33 +54,43 @@ public class EmergancyFragment extends Fragment {
         recyclerView.setAdapter(emergancyAdapter);
 //        notfound = view.findViewById(R.id.not_fond);
 //        notfound.setVisibility(View.GONE);
-        alert = new Alert(getActivity());
-        loadingDialog = new LoadingDialog(getActivity());
-
+        refreshLayout = view.findViewById(R.id.srEme);
+        refreshLayout.setOnRefreshListener(this);
+        refreshLayout.setColorSchemeResources(R.color.color);
+        loadingDialog.startLoadingDialog();
+        refreshLayout.setRefreshing(true);
+        fetchData();
+        return view;
+    }
+    public void fetchData()
+    {
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<List<Hospital>> call = apiService.getHospitals();
-        loadingDialog.startLoadingDialog();
         call.enqueue(new Callback<List<Hospital>>() {
             @Override
             public void onResponse
                     (Call<List<Hospital>> call, Response<List<Hospital>> response) {
-                // progressDoalog.dismiss();
+                refreshLayout.setRefreshing(false);
                 loadingDialog.dismissDialog();
                 hospitalsList = response.body();
                 if (!hospitalsList.isEmpty()) {
                     Log.d("TAG", "Response = " + hospitalsList);
                     emergancyAdapter.setHospitalsList(getContext(), hospitalsList);
-                } else
-                    notfound.setVisibility(View.VISIBLE);
+                } //else
+                   // notfound.setVisibility(View.VISIBLE);
             }
             @Override
             public void onFailure(Call<List<Hospital>> call, Throwable t) {
-                //    progressDoalog.dismiss();
+                refreshLayout.setRefreshing(false);
                 loadingDialog.dismissDialog();
                 Log.d("TAG", "Response = " + t.toString());
             }
         });
-        return view;
     }
 
+    @Override
+    public void onRefresh() {
+        fetchData();
+        refreshLayout.setRefreshing(false);
+    }
 }

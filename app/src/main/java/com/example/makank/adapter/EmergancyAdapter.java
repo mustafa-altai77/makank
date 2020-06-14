@@ -3,7 +3,9 @@ package com.example.makank.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,7 @@ public class EmergancyAdapter extends RecyclerView.Adapter<EmergancyAdapter.Hosp
     // TextView isCorona;
     CardView cardView;
     Alert alert;
+    Typeface typeface;
 
     private Context context;
 
@@ -89,16 +92,16 @@ public class EmergancyAdapter extends RecyclerView.Adapter<EmergancyAdapter.Hosp
         final Hospital model = hospitalsList.get(position);
         holder.hospital_name.setText(hospitalsListFiltered.get(position).getName());
         holder.adress.setText(hospitalsListFiltered.get(position).getDesc_address());
-        holder.bad.setText(hospitalsListFiltered.get(position).getBed_count());
-      //  holder.isCorona.setVisibility(View.GONE);
-        holder.bad.setVisibility(View.GONE);
+        // holder.bad.setText(hospitalsListFiltered.get(position).getBed_count());
+        //  holder.isCorona.setVisibility(View.GONE);
+        holder.isCorona.setVisibility(View.GONE);
         holder.bed_num.setVisibility(View.GONE);
         holder.imageView.setVisibility(View.GONE);
+        holder.bad.setVisibility(View.GONE);
 
         if (model.getIs_corona().equals("1")) {
 
-            holder.isCorona.setText(context.getResources().getString(R.string.more));
-           // holder.bad.setText(context.getResources().getString(R.string.more));
+            holder.moreM.setVisibility(View.VISIBLE);
 
             holder.cardView.setVisibility(View.GONE);
         }
@@ -106,9 +109,22 @@ public class EmergancyAdapter extends RecyclerView.Adapter<EmergancyAdapter.Hosp
             @Override
             public void onClick(View v) {
                 String details = hospitalsListFiltered.get(position).getDetails();
-                alert = new Alert((Activity) context);
-                alert.showHospitalDialog(details);
-                //Toast.makeText(context, details+"", Toast.LENGTH_SHORT).show();
+                /*if (details == null) {
+                    typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
+                    Toast toast = Toast.makeText(context, context.getResources().getString(R.string.detailsHospital), Toast.LENGTH_SHORT);
+                    View view = toast.getView();
+                    view.setBackgroundColor(Color.BLACK);
+                    TextView text = (TextView) view.findViewById(android.R.id.message);
+                    text.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
+                    text.setTextColor(Color.RED);
+                    text.setTextSize(Integer.valueOf(20));
+                    text.setTypeface(typeface);
+                    if (text != null) text.setGravity(Gravity.CENTER);
+                    toast.show();
+                } else {*/
+                    alert = new Alert((Activity) context);
+                    alert.showHospitalDialog(details);
+
             }
         });
     }
@@ -123,7 +139,7 @@ public class EmergancyAdapter extends RecyclerView.Adapter<EmergancyAdapter.Hosp
     }
 
     public class HospitalViewHolder extends RecyclerView.ViewHolder {
-        TextView hospital_name, adress, bad, bed_num, isCorona;
+        TextView hospital_name, adress, bad, bed_num, isCorona, moreM;
         ImageView imageView;
         LinearLayout linearLayout;
         CardView cardView;
@@ -141,12 +157,14 @@ public class EmergancyAdapter extends RecyclerView.Adapter<EmergancyAdapter.Hosp
             bed_num = itemView.findViewById(R.id.number_bed);
             cardView = itemView.findViewById(R.id.card);
             imageView = itemView.findViewById(R.id.img);
+            moreM = itemView.findViewById(R.id.more);
             typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
             hospital_name.setTypeface(typeface);
             isCorona.setTypeface(typeface);
             bad.setTypeface(typeface);
             adress.setTypeface(typeface);
             bed_num.setTypeface(typeface);
+            moreM.setTypeface(typeface);
 
         }
     }

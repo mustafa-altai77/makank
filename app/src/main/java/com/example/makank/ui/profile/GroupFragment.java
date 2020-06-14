@@ -12,12 +12,14 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -44,7 +46,7 @@ import static com.example.makank.SharedPref.TOKEN;
 import static com.example.makank.SharedPref.USER_ID;
 import static com.example.makank.SharedPref.mCtx;
 
-public class GroupFragment extends Fragment {
+public class GroupFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     ImageView imageView;
     SearchView searchView;
     private TextView notfound;
@@ -56,9 +58,12 @@ public class GroupFragment extends Fragment {
     private ArrayList<Member> members;
     Alert alert;
     Typeface font;
+    SwipeRefreshLayout refreshLayout;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        alert = new Alert(getActivity());
+        loadingDialog = new LoadingDialog(getActivity());
     }
 
     @Override
@@ -89,7 +94,11 @@ public class GroupFragment extends Fragment {
         recyclerView = view.findViewById(R.id.member_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         groupAdapter = new GroupAdapter();
-
+        refreshLayout = view.findViewById(R.id.srGroup);
+        refreshLayout.setOnRefreshListener(this);
+        refreshLayout.setColorSchemeResources(R.color.color);
+        loadingDialog.startLoadingDialog();
+        refreshLayout.setRefreshing(true);
         recyclerView.setAdapter(groupAdapter);
         getGroupMemeber();
         // loadingDialog.startLoadingDialog();
@@ -109,14 +118,14 @@ public class GroupFragment extends Fragment {
         final String token = sharedPreferences.getString(TOKEN, "token");
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<List<Member>> call = apiService.getMygroup(token,my_id);
-        //progressDoalog.show();
-        //loadingDialog.startLoadingDialog();
         try {
 
 
             call.enqueue(new Callback<List<Member>>() {
                 @Override
                 public void onResponse(Call<List<Member>> call, Response<List<Member>> response) {
+                    refreshLayout.setRefreshing(false);
+                    loadingDialog.dismissDialog();
                     imageView.setVisibility(View.VISIBLE);
 
                     if (response.isSuccessful()) {
@@ -144,10 +153,9 @@ public class GroupFragment extends Fragment {
 
                 @Override
                 public void onFailure(Call<List<Member>> call, Throwable t) {
-                    //loadingDialog.dismissDialog();
-                    alert = new Alert(getActivity());
-                    alert.showWarningDialog();
-                    //Toast.makeText(getContext(), "خطاء في النظام الخارجي" + t, Toast.LENGTH_SHORT).show();
+                    refreshLayout.setRefreshing(false);
+                    loadingDialog.dismissDialog();
+
                 }
             });
         } catch (Exception e) {
@@ -162,6 +170,11 @@ public class GroupFragment extends Fragment {
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) menu.findItem(R.id.action_search)
                 .getActionView();
+        EditText searchEditText = searchView.findViewById(R.id.search_src_text);
+        searchEditText.setTextColor(getResources().getColor(R.color.white));
+        searchEditText.setHintTextColor(getResources().getColor(R.color.white));
+        font = Typeface.createFromAsset(getContext().getAssets(), "fonts/Hacen-Algeria.ttf");
+        searchEditText.setTypeface(font);
         searchView.setSearchableInfo(searchManager
                 .getSearchableInfo(getActivity().getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
@@ -179,5 +192,11 @@ public class GroupFragment extends Fragment {
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onRefresh() {
+        getGroupMemeber();
+        refreshLayout.setRefreshing(false);
     }
 }

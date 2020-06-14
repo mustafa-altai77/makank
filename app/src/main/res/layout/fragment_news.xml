@@ -6,12 +6,19 @@
     android:layoutDirection="rtl"
     android:background="@drawable/card_button"
     tools:context=".ui.news.NewsFragment">
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:id="@+id/sr"
+        android:layout_height="match_parent">
+
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/recycler_news"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 </androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
     <TextView
         android:id="@+id/not_fond"
         android:layout_gravity="center"
@@ -20,4 +27,5 @@
         android:layout_height="wrap_content">
 
     </TextView>
+
 </FrameLayout>

@@ -40,7 +40,7 @@ import static com.example.makank.SharedPref.mCtx;
 
 public class AddGroupActivity extends AppCompatActivity {
     ImageView buttonScan;
-    TextView personal_id, info1, info2, Pname;
+    TextView  info1, info2, Pname;
     EditText personalID;
     Button add, check, cancel;
     IntentIntegrator qrScan;
@@ -57,7 +57,7 @@ public class AddGroupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_group);
         buttonScan = findViewById(R.id.qr_image);
         personalID = findViewById(R.id.p_id);
-        personal_id = findViewById(R.id.p_number);
+        //personal_id = findViewById(R.id.p_number);
 
         info1 = findViewById(R.id.infor);
         info2 = findViewById(R.id.infor2);
@@ -68,7 +68,7 @@ public class AddGroupActivity extends AppCompatActivity {
 
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         personalID.setTypeface(typeface);
-        personal_id.setTypeface(typeface);
+        //personal_id.setTypeface(typeface);
         info1.setTypeface(typeface);
         info2.setTypeface(typeface);
         Pname.setTypeface(typeface);
@@ -187,7 +187,7 @@ public class AddGroupActivity extends AppCompatActivity {
                         p_id = personList.getId();
 
                         Pname.setText("" + f_name + " " + s_name + " " + l_name);
-                        personal_id.setText(Integer.toString(p_id));
+                       // personal_id.setText(Integer.toString(p_id));
                     }
                     //Intent intent = new Intent(RegisterActivity.this, DiseaseActivity.class);
                     //startActivity(intent);

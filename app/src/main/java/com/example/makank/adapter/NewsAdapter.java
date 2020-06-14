@@ -12,6 +12,8 @@ import android.text.style.TypefaceSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -28,6 +30,7 @@ import com.bumptech.glide.Glide;
 import com.example.makank.R;
 import com.example.makank.data.model.News;
 import com.example.makank.ui.news.NewsDetailsActivity;
+import com.example.makank.ui.news.NewsFragment;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,6 +44,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     private List<News> newsList;
     private List<News> newsListFiltered;
     private Context context;
+    private int lastPosition = -1;
+
 
     public void setMovieList(Context context, final List<News> movieList) {
         this.context = context;
@@ -90,6 +95,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(NewsAdapter.MyViewHolder holder, int position) {
+        setAnimation(holder.cardView, position);
         final News model = newsList.get(position);
         holder.title.setText(newsListFiltered.get(position).getTitle());
         holder.discription.setText(newsListFiltered.get(position).getText());
@@ -191,7 +197,18 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     }
 
 
+    private void setAnimation(View viewToAnimate, int position)
+    {
 
+        // If the bound view wasn't previously displayed on screen, it's animated
+        if (position > lastPosition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(context, R.anim.anim);
+            viewToAnimate.startAnimation(animation);
+
+            lastPosition = position;
+        }
+    }
     @Override
     public int getItemCount() {
 
@@ -214,7 +231,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
                     List<News> filteredList = new ArrayList<>();
                     for (News movie : newsList) {
                         if (movie.getTitle().toLowerCase().contains(charString.toLowerCase())) {
-                            filteredList.add(movie);
+                            filteredList.add(movie) ;
                         }
                     }
                     newsListFiltered = filteredList;

@@ -71,7 +71,7 @@
                 android:layout_marginTop="0dp"
                 android:textColor="@color/cardview_dark_background"
                 android:lineSpacingMultiplier="2"
-                android:padding="10dp"
+                android:padding="7dp"
                 android:text="....."
                 android:textSize="16sp" />
         </LinearLayout>

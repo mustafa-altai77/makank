@@ -37,6 +37,7 @@ public class LoadingDialog {
         dialog = builder.create();
         dialog.show();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCanceledOnTouchOutside(false);
     }
     public void startLoadingDialog(boolean cancelable) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -51,6 +52,7 @@ public class LoadingDialog {
         dialog.setCancelable(cancelable);
         dialog.show();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCanceledOnTouchOutside(false);
     }
 
     public void dismissDialog() {

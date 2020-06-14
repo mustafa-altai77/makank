@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class StatisticFragment extends Fragment {
+public class StatisticFragment extends Fragment{// implements SwipeRefreshLayout.OnRefreshListener {
     private List<Statistc> statistcs;
     private RecyclerView recyclerView;
     private StatistcAdapter statistcAdapter;
@@ -40,12 +41,13 @@ public class StatisticFragment extends Fragment {
     Typeface typeface;
     LoadingDialog loadingDialog;
     Alert alert;
-    int total = 0;
+     int total = 0;
     int total2 = 0;
     int total3 = 0;
     int new_total =0;
     int new_total2 =0;
     int new_total3 =0;
+    //SwipeRefreshLayout refreshLayout;
 
     @Override
 
@@ -97,59 +99,28 @@ public class StatisticFragment extends Fragment {
 
         statistcAdapter = new StatistcAdapter(statistcs, getContext());
         recyclerView.setAdapter(statistcAdapter);
-//        case_red = view.findViewById(R.id.case_count_red);
-//        case_yellow = view.findViewById(R.id.case_count_yellow);
-//        caseNew_daeth = view.findViewById(R.id.case_new_death);
-//
-//        newRecover = view.findViewById(R.id.new_recover);
-//        newRed = view.findViewById(R.id.newRed);
-//        totalDeath = view.findViewById(R.id.case_count_death);
-//        totalRecover = view.findViewById(R.id.total_case_recover);
-//        tx1 = view.findViewById(R.id.txt11);
-//        tx2 = view.findViewById(R.id.txt22);
-//        tx3 = view.findViewById(R.id.txt33);
-//        tx4 = view.findViewById(R.id.txt44);
-//        tx5 = view.findViewById(R.id.txt55);
-//        tx6 = view.findViewById(R.id.txt66);
-//        tx7 = view.findViewById(R.id.txt77);
-//
-//        typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Hacen-Algeria.ttf");
-//        case_red.setTypeface(typeface);
-//        case_yellow.setTypeface(typeface);
-//        caseNew_daeth.setTypeface(typeface);
-//        newRecover.setTypeface(typeface);
-//        newRed.setTypeface(typeface);
-//        totalDeath.setTypeface(typeface);
-//        totalRecover.setTypeface(typeface);
-//        tx1.setTypeface(typeface);
-//        tx2.setTypeface(typeface);
-//        tx3.setTypeface(typeface);
-//        tx4.setTypeface(typeface);
-//        tx5.setTypeface(typeface);
-//        tx6.setTypeface(typeface);
-//        tx7.setTypeface(typeface);
-
- /*       final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(getContext());
-        progressDoalog.setMax(100);
-        progressDoalog.setMessage("loading....");
-//        progressDoalog.setTitle("PzrogressDialog bar example");
-        progressDoalog.show();
-        progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);*/
         case_view.setVisibility(View.GONE);
         case_view2.setVisibility(View.GONE);
         alert = new Alert(getActivity());
         loadingDialog = new LoadingDialog(getActivity());
         loadingDialog.startLoadingDialog();
+
+        //refreshLayout = view.findViewById(R.id.srStatic);
+       // refreshLayout.setOnRefreshListener(this);
+       // refreshLayout.setColorSchemeResources(R.color.color);
+        //refreshLayout.setRefreshing(true);
+        fetchData();
+        return view;
+    }
+
+    public void fetchData() {
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<List<Statistc>> call = apiService.getCases();
         call.enqueue(new Callback<List<Statistc>>() {
             @Override
             public void onResponse(Call<List<Statistc>> call, Response<List<Statistc>> response) {
+               // refreshLayout.setRefreshing(false);
                 loadingDialog.dismissDialog();
-                //progressDoalog.dismiss();
-//                if (!response.isSuccessful()) {
-//                  statistcs = new ArrayList<>();
                 if (response.body() != null) {
                     statistcs = response.body();
 
@@ -192,32 +163,20 @@ public class StatisticFragment extends Fragment {
                         new_total3 += Integer.parseInt(statistcs.get(i).getLatest_cases().getNew_Deaths());
                         new_sumDeath.setText(Integer.toString(new_total3));
                     }
-//                    newRed.setText(statistcs.getNew_sur   e_cases());
-//                    case_yellow.setText(statistcs.getSuspected_cases()+"");
-//                    caseNew_daeth.setText(statistcs.getNew_Deaths()+"");
-//                    newRecover.setText(statistcs.getRecovery_cases());
-//                    totalRecover.setText(statistcs.getRecovery_cases());
-//                    totalDeath.setText(statistcs.getSum_Deaths());
-//                    case_red.setText(statistcs.getSum_cases());
-
-
-                    //  }
                 }
             }
 
             @Override
             public void onFailure(Call<List<Statistc>> call, Throwable t) {
-                //   progressDoalog.dismiss();
+               // refreshLayout.setRefreshing(false);
                 loadingDialog.dismissDialog();
-
-                //Toast.makeText(getContext(), "" + t, Toast.LENGTH_SHORT).show();
-
             }
         });
-        return view;
     }
 
-    private void fetchCases() {
-
-    }
+   /* @Override
+    public void onRefresh() {
+        fetchData();
+        refreshLayout.setRefreshing(false);
+    }*/
 }

@@ -8,55 +8,60 @@
     android:layoutDirection="rtl"
     android:padding="10dp"
     tools:context=".ui.activity.About">
-
-    <ImageView
-        android:layout_width="220dp"
-        android:layout_height="170dp"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/logo_makank"
-        android:gravity="center" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/news_card"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_centerVertical="true"
-        android:layout_margin="10dp"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/card_button"
-        app:cardCornerRadius="15dp">
-
-        <LinearLayout
+ <LinearLayout
             android:id="@+id/layoutDialog"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-
-            android:background="@drawable/dialog_background"
-            android:gravity="center"
-            android:layout_marginTop="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginTop="100dp"
             android:orientation="vertical">
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:orientation="horizontal"
+         android:layout_marginTop="30dp"
+         android:layout_marginRight="10dp"
+         android:gravity="center_horizontal"
+         android:layout_height="match_parent">
+         <ImageView
+             android:layout_width="40dp"
+             android:layout_height="40dp"
+             android:background="@drawable/mkank_logo"
+             android:gravity="center" />
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textStyle="bold"
+             android:id="@+id/idName"
+             android:textColor="@color/color"
+             android:layout_marginTop="8dp"
+             android:textSize="20dp"
+             android:text="@string/name_app"/>
+     </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/phone"
+                    android:textColor="@color/total2"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
             <TextView
                 android:id="@+id/id1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:gravity="center"
+                android:gravity="left"
                 android:padding="5dp"
                 android:text="@string/phoneNumber"
                 android:textColor="@color/total2"
                 android:textSize="14sp" />
-                <ImageView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_phone_forwarded_black_24dp"
-                    />
+
             </LinearLayout>
             <View
                 android:layout_width="wrap_content"
@@ -68,17 +73,17 @@
                 android:id="@+id/layout_kh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal"
+                android:layout_gravity="right"
+                android:orientation="vertical"
                 android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:padding="5dp"
                     android:text="@string/email"
+                    android:textStyle="bold"
                     android:textColor="@color/total2"
                     android:textSize="14sp" />
                 <TextView
@@ -100,15 +105,16 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
+            android:layout_gravity="right"
+            android:orientation="vertical"
             android:layout_marginTop="5dp">
             <TextView
                 android:id="@+id/site"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:gravity="center"
+                android:gravity="right"
+                android:textStyle="bold"
                 android:padding="5dp"
                 android:text="@string/site"
                 android:textColor="@color/total2"
@@ -135,7 +141,7 @@
                 android:id="@+id/layout_su"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="right"
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
@@ -144,15 +150,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:gravity="center"
+                    android:gravity="right"
                     android:padding="2dp"
+                    android:textStyle="bold"
                     android:text="@string/version_number"
                     android:textColor="@color/total2"
                     android:textSize="14sp" />
 
             </LinearLayout>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -161,7 +167,6 @@
         android:background="@drawable/button_error_background"
         android:gravity="center"
         >
-
         <TextView
             android:id="@+id/copyRight"
             android:layout_width="match_parent"

@@ -40,6 +40,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
     private Boolean accept;
     LoadingDialog loadingDialog;
     Alert alert;
+    String messageP;
 
     public RequestAdapter(List<Request> requestList, Context context) {
         this.context = context;
@@ -65,22 +66,26 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
     public void onBindViewHolder(@NonNull RequestAdapter.RequestViewHolder holder, int position) {
         //final Request item = requestList.get(position);
         holder.sender.setText("أرسل إاليك : " + requestList.get(position).getSender_name());
-        holder.owner_id.setText(Integer.toString(requestList.get(position).getOwner_id()));
+       // holder.owner_id.setText(Integer.toString(requestList.get(position).getOwner_id()));
         holder.conf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 accept = true;
+                messageP="تم قبول الطلب";
                 SharedPreferences sharedPreference = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
                 final String my_id = sharedPreference.getString(USER_ID, "id");
                 final int owner_id = requestList.get(position).getOwner_id();
                // Toast.makeText(context, accept + "", Toast.LENGTH_SHORT).show();
                 postRequest(my_id, owner_id, accept);
+                alert.showSuccessDialog(context.getResources().getString(R.string.success_notification),""+messageP,1);
+
             }
         });
         holder.reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 accept = false;
+                messageP="تم رفض الطلب";
                 SharedPreferences sharedPreference = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
                 final String my_id = sharedPreference.getString(USER_ID, "id");
                 final int owner_id = requestList.get(position).getOwner_id();
@@ -107,17 +112,17 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
             super(itemView);
 
             sender = itemView.findViewById(R.id.sender_name);
-            owner_id = itemView.findViewById(R.id.own_id);
+          //  owner_id = itemView.findViewById(R.id.own_id);
             conf = itemView.findViewById(R.id.conf_btn);
             reject = itemView.findViewById(R.id.reject_btn);
-            txtId = itemView.findViewById(R.id.txt2);
+           // txtId = itemView.findViewById(R.id.txt2);
             txtInfo = itemView.findViewById(R.id.txt7);
             typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
             sender.setTypeface(typeface);
-            owner_id.setTypeface(typeface);
+            //owner_id.setTypeface(typeface);
             conf.setTypeface(typeface);
             reject.setTypeface(typeface);
-            txtId.setTypeface(typeface);
+          //  txtId.setTypeface(typeface);
             txtInfo.setTypeface(typeface);
         }
     }
@@ -144,7 +149,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
                     //  progressDoalog.dismiss();
                     loadingDialog.dismissDialog();
                     //alert.showAlertSuccess("تم قبول الطلب");
-                    alert.showSuccessDialog(context.getResources().getString(R.string.success_notification),"",1);
+                    alert.showSuccessDialog(context.getResources().getString(R.string.success_notification),""+messageP,1);
                     //Toast.makeText(context, "don", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -154,7 +159,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
                 //   progressDoalog.dismiss();
                 loadingDialog.dismissDialog();
                 // Toast.makeText(context, "خطاء في النظام الخارجي", Toast.LENGTH_SHORT).show();
-                alert.showSuccessDialog(context.getResources().getString(R.string.success_notification),"",1);
+              //  alert.showSuccessDialog(context.getResources().getString(R.string.success_notification),""+messageP,1);
 
             }
         });

@@ -6,14 +6,17 @@
     android:background="@drawable/card_button"
     android:layoutDirection="rtl"
     tools:context=".ui.profile.RequestFragment">
-
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:id="@+id/srRequest"
+        android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_request"
         android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
     </androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 <TextView
     android:id="@+id/not_fond"
     android:layout_gravity="center"

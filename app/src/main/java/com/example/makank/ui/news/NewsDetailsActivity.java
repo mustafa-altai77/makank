@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Html;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,8 +37,13 @@ public class NewsDetailsActivity extends AppCompatActivity {
         String tit = model.getTitle();
         String txt = model.getText();
 
+        String tex=String.valueOf(Html.fromHtml(
+                "<![CDATA[<body style=\"text-align:justify\">"
+                +txt+ "</body>]]>"
+        ));
+
         text.setText(tit);
-        description.setText(txt);
+        description.setText(txt);//Html.fromHtml(tex));
         Glide.with(getApplicationContext()).load("http://primarykeysd.com/makank/Anti_Covid19/public/news/"
        +model.getImage()).into(image);
        }

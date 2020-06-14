@@ -92,6 +92,7 @@ public class QuarantinAdapter extends RecyclerView.Adapter<QuarantinAdapter.Hosp
         holder.bad.setVisibility(View.VISIBLE);
         holder.bed_num.setVisibility(View.VISIBLE);
         holder.imageView.setVisibility(View.VISIBLE);
+        holder.moreM.setVisibility(View.GONE);
 
         if (model.getIs_corona().equals("0")) {
 
@@ -119,7 +120,7 @@ public class QuarantinAdapter extends RecyclerView.Adapter<QuarantinAdapter.Hosp
         }
     }
     public class HospitalViewHolder extends RecyclerView.ViewHolder {
-        TextView hospital_name, adress, bad, bed_num;
+        TextView hospital_name, adress, bad, bed_num,moreM;
         ImageView imageView;
         LinearLayout linearLayout;
         CardView cardView;
@@ -137,6 +138,7 @@ public class QuarantinAdapter extends RecyclerView.Adapter<QuarantinAdapter.Hosp
             bed_num = itemView.findViewById(R.id.number_bed);
             cardView = itemView.findViewById(R.id.card);
             imageView = itemView.findViewById(R.id.img);
+            moreM=itemView.findViewById(R.id.more);
             typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Hacen-Algeria.ttf");
             hospital_name.setTypeface(typeface);
             isCorona.setTypeface(typeface);
