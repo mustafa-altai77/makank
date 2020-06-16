@@ -176,24 +176,39 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:inputType="number"
                     android:paddingLeft="15dp"
                     android:paddingRight="15sp"
                     android:textColor="#4D4646"
                     android:textColorHint="@color/total2"
                     app:boxBackgroundMode="outline"
-                    app:boxStrokeColor="@color/colorPrimary">
+                    app:boxStrokeColor="@color/colorPrimary"
+                    tools:ignore="OnClick">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:hint="@string/age"
-                        android:maxLength="3"
-                        android:inputType="textPersonName"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="wrap_content"
+                    android:text="فصيلة الدم"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+                <Spinner
+                    android:id="@+id/blood_spinner"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                   >
+                </Spinner>
             </LinearLayout>
-            <!--    </FrameLayout>-->
             <Button
                 android:id="@+id/don_register"
                 android:layout_width="186dp"

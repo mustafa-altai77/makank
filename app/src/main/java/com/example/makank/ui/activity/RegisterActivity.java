@@ -3,18 +3,20 @@ package com.example.makank.ui.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.ProgressDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,8 @@ import com.example.makank.data.network.ApiInterface;
 import com.example.makank.data.model.Person;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Calendar;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,9 +39,12 @@ import static com.example.makank.SharedPref.SHARED_PREF_NAME;
 import static com.example.makank.SharedPref.TOKEN;
 import static com.example.makank.SharedPref.mCtx;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button btn;
-   // EditText bDay;
+    int year;
+    int month;
+    int dayOfMonth;
+    Calendar calendar;
     RadioGroup radioGroupGender;
     RadioButton radioButton;
     String local_id, ln, holdKeyPhone;
@@ -45,14 +52,19 @@ public class RegisterActivity extends AppCompatActivity {
     TextView textView, Fmale, Male, info;
     Typeface typeface;
     LoadingDialog loadingDialog;
+    DatePickerDialog datePickerDialog;
     Alert alert;
     Toolbar toolbar;
+    Spinner bloodSpin;
+    String blood_type;
+    String [] bloodList = {"لا اعلم","B+","AB","A+","O+","O-"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         toolbar = findViewById(R.id.toolbar_id);
+        bloodSpin = findViewById(R.id.blood_spinner);
         setSupportActionBar(toolbar);
         btn = findViewById(R.id.don_register);
         f_name = findViewById(R.id.f_name);
@@ -90,9 +102,45 @@ public class RegisterActivity extends AppCompatActivity {
                 createPerson();
             }
         });
+        bDay.getEditText().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calendar = Calendar.getInstance();
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+                datePickerDialog = new DatePickerDialog(RegisterActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                                bDay.getEditText().setText(day + "/" + (month + 1) + "/" + year);
+                            }
+                        }, year, month, dayOfMonth);
+                datePickerDialog.getDatePicker().setMinDate(1980);
+                datePickerDialog.show();
+
+            }
+        });
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(RegisterActivity.this,
+                android.R.layout.simple_spinner_dropdown_item,bloodList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        bloodSpin.setAdapter(adapter);
+        bloodSpin.setOnItemSelectedListener(this);
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+      blood_type = bloodSpin.getSelectedItem().toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
     private void createPerson() {
         loadingDialog.startLoadingDialog();
+
         final String first_name = f_name.getEditText().getText().toString();
         final String second_name = s_name.getEditText().getText().toString();
         final String last_name = l_name.getEditText().getText().toString();
@@ -131,9 +179,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         }
 
+        Toast.makeText(this, blood_type +"", Toast.LENGTH_SHORT).show();
 
 
-        Person person = new Person(first_name, second_name, last_name, gender, age, local_id);
+        Person person = new Person(first_name, second_name, last_name, gender, age, local_id, blood_type);
         loadingDialog.startLoadingDialog(false);
 
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
@@ -145,7 +194,6 @@ public class RegisterActivity extends AppCompatActivity {
             public void onResponse(Call<Person> call, Response<Person> response) {
                 loadingDialog.dismissDialog();
                 if (response.isSuccessful()) {
-                    //progressDoalog.dismiss();
                     String id_person = String.valueOf(response.body().getId());
                     String f_name = response.body().getFirst_name();
                     String s_name = response.body().getSecond_name();
@@ -172,4 +220,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

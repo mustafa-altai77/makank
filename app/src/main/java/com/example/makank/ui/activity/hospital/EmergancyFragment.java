@@ -66,12 +66,14 @@ public class EmergancyFragment extends Fragment implements SwipeRefreshLayout.On
     {
         ApiInterface apiService = ApiClient.getRetrofitClient().create(ApiInterface.class);
         Call<List<Hospital>> call = apiService.getHospitals();
+//        loadingDialog.startLoadingDialog();
+
         call.enqueue(new Callback<List<Hospital>>() {
             @Override
             public void onResponse
                     (Call<List<Hospital>> call, Response<List<Hospital>> response) {
                 refreshLayout.setRefreshing(false);
-                loadingDialog.dismissDialog();
+//                loadingDialog.dismissDialog();
                 hospitalsList = response.body();
                 if (!hospitalsList.isEmpty()) {
                     Log.d("TAG", "Response = " + hospitalsList);

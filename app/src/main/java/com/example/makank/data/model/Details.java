@@ -35,7 +35,11 @@ public class Details {
     private String local_id;
     @SerializedName("user_id")
     @Expose
+
     private int user_id;
+    @SerializedName("blood_type")
+    @Expose
+    private String blood_type;
 
     public void setId(int id) {
         this.id = id;
@@ -115,5 +119,13 @@ public class Details {
 
     public int getUser_id() {
         return user_id;
+    }
+
+    public String getBlood_type() {
+        return blood_type;
+    }
+
+    public void setBlood_type(String blood_type) {
+        this.blood_type = blood_type;
     }
 }

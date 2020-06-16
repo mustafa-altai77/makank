@@ -26,21 +26,26 @@ public class Person {
     private String status;
     @SerializedName("age")
     @Expose
+
     private String age;
     @SerializedName("local_id")
     @Expose
     private String local_id;
+    @SerializedName("blood_type")
+    @Expose
+    private String blood_type;
     @SerializedName("id")
     @Expose
     private int id;
 
-    public Person(String first_name, String second_name, String last_name, String gender, String age, String local_id) {
+    public Person(String first_name, String second_name, String last_name, String gender, String age, String local_id,String blood_type) {
         this.first_name = first_name;
         this.second_name = second_name;
         this.last_name = last_name;
         this.gender = gender;
         this.age = age;
         this.local_id = local_id;
+        this.blood_type =blood_type;
         this.id = id;
 
     }
@@ -115,5 +120,17 @@ public class Person {
 
     public String getQr_code() {
         return qr_code;
+    }
+
+    public void setQr_code(String qr_code) {
+        this.qr_code = qr_code;
+    }
+
+    public String getBlood_type() {
+        return blood_type;
+    }
+
+    public void setBlood_type(String blood_type) {
+        this.blood_type = blood_type;
     }
 }

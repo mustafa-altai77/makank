@@ -53,7 +53,7 @@ import static com.example.makank.SharedPref.mCtx;
 
 
 public class PersonalFragment extends Fragment {
-    TextView F_name, gen, age_, ph, personalID, TxtPhone, TxtAge, TxtGender, statusName,not_found,disease_list;
+    TextView F_name, gen, age_, ph, personalID, TxtPhone, TxtAge, TxtGender, statusName,not_found,disease_list ,blood;
     ImageView qrImage;
     CircleImageView statusImage;
     ListView listView;
@@ -88,6 +88,8 @@ public class PersonalFragment extends Fragment {
         gen = view.findViewById(R.id.gender_pref);
         age_ = view.findViewById(R.id.age_prf);
         not_found = view.findViewById(R.id.notFound);
+        blood = view.findViewById(R.id.blood);
+
         layout=view.findViewById(R.id.linearAll);
         layout.setVisibility(View.GONE);
 
@@ -135,10 +137,14 @@ public class PersonalFragment extends Fragment {
                     final String gender = personList.getGender();
                     final String age = personList.getAge();
                     final String status = personList.getStatus();
+                    final String bloodType = personList.getBlood_type();
+
 
                     F_name.setText("" + f_name + " " + s_name + " " + l_name);
                     gen.setText(gender);
-                    personalID.setText(getResources().getString(R.string.the_id_is) + qr_cod);
+                    blood.setText(bloodType);
+
+                    //personalID.setText(getResources().getString(R.string.the_id_is) + qr_cod);
                     age_.setText(age);
                     final String num = sharedPreferences.getString(PHONE, "phone");
                     ph.setText(num);
@@ -212,7 +218,7 @@ public class PersonalFragment extends Fragment {
         final String qr_code = sharedPreferences.getString(QRCODE, "qr_code");
 
         getActivity();
-        personalID.setText(qr_code);
+       // personalID.setText(qr_code);
         inputValue = qr_code;
 //                inputValue = edtValue.getText().toString().trim();
         if (inputValue.length() > 0) {

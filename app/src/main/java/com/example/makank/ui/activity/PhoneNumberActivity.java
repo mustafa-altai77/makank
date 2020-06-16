@@ -90,7 +90,7 @@ public class PhoneNumberActivity extends AppCompatActivity {
                 loadingDialog.dismissDialog();
                 if (response.isSuccessful()) {
                     //progressDoalog.dismiss();
-                  //  String mesag = response.body().getMessage();
+//                    String mesag = response.body().getMessage();
               //      Toast.makeText(PhoneNumberActivity.this, ""+mobile, Toast.LENGTH_SHORT).show();
                     SharedPref.getInstance(PhoneNumberActivity.this).storeNumber(mobile);
 

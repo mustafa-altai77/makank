@@ -96,6 +96,8 @@
     <string name="md_name">الاسم الثاني</string>
     <string name="last_name">الاسم الثالث</string>
     <string name="age">العمر</string>
+    <string name="blood">فصيلة الدم</string>
+
     <string name="male">ذكر</string>
     <string name="female">انثى</string>
     <string name="phone">رقم الهاتف</string>
