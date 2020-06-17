@@ -9,6 +9,7 @@
     tools:context=".ui.activity.DiseaseActivity">
     <include layout="@layout/custom_toolbar"/>
     <ScrollView
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"

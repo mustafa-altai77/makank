@@ -16,14 +16,14 @@
     <ImageView
         android:id="@+id/qr_image"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_marginTop="25dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:background="@drawable/ic_qr_codeb">
     </ImageView>
     <TextView
         android:id="@+id/infor"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/total2"
@@ -45,7 +45,7 @@
         android:layout_gravity="center">
     </TextView>
 
-    <EditText
+    <!--<EditText
         android:id="@+id/p_id"
         android:layout_width="282dp"
         android:layout_height="48dp"
@@ -56,7 +56,7 @@
         android:hint="@string/hint_id"
         android:inputType="text"
         android:textAlignment="center">
-    </EditText>
+    </EditText>-->
         <Button
             android:id="@+id/check_status"
             android:layout_width="162dp"
@@ -64,13 +64,14 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:textSize="18sp"
-            android:background="@drawable/redbtn"
+            android:background="@drawable/button_error_background"
             android:text="@string/scan"
             android:textColor="@color/white">
         </Button>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="50dp"
     android:id="@+id/anotherPerson"
     android:orientation="vertical">
 
@@ -78,24 +79,48 @@
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:orientation="vertical"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/p_name"
-                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/color"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/p_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginTop="5dp"
                 android:textColor="@color/total2"
-                android:textStyle="bold"
-                android:text=""/>
+                android:textSize="18sp"
+                android:gravity="center"
+                android:textStyle="bold" />
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/img_status"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="2dp"
+                    app:civ_border_width="0dp" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
-
             <!--<TextView
                 android:id="@+id/p_number"
                 android:textSize="15sp"
@@ -107,19 +132,22 @@
 
     <Button
         android:id="@+id/add"
-        android:layout_width="283dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@drawable/redbtn"
         android:textStyle="bold"
         android:textSize="17sp"
+        android:drawableLeft="@drawable/ic_add_circle_black_24dp"
+        android:drawableTint="@color/white"
+        android:padding="10dp"
         android:text="@string/add_member"
         android:textColor="@color/cardview_light_background">
     </Button>
     <Button
         android:id="@+id/cancel"
-        android:layout_width="283dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"

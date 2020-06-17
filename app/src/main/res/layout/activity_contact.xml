@@ -7,87 +7,94 @@
     android:layoutDirection="rtl"
     android:orientation="vertical"
     tools:context=".ui.activity.AddGroupActivity">
-
     <LinearLayout
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:textColor="@color/white">
 
         <ImageView
-            android:id="@+id/qr_image"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/ic_qr_codeb"/>
-
-        <TextView
-            android:id="@+id/infor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/search_qr"
-            android:textColor="@color/total2"
-            android:textSize="15sp">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/infor2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="@string/or_input_id"
-            android:textColor="@color/total2"
-            android:textSize="15sp"/>
-
-        <EditText
-            android:id="@+id/p_id"
-            android:layout_width="282dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/rounded_edittext"
-            android:hint="@string/hint_id"
-            android:inputType="text"
-            android:textAlignment="center"
-            android:textColorHint="@color/total2"/>
-
+             android:id="@+id/qr_image"
+             android:layout_width="150dp"
+             android:layout_height="150dp"
+             android:layout_gravity="center"
+             android:layout_marginTop="25dp"
+             android:background="@drawable/ic_qr_codeb"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/check_status"
-                android:layout_width="162dp"
-                android:layout_marginLeft="10dp"
+            <TextView
+                android:id="@+id/infor"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/button_error_background"
-                android:text="@string/scan"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:gravity="center"
+                android:text="@string/search_qr"
+                android:textColor="@color/total2"
+                android:textSize="14sp">
 
-            <Button
-                android:id="@+id/cancel"
-                android:layout_width="162dp"
+            </TextView>
+
+            <TextView
+                android:id="@+id/infor2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/button_noutral_background"
-                android:text="@string/receive"
-                android:textColor="@color/cardview_light_background"
-                android:textSize="17sp"
-                android:textStyle="bold"/>
+                android:gravity="center"
+                android:text="@string/or_input_id"
+                android:textColor="@color/total2"
+                android:textSize="14sp" />
         </LinearLayout>
+        <!--   <EditText
+                android:id="@+id/p_id"
+                android:layout_width="282dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_edittext"
+                android:hint="@string/hint_id"
+                android:inputType="text"
+                android:textAlignment="center"
+                android:textColorHint="@color/total2"/>-->
 
         <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="05dp"
+             android:layout_gravity="center_horizontal"
+             android:orientation="vertical">
+
+           <Button
+                 android:id="@+id/check_status"
+                 android:layout_width="250dp"
+                 android:layout_marginLeft="10dp"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="20dp"
+                 android:background="@drawable/button_error_background"
+                 android:text="@string/scan"
+                 android:textColor="@color/white"
+                 android:textSize="18sp" />
+             <Button
+                 android:id="@+id/cancel"
+                 android:layout_width="250dp"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="30dp"
+                 android:background="@drawable/button_noutral_background"
+                 android:text="@string/receive"
+                 android:textColor="@color/cardview_light_background"
+                 android:textSize="17sp"
+                 android:textStyle="bold"/>
+         </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
             android:id="@+id/anotherPerson"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -97,6 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:orientation="vertical"
                 android:layout_marginTop="20dp">
 
                 <TextView
@@ -104,16 +112,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textColor="@color/total2"
-                    android:textSize="15sp"
+                    android:textColor="@color/color"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center">
-
 
                 <TextView
                     android:id="@+id/p_number"
@@ -121,7 +130,15 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="@color/total2"
-                    android:textSize="15sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/img_status"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="2dp"
+                    app:civ_border_width="0dp" />
             </LinearLayout>
 
             <Button
@@ -134,7 +151,7 @@
                 android:text="تواصل"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="17sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 

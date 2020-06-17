@@ -39,9 +39,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.HospitalsActivity"
+        <activity android:name=".Scanner"
+            android:theme="@style/AppThemeNoActionBar"
             android:label=""
-         android:theme="@style/AppThemeNoActionBar"/>
+            ></activity>
+        <activity
+            android:name=".ui.activity.HospitalsActivity"
+            android:label=""
+            android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".ui.activity.DetailsActivity" />
         <activity
             android:name=".ui.activity.Areas"
@@ -77,9 +82,7 @@
         <activity
             android:name=".ui.activity.DiseaseActivity"
             android:label=""
-            android:theme="@style/AppThemeNoActionBar" >
-
-        </activity>
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".ui.activity.AddGroupActivity"
             android:label=""
@@ -120,10 +123,7 @@
         <activity
             android:name=".ui.activity.RegisterActivity"
             android:label=""
-            android:theme="@style/AppThemeNoAction" >
-
-
-        </activity>
+            android:theme="@style/AppThemeNoAction" />
         <activity
             android:name=".ui.activity.StateActivity"
             android:label=""

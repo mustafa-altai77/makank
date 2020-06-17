@@ -7,9 +7,11 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -49,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     RadioButton radioButton;
     String local_id, ln, holdKeyPhone;
     TextInputLayout f_name,s_name, l_name, bDay;
-    TextView textView, Fmale, Male, info;
+    TextView textView, Fmale, Male, info,bloods;
     Typeface typeface;
     LoadingDialog loadingDialog;
     DatePickerDialog datePickerDialog;
@@ -57,14 +59,14 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     Toolbar toolbar;
     Spinner bloodSpin;
     String blood_type;
-    String [] bloodList = {"لا اعلم","B+","AB","A+","O+","O-"};
+    String [] bloodList = {"لا أتذكر","B+","AB","A+","O+","O-"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         toolbar = findViewById(R.id.toolbar_id);
-        bloodSpin = findViewById(R.id.blood_spinner);
+       bloodSpin = findViewById(R.id.blood_spinner);
         setSupportActionBar(toolbar);
         btn = findViewById(R.id.don_register);
         f_name = findViewById(R.id.f_name);
@@ -75,6 +77,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         Male = findViewById(R.id.male);
         Fmale = findViewById(R.id.female);
         info = findViewById(R.id.infoInsert);
+        bloods=findViewById(R.id.bloodTxt);
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         btn.setTypeface(typeface);
         f_name.getEditText().setTypeface(typeface);
@@ -88,8 +91,11 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         textView.setTypeface(typeface);
         Male.setTypeface(typeface);
         Fmale.setTypeface(typeface);
+
         info.setTypeface(typeface);
         btn.setTypeface(typeface);
+        bloods.setTypeface(typeface);
+        //spinner2meth();
         radioGroupGender = findViewById(R.id.gender_radiogroup);
         loadingDialog = new LoadingDialog(this);
         alert = new Alert(this);
@@ -121,26 +127,49 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
             }
         });
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(RegisterActivity.this,
+      /*  ArrayAdapter<String> adapter = new ArrayAdapter<String>(RegisterActivity.this,
                 android.R.layout.simple_spinner_dropdown_item,bloodList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        bloodSpin.setAdapter(adapter);
+       bloodSpin.setAdapter(adapter);*/
+
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, bloodList) {
+
+            public View getView(int position, View convertView, android.view.ViewGroup parent) {
+                typeface = Typeface.createFromAsset(getAssets(), "fonts/Hacen-Algeria.ttf");
+                TextView v = (TextView) super.getView(position, convertView, parent);
+                v.setTypeface(typeface);
+                //    v.setTextColor(Color.RED);
+                v.setTextSize(16);
+                return v;
+            }
+            public View getDropDownView(int position, View convertView, android.view.ViewGroup parent) {
+                TextView v = (TextView) super.getView(position, convertView, parent);
+                v.setTypeface(typeface);
+                v.setTextColor(Color.RED);
+                v.setTextSize(16);
+                return v;
+            }
+        };
+
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        bloodSpin.setAdapter(adapter1);
         bloodSpin.setOnItemSelectedListener(this);
     }
+
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
       blood_type = bloodSpin.getSelectedItem().toString();
+
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
     private void createPerson() {
-        loadingDialog.startLoadingDialog();
-
+       loadingDialog.startLoadingDialog();
         final String first_name = f_name.getEditText().getText().toString();
         final String second_name = s_name.getEditText().getText().toString();
         final String last_name = l_name.getEditText().getText().toString();
@@ -179,7 +208,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         }
 
-        Toast.makeText(this, blood_type +"", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, blood_type +""+age, Toast.LENGTH_SHORT).show();
 
 
         Person person = new Person(first_name, second_name, last_name, gender, age, local_id, blood_type);
@@ -220,6 +249,4 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             }
         });
     }
-
-
 }

@@ -77,6 +77,7 @@ public class DiseaseActivity extends AppCompatActivity {
 
         typeface = Typeface.createFromAsset(this.getAssets(), "fonts/Hacen-Algeria.ttf");
         btnGetSelected.setTypeface(typeface);
+        scape.setTypeface(typeface);
         disease_i.setTypeface(typeface);
         info_Insert.setTypeface(typeface);
         scape.setOnClickListener(new View.OnClickListener() {

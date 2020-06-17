@@ -53,7 +53,7 @@ import static com.example.makank.SharedPref.mCtx;
 
 
 public class PersonalFragment extends Fragment {
-    TextView F_name, gen, age_, ph, personalID, TxtPhone, TxtAge, TxtGender, statusName,not_found,disease_list ,blood;
+    TextView F_name, gen, age_, ph, TxtPhone, TxtAge, TxtGender, statusName,not_found,disease_list ,blood;
     ImageView qrImage;
     CircleImageView statusImage;
     ListView listView;
@@ -96,7 +96,7 @@ public class PersonalFragment extends Fragment {
         ph = view.findViewById(R.id.phone);
         qrImage = view.findViewById(R.id.qr_person);
         statusImage = view.findViewById(R.id.img_status);
-        personalID = view.findViewById(R.id.personal_id);
+       // personalID = view.findViewById(R.id.personal_id);
         TxtPhone = view.findViewById(R.id.txtPhone);
         TxtAge = view.findViewById(R.id.txtAge);
         TxtGender = view.findViewById(R.id.txtGender);
@@ -107,7 +107,7 @@ public class PersonalFragment extends Fragment {
         gen.setTypeface(typeface);
         age_.setTypeface(typeface);
         ph.setTypeface(typeface);
-        personalID.setTypeface(typeface);
+//        personalID.setTypeface(typeface);
         TxtPhone.setTypeface(typeface);
         TxtAge.setTypeface(typeface);
         TxtGender.setTypeface(typeface);

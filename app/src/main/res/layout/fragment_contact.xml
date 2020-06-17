@@ -10,7 +10,7 @@
         android:id="@+id/layoutSeen"
         android:layout_width="match_parent"
         android:layout_gravity="center_horizontal"
-        android:background="#520C0C0C"
+        android:background="@color/total2"
         android:layout_height="40dp">
         <TextView
             android:layout_width="match_parent"
@@ -26,6 +26,7 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:id="@+id/srContact"
+        android:layout_marginTop="45dp"
         android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_contact"

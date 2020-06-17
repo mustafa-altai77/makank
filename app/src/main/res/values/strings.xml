@@ -32,9 +32,7 @@
     <string name="kh">ولاية الخرطوم</string>
     <string name="allVellige">كافة الولايات</string>
     <string name="number_contact">أرقام التواصل</string>
-    <string name="place_enter_id">يرجى إدخال رقم التعريف</string>
     <string name="error">خــطأ</string>
-    <string name="input_error">إدخال خاطئ</string>
     <string name="no_result">لا توجد نتيجة</string>
     <string name="healthy_case">سليم</string>
     <string name="suspicious_case">مخالط</string>
@@ -46,7 +44,6 @@
     <string name="requested_done">تم ارسال الطلب</string>
     <string name="cannot_add_this_person">لايمكن اضافة هذا الشخص</string>
     <string name="fill_field">يجب ملئ جميع الحقول</string>
-    <string name="the_id_is">الرقم التعريفي :</string>
     <string name="disc_case">اوصف الحالة</string>\
     <string name="disc_area">وصف المنطقة</string>
     <string name="success_notification">نجاح العملية</string>
@@ -58,11 +55,9 @@
     <string name="done_send_cv">تم إرسال السيرة الذاتية</string>
     <string name="length_file_long">اسم الملف طويل للغاية</string>
     <string name="number_persons_seen">الأشخاص الذين تم التواصل معهم :</string>
-    <string name="soon">قريبــاً</string>
     <string name="contact_screen">التواصـل مع شخص</string>
     <string name="notification_screen">التبليغ عن حالة</string>
     <string name="testing_screen">الاختبار المعرفي</string>
-    <string name="effected_screen">اماكن الاصابات</string>
     <string name="volunteer_screen">التطوع</string>
     <string name="tips_screen">النصائح</string>
     <string name="person_account">الحساب الشخصي</string>
@@ -80,12 +75,10 @@
     <string name="do_not_worry">انت بصحة جيدة اطمئن ولاتقلق</string>
     <string name="catch_cold">انت تعاني من نزلة برد</string>
     <string name="effected">يجب عليك الإتصال بوحدة الوبائيات</string>
-    <string name="search_qr">اضغط على الصورة للبحث عن طريق الرمز التعريفي (QrCode)</string>
-    <string name="or_input_id">او ادخل الرقم التعريفي</string>
-    <string name="hint_id">الرقم التعريفي: xxxxx</string>
+    <string name="search_qr">اضغط على الصورة او كلمة بحث للمسح عن طريق الرمز التعريفي QrCode</string>
+    <string name="or_input_id">او اضغط على إستقبال لكي تتم عملية التواصل بينك وبين الشخص الأخر</string>
     <string name="info_notification">معلومـــات التبليغ</string>
     <string name="area">المنطقة</string>
-    <string name="send_location">او ارسل موقعك الحالى</string>
     <string name="disease">الأمراض المزمنة</string>
     <string name="press_disease">قم بالضغط على المرض المصاحب أو المصاحبة</string>
     <string name="common_questions">الأسئلة الشائعة حول جائحة كورونا</string>
@@ -113,18 +106,9 @@
     <string name="not_found_member">لايوجد اعضاء</string>
     <string name="no_news">لاتوجد اخبار</string>
     <string name="no_requests">لاتوجد طلبات</string>
-    <string name="new_case">الولاية</string>
-    <string name="case_recover">حالات الشفاء الجديدة</string>
-    <string name="new_death">الوفيات الجديدة</string>
-    <string name="suspicious_num">الحالات المشتبهة</string>
-    <string name="total_recover">إجمالي حالات الشفاء</string>
-    <string name="total_death">إجمالي الوفيات</string>
-    <string name="total_effected_num">عدد الإصابات الكلي</string>
-    <string name="id_own">الرقم التعريفي الخاص به :</string>
     <string name="request_for_him">طلب للإنضمام لمجموعته</string>
     <string name="accepted">قبول</string>
     <string name="rejected">رفض</string>
-    <string name="share_app">مشاركة التطبيق</string>
     <string name="qr_code">رمز QR Code</string>
     <string name="instruction">الإرشادات</string>
     <string name="phone_edemi">التواصل مع الوبائيات</string>
@@ -152,7 +136,7 @@
     <string name="wait_code">الرجاء الإنتظار جاري إرسال رمز التحقق</string>
     <string name="error_code">رمز التحقق الذي تم ادخاله غير صحيح</string>
     <string name="phone_verify">الرجاء إدخال رقم الهاتف للتحقق</string>
-    <string name="input_verify">الرجاءإدخال رمز التفعيل سيصلك برسالة نصية على رقمك </string>
+    <string name="input_verify">الرجاء إدخال رمز التفعيل سيصلك برسالة نصية على رقمك </string>
     <string name="error_phone_number">رقم الهاتف غير صحيح</string>
     <string name="chooseState">إختر الولاية</string>
     <string name="chooseCity">إختر المدينة</string>
@@ -165,17 +149,12 @@
     <string name="choosePlace"> إختر منطقة سكنك الحالي"</string>
     <string name="hospital_info">المستشفيات المتاحة</string>
     <string name="hospital_azl">للعزل فقط</string>
-    <string name="hospital_emer">للطوارىء فقط</string>
-    <string name="azl">عزل</string>
-    <string name="emer">طوارىء</string>
     <string name="verify">التحقق من الهاتف</string>
     <string name="info_hospital">معلومات المشفى</string>
     <string name="more">المزيد</string>
     <string name="email">الإيميل</string>
     <string name="site">الموقع الإلكتروني</string>
-    <string name="version">الإصدارة</string>
     <string name="name_app">مكانك</string>
-    <string name="detailsHospital">لاتوجد تفاصيل</string>
+    <string name="waite_few">الرجاء الإنتظار قليلاً ...</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
