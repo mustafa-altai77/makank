@@ -3,7 +3,7 @@ package com.example.makank.data.network;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
-    private static final String BASE_URL = "http://primarykeysd.com/makank/Anti_Covid19/public/api/";
+    private static final String BASE_URL = "api/";
     private ApiInterface apiInterface;
     private static ApiClient INSTANCE;
 
